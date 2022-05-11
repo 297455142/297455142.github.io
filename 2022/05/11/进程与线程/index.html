@@ -16,21 +16,21 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2022/05/09/test/index.html">
+    <meta name="description" content="一、进程和线程 进程是系统进行资源分配和调度的一个独立单位，代表CPU所能处理的单个任务。任一时刻CPU总是运行一个进程。（系统调度） 一个进程包括多个线程，每个线程共享进程的所有内存空间。互斥锁可以防止其他线程使用。一个进程内部可能包含了很多顺序执行流，每个顺序执行流就是一个线程。线程是进程的一个实体，是CPU调度和分派的基本单位，是比进程更小的能独立运行的基本单位。（CPU调度） 一个进程内部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程与线程">
+<meta property="og:url" content="http://example.com/2022/05/11/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、进程和线程 进程是系统进行资源分配和调度的一个独立单位，代表CPU所能处理的单个任务。任一时刻CPU总是运行一个进程。（系统调度） 一个进程包括多个线程，每个线程共享进程的所有内存空间。互斥锁可以防止其他线程使用。一个进程内部可能包含了很多顺序执行流，每个顺序执行流就是一个线程。线程是进程的一个实体，是CPU调度和分派的基本单位，是比进程更小的能独立运行的基本单位。（CPU调度） 一个进程内部">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/05/09/test/1.JPG">
-<meta property="article:published_time" content="2022-05-09T13:17:21.000Z">
-<meta property="article:modified_time" content="2022-05-09T13:21:48.108Z">
+<meta property="article:published_time" content="2022-05-11T03:17:56.000Z">
+<meta property="article:modified_time" content="2022-05-11T03:19:10.199Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/05/09/test/1.JPG">
   
   
-  <title>test - 前端面试总结</title>
+  <title>进程与线程 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="test">
+            <span class="h2" id="subtitle" title="进程与线程">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-09 21:17" pubdate>
-        2022年5月9日 晚上
+      <time datetime="2022-05-11 11:17" pubdate>
+        2022年5月11日 上午
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      734 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      7 分钟
     </span>
   
 
@@ -243,16 +243,32 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">test</h1>
+            <h1 style="display: none">进程与线程</h1>
             
             <div class="markdown-body">
-               <img src="/2022/05/09/test/1.JPG" srcset="/img/loading.gif" lazyload class="" title="图片引用方法一"> 
-
+              <h4 id="一、进程和线程"><a href="#一、进程和线程" class="headerlink" title="一、进程和线程"></a>一、进程和线程</h4><ul>
+<li><strong>进程是系统进行资源分配和调度的一个独立单位</strong>，代表CPU所能处理的单个任务。任一时刻CPU总是运行一个进程。（系统调度）</li>
+<li>一个进程包括多个线程，每个线程共享进程的所有内存空间。互斥锁可以防止其他线程使用。一个进程内部可能包含了很多顺序执行流，每个顺序执行流就是一个线程。线程是进程的一个实体，<strong>是CPU调度和分派的基本单位</strong>，是比进程更小的能独立运行的基本单位。（CPU调度）</li>
+<li>一个进程内部可能包含了很多顺序执行流，每个顺序执行流就是一个线程。单线程就是只有一个顺序执行流，多线程是多条顺序执行流“同时”执行。</li>
+<li>并发：同一时刻只能有一条指令（或一个进程、一个线程）运行，但是宏观上看有多条指令同时执行。</li>
+<li>并行：同一时刻多条指令在多个处理机上同时执行。</li>
+<li>进程和线程主要区别在于它们是不同操作系统资源管理方式。进程有独立的地址空间，进程崩溃后在保护模式下不会对其他进程产生影响。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉等于整个进程死掉。<strong>所以多进程比多线程健壮。</strong>进程切换时耗费资源大、效率差，但对于一些要求同时进行并且又要共享某些变量的并发操作只能使用线程，不能用进程。</li>
+<li>一个程序至少有一个进程，一个进程至少有一个线程。多线程程序的并发性高。进程在执行过程中有独立的内存单元，而多个线程共享内存，极大提高了程序的运行效率。</li>
+<li>每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。</li>
+<li>从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。</li>
+</ul>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
                 
                 
                   <div class="post-meta">
@@ -275,15 +291,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/10/Http/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Http</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/05/11/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">排序算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
