@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>网络层</title>
+    <link href="/2022/05/11/%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    <url>/2022/05/11/%E7%BD%91%E7%BB%9C%E5%B1%82/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>计算机网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>操作系统杂项</title>
     <link href="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%82%E9%A1%B9/"/>
     <url>/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%82%E9%A1%B9/</url>
@@ -105,10 +130,10 @@
   
   <entry>
     <title>TCP</title>
-    <link href="/2022/05/11/TCP/"/>
-    <url>/2022/05/11/TCP/</url>
+    <link href="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/"/>
+    <url>/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/</url>
     
-    <content type="html"><![CDATA[<h4 id="一、TCP报文头部结构标志位"><a href="#一、TCP报文头部结构标志位" class="headerlink" title="一、TCP报文头部结构标志位"></a>一、TCP报文头部结构标志位</h4><ul><li>急迫标识PSH：表明请求远地TCP报文将本报文段立即传送给其应用层，而不要等到全部缓存都填满了之后再向上交付（接受报文）。</li><li>复位标识ReSeT：表明出现严重错误，必须释放连接，然后再重建传输连接。还用来拒接一个不法的报文段或拒绝打开一个连接。</li><li>确认标识ACK：确认序号字段有意义。</li><li>紧急标识URGent：表明此报文段应尽快传送，而不要按本来的队列次序来传送。</li><li>同步标识SYN：在建立连接时使用。SYN&#x3D;1且ACK&#x3D;0时，表明这是一个连接请求报文段。对方若同意建立连接，在回复的报文段中使用SYN&#x3D;1和ACK&#x3D;1.</li><li>终止标识FINal：用来释放一个连接，当FIN&#x3D;1时，表明欲发送的字节已经发送完，并请求释放传输连接。</li></ul><h4 id="二、TCP的三次握手四次挥手"><a href="#二、TCP的三次握手四次挥手" class="headerlink" title="二、TCP的三次握手四次挥手"></a>二、TCP的三次握手四次挥手</h4><img src="/2022/05/11/TCP/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" class="" title="三次握手"> <ul><li><p>一开始，客户端和服务端都处于CLOSED状态。先是服务端主动监听某个端口，处于LISTEN状态。</p></li><li><p>客户端发送SYN包(SYN&#x3D;1,seq&#x3D;x)至服务端，并处于SYN_SENT状态，等待服务器确认。。</p></li><li><p>服务端解析SYN，并发送SYN+ACK包(SYN&#x3D;1,ACK&#x3D;x+1,seq&#x3D;y)至客户端，并处于SYN_RECV状态，允许建立连接。（告诉服务器已经做好准备，可以发送数据）</p></li><li><p>客户端获取SYN+ACK并发送ACK包(ACK&#x3D;y+1,seq&#x3D;z)包至服务端，连接建立成功，即将发送数</p><img src="/2022/05/11/TCP/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" class="" title="四次挥手"> </li><li><p>客户端打算关闭连接，此时会发送一个TCP首部FIN标志位置为1的报文，即FIN报文，之后客户端进入FIN_WAIT_1状态。</p></li><li><p>服务器收到该报文后，就向客户端发送ACK应答报文（FIN+1），接着服务器进入CLOSED_WAIT状态。</p></li><li><p>客户端收到服务端的ACK应答报文后，进入FIN_WAIT_2状态。</p></li><li><p>等待服务端处理完数据后，也向客户端发送FIN报文，之后服务端进入LAST_ACK状态。（告诉客户端响应报文发送完毕）</p></li><li><p>客户端收到服务端的FIN报文后，回一个ACK应答报文，之后进入TIME_WAIT状态。</p></li><li><p>服务器收到ACK应答报文后，就进入了CLOSED状态，至此服务端已经完成连接的关闭。</p></li><li><p>客户端在经过2MSL时间后，自动进入CLOSED状态，至此客户端也完成连接的关闭。</p><h4 id="三、TCP和UDP区别"><a href="#三、TCP和UDP区别" class="headerlink" title="三、TCP和UDP区别"></a>三、TCP和UDP区别</h4></li><li><p>连接：TCP是面向连接的传输层协议，传输数据前需要先建立连接。UDP是不需要连接，即刻传输数据。</p></li><li><p>服务对象：TCP是一对一的两点服务，一条连接只有两个端点。UDP支持一对一、一对多、多对多的交互通信。</p></li><li><p>可靠性：TCP是可靠交付数据的，数据可以无差错、不丢失、不重复、按需到达。UDP是尽最大努力交付，不保证可靠交付数据。</p></li><li><p>拥塞控制、流量控制：TCP有拥塞控制和流量控制机制，保证数据传输的安全性。UDP没有，即使网络拥堵，也不会影响UDP的发送速率。</p></li><li><p>首部开销：TCP首部长度较长，会有一定开销。UDP首部只有8个字节，并且是固定不变的，开销较小。</p></li><li><p>传输方式：TCP是流式传输，没有边界，但保证顺序和可靠。UDP是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</p></li><li><p>分片不同：TCP数据大小如果大于MSS大小，则会在传输层进行分片，目标主机收到后也同样在传输层组装TCP数据报，如果中途丢失一个分片，只需要传输丢失的分片。UDP的数据大小如果大于MTU大小，则会在IP层进行分片，目标主机收到后在IP层组装数据，接着再传给传输层，如果中途丢失一个分片，在实现可靠传输的UDP时需要重传所有的数据包。</p><h4 id="四、TCP和UDP应用场景"><a href="#四、TCP和UDP应用场景" class="headerlink" title="四、TCP和UDP应用场景"></a>四、TCP和UDP应用场景</h4></li><li><p>TCP：面向连接，能保证数据的可靠性交付，常用于FTP文件传输、HTTP&#x2F;HTTPS</p></li><li><p>UDP：面向无连接，可以随时发送数据，本身处理简单高效，常用于包总量较少的通信，如DNS、SNMP等、视频、音频等多媒体通信，广播通信。</p></li></ul>]]></content>
+    <content type="html"><![CDATA[<h4 id="一、TCP报文头部结构标志位"><a href="#一、TCP报文头部结构标志位" class="headerlink" title="一、TCP报文头部结构标志位"></a>一、TCP报文头部结构标志位</h4><ul><li>急迫标识PSH：表明请求远地TCP报文将本报文段立即传送给其应用层，而不要等到全部缓存都填满了之后再向上交付（接受报文）。</li><li>复位标识ReSeT：表明出现严重错误，必须释放连接，然后再重建传输连接。还用来拒接一个不法的报文段或拒绝打开一个连接。</li><li>确认标识ACK：确认序号字段有意义。</li><li>紧急标识URGent：表明此报文段应尽快传送，而不要按本来的队列次序来传送。</li><li>同步标识SYN：在建立连接时使用。SYN&#x3D;1且ACK&#x3D;0时，表明这是一个连接请求报文段。对方若同意建立连接，在回复的报文段中使用SYN&#x3D;1和ACK&#x3D;1.</li><li>终止标识FINal：用来释放一个连接，当FIN&#x3D;1时，表明欲发送的字节已经发送完，并请求释放传输连接。</li></ul><h4 id="二、TCP的三次握手四次挥手"><a href="#二、TCP的三次握手四次挥手" class="headerlink" title="二、TCP的三次握手四次挥手"></a>二、TCP的三次握手四次挥手</h4><img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" class="" title="三次握手"> <ul><li><p>一开始，客户端和服务端都处于CLOSED状态。先是服务端主动监听某个端口，处于LISTEN状态。</p></li><li><p>客户端发送SYN包(SYN&#x3D;1,seq&#x3D;x)至服务端，并处于SYN_SENT状态，等待服务器确认。。</p></li><li><p>服务端解析SYN，并发送SYN+ACK包(SYN&#x3D;1,ACK&#x3D;x+1,seq&#x3D;y)至客户端，并处于SYN_RECV状态，允许建立连接。（告诉服务器已经做好准备，可以发送数据）</p></li><li><p>客户端获取SYN+ACK并发送ACK包(ACK&#x3D;y+1,seq&#x3D;z)包至服务端，连接建立成功，即将发送数</p><img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" class="" title="四次挥手"> </li><li><p>客户端打算关闭连接，此时会发送一个TCP首部FIN标志位置为1的报文，即FIN报文，之后客户端进入FIN_WAIT_1状态。</p></li><li><p>服务器收到该报文后，就向客户端发送ACK应答报文（FIN+1），接着服务器进入CLOSED_WAIT状态。</p></li><li><p>客户端收到服务端的ACK应答报文后，进入FIN_WAIT_2状态。</p></li><li><p>等待服务端处理完数据后，也向客户端发送FIN报文，之后服务端进入LAST_ACK状态。（告诉客户端响应报文发送完毕）</p></li><li><p>客户端收到服务端的FIN报文后，回一个ACK应答报文，之后进入TIME_WAIT状态。</p></li><li><p>服务器收到ACK应答报文后，就进入了CLOSED状态，至此服务端已经完成连接的关闭。</p></li><li><p>客户端在经过2MSL时间后，自动进入CLOSED状态，至此客户端也完成连接的关闭。</p><h4 id="三、TCP和UDP区别"><a href="#三、TCP和UDP区别" class="headerlink" title="三、TCP和UDP区别"></a>三、TCP和UDP区别</h4></li><li><p>连接：TCP是面向连接的传输层协议，传输数据前需要先建立连接。UDP是不需要连接，即刻传输数据。</p></li><li><p>服务对象：TCP是一对一的两点服务，一条连接只有两个端点。UDP支持一对一、一对多、多对多的交互通信。</p></li><li><p>可靠性：TCP是可靠交付数据的，数据可以无差错、不丢失、不重复、按需到达。UDP是尽最大努力交付，不保证可靠交付数据。</p></li><li><p>拥塞控制、流量控制：TCP有拥塞控制和流量控制机制，保证数据传输的安全性。UDP没有，即使网络拥堵，也不会影响UDP的发送速率。</p></li><li><p>首部开销：TCP首部长度较长，会有一定开销。UDP首部只有8个字节，并且是固定不变的，开销较小。</p></li><li><p>传输方式：TCP是流式传输，没有边界，但保证顺序和可靠。UDP是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</p></li><li><p>分片不同：TCP数据大小如果大于MSS大小，则会在传输层进行分片，目标主机收到后也同样在传输层组装TCP数据报，如果中途丢失一个分片，只需要传输丢失的分片。UDP的数据大小如果大于MTU大小，则会在IP层进行分片，目标主机收到后在IP层组装数据，接着再传给传输层，如果中途丢失一个分片，在实现可靠传输的UDP时需要重传所有的数据包。</p><h4 id="四、TCP和UDP应用场景"><a href="#四、TCP和UDP应用场景" class="headerlink" title="四、TCP和UDP应用场景"></a>四、TCP和UDP应用场景</h4></li><li><p>TCP：面向连接，能保证数据的可靠性交付，常用于FTP文件传输、HTTP&#x2F;HTTPS</p></li><li><p>UDP：面向无连接，可以随时发送数据，本身处理简单高效，常用于包总量较少的通信，如DNS、SNMP等、视频、音频等多媒体通信，广播通信。</p></li></ul><h4 id="五、DHCP（动态主机配置协议）"><a href="#五、DHCP（动态主机配置协议）" class="headerlink" title="五、DHCP（动态主机配置协议）"></a>五、DHCP（动态主机配置协议）</h4><img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/DHCP.png" class="" title="DHCP"> <ul><li><p>作用：为网络内的主机提供动态ip地址分配服务，客户登陆服务器时就可以自动获得服务器分配的IP地址和子网掩码。</p></li><li><p>先告诉服务器可以分配的ip地址范围 ，  DHCP客户先广播一个请求，发现DHCP服务器。DHCP服务器表示可以提供，客户发送请求表示将其选择，服务器确认并分配地址。</p></li></ul>]]></content>
     
     
     <categories>
