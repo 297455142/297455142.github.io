@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>CSS</title>
+    <link href="/2022/05/12/CSS/"/>
+    <url>/2022/05/12/CSS/</url>
+    
+    <content type="html"><![CDATA[<h4 id="一、CSS盒模型"><a href="#一、CSS盒模型" class="headerlink" title="一、CSS盒模型"></a>一、CSS盒模型</h4><p>两种盒模型，box-sizing属性：content-box | border-box | inherit</p><ul><li>content-box 默认值：<strong>标准盒模型</strong>。边框border和内边距padding的值不包含在width之内。对象的实际宽度等于设置的width值和border、padding之和。</li></ul><img src="/2022/05/12/CSS/content-box.png" class="" title="标准盒模型"> <ul><li>border-box <strong>IE盒模型</strong>。边框border和内边距padding的值是包含在width之内的。对象的实际宽度就等于设置的width值。</li></ul><img src="/2022/05/12/CSS/border-box.png" class="" title="IE盒模型"> ]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>计网杂项</title>
     <link href="/2022/05/12/%E8%AE%A1%E7%BD%91%E6%9D%82%E9%A1%B9/"/>
     <url>/2022/05/12/%E8%AE%A1%E7%BD%91%E6%9D%82%E9%A1%B9/</url>
