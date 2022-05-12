@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://example.com/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png">
 <meta property="og:image" content="http://example.com/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/DHCP.png">
 <meta property="article:published_time" content="2022-05-11T02:31:24.000Z">
-<meta property="article:modified_time" content="2022-05-11T11:35:33.766Z">
+<meta property="article:modified_time" content="2022-05-11T11:56:08.137Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -201,7 +201,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      2.1k 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15 分钟
+      18 分钟
     </span>
   
 
@@ -283,27 +283,21 @@
 <li><p>服务器收到ACK应答报文后，就进入了CLOSED状态，至此服务端已经完成连接的关闭。</p>
 </li>
 <li><p>客户端在经过2MSL时间后，自动进入CLOSED状态，至此客户端也完成连接的关闭。</p>
-<h4 id="三、TCP和UDP区别"><a href="#三、TCP和UDP区别" class="headerlink" title="三、TCP和UDP区别"></a>三、TCP和UDP区别</h4></li>
-<li><p>连接：TCP是面向连接的传输层协议，传输数据前需要先建立连接。UDP是不需要连接，即刻传输数据。</p>
-</li>
-<li><p>服务对象：TCP是一对一的两点服务，一条连接只有两个端点。UDP支持一对一、一对多、多对多的交互通信。</p>
-</li>
-<li><p>可靠性：TCP是可靠交付数据的，数据可以无差错、不丢失、不重复、按需到达。UDP是尽最大努力交付，不保证可靠交付数据。</p>
-</li>
-<li><p>拥塞控制、流量控制：TCP有拥塞控制和流量控制机制，保证数据传输的安全性。UDP没有，即使网络拥堵，也不会影响UDP的发送速率。</p>
-</li>
-<li><p>首部开销：TCP首部长度较长，会有一定开销。UDP首部只有8个字节，并且是固定不变的，开销较小。</p>
-</li>
-<li><p>传输方式：TCP是流式传输，没有边界，但保证顺序和可靠。UDP是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</p>
-</li>
-<li><p>分片不同：TCP数据大小如果大于MSS大小，则会在传输层进行分片，目标主机收到后也同样在传输层组装TCP数据报，如果中途丢失一个分片，只需要传输丢失的分片。UDP的数据大小如果大于MTU大小，则会在IP层进行分片，目标主机收到后在IP层组装数据，接着再传给传输层，如果中途丢失一个分片，在实现可靠传输的UDP时需要重传所有的数据包。</p>
-<h4 id="四、TCP和UDP应用场景"><a href="#四、TCP和UDP应用场景" class="headerlink" title="四、TCP和UDP应用场景"></a>四、TCP和UDP应用场景</h4></li>
-<li><p>TCP：面向连接，能保证数据的可靠性交付，常用于FTP文件传输、HTTP&#x2F;HTTPS</p>
-</li>
-<li><p>UDP：面向无连接，可以随时发送数据，本身处理简单高效，常用于包总量较少的通信，如DNS、SNMP等、视频、音频等多媒体通信，广播通信。</p>
 </li>
 </ul>
-<h4 id="五、DHCP（动态主机配置协议）"><a href="#五、DHCP（动态主机配置协议）" class="headerlink" title="五、DHCP（动态主机配置协议）"></a>五、DHCP（动态主机配置协议）</h4><img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/DHCP.png" srcset="/img/loading.gif" lazyload class="" title="DHCP"> 
+<h4 id="三、为什么必须是三次握手"><a href="#三、为什么必须是三次握手" class="headerlink" title="三、为什么必须是三次握手"></a>三、为什么必须是三次握手</h4><p>如果没有第三次握手，就会出现一些丢包的情况，如果只握手 2 次，第二次握手时如果服务端发给客户端的确认报文段丢失，此时服务端已经准备好了收发数(可以理解服务端已经连接成功)据，而客户端一直没收到服务端的确认报文，所以客户端就不知道服务端是否已经准备好了(可以理解为客户端未连接成功)，这种情况下客户端不会给服务端发数据，也会忽略服务端发过来的数据。如果是三次握手，即便发生丢包也不会有问题，比如如果第三次握手客户端发的确认 ack 报文丢失，服务端在一段时间内没有收到确认 ack 报文的话就会重新进行第二次握手，也就是服务端会重发 SYN 报文段，客户端收到重发的报文段后会再次给服务端发送确认 ack 报文。</p>
+<h4 id="四、TCP和UDP区别"><a href="#四、TCP和UDP区别" class="headerlink" title="四、TCP和UDP区别"></a>四、TCP和UDP区别</h4><ul>
+<li>连接：TCP是面向连接的传输层协议，传输数据前需要先建立连接。UDP是不需要连接，即刻传输数据。</li>
+<li>服务对象：TCP是一对一的两点服务，一条连接只有两个端点。UDP支持一对一、一对多、多对多的交互通信。</li>
+<li>可靠性：TCP是可靠交付数据的，数据可以无差错、不丢失、不重复、按需到达。UDP是尽最大努力交付，不保证可靠交付数据。</li>
+<li>拥塞控制、流量控制：TCP有拥塞控制和流量控制机制，保证数据传输的安全性。UDP没有，即使网络拥堵，也不会影响UDP的发送速率。</li>
+<li>首部开销：TCP首部长度较长，会有一定开销。UDP首部只有8个字节，并且是固定不变的，开销较小。</li>
+<li>传输方式：TCP是流式传输，没有边界，但保证顺序和可靠。UDP是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</li>
+<li>分片不同：TCP数据大小如果大于MSS大小，则会在传输层进行分片，目标主机收到后也同样在传输层组装TCP数据报，如果中途丢失一个分片，只需要传输丢失的分片。UDP的数据大小如果大于MTU大小，则会在IP层进行分片，目标主机收到后在IP层组装数据，接着再传给传输层，如果中途丢失一个分片，在实现可靠传输的UDP时需要重传所有的数据包。<h4 id="五、TCP和UDP应用场景"><a href="#五、TCP和UDP应用场景" class="headerlink" title="五、TCP和UDP应用场景"></a>五、TCP和UDP应用场景</h4></li>
+<li>TCP：面向连接，能保证数据的可靠性交付，常用于FTP文件传输、HTTP&#x2F;HTTPS</li>
+<li>UDP：面向无连接，可以随时发送数据，本身处理简单高效，常用于包总量较少的通信，如DNS、SNMP等、视频、音频等多媒体通信，广播通信。</li>
+</ul>
+<h4 id="六、DHCP（动态主机配置协议）"><a href="#六、DHCP（动态主机配置协议）" class="headerlink" title="六、DHCP（动态主机配置协议）"></a>六、DHCP（动态主机配置协议）</h4><img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/DHCP.png" srcset="/img/loading.gif" lazyload class="" title="DHCP"> 
 
 <ul>
 <li><p>作用：为网络内的主机提供动态ip地址分配服务，客户登陆服务器时就可以自动获得服务器分配的IP地址和子网掩码。</p>
