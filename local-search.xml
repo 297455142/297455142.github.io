@@ -33,7 +33,7 @@
     <link href="/2022/05/12/Vue/"/>
     <url>/2022/05/12/Vue/</url>
     
-    <content type="html"><![CDATA[<h4 id="一、为什么要使用Vue"><a href="#一、为什么要使用Vue" class="headerlink" title="一、为什么要使用Vue"></a>一、为什么要使用Vue</h4><ul><li>体积小</li><li>双向数据绑定：让开发者不用再去操作DOM对象。</li><li>易用：容易上手，学习成本低。</li><li>可以直接直接将vue作为现成的服务端应用嵌入。实现组件化，将网页分割成可复用的组件，每个组件用来渲染网页中相应的地方。</li><li>高效：基于虚拟DOM，可以预先通过JavaScript进行各种计算，把最终的DMO操作计算出来并优化的技术。由于这种DOM操作属于预处理操作，并没有真实的操作DOM，没有浏览器渲染所以叫做虚拟DOM。</li><li>社区和第三方组件库丰富。</li></ul><h4 id="二、浏览器的虚拟DOM与真实DOM区别"><a href="#二、浏览器的虚拟DOM与真实DOM区别" class="headerlink" title="二、浏览器的虚拟DOM与真实DOM区别"></a>二、浏览器的虚拟DOM与真实DOM区别</h4><ul><li><strong>虚拟DOM不会进行排版与重绘操作</strong>：虚拟DOM进行频繁修改，然后一次性比较并修改真实DOM中需要修改的部分，最后在真实DOM中进行排版与重绘，减少过多DOM节点排版与重绘的损耗。</li><li><strong>真实DOM频繁排版重绘的效率相当低</strong>：虚拟DOM有效降低大面积真实dom节点的重绘与排版，因为最终与真实DOM比较差异，可以只渲染局部。</li><li>虚拟DOM减少了一些情况下对真实DOM的操作，它对比后再选择更新哪些DOM，而不是全部删除再重建。虚拟DOM是内存中维护的DOM树，是在实体DOM上的一层抽象，查询修改操作都是先操作内存中的虚拟DOM。</li></ul>]]></content>
+    <content type="html"><![CDATA[<h4 id="一、为什么要使用Vue"><a href="#一、为什么要使用Vue" class="headerlink" title="一、为什么要使用Vue"></a>一、为什么要使用Vue</h4><ul><li>体积小，轻量级框架，只关注视图层，是一个构建数据的视图集合。</li><li>双向数据绑定：让开发者不用再去操作DOM对象。</li><li>易用：容易上手，学习成本低。</li><li>可以直接直接将vue作为现成的服务端应用嵌入。实现组件化，将网页分割成可复用的组件，每个组件用来渲染网页中相应的地方。</li><li>高效：基于虚拟DOM，可以预先通过JavaScript进行各种计算，把最终的DMO操作计算出来并优化的技术。由于这种DOM操作属于预处理操作，并没有真实的操作DOM，没有浏览器渲染所以叫做虚拟DOM。</li><li>性能比react更强</li><li>社区和第三方组件库丰富。</li></ul><h4 id="二、浏览器的虚拟DOM与真实DOM区别"><a href="#二、浏览器的虚拟DOM与真实DOM区别" class="headerlink" title="二、浏览器的虚拟DOM与真实DOM区别"></a>二、浏览器的虚拟DOM与真实DOM区别</h4><ul><li><strong>虚拟DOM不会进行排版与重绘操作</strong>：虚拟DOM进行频繁修改，然后一次性比较并修改真实DOM中需要修改的部分，最后在真实DOM中进行排版与重绘，减少过多DOM节点排版与重绘的损耗。</li><li><strong>真实DOM频繁排版重绘的效率相当低</strong>：虚拟DOM有效降低大面积真实dom节点的重绘与排版，因为最终与真实DOM比较差异，可以只渲染局部。</li><li>虚拟DOM减少了一些情况下对真实DOM的操作，它对比后再选择更新哪些DOM，而不是全部删除再重建。虚拟DOM是内存中维护的DOM树，是在实体DOM上的一层抽象，查询修改操作都是先操作内存中的虚拟DOM。</li></ul>]]></content>
     
     
     <categories>
@@ -108,7 +108,7 @@
     <link href="/2022/05/12/%E8%AE%A1%E7%BD%91%E6%9D%82%E9%A1%B9/"/>
     <url>/2022/05/12/%E8%AE%A1%E7%BD%91%E6%9D%82%E9%A1%B9/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h4 id="一、冲突域和广播域"><a href="#一、冲突域和广播域" class="headerlink" title="一、冲突域和广播域"></a>一、冲突域和广播域</h4><ul><li><strong>冲突域</strong>：冲突域是指同一时间只有一台设备发送信息的范围，说白了就是一次只有一个设备发送信息，其他的只能等待。因为如果同一个物理网段中的两台设备同时传输数据，将发生冲突，导致设备必须在以后重传数据。（基于物理层）</li><li><strong>广播域</strong>：广播是一种信息的传播方式，指网络中的某一设备同时向网络中的所有其它设备发送数据，这个数据所能广播到的范围就是广播域。广播域就是指网络中所有能接受到同样广播消息的设备的集合。（基于数据链路层）</li><li>有一个n个端口的以太网交换机，其冲突域有n个，广播域有1个。</li></ul>]]></content>
     
     
     <categories>
