@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>二叉树</title>
+    <link href="/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <url>/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h4 id="一、各种二叉树的概念"><a href="#一、各种二叉树的概念" class="headerlink" title="一、各种二叉树的概念"></a>一、各种二叉树的概念</h4><ul><li><strong>满二叉树</strong>：除了最后一层的节点没有任何子节点外，每层上的所有结点都有两个节点的二叉树。</li><li><strong>完全二叉树</strong>：一颗二叉树的深度为h，除了第h层外，其他各层的节点都有两个子节点，且第h层的所有结点都集中在左边。</li><li><strong>二叉搜索树</strong>：左子树的所有节点的值均小于它的根节点的值。右子树的所有节点的值均大于它的根节点的值。它的左右子树也分别为二叉搜索树。</li><li><strong>平衡二叉树</strong>：一颗高度平衡的二叉搜索树，左右两个子树的高度差绝对值不超过1，且左右两个子树都是平衡二叉树。</li><li><strong>顶堆</strong>：大顶堆是父节点的值比每一个子节点的值都要大。小顶堆是父节点的值比每一个子节点的值都要小。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python</title>
     <link href="/2022/05/17/Python/"/>
     <url>/2022/05/17/Python/</url>
