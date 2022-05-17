@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Python</title>
+    <link href="/2022/05/17/Python/"/>
+    <url>/2022/05/17/Python/</url>
+    
+    <content type="html"><![CDATA[<h4 id="一、Python2和Python3的区别"><a href="#一、Python2和Python3的区别" class="headerlink" title="一、Python2和Python3的区别"></a>一、Python2和Python3的区别</h4><ul><li>Python2可以使用一个空格来分隔打印的内容，Python3必须使用小括号包含打印内容。</li><li>Python2是ASCII编码，需要更改字符集才能正常支持中文。Python3中字符串是Unicode，支持中文做标识符。</li><li>在Python2中&#x2F;除法规则是整数相除的结果是一个整数，Python3结果可以是浮点数。</li><li>Python3中没有xrange，range返回可迭代对象。Python2的range返回列表。</li><li>Python2中捕获异常为except exc，var。Python3中为except exc as var。</li><li>Python2中所有类型的对象可以直接被抛出。Python3中只有继承BaseException的对象才可以被抛出。</li><li>Python3中触发异常只能用raise IOError(“file error”)。Python2还可以raise IOError, “file error”</li><li>Python3废除异常StandardError，统一使用Exception</li><li>Python3不等于只有!&#x3D;。Python2还有&lt;&gt;</li><li>Python3中部分模块被改名，例如Queue&#x3D;&gt;queue，SocketServer&#x3D;&gt;socketserver</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>测试开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>测试开发</title>
     <link href="/2022/05/17/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/"/>
     <url>/2022/05/17/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/</url>
