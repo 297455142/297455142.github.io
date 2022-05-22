@@ -24,7 +24,7 @@
 <meta property="og:description" content="一、声明函数的方法 声明一个变量表达式，并定义该变量的表达式。 12var func &#x3D; function()&amp;#123;&amp;#125;  定义一个function表达式，并指定该表达式的标识。 12function func()&amp;#123;&amp;#125;  使用JavaScript内置的Function对象构造 1var func &#x3D; new Function(&quot;参数&quot;,&amp;quo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-12T10:47:14.000Z">
-<meta property="article:modified_time" content="2022-05-12T10:52:13.671Z">
+<meta property="article:modified_time" content="2022-05-22T09:24:12.650Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.8k 字
+      3.3k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24 分钟
+      28 分钟
     </span>
   
 
@@ -281,6 +281,25 @@
 <li>函数内部声明的变量只能在函数内部使用，函数外部声明的变量可以全局使用。变量在函数内重新声明后在外部依旧保持原状态。</li>
 </ul>
 <h4 id="八、匿名函数的调用方式"><a href="#八、匿名函数的调用方式" class="headerlink" title="八、匿名函数的调用方式"></a>八、匿名函数的调用方式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript">(<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);<br>&#125;）(<span class="hljs-string">&quot;222&quot;</span>);<br>(<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);<br>&#125;(<span class="hljs-string">&quot;333&quot;</span>));<br>!<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);<br>&#125;(<span class="hljs-string">&quot;444&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="九、类型转换"><a href="#九、类型转换" class="headerlink" title="九、类型转换"></a>九、类型转换</h4><ul>
+<li>显示转化：</li>
+</ul>
+<ol>
+<li>转化为字符串类型（String）：String(a)</li>
+<li>转换为数值类型：Number(a)。空字符串、空格字符串和null会转换为0，undefined转换为NaN，当其他类型无法转换为具体数值时，打印成NaN。</li>
+<li>转化为布尔类型：Boolean(a)。数值类型中的0和NaN转化为false，其余转化为true。字符串类型中储粮空字符串其它都是true。undefined和null转换为false。</li>
+<li>parseInt和parseFloat将字符串类型转换为数值类型，取字符串以整数开头的字符串中的数值。parseInt取整，parseFloat取小数。如果第一个非空格字符不是有效的数值字面量，则返回NaN。</li>
+</ol>
+<ul>
+<li>隐式转换：</li>
+</ul>
+<ol>
+<li>二元+：如果一个操作数是对象，把该操作数转换为原始值（toString和valueOf）。如果有操作数是字符串，另一个操作数也会转换为字符串并进行拼接。否则，两个操作数都转换为数值。</li>
+<li>一元+、-、++：将操作数转转换为数值。</li>
+<li>！：将操作数转换为布尔值再取反。</li>
+</ol>
+
             </div>
             <hr>
             <div>
