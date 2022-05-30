@@ -16,21 +16,21 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、各种二叉树的概念 满二叉树：除了最后一层的节点没有任何子节点外，每层上的所有结点都有两个节点的二叉树。 完全二叉树：一颗二叉树的深度为h，除了第h层外，其他各层的节点都有两个子节点，且第h层的所有结点都集中在左边。 二叉搜索树：左子树的所有节点的值均小于它的根节点的值。右子树的所有节点的值均大于它的根节点的值。它的左右子树也分别为二叉搜索树。 平衡二叉树：一颗高度平衡的二叉搜索树，左右两个子树">
+    <meta name="description" content="一、Math函数 Math.pow(a,b)：求a的b次方（幂值） Math.round(a)：求a四舍五入的值。 Math.ceil(a)：求a向上舍入的值。 Math.floor(a)：求a向下舍入的值。 Math.abs(a)：求a的绝对值。 Math.max(x,y,z)：求一串数或者数组最大值。 Math.min(x,y,z)：求一串数或者数组最小值。 Math.random()：取0~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树">
-<meta property="og:url" content="http://example.com/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:title" content="JS刷题代码">
+<meta property="og:url" content="http://example.com/2022/05/30/JS%E5%88%B7%E9%A2%98%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="一、各种二叉树的概念 满二叉树：除了最后一层的节点没有任何子节点外，每层上的所有结点都有两个节点的二叉树。 完全二叉树：一颗二叉树的深度为h，除了第h层外，其他各层的节点都有两个子节点，且第h层的所有结点都集中在左边。 二叉搜索树：左子树的所有节点的值均小于它的根节点的值。右子树的所有节点的值均大于它的根节点的值。它的左右子树也分别为二叉搜索树。 平衡二叉树：一颗高度平衡的二叉搜索树，左右两个子树">
+<meta property="og:description" content="一、Math函数 Math.pow(a,b)：求a的b次方（幂值） Math.round(a)：求a四舍五入的值。 Math.ceil(a)：求a向上舍入的值。 Math.floor(a)：求a向下舍入的值。 Math.abs(a)：求a的绝对值。 Math.max(x,y,z)：求一串数或者数组最大值。 Math.min(x,y,z)：求一串数或者数组最小值。 Math.random()：取0~">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-17T13:00:47.000Z">
-<meta property="article:modified_time" content="2022-05-17T13:21:48.336Z">
+<meta property="article:published_time" content="2022-05-30T08:55:44.000Z">
+<meta property="article:modified_time" content="2022-05-30T08:56:44.922Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>二叉树 - 前端面试总结</title>
+  <title>JS刷题代码 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="二叉树">
+            <span class="h2" id="subtitle" title="JS刷题代码">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-17 21:00" pubdate>
-        2022年5月17日 晚上
+      <time datetime="2022-05-30 16:55" pubdate>
+        2022年5月30日 下午
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      270 字
+      1.2k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      11 分钟
     </span>
   
 
@@ -243,15 +243,51 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">二叉树</h1>
+            <h1 style="display: none">JS刷题代码</h1>
             
             <div class="markdown-body">
-              <h4 id="一、各种二叉树的概念"><a href="#一、各种二叉树的概念" class="headerlink" title="一、各种二叉树的概念"></a>一、各种二叉树的概念</h4><ul>
-<li><strong>满二叉树</strong>：除了最后一层的节点没有任何子节点外，每层上的所有结点都有两个节点的二叉树。</li>
-<li><strong>完全二叉树</strong>：一颗二叉树的深度为h，除了第h层外，其他各层的节点都有两个子节点，且第h层的所有结点都集中在左边。</li>
-<li><strong>二叉搜索树</strong>：左子树的所有节点的值均小于它的根节点的值。右子树的所有节点的值均大于它的根节点的值。它的左右子树也分别为二叉搜索树。</li>
-<li><strong>平衡二叉树</strong>：一颗高度平衡的二叉搜索树，左右两个子树的高度差绝对值不超过1，且左右两个子树都是平衡二叉树。</li>
-<li><strong>顶堆</strong>：大顶堆是父节点的值比每一个子节点的值都要大。小顶堆是父节点的值比每一个子节点的值都要小。</li>
+              <h1 id="一、Math函数"><a href="#一、Math函数" class="headerlink" title="一、Math函数"></a>一、Math函数</h1><ul>
+<li>Math.pow(a,b)：求a的b次方（幂值）</li>
+<li>Math.round(a)：求a四舍五入的值。</li>
+<li>Math.ceil(a)：求a向上舍入的值。</li>
+<li>Math.floor(a)：求a向下舍入的值。</li>
+<li>Math.abs(a)：求a的绝对值。</li>
+<li>Math.max(x,y,z)：求一串数或者数组最大值。</li>
+<li>Math.min(x,y,z)：求一串数或者数组最小值。</li>
+<li>Math.random()：取0~1的随机数（不包括1）。</li>
+<li>Math.PI：π。</li>
+<li>Math.E：e。</li>
+<li>Math.sqrt(a)：求a的平方根。</li>
+<li>Math.sin(a)、Math.cos(a)、Math.tan(a)</li>
+<li>Math.log(a)：求a以10为底的自然数对数。</li>
+<li>Math.log10(a)、Math.log2(a)</li>
+<li>Math.log(a)&#x2F;Math.LNb：以b为底a的对数。</li>
+<li>Math.exp(a)：e的a次方。<h1 id="二、数值相关"><a href="#二、数值相关" class="headerlink" title="二、数值相关"></a>二、数值相关</h1><h4 id="一、Infinity、0、NaN"><a href="#一、Infinity、0、NaN" class="headerlink" title="一、Infinity、0、NaN"></a>一、Infinity、0、NaN</h4></li>
+<li>Infinity：数值操作的结果超过最大可表示数值，发生上溢出时，返回该值。</li>
+<li>0：数值操作的结果比最小可表示数值更接近0时，返回0.</li>
+<li>NaN：0除以0、无穷除无穷、负数平方根或者无法转换为数值作为算数操作符的操作数，都返回NaN。它与任何值比较都不相等，也不等于自己。判断方法：x!&#x3D;x或者Number.isNaN(x)。<h4 id="二、字符串"><a href="#二、字符串" class="headerlink" title="二、字符串"></a>二、字符串</h4></li>
+<li>可以放在’、”、`之中，反引号中字符串字面量最终的计算涉及对其中包含的所有表达式求值、将这些表达式的值转换为字符串。${}中的内容被当做JavaScript表达式来解释。</li>
+<li>\来开始转义字符。</li>
+<li>长度为s.length。</li>
+<li>字符串不可修改，修改只会返回新的字符串。</li>
+<li>可以看做只读数组，可以用[]来调用单个字符。</li>
+<li>String.raw(s)：返回s未经处理的文本，不会进行转义，模板字面量也不会进行转化。<h4 id="三、类型转换"><a href="#三、类型转换" class="headerlink" title="三、类型转换"></a>三、类型转换</h4><h5 id="一、显式转换"><a href="#一、显式转换" class="headerlink" title="一、显式转换"></a>一、显式转换</h5></li>
+<li>Boolean()转换布尔值</li>
+<li>Number()转换整数</li>
+<li>String()转换字符串</li>
+<li>除了null和undefined之外的所有值都有toString()方法，返回结果一般与String()相同。</li>
+<li>Number的toString方法接收一个可选参数，用于指定一个基数或底数。例如：let a &#x3D; n.toString(b)</li>
+<li>parseInt()：将字符串以数值字面量开头的数转换为整数。接收可选的第二个参数，用于指定要解析的数的基数。</li>
+<li>parseFloat()：将字符串以数值字面量开头的数转换为整数或者浮点数。<h5 id="二、隐式转换"><a href="#二、隐式转换" class="headerlink" title="二、隐式转换"></a>二、隐式转换</h5></li>
+<li>一元+：把自己的操作数转换为数值。</li>
+<li>一元！：把自己的操作数转换为布尔值。</li>
+<li>二元+：有一个操作数是字符串，就会把另一个操作数转换为字符串。<h5 id="三、对象到原始值转换"><a href="#三、对象到原始值转换" class="headerlink" title="三、对象到原始值转换"></a>三、对象到原始值转换</h5></li>
+<li>对象转换为布尔值：全为true。</li>
+</ul>
+<h1 id="三、对象"><a href="#三、对象" class="headerlink" title="三、对象"></a>三、对象</h1><ul>
+<li>键值对的集合，声明直接let a&#x3D;{b:c}</li>
+<li>可修改，直接用a.b&#x3D;d重新赋值，或者a.e&#x3D;f添加新的属性。<h1 id="四、数组"><a href="#四、数组" class="headerlink" title="四、数组"></a>四、数组</h1></li>
+<li>数组复制：let b &#x3D; Array.from(a)</li>
 </ul>
 
             </div>
@@ -287,18 +323,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/30/JS%E5%88%B7%E9%A2%98%E4%BB%A3%E7%A0%81/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JS刷题代码</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/17/Python/">
-                        <span class="hidden-mobile">Python</span>
+                      <a href="/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/">
+                        <span class="hidden-mobile">二叉树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JS刷题代码</title>
+    <link href="/2022/05/30/JS%E5%88%B7%E9%A2%98%E4%BB%A3%E7%A0%81/"/>
+    <url>/2022/05/30/JS%E5%88%B7%E9%A2%98%E4%BB%A3%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、Math函数"><a href="#一、Math函数" class="headerlink" title="一、Math函数"></a>一、Math函数</h1><ul><li>Math.pow(a,b)：求a的b次方（幂值）</li><li>Math.round(a)：求a四舍五入的值。</li><li>Math.ceil(a)：求a向上舍入的值。</li><li>Math.floor(a)：求a向下舍入的值。</li><li>Math.abs(a)：求a的绝对值。</li><li>Math.max(x,y,z)：求一串数或者数组最大值。</li><li>Math.min(x,y,z)：求一串数或者数组最小值。</li><li>Math.random()：取0~1的随机数（不包括1）。</li><li>Math.PI：π。</li><li>Math.E：e。</li><li>Math.sqrt(a)：求a的平方根。</li><li>Math.sin(a)、Math.cos(a)、Math.tan(a)</li><li>Math.log(a)：求a以10为底的自然数对数。</li><li>Math.log10(a)、Math.log2(a)</li><li>Math.log(a)&#x2F;Math.LNb：以b为底a的对数。</li><li>Math.exp(a)：e的a次方。<h1 id="二、数值相关"><a href="#二、数值相关" class="headerlink" title="二、数值相关"></a>二、数值相关</h1><h4 id="一、Infinity、0、NaN"><a href="#一、Infinity、0、NaN" class="headerlink" title="一、Infinity、0、NaN"></a>一、Infinity、0、NaN</h4></li><li>Infinity：数值操作的结果超过最大可表示数值，发生上溢出时，返回该值。</li><li>0：数值操作的结果比最小可表示数值更接近0时，返回0.</li><li>NaN：0除以0、无穷除无穷、负数平方根或者无法转换为数值作为算数操作符的操作数，都返回NaN。它与任何值比较都不相等，也不等于自己。判断方法：x!&#x3D;x或者Number.isNaN(x)。<h4 id="二、字符串"><a href="#二、字符串" class="headerlink" title="二、字符串"></a>二、字符串</h4></li><li>可以放在’、”、`之中，反引号中字符串字面量最终的计算涉及对其中包含的所有表达式求值、将这些表达式的值转换为字符串。${}中的内容被当做JavaScript表达式来解释。</li><li>\来开始转义字符。</li><li>长度为s.length。</li><li>字符串不可修改，修改只会返回新的字符串。</li><li>可以看做只读数组，可以用[]来调用单个字符。</li><li>String.raw(s)：返回s未经处理的文本，不会进行转义，模板字面量也不会进行转化。<h4 id="三、类型转换"><a href="#三、类型转换" class="headerlink" title="三、类型转换"></a>三、类型转换</h4><h5 id="一、显式转换"><a href="#一、显式转换" class="headerlink" title="一、显式转换"></a>一、显式转换</h5></li><li>Boolean()转换布尔值</li><li>Number()转换整数</li><li>String()转换字符串</li><li>除了null和undefined之外的所有值都有toString()方法，返回结果一般与String()相同。</li><li>Number的toString方法接收一个可选参数，用于指定一个基数或底数。例如：let a &#x3D; n.toString(b)</li><li>parseInt()：将字符串以数值字面量开头的数转换为整数。接收可选的第二个参数，用于指定要解析的数的基数。</li><li>parseFloat()：将字符串以数值字面量开头的数转换为整数或者浮点数。<h5 id="二、隐式转换"><a href="#二、隐式转换" class="headerlink" title="二、隐式转换"></a>二、隐式转换</h5></li><li>一元+：把自己的操作数转换为数值。</li><li>一元！：把自己的操作数转换为布尔值。</li><li>二元+：有一个操作数是字符串，就会把另一个操作数转换为字符串。<h5 id="三、对象到原始值转换"><a href="#三、对象到原始值转换" class="headerlink" title="三、对象到原始值转换"></a>三、对象到原始值转换</h5></li><li>对象转换为布尔值：全为true。</li></ul><h1 id="三、对象"><a href="#三、对象" class="headerlink" title="三、对象"></a>三、对象</h1><ul><li>键值对的集合，声明直接let a&#x3D;{b:c}</li><li>可修改，直接用a.b&#x3D;d重新赋值，或者a.e&#x3D;f添加新的属性。<h1 id="四、数组"><a href="#四、数组" class="headerlink" title="四、数组"></a>四、数组</h1></li><li>数组复制：let b &#x3D; Array.from(a)</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>二叉树</title>
     <link href="/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <url>/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
