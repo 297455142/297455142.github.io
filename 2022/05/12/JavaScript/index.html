@@ -24,7 +24,7 @@
 <meta property="og:description" content="一、声明函数的方法 声明一个变量表达式，并定义该变量的表达式。 12var func &#x3D; function()&amp;#123;&amp;#125;  定义一个function表达式，并指定该表达式的标识。 12function func()&amp;#123;&amp;#125;  使用JavaScript内置的Function对象构造 1var func &#x3D; new Function(&quot;参数&quot;,&amp;quo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-12T10:47:14.000Z">
-<meta property="article:modified_time" content="2022-05-22T09:24:12.650Z">
+<meta property="article:modified_time" content="2022-05-30T08:58:07.272Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -264,7 +264,7 @@
 <h4 id="六、this"><a href="#六、this" class="headerlink" title="六、this"></a>六、this</h4><p>this表示该方法所属的对象，单独使用时表示全局对象。<br>严格模式下，this是undefined。</p>
 <h5 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h5><p>1、普通函数调用，this指向的是window<br>2、对象的方法，this指向的是该对象。一层作用域链时，this指的是该对象；多层作用域链时，this指的是距离方法最近的一层对象。<br>3、构造函数的调用，this指的是实例化的新对象。<br>4、apply和call调用时，this指向参数中的对象。<br>5、匿名函数调用，this指向的是全局对象。<br>6、定时器中调用，this指向的是全局变量。</p>
 <h4 id="七、let、const、var"><a href="#七、let、const、var" class="headerlink" title="七、let、const、var"></a>七、let、const、var</h4><ul>
-<li>let声明的变量只在let命令所在的代码块内有效，不属于window对象，不必须初始化。</li>
+<li>let声明的变量只在let命令所在的代码块内有效，不属于window对象，不必须初始化。未初始化时值为undefined。</li>
 <li>const声明一个只读的常量，声明后值无法改变，也属于块级作用域，必须初始化。</li>
 <li>const常量对象的属性可以更改，但无法为常量对象赋值。</li>
 <li>const常量数组可以更改（改元素、添加元素），但无法为常量数组重新赋值。</li>
