@@ -16,19 +16,19 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、CSS常用属性二、常用html标签12345678910111213141516171819202122232425262728293031323334353637&#x2F;*- &lt;head&gt;&lt;&#x2F;head&gt;：文档头部，包含html的style、title等内容。- &lt;title&gt;&lt;&#x2F;title&gt;：网页标题，写在head中。- &lt;html lang&#x3D;">
+    <meta name="description" content="一、CSS常用属性二、常用html标签三、CSS盒模型两种盒模型，box-sizing属性：content-box | border-box | inherit  content-box 默认值：标准盒模型。边框border和内边距padding的值不包含在width之内。对象的实际宽度等于设置的width值和border、padding之和。      border-box IE盒模型。边框bo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS">
 <meta property="og:url" content="http://example.com/2022/05/12/CSS/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="一、CSS常用属性二、常用html标签12345678910111213141516171819202122232425262728293031323334353637&#x2F;*- &lt;head&gt;&lt;&#x2F;head&gt;：文档头部，包含html的style、title等内容。- &lt;title&gt;&lt;&#x2F;title&gt;：网页标题，写在head中。- &lt;html lang&#x3D;">
+<meta property="og:description" content="一、CSS常用属性二、常用html标签三、CSS盒模型两种盒模型，box-sizing属性：content-box | border-box | inherit  content-box 默认值：标准盒模型。边框border和内边距padding的值不包含在width之内。对象的实际宽度等于设置的width值和border、padding之和。      border-box IE盒模型。边框bo">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/content-box.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/border-box.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/images/baidu.png">
 <meta property="og:image" content="http://example.com/2022/05/12/iamges/baidu.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-05-31T14:39:23.214Z">
+<meta property="article:modified_time" content="2022-05-31T14:49:37.394Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -202,7 +202,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4k 字
+      1.4k 字
     </span>
   
 
@@ -211,7 +211,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      34 分钟
+      12 分钟
     </span>
   
 
@@ -251,9 +251,7 @@
             <h1 style="display: none">CSS</h1>
             
             <div class="markdown-body">
-              <h4 id="一、CSS常用属性"><a href="#一、CSS常用属性" class="headerlink" title="一、CSS常用属性"></a>一、CSS常用属性</h4><h4 id="二、常用html标签"><a href="#二、常用html标签" class="headerlink" title="二、常用html标签"></a>二、常用html标签</h4><figure class="highlight python"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></div></td><td class="code"><pre><code class="hljs python">/*<br>- &lt;head&gt;&lt;/head&gt;：文档头部，包含html的style、title等内容。<br>- &lt;title&gt;&lt;/title&gt;：网页标题，写在head中。<br>- &lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;：当前文档显示的语言，en英文，zh-CN中文。<br>- &lt;body&gt;&lt;/body&gt;：文档主体，页面内容放在这里。<br>- &lt;h1&gt;&lt;/h1&gt;~&lt;h6&gt;&lt;h6&gt;：标题标签，块级元素。<br>- &lt;p&gt;&lt;/p&gt;：段落标签，文本根据浏览器大小自动换行，段落之间有空隙。<br>- &lt;br /&gt;：文字强制换行。<br>- &lt;div&gt;&lt;/div&gt;：盒子，块级元素。<br>- &lt;span&gt;&lt;/span&gt;：小盒子，行级元素。<br>- &lt;img src=<span class="hljs-string">&quot;图像url&quot;</span> /&gt;：图像标签。包括属性：alt（图像不能显示时的文字）、title（鼠标放到图像上显示的文字）、width、height、border（边框粗细）。<br>- &lt;a href=<span class="hljs-string">&quot;跳转目标url&quot;</span> target=<span class="hljs-string">&quot;目标窗口弹出方式&quot;</span>&gt;文本或图像&lt;/a&gt;：超链接标签。target的__blank新窗口打开，__self默认值。外部链接直接写网址，内部链接直接写网页名，下载链接url是一个文件或压缩包，锚点链接为<span class="hljs-comment">#+目标标签的id，目标标签需要添加id属性。</span><br>- &lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;：表格标签。table定义表格。tr定义表格一行。tb定义表格中的一个单元格。表格属性需要写在table里，包括align（left、center、right）对齐方式、border（<span class="hljs-number">1</span>或者<span class="hljs-string">&quot;&quot;</span>）是否有边框（默认没有）、cellpadding单元边沿与内容之间的空白（默认1px）、cellspacing单元格之间的空白（默认2px）、width（像素值或百分比）规定表格宽度。<br>- &lt;th&gt;&lt;/th&gt;：表头标签，区别于td，一般位于表格的第一行或者第一列。<br>- &lt;thead&gt;&lt;/thead&gt;：表格头部区域。必须包含tr。<br>- &lt;tbody&gt;&lt;/tbody&gt;：表格主体区域。<br>- 单元格跨行合并：rowspan=<span class="hljs-string">&quot;合并单元格个数&quot;</span>，上侧单元格作为目标单元格，如&lt;td rowspan=<span class="hljs-string">&quot;2&quot;</span>&gt;&lt;/td&gt;<br>- 单元格跨列合并：colspan=<span class="hljs-string">&quot;合并单元格个数&quot;</span>，左侧单元格作为目标单元格。多余单元格删除<br>- &lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;：无序列表，**布局整齐时常用**，无顺序，只能放列表项li。<br>- &lt;ol&gt;&lt;li&gt;&lt;/li&gt;&lt;/ol&gt;：有序列表。<br>- &lt;dl&gt;&lt;/dl&gt;：自定义列表，里面&lt;dt&gt;&lt;/dt&gt;定义名字（父），&lt;dd&gt;&lt;/dd&gt;定义列表项（子）。<br>- &lt;form&gt;&lt;/form&gt;：表单域，包含表单控件，实现用户信息的收集和传递，会把范围内的表单元素信息提交给服务器。<br>    &lt;form action=<span class="hljs-string">&quot;url地址&quot;</span> method=<span class="hljs-string">&quot;提交方式&quot;</span> name=<span class="hljs-string">&quot;表单域名称&quot;</span>&gt;<br>        各种表单元素控件<br>    &lt;/form&gt;<br>    action用于指定接受并处理表单数据的服务器程序的url地址。method为get或post。name用于指定表单的名称，以区分同一个页面中的多个表单域。<br>- &lt;<span class="hljs-built_in">input</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;属性值&quot;</span>&gt;：用于收集用户信息，单标签。button按钮、checkbox复选框、file用于文件上传、hidden隐藏输入字段、image图像形式的提交按钮、password密码、radio单选按钮、reset重置表单中所有数据按钮、submit提交按钮（将当前表单域form里的表单元素<span class="hljs-built_in">input</span>获得的的所有值交给后台处理）、text用户单行输入。<br>    ①name属性：表单元素的名字，若单元按钮只有一项可选，它们的name值相同。多选按钮的name值也相同。<br>    ②value属性：规定<span class="hljs-built_in">input</span>元素的值，更改默认显示信息。<br>    ③check属性：单选按钮和复选框按钮可以设置check属性，当页面打开的时候可以默认选中这个按钮。check=<span class="hljs-string">&quot;checked&quot;</span><br>    ④maxlength：规定用户输入字符的最大值。<br> - &lt;label&gt;：为<span class="hljs-built_in">input</span>元素定义标注，用于绑定一个表单元素，当点击该标签内的文本时，浏览器自动将光标转到或者选择对应的表单元素上，其中<span class="hljs-keyword">for</span>属性应当与相关元素<span class="hljs-built_in">id</span>属性相同，例如：<br> &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;sex&quot;</span>&gt;男&lt;/label&gt;<br>&lt;<span class="hljs-built_in">input</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;radio&quot;</span> name=<span class="hljs-string">&quot;sex&quot;</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;sex&quot;</span>   &gt;<br>- &lt;select&gt;&lt;option&gt;&lt;/option&gt;&lt;/select&gt;：在页面中进行下拉选择列表，至少包含一对选项option。在option中设置属性selected=<span class="hljs-string">&quot;selected&quot;</span>表示当前选项为默认选中项。<br>- &lt;textarea clos=<span class="hljs-string">&quot;每行中的字符数&quot;</span> rows=<span class="hljs-string">&quot;显示的行数&quot;</span>&gt;默认显示的文字&lt;/textarea&gt;：文本域。<br>*/<br></code></pre></td></tr></table></figure>
-
-<h4 id="三、CSS盒模型"><a href="#三、CSS盒模型" class="headerlink" title="三、CSS盒模型"></a>三、CSS盒模型</h4><p>两种盒模型，box-sizing属性：content-box | border-box | inherit</p>
+              <h4 id="一、CSS常用属性"><a href="#一、CSS常用属性" class="headerlink" title="一、CSS常用属性"></a>一、CSS常用属性</h4><h4 id="二、常用html标签"><a href="#二、常用html标签" class="headerlink" title="二、常用html标签"></a>二、常用html标签</h4><h4 id="三、CSS盒模型"><a href="#三、CSS盒模型" class="headerlink" title="三、CSS盒模型"></a>三、CSS盒模型</h4><p>两种盒模型，box-sizing属性：content-box | border-box | inherit</p>
 <ul>
 <li>content-box 默认值：<strong>标准盒模型</strong>。边框border和内边距padding的值不包含在width之内。对象的实际宽度等于设置的width值和border、padding之和。</li>
 </ul>
