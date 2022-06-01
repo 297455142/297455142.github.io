@@ -16,21 +16,39 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前端面试总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://example.com/categories/index.html">
+    <meta name="description" content="一、回退N帧发送方已经发送了编号为0~10的帧，当计时器超时时，若发送方只收到0、2、4号帧的确认，则发送方需要重发的帧数为6。  在后退N帧协议中，发送方可以连续发送若干个数据帧，如果收到接收方的确认帧，则可以继续发送。 若某个帧出错，接收方只是简单丢弃该帧及其后所有的后续帧，发送方超时后需重传该数据帧及其后续的所有数据帧。 连续ARQ协议中，接收方一般采用积累确认的方式，即接收方按序到达的最后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据链路层">
+<meta property="og:url" content="http://example.com/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="前端面试总结">
+<meta property="og:description" content="一、回退N帧发送方已经发送了编号为0~10的帧，当计时器超时时，若发送方只收到0、2、4号帧的确认，则发送方需要重发的帧数为6。  在后退N帧协议中，发送方可以连续发送若干个数据帧，如果收到接收方的确认帧，则可以继续发送。 若某个帧出错，接收方只是简单丢弃该帧及其后所有的后续帧，发送方超时后需重传该数据帧及其后续的所有数据帧。 连续ARQ协议中，接收方一般采用积累确认的方式，即接收方按序到达的最后">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-11T05:44:21.000Z">
+<meta property="article:modified_time" content="2022-05-11T05:53:54.519Z">
 <meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>分类 - 前端面试总结</title>
+  <title>数据链路层 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -57,7 +75,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -158,9 +176,51 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类">
+            <span class="h2" id="subtitle" title="数据链路层">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 13:44" pubdate>
+        2022年5月11日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      295 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -173,276 +233,129 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据链路层</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一、回退N帧"><a href="#一、回退N帧" class="headerlink" title="一、回退N帧"></a>一、回退N帧</h4><p>发送方已经发送了编号为0~10的帧，当计时器超时时，若发送方只收到0、2、4号帧的确认，则发送方需要重发的帧数为6。</p>
+<ul>
+<li>在后退N帧协议中，发送方可以连续发送若干个数据帧，如果收到接收方的确认帧，则可以继续发送。</li>
+<li>若某个帧出错，接收方只是简单丢弃该帧及其后所有的后续帧，发送方超时后需重传该数据帧及其后续的所有数据帧。</li>
+<li>连续ARQ协议中，接收方一般采用积累确认的方式，即接收方按序到达的最后一个分组发送确认。题目中收到4的确认帧就代表编号0、1、2、3、4的帧已接收，发送方未收到1、3的帧只能代表确认帧在返回到 过程中丢失了，而不代表1号帧未到达接收方。因此要重传5、6、7、8、9、10</li>
+</ul>
 
-
-
-
-<div class="category-list">
-  
-  
-  
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-f75627e742c5ba6fab3c2f3c2abf02a0" role="tab" data-toggle="collapse" href="#collapse-f75627e742c5ba6fab3c2f3c2abf02a0"
-        aria-expanded="false"
-      >
-        计算机网络
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>5</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-f75627e742c5ba6fab3c2f3c2abf02a0" role="tabpanel" aria-labelledby="heading-f75627e742c5ba6fab3c2f3c2abf02a0">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/05/12/%E8%AE%A1%E7%BD%91%E6%9D%82%E9%A1%B9/" class="list-group-item list-group-item-action">
-          <span class="category-post">计网杂项</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/11/%E5%BA%94%E7%94%A8%E5%B1%82/" class="list-group-item list-group-item-action">
-          <span class="category-post">应用层</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/11/%E7%BD%91%E7%BB%9C%E5%B1%82/" class="list-group-item list-group-item-action">
-          <span class="category-post">网络层</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" class="list-group-item list-group-item-action">
-          <span class="category-post">数据链路层</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/" class="list-group-item list-group-item-action">
-          <span class="category-post">传输层</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-9abfe4a03928eb88a75a5cd95822dfef" role="tab" data-toggle="collapse" href="#collapse-9abfe4a03928eb88a75a5cd95822dfef"
-        aria-expanded="false"
-      >
-        前端
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>4</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-9abfe4a03928eb88a75a5cd95822dfef" role="tabpanel" aria-labelledby="heading-9abfe4a03928eb88a75a5cd95822dfef">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/05/12/JavaScript/" class="list-group-item list-group-item-action">
-          <span class="category-post">JavaScript</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/12/Vue/" class="list-group-item list-group-item-action">
-          <span class="category-post">Vue</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/12/%E5%89%8D%E7%AB%AF%E6%9D%82%E9%A1%B9/" class="list-group-item list-group-item-action">
-          <span class="category-post">前端杂项</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/12/CSS/" class="list-group-item list-group-item-action">
-          <span class="category-post">CSS</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-0077e7f975e39f83eea880b47df2795f" role="tab" data-toggle="collapse" href="#collapse-0077e7f975e39f83eea880b47df2795f"
-        aria-expanded="false"
-      >
-        测试开发
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-0077e7f975e39f83eea880b47df2795f" role="tabpanel" aria-labelledby="heading-0077e7f975e39f83eea880b47df2795f">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/05/17/Python/" class="list-group-item list-group-item-action">
-          <span class="category-post">Python</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/17/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/" class="list-group-item list-group-item-action">
-          <span class="category-post">测试开发</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-0fea7c47d93da5689f31820ee525b367" role="tab" data-toggle="collapse" href="#collapse-0fea7c47d93da5689f31820ee525b367"
-        aria-expanded="false"
-      >
-        数据结构
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-0fea7c47d93da5689f31820ee525b367" role="tabpanel" aria-labelledby="heading-0fea7c47d93da5689f31820ee525b367">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="list-group-item list-group-item-action">
-          <span class="category-post">二叉树</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/11/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="list-group-item list-group-item-action">
-          <span class="category-post">排序算法</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-30d23ef4f49e85f37f54786ff984032c" role="tab" data-toggle="collapse" href="#collapse-30d23ef4f49e85f37f54786ff984032c"
-        aria-expanded="false"
-      >
-        操作系统
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>2</span>
-      </a>
-      <div class="category-collapse collapse" id="collapse-30d23ef4f49e85f37f54786ff984032c" role="tabpanel" aria-labelledby="heading-30d23ef4f49e85f37f54786ff984032c">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%82%E9%A1%B9/" class="list-group-item list-group-item-action">
-          <span class="category-post">操作系统杂项</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2022/05/11/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" class="list-group-item list-group-item-action">
-          <span class="category-post">进程与线程</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%82%E9%A1%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统杂项</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
+                        <span class="hidden-mobile">进程与线程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -550,6 +463,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 

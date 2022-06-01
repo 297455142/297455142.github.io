@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、TCP报文头部结构标志位 急迫标识PSH：表明请求远地TCP报文将本报文段立即传送给其应用层，而不要等到全部缓存都填满了之后再向上交付（接受报文）。 复位标识ReSeT：表明出现严重错误，必须释放连接，然后再重建传输连接。还用来拒接一个不法的报文段或拒绝打开一个连接。 确认标识ACK：确认序号字段有意义。 紧急标识URGent：表明此报文段应尽快传送，而不要按本来的队列次序来传送。 同步标识S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传输层">
+<meta property="og:url" content="http://example.com/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、TCP报文头部结构标志位 急迫标识PSH：表明请求远地TCP报文将本报文段立即传送给其应用层，而不要等到全部缓存都填满了之后再向上交付（接受报文）。 复位标识ReSeT：表明出现严重错误，必须释放连接，然后再重建传输连接。还用来拒接一个不法的报文段或拒绝打开一个连接。 确认标识ACK：确认序号字段有意义。 紧急标识URGent：表明此报文段应尽快传送，而不要按本来的队列次序来传送。 同步标识S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+<meta property="og:image" content="http://example.com/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png">
+<meta property="og:image" content="http://example.com/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/DHCP.png">
+<meta property="article:published_time" content="2022-05-11T02:31:24.000Z">
+<meta property="article:modified_time" content="2022-05-11T11:56:08.137Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png">
+  
+  
+  <title>传输层 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="传输层">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 10:31" pubdate>
+        2022年5月11日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">传输层</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一、TCP报文头部结构标志位"><a href="#一、TCP报文头部结构标志位" class="headerlink" title="一、TCP报文头部结构标志位"></a>一、TCP报文头部结构标志位</h4><ul>
+<li>急迫标识PSH：表明请求远地TCP报文将本报文段立即传送给其应用层，而不要等到全部缓存都填满了之后再向上交付（接受报文）。</li>
+<li>复位标识ReSeT：表明出现严重错误，必须释放连接，然后再重建传输连接。还用来拒接一个不法的报文段或拒绝打开一个连接。</li>
+<li>确认标识ACK：确认序号字段有意义。</li>
+<li>紧急标识URGent：表明此报文段应尽快传送，而不要按本来的队列次序来传送。</li>
+<li>同步标识SYN：在建立连接时使用。SYN&#x3D;1且ACK&#x3D;0时，表明这是一个连接请求报文段。对方若同意建立连接，在回复的报文段中使用SYN&#x3D;1和ACK&#x3D;1.</li>
+<li>终止标识FINal：用来释放一个连接，当FIN&#x3D;1时，表明欲发送的字节已经发送完，并请求释放传输连接。</li>
+</ul>
+<h4 id="二、TCP的三次握手四次挥手"><a href="#二、TCP的三次握手四次挥手" class="headerlink" title="二、TCP的三次握手四次挥手"></a>二、TCP的三次握手四次挥手</h4><img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png" srcset="/img/loading.gif" lazyload class="" title="三次握手"> 
+
+<ul>
+<li><p>一开始，客户端和服务端都处于CLOSED状态。先是服务端主动监听某个端口，处于LISTEN状态。</p>
+</li>
+<li><p>客户端发送SYN包(SYN&#x3D;1,seq&#x3D;x)至服务端，并处于SYN_SENT状态，等待服务器确认。。</p>
+</li>
+<li><p>服务端解析SYN，并发送SYN+ACK包(SYN&#x3D;1,ACK&#x3D;x+1,seq&#x3D;y)至客户端，并处于SYN_RECV状态，允许建立连接。（告诉服务器已经做好准备，可以发送数据）</p>
+</li>
+<li><p>客户端获取SYN+ACK并发送ACK包(ACK&#x3D;y+1,seq&#x3D;z)包至服务端，连接建立成功，即将发送数</p>
+<img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png" srcset="/img/loading.gif" lazyload class="" title="四次挥手"> 
+</li>
+<li><p>客户端打算关闭连接，此时会发送一个TCP首部FIN标志位置为1的报文，即FIN报文，之后客户端进入FIN_WAIT_1状态。</p>
+</li>
+<li><p>服务器收到该报文后，就向客户端发送ACK应答报文（FIN+1），接着服务器进入CLOSED_WAIT状态。</p>
+</li>
+<li><p>客户端收到服务端的ACK应答报文后，进入FIN_WAIT_2状态。</p>
+</li>
+<li><p>等待服务端处理完数据后，也向客户端发送FIN报文，之后服务端进入LAST_ACK状态。（告诉客户端响应报文发送完毕）</p>
+</li>
+<li><p>客户端收到服务端的FIN报文后，回一个ACK应答报文，之后进入TIME_WAIT状态。</p>
+</li>
+<li><p>服务器收到ACK应答报文后，就进入了CLOSED状态，至此服务端已经完成连接的关闭。</p>
+</li>
+<li><p>客户端在经过2MSL时间后，自动进入CLOSED状态，至此客户端也完成连接的关闭。</p>
+</li>
+</ul>
+<h4 id="三、为什么必须是三次握手"><a href="#三、为什么必须是三次握手" class="headerlink" title="三、为什么必须是三次握手"></a>三、为什么必须是三次握手</h4><p>如果没有第三次握手，就会出现一些丢包的情况，如果只握手 2 次，第二次握手时如果服务端发给客户端的确认报文段丢失，此时服务端已经准备好了收发数(可以理解服务端已经连接成功)据，而客户端一直没收到服务端的确认报文，所以客户端就不知道服务端是否已经准备好了(可以理解为客户端未连接成功)，这种情况下客户端不会给服务端发数据，也会忽略服务端发过来的数据。如果是三次握手，即便发生丢包也不会有问题，比如如果第三次握手客户端发的确认 ack 报文丢失，服务端在一段时间内没有收到确认 ack 报文的话就会重新进行第二次握手，也就是服务端会重发 SYN 报文段，客户端收到重发的报文段后会再次给服务端发送确认 ack 报文。</p>
+<h4 id="四、TCP和UDP区别"><a href="#四、TCP和UDP区别" class="headerlink" title="四、TCP和UDP区别"></a>四、TCP和UDP区别</h4><ul>
+<li>连接：TCP是面向连接的传输层协议，传输数据前需要先建立连接。UDP是不需要连接，即刻传输数据。</li>
+<li>服务对象：TCP是一对一的两点服务，一条连接只有两个端点。UDP支持一对一、一对多、多对多的交互通信。</li>
+<li>可靠性：TCP是可靠交付数据的，数据可以无差错、不丢失、不重复、按需到达。UDP是尽最大努力交付，不保证可靠交付数据。</li>
+<li>拥塞控制、流量控制：TCP有拥塞控制和流量控制机制，保证数据传输的安全性。UDP没有，即使网络拥堵，也不会影响UDP的发送速率。</li>
+<li>首部开销：TCP首部长度较长，会有一定开销。UDP首部只有8个字节，并且是固定不变的，开销较小。</li>
+<li>传输方式：TCP是流式传输，没有边界，但保证顺序和可靠。UDP是一个包一个包的发送，是有边界的，但可能会丢包和乱序。</li>
+<li>分片不同：TCP数据大小如果大于MSS大小，则会在传输层进行分片，目标主机收到后也同样在传输层组装TCP数据报，如果中途丢失一个分片，只需要传输丢失的分片。UDP的数据大小如果大于MTU大小，则会在IP层进行分片，目标主机收到后在IP层组装数据，接着再传给传输层，如果中途丢失一个分片，在实现可靠传输的UDP时需要重传所有的数据包。<h4 id="五、TCP和UDP应用场景"><a href="#五、TCP和UDP应用场景" class="headerlink" title="五、TCP和UDP应用场景"></a>五、TCP和UDP应用场景</h4></li>
+<li>TCP：面向连接，能保证数据的可靠性交付，常用于FTP文件传输、HTTP&#x2F;HTTPS</li>
+<li>UDP：面向无连接，可以随时发送数据，本身处理简单高效，常用于包总量较少的通信，如DNS、SNMP等、视频、音频等多媒体通信，广播通信。</li>
+</ul>
+<h4 id="六、DHCP（动态主机配置协议）"><a href="#六、DHCP（动态主机配置协议）" class="headerlink" title="六、DHCP（动态主机配置协议）"></a>六、DHCP（动态主机配置协议）</h4><img src="/2022/05/11/%E4%BC%A0%E8%BE%93%E5%B1%82/DHCP.png" srcset="/img/loading.gif" lazyload class="" title="DHCP"> 
+
+<ul>
+<li><p>作用：为网络内的主机提供动态ip地址分配服务，客户登陆服务器时就可以自动获得服务器分配的IP地址和子网掩码。</p>
+</li>
+<li><p>先告诉服务器可以分配的ip地址范围 ，  DHCP客户先广播一个请求，发现DHCP服务器。DHCP服务器表示可以提供，客户发送请求表示将其选择，服务器确认并分配地址。</p>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排序算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

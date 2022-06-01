@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、HTTP请求方法 GET：使用url从指定的资源请求数据，只是检索数据，不会对数据产生其他影响。请求的数据量有限，请求的数据放在url里，例如&#x2F;test&#x2F;demo.php?name1&#x3D;value1&amp;name2&#x3D;value2。处理敏感数据时不可以用GET，请求可以被缓存。 POST：向指定的资源提交要被处理的数据，用以创建或更新资源，对数据长度没有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用层">
+<meta property="og:url" content="http://example.com/2022/05/11/%E5%BA%94%E7%94%A8%E5%B1%82/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、HTTP请求方法 GET：使用url从指定的资源请求数据，只是检索数据，不会对数据产生其他影响。请求的数据量有限，请求的数据放在url里，例如&#x2F;test&#x2F;demo.php?name1&#x3D;value1&amp;name2&#x3D;value2。处理敏感数据时不可以用GET，请求可以被缓存。 POST：向指定的资源提交要被处理的数据，用以创建或更新资源，对数据长度没有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/05/11/%E5%BA%94%E7%94%A8%E5%B1%82/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png">
+<meta property="article:published_time" content="2022-05-11T10:50:41.000Z">
+<meta property="article:modified_time" content="2022-05-14T05:39:10.699Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/05/11/%E5%BA%94%E7%94%A8%E5%B1%82/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png">
+  
+  
+  <title>应用层 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="应用层">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 18:50" pubdate>
+        2022年5月11日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      35 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">应用层</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一、HTTP请求方法"><a href="#一、HTTP请求方法" class="headerlink" title="一、HTTP请求方法"></a>一、HTTP请求方法</h4><ul>
+<li>GET：使用url从指定的资源请求数据，只是检索数据，不会对数据产生其他影响。请求的数据量有限，请求的数据放在url里，例如&#x2F;test&#x2F;demo.php?name1&#x3D;value1&amp;name2&#x3D;value2。处理敏感数据时不可以用GET，<strong>请求可以被缓存</strong>。</li>
+<li>POST：向指定的资源提交要被处理的数据，用以创建或更新资源，对数据长度没有限制，无法被缓存。</li>
+<li>HEAD：与GET相同，没有响应体，只传输状态行和标题部分，只返回HTTP报头。</li>
+<li>PUT：用于将数据发送到服务器以创建或更新资源，用上传的内容替换目标资源中所有当前内容。会将包含的元素放在所提供的url下，如果url指示的是当前资源，则会发生改变。如果url未指示当前资源，则服务器可以使用该url创建资源。</li>
+<li>DELETE：用来删除指定资源，删除url给出的目标资源的所有当前内容。</li>
+<li>CONNECT：建立到给定url表示的服务器隧道，把请求连接转换到透明的TCP&#x2F;IP通道。</li>
+<li>OPTIONS：返回服务器支持的HTTP方法。</li>
+<li>TRACE：沿到目标资源的路径执行消息环回测试（从通信设备发出的信号又返回原处）。</li>
+<li>PATCH：对PUT的补充，对已知资源进行<strong>局部</strong>更新。</li>
+</ul>
+<h4 id="二、HTTP请求报文和响应报文的格式"><a href="#二、HTTP请求报文和响应报文的格式" class="headerlink" title="二、HTTP请求报文和响应报文的格式"></a>二、HTTP请求报文和响应报文的格式</h4> <img src="/2022/05/11/%E5%BA%94%E7%94%A8%E5%B1%82/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png" srcset="/img/loading.gif" lazyload class="" title="请求报文的格式"> 
+
+<h5 id="请求报文：请求行-首部行-空行-请求体"><a href="#请求报文：请求行-首部行-空行-请求体" class="headerlink" title="请求报文：请求行+首部行+空行+请求体"></a>请求报文：请求行+首部行+空行+请求体</h5><ul>
+<li>请求行：方法、URL、HTTP版本（所用的协议）。</li>
+<li>首部行（请求头信息）：多组键值对，首部3字段名+值，包括请求体的长度等等。</li>
+<li>请求体：GET时为空，POST时不空。<h5 id="响应报文：响应行-响应头信息-空行-主体信息"><a href="#响应报文：响应行-响应头信息-空行-主体信息" class="headerlink" title="响应报文：响应行+响应头信息+空行+主体信息"></a>响应报文：响应行+响应头信息+空行+主体信息</h5></li>
+<li>响应行：协议、状态码、状态文字</li>
+<li>响应头信息：键值对</li>
+<li>主体信息：可能为空</li>
+</ul>
+<h4 id="三、HTTP与HTTPS区别"><a href="#三、HTTP与HTTPS区别" class="headerlink" title="三、HTTP与HTTPS区别"></a>三、HTTP与HTTPS区别</h4><ul>
+<li><p>HTTP是一种超文本传输协议，基于TCP协议。</p>
+</li>
+<li><p>HTTP明文传输，数据都是未加密的，安全13性较差，HTTPS数据传输过程是加密的，安全性较好。</p>
+</li>
+<li><p>HTTPS协议需要到CA申请证书，一般免13费证书较少，因而需要一定费用。</p>
+</li>
+<li><p>HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</p>
+</li>
+<li><p>HTTP的连接很简单，是无状态的331，HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比HTTP协议安全。</p>
+</li>
+<li><p>HTTP页面相应速度比HTTPS快，主要是因为HTTP使用TCP三次握手建立连接，客户端和服务器需要交换三个包。而HTTPS除了TCP的三个包，还要加上SSL握手需要的9个包，一共是12个包。</p>
+</li>
+<li><p>HTTPS就是构建在SSL&#x2F;TLS之上的HTTP协议，所以HTTPS比HTTP更耗费服务器资源。</p>
+</li>
+</ul>
+<h4 id="四、HTTP的状态码"><a href="#四、HTTP的状态码" class="headerlink" title="四、HTTP的状态码"></a>四、HTTP的状态码</h4><h5 id="1xx：提示信息，是协议处理的中间状态，还需要后续的操作"><a href="#1xx：提示信息，是协议处理的中间状态，还需要后续的操作" class="headerlink" title="1xx：提示信息，是协议处理的中间状态，还需要后续的操作"></a>1xx：提示信息，是协议处理的中间状态，还需要后续的操作</h5><ul>
+<li>100 Continue：继续，客户端应继续其请求。</li>
+<li>101 Switching Protocols：服务器根据客户端请求切换协议，只能切换到更高级的协议，例如切换到HTTP新版本的协议。</li>
+</ul>
+<h5 id="2xx：表示服务器成功处理了客户端的请求，报文已经收到并被正确处理"><a href="#2xx：表示服务器成功处理了客户端的请求，报文已经收到并被正确处理" class="headerlink" title="2xx：表示服务器成功处理了客户端的请求，报文已经收到并被正确处理"></a>2xx：表示服务器成功处理了客户端的请求，报文已经收到并被正确处理</h5><ul>
+<li>200 OK：成功状态码，表示一切正常。非HEAD请求时服务器返回的响应头会有body数据。</li>
+<li>201 Created：已创建，成功请求并创建了新的资源。</li>
+<li>202 Accepted：已接收，已经接收请求，但未处理完成。</li>
+<li>203 Non-Authoritative Information：非授权信息，请求成功但返回的meta信息不在原始的服务器，而是一个副本。</li>
+<li>204 No Content：成功状态码，响应头没有body数据。</li>
+<li>205 Reset Content：请求成功，但响应报文不含实体的主体部分，但与204不同的是要求请求方重置内容。</li>
+<li>206 Partial Content：应用于HTTP分块下载或断点续传，表示响应返回的body数据并不是资源的全部，只是其中一部分。</li>
+</ul>
+<h5 id="3xx：重定向，表示客户端请求的资源发生了变动，需要客户端用新的url重亲发送请求获取资源"><a href="#3xx：重定向，表示客户端请求的资源发生了变动，需要客户端用新的url重亲发送请求获取资源" class="headerlink" title="3xx：重定向，表示客户端请求的资源发生了变动，需要客户端用新的url重亲发送请求获取资源"></a>3xx：重定向，表示客户端请求的资源发生了变动，需要客户端用新的url重亲发送请求获取资源</h5><ul>
+<li>301 Moved Permanently：永久重定向，说明请求资源已经不存在了，需改用新的URL再次访问。</li>
+<li>302 Found：临时重定向，说明请求的资源还在，但暂时需要用另一个URL访问。</li>
+<li>303 see other：表示资源存在另一个url，应使用GET方法获取资源。</li>
+<li>304 Not Modified：未修改，自从上次请求后，请求的网页未修改过。</li>
+<li>305 Use Proxy：使用代理，请求者只能使用代理访问请求的网页。</li>
+<li>306 Unused：已经被废弃的HTTP状态码。</li>
+<li>307 Temporary Redirect：临时重定向，类似302，但是期望客户端保持请求方法不变向新地址发出请求。</li>
+</ul>
+<h5 id="4xx：表示客户端发送的报文有误"><a href="#4xx：表示客户端发送的报文有误" class="headerlink" title="4xx：表示客户端发送的报文有误"></a>4xx：表示客户端发送的报文有误</h5><ul>
+<li>400 Bad Request：表示客户端请求的报文有误。</li>
+<li>401 Unauthorized：表示发送的请求需要有通过HTTP认证的认证信息。</li>
+<li>402 Payment Required：保留，将来使用。</li>
+<li>403 Forbidden：表示服务器禁止访问资源。</li>
+<li>404 Not Found：表示请求的资源在服务器上不存在或未找到。</li>
+<li>405 Method Not Allowed：客户端请求中的方法被禁止。</li>
+<li>406 Not Acceptable：服务器无法根据客户端请求的内容特性完成请求。</li>
+<li>407: Proxy Authentication Required：请求要求代理的身份认证，类似401，但请求者应当使用代理进行授权。</li>
+<li>408 Request Time-out：服务器等待客户端发送的请求时间过长，超时。</li>
+<li>409 Confilct：服务器完成客户端的PUT请求时可能返回此代码，服务器处理请求时发生了冲突。</li>
+<li>410 Gone：客户端请求的资源已经不存在。资源以前有现在被永久删除了。</li>
+<li>411 Length Required：服务器无法处理客户端发送的不带Content-Length的请求信息。</li>
+<li>412 Precondition Failed：客户端请求信息的先决条件错误。</li>
+<li>413 Request Entity Too Large：由于请求实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息。</li>
+<li>414 Request-URI Too Large：请求的URI过长，服务器无法处理。</li>
+<li>415 Unsupported Media Type：服务器无法处理请求附带的媒体格式。</li>
+<li>416 Requested Range Not Satisfiable：客户端请求的范围无效。</li>
+<li>417 Expectation Failed：服务器无法满足Expect的请求头消息。</li>
+</ul>
+<h5 id="5xx：表示客户端请求报文正确，但是服务器处理时内部发生了错误"><a href="#5xx：表示客户端请求报文正确，但是服务器处理时内部发生了错误" class="headerlink" title="5xx：表示客户端请求报文正确，但是服务器处理时内部发生了错误"></a>5xx：表示客户端请求报文正确，但是服务器处理时内部发生了错误</h5><ul>
+<li>500 Internal Server Error：服务器发生错误。</li>
+<li>501 Not Implemented：表示客户端请求的功能还不支持。</li>
+<li>502 Bad Gateway：通常是在服务器作为网关或代理时，服务器自身工作正常，访问后端服务器发生错误。</li>
+<li>503 Service Unavailable：表示服务器当前忙，暂时无法相应服务器。</li>
+<li>504 Gateway Time-out：充当网关或代理的服务器未及时从远端服务器获取请求。</li>
+<li>505 HTTP Version not supported：服务器不支持请求的HTTP协议的版本，无法完成处理。</li>
+</ul>
+<h4 id="五、HTTPS相对HTTP的改进"><a href="#五、HTTPS相对HTTP的改进" class="headerlink" title="五、HTTPS相对HTTP的改进"></a>五、HTTPS相对HTTP的改进</h4><ul>
+<li>双向的身份认证</li>
+<li>数据传输的机密性</li>
+<li>防止重放攻击<h4 id="六、HTTPS的优缺点"><a href="#六、HTTPS的优缺点" class="headerlink" title="六、HTTPS的优缺点"></a>六、HTTPS的优缺点</h4><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5></li>
+<li>使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器。</li>
+<li>HTTPS协议是由SSL+HTTP协议构成的可进行加密传输、身份认证的网络协议，比HTTP协议更安全，可防止数据在传输过程中不被窃取、修改，确保数据的完整性。</li>
+<li>HTTPS是现行架构下最安全的解决方案，虽然不是绝对安全，但大幅增加了中间人的攻击成本。<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5></li>
+<li>HTTPS协议握手阶段比较费事，会使页面加载时间延长。</li>
+<li>HTTPS连接缓存不如HTTP高效，会增加数据开销，甚至已有的安全措施也会因此而受到影响。</li>
+<li>HTTPS协议的安全是有范围的，在黑客攻击、拒绝服务攻击和服务器劫持等方面几乎起不到什么作用。</li>
+<li>SSL证书通常需要绑定IP，不能在同一个IP上绑定多个域名，IPv4资源不可能支撑这个消耗。</li>
+<li>成本增加。部署HTTPS后，因为HTTPS协议的工作要增加额外的计算资源消耗。例如SSL协议加密算法和SSL交互次数将占用一定的计算资源和服务器成本。</li>
+<li>HTTPS协议的加密范围也比较有限。SSL正式的信用链体系并不安全，中间人攻击一样可行。</li>
+</ul>
+<h4 id="七、HTTP原理"><a href="#七、HTTP原理" class="headerlink" title="七、HTTP原理"></a>七、HTTP原理</h4><p>1、客户端浏览器首先通过网络与服务器建立连接，该连接通过TCP完成，端口号一般为80。建立连接环后客户端发送一个请求给服务器，请求方式的格式为：URL、协议版本号、MIME信息（包括请求修饰符、客户机信息和许可内容）。<br>2、服务器接收到请求后，返回对应的相应信息，格式为状态行（协议版本号、状态码）、MIME信息（服务器信息和可能的内容）</p>
+<h4 id="八、HTTPS原理"><a href="#八、HTTPS原理" class="headerlink" title="八、HTTPS原理"></a>八、HTTPS原理</h4><p>1、客户端将它所支持的算法列表和一个用作产生密钥的随机数发送给服务器。<br>2、服务器从算法列表中选择一种加密算法，并将它和一份包含服务器公用密钥的证书发送给客户端；该证书还包含了用于认证目的的服务器标识，服务器同时还提供了一个用作产生密钥的随机数。<br>3、客户端对服务器的证书进行验证，并抽取服务器的公用密钥，然后再产生一个称作pre_master_secret的随机密码串，并使用服务器的公用密钥对其进行加密，并将加密后的信息发送给服务器。<br>4、客户端与服务器根据pre_master_secret以及客户端与服务器的随机数值独立计算出加密和MAC密钥。<br>5、客户端将所有握手消息的MAC值发送给服务器。<br>6、服务器将所有握手消息的MAC值发送给客户端。</p>
+<h4 id="九、SSL"><a href="#九、SSL" class="headerlink" title="九、SSL"></a>九、SSL</h4><ul>
+<li>SSL协议位于TCP&#x2F;IP协议与各种应用层协议之间，为数据通讯提供安全支持，包括两层。</li>
+<li>SSL记录协议：建立在可靠的传输协议（如TCP）上，为高层协议提供数据封装、压缩、加密等基本功能的支持。</li>
+<li>SSL握手协议：建立在SSL记录协议上，用于在实际的数据传输开始前，通讯双方进行身份认证、协商加密算法、交换加密密钥等。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/12/%E8%AE%A1%E7%BD%91%E6%9D%82%E9%A1%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计网杂项</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E7%BD%91%E7%BB%9C%E5%B1%82/">
+                        <span class="hidden-mobile">网络层</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
