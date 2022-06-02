@@ -24,7 +24,7 @@
 <meta property="og:description" content="一、前端和后端之间如何交互1、前端通过ajax发起请求给后端2、后端接收到请求之后，通过node里面的mysql模块连接数据库3、数据库检测到请求，通过node的mysql模块给后端服务器返回数据4、后端服务器接收到数据之后，将数据响应到前台页面 二、前端向后端传输数据的手段三、浏览器缓存机制浏览器缓存是浏览器将用户请求过的静态资源（html、css、js）存储到电脑本地磁盘中，当浏览器再次访问时">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-12T09:04:39.000Z">
-<meta property="article:modified_time" content="2022-05-12T10:46:46.329Z">
+<meta property="article:modified_time" content="2022-06-02T02:11:54.233Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -251,8 +251,12 @@
 <h5 id="一、浏览器缓存的优点"><a href="#一、浏览器缓存的优点" class="headerlink" title="一、浏览器缓存的优点"></a>一、浏览器缓存的优点</h5><ul>
 <li>减少了冗余的数据传输，节省网费。</li>
 <li>减少了服务器的负担，提升网站性能。</li>
-<li>加快了客户端加载网页的速度。<h5 id="二、缓存位置"><a href="#二、缓存位置" class="headerlink" title="二、缓存位置"></a>二、缓存位置</h5>四种，存在优先级，当依次查找缓存且都没有命中的时候才去请求网络。<br><strong>Service Worker</strong>：可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。<br><strong>Memory Cache</strong>：内存缓存虽然读取高效，但缓存持续性很短，会随着进程的释放而释放。一旦关闭了Tab页面，内存中的缓存也就被释放了。<br><strong>Disk Cache</strong>：读取速度慢，但是什么都能存储到磁盘中，比内存缓存胜在容量和存储时效性上。<br><strong>Push Cache</strong>：当以上三种缓存都没有命中时，才会被使用。且缓存时间很短暂，只会在会话（session）中存在，一旦会话救赎就被释放。<br><strong>网络请求</strong>：以上缓存都没有命中，发送请求获取资源。<h5 id="三、缓存策略：强缓存和协商缓存"><a href="#三、缓存策略：强缓存和协商缓存" class="headerlink" title="三、缓存策略：强缓存和协商缓存"></a>三、缓存策略：强缓存和协商缓存</h5>1、<strong>强缓存</strong>：可以通过设置两种HTTP Header来实现，Expires和Cache-Control。<br>强缓存如果命中，返回state code为200，客户端不会给服务器发送请求，直接从本地获取资源。<br>Expries是一个时间戳，本地时间小于expires设置的过期时间，就说明命中强缓存，但本地时间改了会出错。<br>Cache-Control优先级更高，max-age是一个时间长度，例如3153600秒代表在3153600秒内有效。<br>S-maxage主要用于代理服务器生效。<br>public：浏览器和CDN都可以被缓存。<br>private：默认值，仅被览器缓存。</li>
+<li>加快了客户端加载网页的速度。</li>
 </ul>
+<p>二、缓存位置</p>
+<p>四种，存在优先级，当依次查找缓存且都没有命中的时候才去请求网络。<br><strong>Service Worker</strong>：可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。<br><strong>Memory Cache</strong>：内存缓存虽然读取高效，但缓存持续性很短，会随着进程的释放而释放。一旦关闭了Tab页面，内存中的缓存也就被释放了。<br><strong>Disk Cache</strong>：读取速度慢，但是什么都能存储到磁盘中，比内存缓存胜在容量和存储时效性上。<br><strong>Push Cache</strong>：当以上三种缓存都没有命中时，才会被使用。且缓存时间很短暂，只会在会话（session）中存在，一旦会话救赎就被释放。<br><strong>网络请求</strong>：以上缓存都没有命中，发送请求获取资源。</p>
+<p>三、缓存策略：强缓存和协商缓存</p>
+<p>1、<strong>强缓存</strong>：可以通过设置两种HTTP Header来实现，Expires和Cache-Control。<br>强缓存如果命中，返回state code为200，客户端不会给服务器发送请求，直接从本地获取资源。<br>Expries是一个时间戳，本地时间小于expires设置的过期时间，就说明命中强缓存，但本地时间改了会出错。<br>Cache-Control优先级更高，max-age是一个时间长度，例如3153600秒代表在3153600秒内有效。<br>S-maxage主要用于代理服务器生效。<br>public：浏览器和CDN都可以被缓存。<br>private：默认值，仅被览器缓存。</p>
 <p>强缓存也称为本地缓存，发送请求时向浏览器缓存查找请求结果，并根据该结果的缓存规则来决定是否使用该缓存结果的过程。<br>强缓存的情况主要分三种：<br>①浏览器缓存中不存在缓存请求结果和缓存标识，则浏览器直接向服务器发送请求。<br>②浏览器缓存中存在请求结果和缓存标识，但根据缓存规则结果已经失效，则使用协商缓存。<br>③浏览器缓存中存在请求结果和缓存标识，且根据缓存规则结果尚在有效时间内，则直接返回请求结果。<br>2、<strong>协商缓存（弱缓存）</strong>：如果缓存过期了，需要发起请求验证资源是否有更新。可以通过谁知两种HTTP Header来实现：Last-Modified和Tag。当两者同时存在，服务器会先检查Etag，再检查Last-Modified，最终决定返回200还是304.<br><strong>Last-Modified</strong>：服务器对比时间戳和资源在服务器上最后修改的时间是否一致，无法感知文件本身变化。<br>在浏览器第一次请求某个URL时，服务器端返回状态是200，内容是请求的资源，同时会有一个Last-Modified的属性标记此文件在服务器端最后被修改的时间。<br>客户端第二次请求此URL时，根据HTTP协议的规定，浏览器会向服务器传送If-Modified-Since报头，询问该时间之后文件是否有被修改过。<br>若服务器端的资源没有发生变化，则自动返回304状态码，内容为空，节省了传输数据量。<br><strong>Etag</strong>：是资源的唯一表示字符串。</p>
 <p>浏览器缓存中存在请求结果和缓存标识，但根据缓存规则结果已经失效，只返回缓存标识。<br>①浏览器携带该资源的缓存标识发起HTTP请求，服务器验证缓存标识发现资源无更新，返回304，不更新资源。<br>②浏览器携带该资源的缓存标识发起HTTP请求，服务器验证缓存标识发现资源更新了，则返回200，重新返回请求结果和缓存标识。</p>
 

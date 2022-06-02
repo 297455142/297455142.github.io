@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/border-box.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84.jpg">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-02T01:58:21.164Z">
+<meta property="article:modified_time" content="2022-06-02T02:10:49.091Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -203,7 +203,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      2.8k 字
     </span>
   
 
@@ -212,7 +212,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16 分钟
+      24 分钟
     </span>
   
 
@@ -296,7 +296,51 @@
 <img src="/2022/05/12/CSS/%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84.jpg" srcset="/img/loading.gif" lazyload class="" title="相对路径"> 
 
 <h5 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h5><p>目录下的绝对位置。”&quot;或者完整网络地址。</p>
-
+<h4 id="七、伪类与伪元素"><a href="#七、伪类与伪元素" class="headerlink" title="七、伪类与伪元素"></a>七、伪类与伪元素</h4><p>CSS引入伪类和伪元素概念是为了格式化文档树之外的信息，也就是说伪类和伪元素是用来修饰不在文档树中的部分。比如，一句话中的一个字母，或者是列表中的第一个元素。</p>
+<h5 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h5><p>伪类用于定义元素的特殊状态。如：</p>
+<ul>
+<li>a:link 选择所有未被访问的链接。</li>
+<li>a:visited 选择所有已被访问的链接。</li>
+<li>a:hover 选择鼠标指针位于其上的链接。</li>
+<li>a:active 选择活动链接（鼠标按下未抬起的链接）</li>
+<li>:focus 选取获得焦点的表单元素，一般input类表单元素才能获取。<br>伪类用于当已有元素处于某个状态时，为其添加对应的样式，这个样式是根据用户的行为而动态变化的。<figure class="highlight html"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-tag">p</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">display</span>: none;</span><br><span class="language-css">    <span class="hljs-attribute">background-color</span>: red;</span><br><span class="language-css">    <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;</span><br><span class="language-css">&#125;</span><br><span class="language-css"> <span class="hljs-selector-tag">div</span>: hover p &#123;</span><br><span class="language-css">    <span class="hljs-attribute">display</span>: block;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>鼠标移动到我上面来显示p元素<br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我在这里<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h5 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h5>伪元素用于将特殊的效果添加到某些选择器，伪元素代表了某个元素的子元素，这个元素虽然逻辑上存在，但却并不实际存在于文档树中。<br>伪元素用于设置元素指定部分的样式，如：<table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">例子</th>
+<th align="left">例子描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/selector_after.asp">::after</a></td>
+<td align="left">p::after</td>
+<td align="left">在每个 <p> 元素之后插入内容。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/selector_before.asp">::before</a></td>
+<td align="left">p::before</td>
+<td align="left">在每个 <p> 元素之前插入内容。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/selector_first-letter.asp">::first-letter</a></td>
+<td align="left">p::first-letter</td>
+<td align="left">选择每个 <p> 元素的首字母。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/selector_first-line.asp">::first-line</a></td>
+<td align="left">p::first-line</td>
+<td align="left">选择每个 <p> 元素的首行。</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/selector_selection.asp">::selection</a></td>
+<td align="left">p::selection</td>
+<td align="left">选择用户选择的元素部分。</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">selector::pseudo-element &#123;<br>    property: value;<br>&#125;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
