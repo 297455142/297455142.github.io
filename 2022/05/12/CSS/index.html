@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E5%8D%8A%E5%9C%86.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E6%A4%AD%E5%9C%86.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-02T13:13:22.842Z">
+<meta property="article:modified_time" content="2022-06-02T17:07:45.381Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -208,7 +208,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.1k 字
+      8.7k 字
     </span>
   
 
@@ -217,7 +217,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      60 分钟
+      73 分钟
     </span>
   
 
@@ -403,7 +403,7 @@
 <h4 id="十、网页布局的三种方式"><a href="#十、网页布局的三种方式" class="headerlink" title="十、网页布局的三种方式"></a>十、网页布局的三种方式</h4><ul>
 <li>标准文档流：标签按照默认规定好的方式进行排列。从上到下，从左到右，盒子模型尺寸等于边框+外边距+内边距+盒子中间内容尺寸。</li>
 <li>浮动流：可以改变元素标签默认的排列方式。</li>
-<li>绝对定位流：包括静态定位、相对对位、绝对定位。</li>
+<li>绝对定位流：包括静态定位、相对对位、绝对定位。有层叠概念，可以让多个盒子前后叠压来显示，如果元素自由在某个黑子内移动就用定位布局。</li>
 </ul>
 <h4 id="十一、浮动float、高度塌陷和去除浮动"><a href="#十一、浮动float、高度塌陷和去除浮动" class="headerlink" title="十一、浮动float、高度塌陷和去除浮动"></a>十一、浮动float、高度塌陷和去除浮动</h4><h5 id="一、浮动float"><a href="#一、浮动float" class="headerlink" title="一、浮动float"></a>一、浮动float</h5><ul>
 <li>浮动属性用于创建浮动框，将其按照指定方向移动，直到左边缘或者右边缘触及包含块或另一个浮动框的边缘（直接贴到一起）。</li>
@@ -417,6 +417,25 @@
 <li>父级添加双伪元素:<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs applescript">.clearfix:<span class="hljs-keyword">before</span>,<br>.clearfix:<span class="hljs-keyword">after</span> &#123;<br>    content: <span class="hljs-string">&quot;&quot;</span>;<br>    display: table;<br>&#125;<br>.clearfix:<span class="hljs-keyword">after</span> &#123;<br>    clear: both;<br>&#125;<br>.clearfix &#123;<br>    *zoom: <span class="hljs-number">1</span>;<br>&#125;<br>&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;clearfix&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure></li>
 <li>为父级元素单独定义高度</li>
 </ul>
+<h4 id="十二、position定位和子绝父相"><a href="#十二、position定位和子绝父相" class="headerlink" title="十二、position定位和子绝父相"></a>十二、position定位和子绝父相</h4><p>将盒子定在某一位置，包括定位模式和边偏移。定位模式用于指定一个元素在文档中的定位方式，边偏移决定了该元素的最终位置。<br><strong>定位模式</strong>：position属性设置，包括static静态定位、relative相对定位、absolute绝对定位和fixed固定定位。<br><strong>边偏移</strong>：定位盒子移动到最终位置，包括top、bottom、left和right，元素相对于其父元素边线的位置。例如left:50%</p>
+<ul>
+<li>static静态定位：默认定位方式，无定位。按照标准流特性摆放位置，没有边偏移。</li>
+<li>relative相对定位：相对于其原本的位置进行定位。<strong>原来在标准流的位置继续占有</strong>，后续盒子仍以标准流的方式对待它。</li>
+<li>absolute绝对定位：元素相对于其第一个父元素进行定位。如果没有祖先元素或者祖先元素没有定位，则以浏览器为准定位。<strong>绝对定位不再占有原来的位置</strong>。</li>
+<li>fixed固定定位：相对于浏览器的可视窗口进行定位。<strong>使用场景是浏览器页面滚动时元素的位置不会改变</strong>。跟父元素没有任何关系，不随滚动条滚动而滚动。<strong>不占原来的位置</strong>。<br><strong>tips</strong>：固定定位在版心右侧时，可以让盒子left:50%，然后margin-left:版心宽度的一半，多走版心宽度一半的位置。</li>
+<li>sticky粘性定位：相对定位和固定定位的结合。在屏幕中时按常规流排版，当移动到屏幕外时表现如fixed。<strong>占有原来位置</strong>。必须添加top、left、right和bottom其中之一才有效果。</li>
+<li>center：以祖先元素的中心点为参考，盒子在其包容容器内垂直水平居中。与absolute绝对定位一致。</li>
+<li>page：与absolute一致。元素在分页媒体或者区域块内，元素的包含块始终是初始包含块，否则取决于每个absolute模式。<h5 id="子绝父相"><a href="#子绝父相" class="headerlink" title="子绝父相"></a>子绝父相</h5>子元素是绝对定位的话，父元素要用相对定位。子级绝对定位，不会占有位置，可以放到父盒子里面的任何一个地方，不会影响其他的兄弟盒子。父盒子需要加定位限制子盒子在父盒子内的显示。父盒子布局时，需要占有文职，因此父亲只能是相对定位。</li>
+<li>z-index：控制盒子的前后次序。可以是正整数、负整数或者0。数值越大，盒子越靠上。如果数值相同，按照书写顺序，后面的在上面。数字不能加单位，只有设置了定位的盒子才能这么写。</li>
+<li>绝对定位和固定定位盒子居中：水平居中:left:50%;   margin-left:-盒子宽&#x2F;2。垂直居中类似。<h4 id="十三、display、position与float区别"><a href="#十三、display、position与float区别" class="headerlink" title="十三、display、position与float区别"></a>十三、display、position与float区别</h4></li>
+</ul>
+<ol>
+<li>首先判断display属性是否为none，如果为none，则position和float属性的值不影响最后元素的表现。</li>
+<li>然后判断position的值是否为absolute或者fixed。如果是，则float属性失效，并且display的值应该被设置为table或者block，具体转换需要看初始转换值。</li>
+<li>如果position的值不为absolute或者fixed，则判断float属性的值是否为none。如果不是，则display的值按上面的规则进行转换。如果position的值为relative且float属性的值存在，则relative相对于浮动后的最终定位。</li>
+<li>如果float值为none，则判断元素是否为根元素。如果是根元素则display属性按照上面的规则转换，如果不是则保持指定的display属性不变。</li>
+<li><strong>总的来说，可以把它看作是一个类似优先级的机制，”position:absolute”和”position:fixed”优先级最高，有它存在的时候，浮动不起作用，’display’的值也需要调整；其次，元素的’float’特性的值不是”none”的时候或者它是根元素的时候，调整’display’的值；最后，非根元素，并且非浮动元素，并且非绝对定位的元素，’display’特性值同设置值。</strong></li>
+</ol>
 
             </div>
             <hr>
