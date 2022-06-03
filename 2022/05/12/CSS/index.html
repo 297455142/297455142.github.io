@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-03T09:58:26.613Z">
+<meta property="article:modified_time" content="2022-06-03T13:31:17.877Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      12k 字
+      13k 字
     </span>
   
 
@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      101 分钟
+      105 分钟
     </span>
   
 
@@ -274,7 +274,9 @@
 <li>text-decoration：给文本添加下划线（underline）、上划线（overline）、删除线（line-through）、默认无线（none）。<strong>一般用于去除链接的下划线</strong>。</li>
 <li>text-indent：用于指定文本第一行的缩进，通常是将段落首行进行缩进。单位为px或em（1个文字大小）。</li>
 <li>line-height：用于设置行高。<strong>文字垂直居中时直接设置行高和盒子高一样</strong>。行高小于盒子高度文字会偏上，行高大于盒子高度文字会偏下。</li>
-<li>text-shadow：文本阴影。h-shadow必须，水平阴影的位置，允许负值。v-shadow必须，垂直阴影的位置。blur可选，模糊距离，表示阴影的深浅。color可选，阴影颜色。<h5 id="二、盒子背景相关"><a href="#二、盒子背景相关" class="headerlink" title="二、盒子背景相关"></a>二、盒子背景相关</h5></li>
+<li>text-shadow：文本阴影。h-shadow必须，水平阴影的位置，允许负值。v-shadow必须，垂直阴影的位置。blur可选，模糊距离，表示阴影的深浅。color可选，阴影颜色。</li>
+<li>white-space：规定段落p中的文本是否换行。默认normal换行，nowrap不换行。</li>
+<li>text-overflow：规定当文本溢出包含元素时发生的事情。clip默认值，修剪文本。ellipsis用省略号代替被修剪的文字。string用给定的字符串来代表被修剪的文字。<h5 id="二、盒子背景相关"><a href="#二、盒子背景相关" class="headerlink" title="二、盒子背景相关"></a>二、盒子背景相关</h5></li>
 <li>background-color：背景颜色，transparent默认透明色。</li>
 <li>background-image：背景图片，便于控制位置、logo或者大图片。none或者url(url)。</li>
 <li>background-repeat：对背景图片进行平铺repeat、不平铺no-repeat、x轴方向平铺repeat-x、y轴方向平铺repeat-y。默认是平铺的。</li>
@@ -491,6 +493,9 @@
 <img src="/2022/05/12/CSS/%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2.png" srcset="/img/loading.gif" lazyload class="">
 
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#triangle-topleft</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">100px</span> solid red;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">100px</span> solid transparent;<br>&#125;<br><span class="hljs-selector-id">#triangle-topright</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">100px</span> solid red;<br>    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">100px</span> solid transparent;<br>&#125;<br><span class="hljs-selector-id">#triangle-bottomleft</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">100px</span> solid red;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">100px</span> solid transparent;<br>&#125;<br><span class="hljs-selector-id">#triangle-bottomright</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">100px</span> solid red;<br>    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">100px</span> solid transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="十七、实现文本溢出显示省略号"><a href="#十七、实现文本溢出显示省略号" class="headerlink" title="十七、实现文本溢出显示省略号"></a>十七、实现文本溢出显示省略号</h4><h5 id="单行文本溢出显示省略号"><a href="#单行文本溢出显示省略号" class="headerlink" title="单行文本溢出显示省略号"></a>单行文本溢出显示省略号</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.txt</span> &#123;<br>    // 先强制一行内显示文本<br>    <span class="hljs-attribute">white-space</span>: nowrap;<br>    // 超出的部分隐藏<br>    <span class="hljs-attribute">overflow</span>: hidden;<br>    // 文字用省略号代替超出的部分<br>    <span class="hljs-attribute">text-overflow</span>: ellipsis;<br>&#125;   <br></code></pre></td></tr></table></figure>
+<h5 id="多行文本溢出显示省略号"><a href="#多行文本溢出显示省略号" class="headerlink" title="多行文本溢出显示省略号"></a>多行文本溢出显示省略号</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.txt</span> &#123;<br>    <span class="hljs-attribute">overflow</span>: hidden;<br>    <span class="hljs-attribute">text-overflow</span>: ellipsis;<br>    // 弹性伸缩盒子模型显示<br>    <span class="hljs-attribute">display</span>: -webkit-box;<br>    // 限制在一个块元素显示的文本的行数<br>    -webkit-line-clamp: <span class="hljs-number">2</span>;<br>    // 设置或检索伸缩盒对象的子元素的排列方式<br>    -webkit-box-orient: vertical;<br>&#125;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
