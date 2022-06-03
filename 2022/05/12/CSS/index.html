@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E5%8D%8A%E5%9C%86.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E6%A4%AD%E5%9C%86.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-03T06:54:10.770Z">
+<meta property="article:modified_time" content="2022-06-03T07:50:22.467Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -208,7 +208,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.6k 字
+      10k 字
     </span>
   
 
@@ -217,7 +217,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      80 分钟
+      87 分钟
     </span>
   
 
@@ -453,7 +453,16 @@
 <li>opacity:0 ：设置元素透明度为0，占物理位置。元素隐藏后依旧占据原来空间，只是隐身了，元素仍存在于页面中。 </li>
 <li>text-shadow：文本阴影。h-shadow必须，水平阴影的位置，允许负值。v-shadow必须，垂直阴影的位置。blur可选，模糊距离，表示阴影的深浅。color可选，阴影颜色。</li>
 </ul>
-
+<h4 id="十六、根据子元素数量不同设置不同样式，并判断子元素数量"><a href="#十六、根据子元素数量不同设置不同样式，并判断子元素数量" class="headerlink" title="十六、根据子元素数量不同设置不同样式，并判断子元素数量"></a>十六、根据子元素数量不同设置不同样式，并判断子元素数量</h4><ul>
+<li>:only-child：匹配属于其父元素的唯一子元素的每个元素。</li>
+<li>:last-child：选择属于其父元素的最后一个匹配子元素。</li>
+<li>:first-child：选择属于其父元素的第一个匹配子元素。</li>
+<li>:nth-child(n)：选择属于其父元素的第n个子元素。</li>
+<li>:nth-last-child(n)：选择属于其父元素从后往前数的第n个子元素。</li>
+</ul>
+<hr>
+<p>例如，要实现以下功能：<br>①一张图片一行显示尺寸690px；<br>②2张图片一行显示尺寸320px，4张图片两行显示，每行2张各占320px。<br>③大于3张图片，每行3张排列，每张图片各占200px。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">750px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid gray;<br>&#125;<br>// 默认<span class="hljs-number">3</span>张以上的样式（不包括<span class="hljs-number">4</span>张)<br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">img</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid red;<br>&#125;<br>        <br>// 当只有一张图片的样式<br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:only-child</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">690px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid red;<br>&#125;<br>        <br>// 既是倒数第二张又是第一张说明有两张图片<br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:nth-last-child</span>(<span class="hljs-number">2</span>)<span class="hljs-selector-pseudo">:first</span>-child,<br>// ~表示同属于父类的所有<span class="hljs-selector-tag">img</span>兄弟元素<br><span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:nth-last-child</span>(<span class="hljs-number">2</span>)<span class="hljs-selector-pseudo">:first</span>-child~<span class="hljs-selector-tag">img</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">320px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid red;<br>&#125;<br>        <br>// 表示有四张图片<br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:nth-last-child</span>(<span class="hljs-number">4</span>)<span class="hljs-selector-pseudo">:first</span>-child,<br><span class="hljs-selector-tag">img</span><span class="hljs-selector-pseudo">:nth-last-child</span>(<span class="hljs-number">4</span>)<span class="hljs-selector-pseudo">:first</span>-child~<span class="hljs-selector-tag">img</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">320px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid red;<br>&#125;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
