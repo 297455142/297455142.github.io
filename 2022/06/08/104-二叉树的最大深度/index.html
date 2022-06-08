@@ -16,15 +16,15 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前端面试总结">
+    <meta name="description" content="题目给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。 思路dfs遍历二叉树，取左右子树的最大深度。 代码12345678910var maxDepth &#x3D; function(root) &amp;#123;    if(!root)&amp;#123;        return 0;    &amp;#125;    else &amp;#123;        const left &#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="104.二叉树的最大深度">
 <meta property="og:url" content="http://example.com/2022/06/08/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="前端面试总结">
+<meta property="og:description" content="题目给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。 思路dfs遍历二叉树，取左右子树的最大深度。 代码12345678910var maxDepth &#x3D; function(root) &amp;#123;    if(!root)&amp;#123;        return 0;    &amp;#125;    else &amp;#123;        const left &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-08T09:56:14.000Z">
-<meta property="article:modified_time" content="2022-06-08T09:57:48.828Z">
+<meta property="article:modified_time" content="2022-06-08T11:42:41.089Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      256 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      3 分钟
     </span>
   
 
@@ -246,7 +246,9 @@
             <h1 style="display: none">104.二叉树的最大深度</h1>
             
             <div class="markdown-body">
-              
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>dfs遍历二叉树，取左右子树的最大深度。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> maxDepth = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!root)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">const</span> left = <span class="hljs-title function_">maxDepth</span>(root.<span class="hljs-property">left</span>);<br>        <span class="hljs-keyword">const</span> right = <span class="hljs-title function_">maxDepth</span>(root.<span class="hljs-property">right</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(left,right) + <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
