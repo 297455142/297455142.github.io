@@ -16,21 +16,21 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。 思路dfs遍历二叉树，取左右子树的最大深度。 代码12345678910var maxDepth &#x3D; function(root) &amp;#123;    if(!root)&amp;#123;        return 0;    &amp;#125;    else &amp;#123;        const left &#x3D;">
+    <meta name="description" content="题目给你二叉树的根节点 root ，返回它节点值的前序遍历。输入：root &#x3D; [1,null,2,3]输出：[1,2,3] 思路 递归实现：先访问根节点，然后左子树和右子树。 迭代实现：用栈来实现。根入栈，出栈，节点值放在结果数值中。然后先放右子树，再放左子树。因为是从堆顶取，取的时候先左后右。  代码思路一： 123456789101112var preorderTraversal">
 <meta property="og:type" content="article">
-<meta property="og:title" content="104.二叉树的最大深度">
-<meta property="og:url" content="http://example.com/2022/06/08/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/index.html">
+<meta property="og:title" content="144.二叉树的前序遍历">
+<meta property="og:url" content="http://example.com/2022/06/08/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="题目给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。 思路dfs遍历二叉树，取左右子树的最大深度。 代码12345678910var maxDepth &#x3D; function(root) &amp;#123;    if(!root)&amp;#123;        return 0;    &amp;#125;    else &amp;#123;        const left &#x3D;">
+<meta property="og:description" content="题目给你二叉树的根节点 root ，返回它节点值的前序遍历。输入：root &#x3D; [1,null,2,3]输出：[1,2,3] 思路 递归实现：先访问根节点，然后左子树和右子树。 迭代实现：用栈来实现。根入栈，出栈，节点值放在结果数值中。然后先放右子树，再放左子树。因为是从堆顶取，取的时候先左后右。  代码思路一： 123456789101112var preorderTraversal">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-08T09:56:14.000Z">
-<meta property="article:modified_time" content="2022-06-08T11:42:41.089Z">
+<meta property="article:published_time" content="2022-06-08T12:13:55.000Z">
+<meta property="article:modified_time" content="2022-06-08T12:14:55.029Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>104.二叉树的最大深度 - 前端面试总结</title>
+  <title>144.二叉树的前序遍历 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="104.二叉树的最大深度">
+            <span class="h2" id="subtitle" title="144.二叉树的前序遍历">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-08 17:56" pubdate>
-        2022年6月8日 下午
+      <time datetime="2022-06-08 20:13" pubdate>
+        2022年6月8日 晚上
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      256 字
+      783 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      7 分钟
     </span>
   
 
@@ -243,12 +243,18 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">104.二叉树的最大深度</h1>
+            <h1 style="display: none">144.二叉树的前序遍历</h1>
             
             <div class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>dfs遍历二叉树，取左右子树的最大深度。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> maxDepth = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!root)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">const</span> left = <span class="hljs-title function_">maxDepth</span>(root.<span class="hljs-property">left</span>);<br>        <span class="hljs-keyword">const</span> right = <span class="hljs-title function_">maxDepth</span>(root.<span class="hljs-property">right</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(left,right) + <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你二叉树的根节点 root ，返回它节点值的前序遍历。<br>输入：root &#x3D; [1,null,2,3]<br>输出：[1,2,3]</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>递归实现：先访问根节点，然后左子树和右子树。</li>
+<li>迭代实现：用栈来实现。根入栈，出栈，节点值放在结果数值中。然后先放右子树，再放左子树。因为是从堆顶取，取的时候先左后右。</li>
+</ol>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>思路一：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">let</span> result = [];<br>    <span class="hljs-keyword">var</span> <span class="hljs-title function_">preorderTraversalNode</span> = (<span class="hljs-params">node</span>) =&gt; &#123;<br>        <span class="hljs-keyword">if</span>(node) &#123;<br>            result.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">val</span>);<br>            <span class="hljs-title function_">preorderTraversalNode</span>(node.<span class="hljs-property">left</span>);<br>            <span class="hljs-title function_">preorderTraversalNode</span>(node.<span class="hljs-property">right</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-title function_">preorderTraversalNode</span>(root);<br>    <span class="hljs-keyword">return</span> result;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>思路二：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">let</span> list = [];<br>    <span class="hljs-keyword">let</span> stack = [];<br>    <span class="hljs-keyword">if</span>(root)&#123;<br>        stack.<span class="hljs-title function_">push</span>(root);<br>    &#125;<br>    <span class="hljs-keyword">while</span>(stack.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">const</span> curNode = stack.<span class="hljs-title function_">pop</span>();<br>        list.<span class="hljs-title function_">push</span>(curNode.<span class="hljs-property">val</span>);<br>        <span class="hljs-keyword">if</span>(curNode.<span class="hljs-property">right</span>!==<span class="hljs-literal">null</span>)&#123;<br>            stack.<span class="hljs-title function_">push</span>(curNode.<span class="hljs-property">right</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(curNode.<span class="hljs-property">left</span>!==<span class="hljs-literal">null</span>)&#123;<br>            stack.<span class="hljs-title function_">push</span>(curNode.<span class="hljs-property">left</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> list;<br>&#125;;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -284,18 +290,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/08/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">144.二叉树的前序遍历</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/17/%E4%BA%8C%E5%8F%89%E6%A0%91/">
-                        <span class="hidden-mobile">二叉树</span>
+                      <a href="/2022/06/08/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/">
+                        <span class="hidden-mobile">104.二叉树的最大深度</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>144.二叉树的前序遍历</title>
+    <link href="/2022/06/08/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+    <url>/2022/06/08/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你二叉树的根节点 root ，返回它节点值的前序遍历。<br>输入：root &#x3D; [1,null,2,3]<br>输出：[1,2,3]</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol><li>递归实现：先访问根节点，然后左子树和右子树。</li><li>迭代实现：用栈来实现。根入栈，出栈，节点值放在结果数值中。然后先放右子树，再放左子树。因为是从堆顶取，取的时候先左后右。</li></ol><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>思路一：</p><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">let</span> result = [];<br>    <span class="hljs-keyword">var</span> <span class="hljs-title function_">preorderTraversalNode</span> = (<span class="hljs-params">node</span>) =&gt; &#123;<br>        <span class="hljs-keyword">if</span>(node) &#123;<br>            result.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">val</span>);<br>            <span class="hljs-title function_">preorderTraversalNode</span>(node.<span class="hljs-property">left</span>);<br>            <span class="hljs-title function_">preorderTraversalNode</span>(node.<span class="hljs-property">right</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-title function_">preorderTraversalNode</span>(root);<br>    <span class="hljs-keyword">return</span> result;<br>&#125;;<br></code></pre></td></tr></table></figure><p>思路二：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> preorderTraversal = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">let</span> list = [];<br>    <span class="hljs-keyword">let</span> stack = [];<br>    <span class="hljs-keyword">if</span>(root)&#123;<br>        stack.<span class="hljs-title function_">push</span>(root);<br>    &#125;<br>    <span class="hljs-keyword">while</span>(stack.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">const</span> curNode = stack.<span class="hljs-title function_">pop</span>();<br>        list.<span class="hljs-title function_">push</span>(curNode.<span class="hljs-property">val</span>);<br>        <span class="hljs-keyword">if</span>(curNode.<span class="hljs-property">right</span>!==<span class="hljs-literal">null</span>)&#123;<br>            stack.<span class="hljs-title function_">push</span>(curNode.<span class="hljs-property">right</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(curNode.<span class="hljs-property">left</span>!==<span class="hljs-literal">null</span>)&#123;<br>            stack.<span class="hljs-title function_">push</span>(curNode.<span class="hljs-property">left</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> list;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>104.二叉树的最大深度</title>
     <link href="/2022/06/08/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/"/>
     <url>/2022/06/08/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/</url>
