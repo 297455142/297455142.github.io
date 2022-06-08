@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>543.二叉树的直径</title>
+    <link href="/2022/06/08/543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/"/>
+    <url>/2022/06/08/543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。<br>二叉树：[1,2,3,4,5]<br>输出：3</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>想当与求哪个节点的左右子树深度和最大。注意是路径不是经过的路上有多少个节点，而是节点数减一，所以是比较left+right。</p><h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> diameterOfBinaryTree = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">let</span> result = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">maxDepth</span>(<span class="hljs-params">node</span>)&#123;<br>        <span class="hljs-keyword">if</span>(!node)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">const</span> left = <span class="hljs-title function_">maxDepth</span>(node.<span class="hljs-property">left</span>);<br>            <span class="hljs-keyword">const</span> right = <span class="hljs-title function_">maxDepth</span>(node.<span class="hljs-property">right</span>);<br>            result = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(result, left+right);<br>            <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(left,right)+<span class="hljs-number">1</span>；<br>        &#125;<br>    &#125;<br>    <span class="hljs-title function_">maxDepth</span>(root);<br>    <span class="hljs-keyword">return</span> result；<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>144.二叉树的前序遍历</title>
     <link href="/2022/06/08/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
     <url>/2022/06/08/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
