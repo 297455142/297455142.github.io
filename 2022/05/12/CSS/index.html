@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-09T09:35:31.435Z">
+<meta property="article:modified_time" content="2022-06-09T12:34:01.815Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -213,7 +213,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      16k 字
+      17k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      131 分钟
+      144 分钟
     </span>
   
 
@@ -569,6 +569,23 @@
 <li>animation-fill-mode：规定动画结束状态。默认backwards回到起始状态，forwards停留在结束状态。</li>
 <li>animation-play-state：播放状态。running默认播放动画，paused暂停动画。</li>
 <li>animation：动画名称、持续时间、运动曲线、何时开始…….（简写，动画名称和持续时间必须写）</li>
+</ul>
+<h4 id="二十二、移动端开发方式（流式布局、flex弹性布局）"><a href="#二十二、移动端开发方式（流式布局、flex弹性布局）" class="headerlink" title="二十二、移动端开发方式（流式布局、flex弹性布局）"></a>二十二、移动端开发方式（流式布局、flex弹性布局）</h4><p><strong>单独制作移动端页面（主流）</strong>：网址域名前加m一般可以打开移动端页面，通过判断设备，如果是是移动设备打开，则跳转到移动端界面。包括：流式布局（百分比布局）、flex弹性布局<br><strong>响应式页面兼容移动端（其次）</strong>：通过判断屏幕宽度来改变样式，比较麻烦，需要解决兼容性问题。</p>
+<h5 id="流式布局"><a href="#流式布局" class="headerlink" title="流式布局"></a>流式布局</h5><p>通过设置盒子的宽度的百分比来根据屏幕的宽度进行伸缩，不受固定像素的限制。<br>可以设置盒子宽度的最大最小值：max-width、min-width。</p>
+<h5 id="flex弹性布局"><a href="#flex弹性布局" class="headerlink" title="flex弹性布局"></a>flex弹性布局</h5><p>又称为伸缩布局、伸缩盒布局、弹性盒布局。<br>任何一个容器都可以指定为flex布局。方式为：<br>display:flex<br>行内元素也可以使用flex布局。<strong>父元素设置flex布局后子元素的float、clear和vertical-align属性将失效。</strong><br>设置了flex的元素称为容器，它的所有子元素自动成为容器成员，称为容器项目。<br>容器默认存在两根轴：水平的主轴和垂直的交叉轴。主轴的开始位置叫做main start，结束位置叫做main end，交叉轴开始位置叫做cross start，结束位置叫corss end。项目默认沿主轴排列，单个项目占据的主轴空间叫main size，占据的交叉轴空间称为cross size。<br><strong>容器的属性</strong>：</p>
+<ul>
+<li>flex-direction：决定主轴的方向。row默认，主轴为水平方向，起点在左端；row-reverse主轴为水平方向，起点在右端。column主轴为垂直方向，起点在上端；column-reverse主轴为垂直方向，起点在下侧。</li>
+<li>flex-wrap：设置子元素是否换行。nowrap默认不换行，如果装不开会缩小子元素宽度；wrap换行，第一行在上方；wrap-reverse换行，第一行在下方。</li>
+<li>flex-flow：是flex-direction和flex-wrap属性的简写形式，默认值为row nowrap。</li>
+<li>justify-content：设置主轴子元素的排列。flex-start默认值从头开始；flex-end从尾部开始；center主轴居中对其；space-around平分剩余空间；space-between两端对齐，先贴两边再平分剩余空间。</li>
+<li>align-items：设置侧轴子元素的排列（单行）。flex-start从上到下；flex-end从下到上；center垂直居中；stretch默认值，如果项目未设置高度或者设置为auto，则进行拉伸，占满整个容器。</li>
+<li>align-content：设置侧轴子元素的排列（多行），适用于换行情况。flex-start从上到下；flex-end从下到上；center垂直居中；stretch默认值拉伸；space-around项目在侧轴上平分剩余空间；space-between子项先在侧轴两侧对齐，再平分剩余空间。<br><strong>项目的属性</strong></li>
+<li>order：数字，定义项目的排列顺序，数越小越靠前，默认为0。</li>
+<li>flex：定义在剩余空间中子项占多少份。可以简写为flex-grow、flex-shrink、flex-basis。</li>
+<li>flex-grow：定义项目的放大比例，默认为0，即如果存在剩余空间也不放大。（为0的先分空间，其余的按比例分剩余所有空间）</li>
+<li>flex-shrink：定义项目的缩小比例，默认为1，即如果空间不足，该项目将缩小（设置为1的空间不足一起缩小）</li>
+<li>flex-basis：定义了在分配多余空间之前，项目占据的主轴空间。浏览器根据这个属性，计算主轴是否有多余空间，它的默认值为auto，即项目本来大小。如果设置了会覆盖width属性。</li>
+<li>align-self：控制子项在自己侧轴的排列方式，允许单个项目对齐方式与其它项目不同。可以覆盖align-items属性，默认值为auto，表示继承父元素的align-items属性，如果没有父元素则等同于stretch。</li>
 </ul>
 
             </div>
