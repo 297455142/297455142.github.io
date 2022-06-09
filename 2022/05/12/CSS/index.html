@@ -38,7 +38,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-09T06:31:04.622Z">
+<meta property="article:modified_time" content="2022-06-09T07:52:08.683Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -212,7 +212,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      14k 字
+      15k 字
     </span>
   
 
@@ -221,7 +221,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      118 分钟
+      129 分钟
     </span>
   
 
@@ -543,6 +543,26 @@
 <li>DOM可控性区别：可以通过JS操作DOM，插入link标签来改变样式。由于DOM方法是基于文档的，无法使用@import的方式插入样式。</li>
 <li>权重区别：link引入的样式权重大于@import引入的样式。link书写方式：&lt;link herf&#x3D;”style.css” rel&#x3D;”stylesheet” type&#x3D;”text&#x2F;css”&gt;</li>
 </ol>
+<h4 id="二十、2D转换与3D转换"><a href="#二十、2D转换与3D转换" class="headerlink" title="二十、2D转换与3D转换"></a>二十、2D转换与3D转换</h4><h5 id="2D转换："><a href="#2D转换：" class="headerlink" title="2D转换："></a>2D转换：</h5><p>改变标签在二维平面上的位置和形状的技术。向右x轴方向，向下y轴方向。<br>transform：转换，实现元素的位移、旋转、缩放等效果。各个操作有先后顺序，会影响变化效果。</p>
+<ul>
+<li>translate：位移，不会影响其它元素的位置，如果值是百分比是相对于自身元素，对行内元素没有效果。使用方法如下：<br>transform:translate(x,y)<br>transform:translateX(a)<br>transform:translateY(b)</li>
+<li>rotate：单位deg（度），正值顺时针，负值逆时针，默认旋转中心为元素中心。使用方法如下：<br>transform:rotate(度数deg)<br>transform-origin: x y：设置旋转中心点的位置，也可以用方位名词。</li>
+<li>scale：实现2D缩放。x和y无单位时是原来的倍数，不会影响其它盒子，可以设置中心点，设置中心点的方法同上。使用方法如下：<br>transform:scale(x,y)<h5 id="3D转换"><a href="#3D转换" class="headerlink" title="3D转换"></a>3D转换</h5>近大远小，物体有前后遮挡。z轴垂直屏幕，往外正往内负。</li>
+<li>translate3d：位移，z轴单位一般为px。用法类似2D。translate3d(x,y,z)</li>
+<li>perspective属性：透视，网页产生3D效果需要使用透视。必须写在被观察元素的父盒子上，单位为px，表示观察元素的位置。数值越小元素越大。</li>
+<li>rotateX：沿X轴顺时针旋转。左手准则，大拇指x轴方向，食指方向为旋转方向。</li>
+<li>rotateY：沿Y轴顺时针旋转。左手大拇指y轴方向。</li>
+<li>rotated3D(x,y,z,a)：沿哪个轴转哪个就是1，否则为0。a是旋转角度，单位为deg。</li>
+<li>transform-style：3d呈现，控制子元素是否3D呈现。默认flat不开启3D空间，preserve-3d元素开启立体空间，写给要展示元素的父元素。<h4 id="二十一、动画效果"><a href="#二十一、动画效果" class="headerlink" title="二十一、动画效果"></a>二十一、动画效果</h4>可以实现自动连续播放等效果，先定义后使用。定义方法为<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> 动画名称&#123;<br>    <span class="hljs-number">0%</span>(或者<span class="hljs-selector-tag">from</span>) &#123;<br>        初始样式<br>    &#125;<br>    <span class="hljs-number">100%</span>(或者<span class="hljs-selector-tag">to</span>) &#123;<br>        结束样式。<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+使用动画：直接在元素样式里面写属性animation-name:动画名称，animation-duration:动画持续时间。<br>可以设置多个动画状态，如0%、20%、40%<br><strong>动画属性</strong>：</li>
+<li>animation-function：规定动画运动曲线，默认ease（先变快后变慢），linear匀速，steps()步长，分多少步走完动画。</li>
+<li>animation-delay：规定动画何时开始，默认是0.</li>
+<li>animation-iteration-count：规定动画播放次数，默认1次，infinite无限次。</li>
+<li>animation-direction：规定动画是否反方向播放，默认normal，反方向alternate。</li>
+<li>animation-fill-mode：规定动画结束状态。默认backwards回到起始状态，forwards停留在结束状态。</li>
+<li>animation-play-state：播放状态。running默认播放动画，paused暂停动画。</li>
+<li>animation：动画名称、持续时间、运动曲线、何时开始…….（简写，动画名称和持续时间必须写）</li>
+</ul>
 
             </div>
             <hr>
