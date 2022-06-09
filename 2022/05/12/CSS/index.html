@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-09T12:34:01.815Z">
+<meta property="article:modified_time" content="2022-06-09T15:51:11.375Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -213,7 +213,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      17k 字
+      19k 字
     </span>
   
 
@@ -222,7 +222,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      144 分钟
+      155 分钟
     </span>
   
 
@@ -550,29 +550,43 @@
 <li>DOM可控性区别：可以通过JS操作DOM，插入link标签来改变样式。由于DOM方法是基于文档的，无法使用@import的方式插入样式。</li>
 <li>权重区别：link引入的样式权重大于@import引入的样式。link书写方式：&lt;link herf&#x3D;”style.css” rel&#x3D;”stylesheet” type&#x3D;”text&#x2F;css”&gt;</li>
 </ol>
-<h4 id="二十、2D转换与3D转换"><a href="#二十、2D转换与3D转换" class="headerlink" title="二十、2D转换与3D转换"></a>二十、2D转换与3D转换</h4><h5 id="2D转换："><a href="#2D转换：" class="headerlink" title="2D转换："></a>2D转换：</h5><p>改变标签在二维平面上的位置和形状的技术。向右x轴方向，向下y轴方向。<br>transform：转换，实现元素的位移、旋转、缩放等效果。各个操作有先后顺序，会影响变化效果。</p>
+<h4 id="二十、2D转换与3D转换"><a href="#二十、2D转换与3D转换" class="headerlink" title="二十、2D转换与3D转换"></a>二十、2D转换与3D转换</h4><h5 id="2D转换"><a href="#2D转换" class="headerlink" title="2D转换"></a>2D转换</h5><p>改变标签在二维平面上的位置和形状的技术。向右x轴方向，向下y轴方向。<br>transform：转换，实现元素的位移、旋转、缩放等效果。各个操作有先后顺序，会影响变化效果。</p>
 <ul>
 <li>translate：位移，不会影响其它元素的位置，如果值是百分比是相对于自身元素，对行内元素没有效果。使用方法如下：<br>transform:translate(x,y)<br>transform:translateX(a)<br>transform:translateY(b)</li>
-<li>rotate：单位deg（度），正值顺时针，负值逆时针，默认旋转中心为元素中心。使用方法如下：<br>transform:rotate(度数deg)<br>transform-origin: x y：设置旋转中心点的位置，也可以用方位名词。</li>
-<li>scale：实现2D缩放。x和y无单位时是原来的倍数，不会影响其它盒子，可以设置中心点，设置中心点的方法同上。使用方法如下：<br>transform:scale(x,y)<h5 id="3D转换"><a href="#3D转换" class="headerlink" title="3D转换"></a>3D转换</h5>近大远小，物体有前后遮挡。z轴垂直屏幕，往外正往内负。</li>
-<li>translate3d：位移，z轴单位一般为px。用法类似2D。translate3d(x,y,z)</li>
+<li>rotate：单位deg（度），正值顺时针，负值逆时针，默认旋转中心为元素中心。使用方法如下：<br>transform:rotate(度数deg)<br>transform-origin: x y z：设置旋转中心点的位置，x和y也可以用方位名词和百分比值，z单位是em或px。</li>
+<li>scale：实现2D缩放。x和y无单位时是原来的倍数，不会影响其它盒子，可以设置中心点，设置中心点的方法同上。使用方法如下：<br>transform:scale(x,y)</li>
+<li>skew(x角度,y角度)：定义沿着x轴和Y轴的倾斜转换。如将正方形转换为平行四边形。</li>
+<li>skewX(角度)、skewY(角度)：定义沿着X\Y轴的2D倾斜转换。</li>
+<li>matrix()：矩阵变换，可接收6个参数，包括数学函数，实现旋转、缩放、平移和倾斜元素。如martix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY()。<h5 id="3D转换"><a href="#3D转换" class="headerlink" title="3D转换"></a>3D转换</h5>近大远小，物体有前后遮挡。z轴垂直屏幕，往外正往内负。</li>
+<li>translate3d：位移，z轴单位一般为px。用法类似2D。translate3d(x,y,z)、translateZ(c)</li>
 <li>perspective属性：透视，网页产生3D效果需要使用透视。必须写在被观察元素的父盒子上，单位为px，表示观察元素的位置。数值越小元素越大。</li>
 <li>rotateX：沿X轴顺时针旋转。左手准则，大拇指x轴方向，食指方向为旋转方向。</li>
 <li>rotateY：沿Y轴顺时针旋转。左手大拇指y轴方向。</li>
+<li>rotateZ：沿Z轴顺时针旋转。</li>
 <li>rotated3D(x,y,z,a)：沿哪个轴转哪个就是1，否则为0。a是旋转角度，单位为deg。</li>
-<li>transform-style：3d呈现，控制子元素是否3D呈现。默认flat不开启3D空间，preserve-3d元素开启立体空间，写给要展示元素的父元素。<h4 id="二十一、动画效果"><a href="#二十一、动画效果" class="headerlink" title="二十一、动画效果"></a>二十一、动画效果</h4>可以实现自动连续播放等效果，先定义后使用。定义方法为<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> 动画名称&#123;<br>    <span class="hljs-number">0%</span>(或者<span class="hljs-selector-tag">from</span>) &#123;<br>        初始样式<br>    &#125;<br>    <span class="hljs-number">100%</span>(或者<span class="hljs-selector-tag">to</span>) &#123;<br>        结束样式。<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-使用动画：直接在元素样式里面写属性animation-name:动画名称，animation-duration:动画持续时间。<br>可以设置多个动画状态，如0%、20%、40%<br><strong>动画属性</strong>：</li>
+<li>scale：同上，scaleX(x)、scaleY(y)、scaleZ(z)、scale3d(x,y,z)</li>
+<li>transform-style：3d呈现，控制子元素是否3D呈现。默认flat不开启3D空间，preserve-3d元素开启立体空间，写给要展示元素的父元素。<h4 id="二十一、动画效果与过渡效果"><a href="#二十一、动画效果与过渡效果" class="headerlink" title="二十一、动画效果与过渡效果"></a>二十一、动画效果与过渡效果</h4><h5 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h5>可以实现自动连续播放等效果，先定义后使用。定义方法为<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> 动画名称&#123;<br>    <span class="hljs-number">0%</span>(或者<span class="hljs-selector-tag">from</span>) &#123;<br>        初始样式<br>    &#125;<br>    <span class="hljs-number">100%</span>(或者<span class="hljs-selector-tag">to</span>) &#123;<br>        结束样式。<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+使用动画：直接在元素样式里面写属性animation-name:动画名称，animation-duration:动画持续时间。<br>可以设置多个关键帧，如0%、20%、40%<br><strong>动画属性</strong>：</li>
 <li>animation-function：规定动画运动曲线，默认ease（先变快后变慢），linear匀速，steps()步长，分多少步走完动画。</li>
 <li>animation-delay：规定动画何时开始，默认是0.</li>
 <li>animation-iteration-count：规定动画播放次数，默认1次，infinite无限次。</li>
-<li>animation-direction：规定动画是否反方向播放，默认normal，反方向alternate。</li>
+<li>animation-direction：规定动画是否反方向播放，默认normal&#x2F;forwards，反方向alternate，both前面两个状态轮流使用。</li>
 <li>animation-fill-mode：规定动画结束状态。默认backwards回到起始状态，forwards停留在结束状态。</li>
 <li>animation-play-state：播放状态。running默认播放动画，paused暂停动画。</li>
-<li>animation：动画名称、持续时间、运动曲线、何时开始…….（简写，动画名称和持续时间必须写）</li>
+<li>animation：动画名称、持续时间、运动曲线、何时开始…….（简写，动画名称和持续时间必须写）<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> move &#123;<br>    <span class="hljs-number">0%</span> &#123;<br>    &#125;<br>    <span class="hljs-number">100%</span> &#123;<br>        <span class="hljs-attribute">width</span>:<span class="hljs-number">200px</span>;<br>    &#125;<br>&#125;<br><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span><br>    height: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">animation-name</span>: move;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="过渡效果"><a href="#过渡效果" class="headerlink" title="过渡效果"></a>过渡效果</h5>transition过渡允许CSS的属性值在一段时间内平滑过渡。这种效果可以在<strong>鼠标单击、获得焦点、被点击或元素发生任何改变时触发</strong>，以动画效果改变CSS的属性值。写在变化前元素的属性中，包括如下四个属性（可以直接在transition里简写，多个过渡效果用逗号隔开）：</li>
+<li>transition-property：指定当元素改变其中一个属性时的过渡效果。none默认值，没有属性会获得过渡效果；all默认值，所有属性都获得过渡效果；property定义应用过渡效果的CSS属性名称列表，以逗号分隔。</li>
+<li>transition-duration：指定元素过渡所需时间，单位为秒或者毫秒，默认值为0。</li>
+<li>transition-timeing-function：指定元素变化曲线，即元素变换速率的变化。linear以相同速度从开始到结束进行过渡；ease默认值，慢速开始，逐渐变快，再逐渐变慢结束的过渡效果；ease-in以慢速开始的过渡效果；ease-out以慢速结束的过渡效果；ease-in-out以慢速开始和结束的过渡效果；cublic-bezier（n，n，n，n）在函数中设置四个-1~1的值定义过渡变化速度。</li>
+<li>transition-delay：指定过渡开始执行的时间，即延迟时间。单位为秒或毫秒，默认为0。<br><strong>注意事项</strong></li>
 </ul>
-<h4 id="二十二、移动端开发方式（流式布局、flex弹性布局）"><a href="#二十二、移动端开发方式（流式布局、flex弹性布局）" class="headerlink" title="二十二、移动端开发方式（流式布局、flex弹性布局）"></a>二十二、移动端开发方式（流式布局、flex弹性布局）</h4><p><strong>单独制作移动端页面（主流）</strong>：网址域名前加m一般可以打开移动端页面，通过判断设备，如果是是移动设备打开，则跳转到移动端界面。包括：流式布局（百分比布局）、flex弹性布局<br><strong>响应式页面兼容移动端（其次）</strong>：通过判断屏幕宽度来改变样式，比较麻烦，需要解决兼容性问题。</p>
-<h5 id="流式布局"><a href="#流式布局" class="headerlink" title="流式布局"></a>流式布局</h5><p>通过设置盒子的宽度的百分比来根据屏幕的宽度进行伸缩，不受固定像素的限制。<br>可以设置盒子宽度的最大最小值：max-width、min-width。</p>
-<h5 id="flex弹性布局"><a href="#flex弹性布局" class="headerlink" title="flex弹性布局"></a>flex弹性布局</h5><p>又称为伸缩布局、伸缩盒布局、弹性盒布局。<br>任何一个容器都可以指定为flex布局。方式为：<br>display:flex<br>行内元素也可以使用flex布局。<strong>父元素设置flex布局后子元素的float、clear和vertical-align属性将失效。</strong><br>设置了flex的元素称为容器，它的所有子元素自动成为容器成员，称为容器项目。<br>容器默认存在两根轴：水平的主轴和垂直的交叉轴。主轴的开始位置叫做main start，结束位置叫做main end，交叉轴开始位置叫做cross start，结束位置叫corss end。项目默认沿主轴排列，单个项目占据的主轴空间叫main size，占据的交叉轴空间称为cross size。<br><strong>容器的属性</strong>：</p>
+<ol>
+<li>不是所有的CSS属性都支持transition。 </li>
+<li>transition需要明确知道开始状态和结束状态的具体数值，才能计算出中间状态。比如，无法计算0px到auto的中间状态，如果设置为auto就不会产生过渡动画效果。</li>
+<li>transition需要事件触发，无法在网页加载时自动发生。</li>
+<li>transition是一次性的，不能重复发生，除非再次触发。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">background</span>: red;<br>    <span class="hljs-attribute">transition</span>: width <span class="hljs-number">2s</span>, height: <span class="hljs-number">4s</span>;<br>&#125;<br><span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="二十二、移动端开发方式（流式布局、flex弹性布局）"><a href="#二十二、移动端开发方式（流式布局、flex弹性布局）" class="headerlink" title="二十二、移动端开发方式（流式布局、flex弹性布局）"></a>二十二、移动端开发方式（流式布局、flex弹性布局）</h4><strong>单独制作移动端页面（主流）</strong>：网址域名前加m一般可以打开移动端页面，通过判断设备，如果是是移动设备打开，则跳转到移动端界面。包括：流式布局（百分比布局）、flex弹性布局<br><strong>响应式页面兼容移动端（其次）</strong>：通过判断屏幕宽度来改变样式，比较麻烦，需要解决兼容性问题。<h5 id="流式布局"><a href="#流式布局" class="headerlink" title="流式布局"></a>流式布局</h5>通过设置盒子的宽度的百分比来根据屏幕的宽度进行伸缩，不受固定像素的限制。<br>可以设置盒子宽度的最大最小值：max-width、min-width。<h5 id="flex弹性布局"><a href="#flex弹性布局" class="headerlink" title="flex弹性布局"></a>flex弹性布局</h5>又称为伸缩布局、伸缩盒布局、弹性盒布局。<br>任何一个容器都可以指定为flex布局。方式为：<br>display:flex<br>行内元素也可以使用flex布局。<strong>父元素设置flex布局后子元素的float、clear和vertical-align属性将失效。</strong><br>设置了flex的元素称为容器，它的所有子元素自动成为容器成员，称为容器项目。<br>容器默认存在两根轴：水平的主轴和垂直的交叉轴。主轴的开始位置叫做main start，结束位置叫做main end，交叉轴开始位置叫做cross start，结束位置叫corss end。项目默认沿主轴排列，单个项目占据的主轴空间叫main size，占据的交叉轴空间称为cross size。<br><strong>容器的属性</strong>：</li>
+</ol>
 <ul>
 <li>flex-direction：决定主轴的方向。row默认，主轴为水平方向，起点在左端；row-reverse主轴为水平方向，起点在右端。column主轴为垂直方向，起点在上端；column-reverse主轴为垂直方向，起点在下侧。</li>
 <li>flex-wrap：设置子元素是否换行。nowrap默认不换行，如果装不开会缩小子元素宽度；wrap换行，第一行在上方；wrap-reverse换行，第一行在下方。</li>
