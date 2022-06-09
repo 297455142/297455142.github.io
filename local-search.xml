@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>226.翻转二叉树</title>
+    <link href="/2022/06/09/226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <url>/2022/06/09/226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>先序遍历，交换左右子树。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> invertTree = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!root)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">const</span> left = <span class="hljs-title function_">invertTree</span>(root.<span class="hljs-property">right</span>);<br>        <span class="hljs-keyword">const</span> right = <span class="hljs-title function_">invertTree</span>(root.<span class="hljs-property">left</span>);<br>        root.<span class="hljs-property">left</span> = left;<br>        root.<span class="hljs-property">right</span> = right;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据结构杂项</title>
+    <link href="/2022/06/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9D%82%E9%A1%B9/"/>
+    <url>/2022/06/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9D%82%E9%A1%B9/</url>
+    
+    <content type="html"><![CDATA[<h4 id="一、类图"><a href="#一、类图" class="headerlink" title="一、类图"></a>一、类图</h4><p>类图中，每个类由3个部分组成，上面的是类名，中间的是属性，下面的是方法。属性和方法可以用修饰符修饰，+表示public、-表示private、#表示protected。如：</p><p>类的6种关系：泛化、实现、组合、聚合、关联、依赖</p><ul><li><p>泛化：是一种继承关系。如老虎继承动物类，动物是老虎的泛化，老虎是动物的特化。</p></li><li><p>实现：子类实现了接口类。</p></li><li><p>组合：把个体对象虽未整体类的属性。</p></li><li><p>依赖：使用关系。</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>543.二叉树的直径</title>
     <link href="/2022/06/08/543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/"/>
     <url>/2022/06/08/543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</url>
