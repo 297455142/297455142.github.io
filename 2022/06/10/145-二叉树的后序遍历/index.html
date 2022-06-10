@@ -16,21 +16,21 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给定一个二叉树的根节点 root ，返回 它的中序遍历。输入：root &#x3D; [1,null,2,3]输出：[1,3,2] 代码12345678910111213var inorderTraversal &#x3D; function(root) &amp;#123;    const res &#x3D; [];    const inorder &#x3D; (root) &#x3D;&gt; &amp;#123;        if(">
+    <meta name="description" content="题目给你一棵二叉树的根节点 root ，返回其节点值的后序遍历。输入：root &#x3D; [1,null,2,3]输出：[3,2,1] 代码12345678910111213var postorderTraversal &#x3D; function(root) &amp;#123;    const res &#x3D; [];    const backorder &#x3D; (root) &#x3D;&gt; &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="94.二叉树的中序遍历">
-<meta property="og:url" content="http://example.com/2022/06/10/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/index.html">
+<meta property="og:title" content="145.二叉树的后序遍历">
+<meta property="og:url" content="http://example.com/2022/06/10/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="题目给定一个二叉树的根节点 root ，返回 它的中序遍历。输入：root &#x3D; [1,null,2,3]输出：[1,3,2] 代码12345678910111213var inorderTraversal &#x3D; function(root) &amp;#123;    const res &#x3D; [];    const inorder &#x3D; (root) &#x3D;&gt; &amp;#123;        if(">
+<meta property="og:description" content="题目给你一棵二叉树的根节点 root ，返回其节点值的后序遍历。输入：root &#x3D; [1,null,2,3]输出：[3,2,1] 代码12345678910111213var postorderTraversal &#x3D; function(root) &amp;#123;    const res &#x3D; [];    const backorder &#x3D; (root) &#x3D;&gt; &amp;#123;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-10T07:24:02.000Z">
-<meta property="article:modified_time" content="2022-06-10T07:28:20.188Z">
+<meta property="article:published_time" content="2022-06-10T07:29:17.000Z">
+<meta property="article:modified_time" content="2022-06-10T07:31:07.355Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>94.二叉树的中序遍历 - 前端面试总结</title>
+  <title>145.二叉树的后序遍历 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="94.二叉树的中序遍历">
+            <span class="h2" id="subtitle" title="145.二叉树的后序遍历">
               
             </span>
 
@@ -186,7 +186,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-10 15:24" pubdate>
+      <time datetime="2022-06-10 15:29" pubdate>
         2022年6月10日 下午
       </time>
     </span>
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      286 字
+      299 字
     </span>
   
 
@@ -243,11 +243,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">94.二叉树的中序遍历</h1>
+            <h1 style="display: none">145.二叉树的后序遍历</h1>
             
             <div class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉树的根节点 root ，返回 它的中序遍历。<br>输入：root &#x3D; [1,null,2,3]<br>输出：[1,3,2]</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> inorderTraversal = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">const</span> res = [];<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">inorder</span> = (<span class="hljs-params">root</span>) =&gt; &#123;<br>        <span class="hljs-keyword">if</span>(!root)&#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-title function_">inorder</span>(root.<span class="hljs-property">left</span>);<br>        res.<span class="hljs-title function_">push</span>(root.<span class="hljs-property">val</span>);<br>        <span class="hljs-title function_">inorder</span>(root.<span class="hljs-property">right</span>);<br>    &#125;<br>    <span class="hljs-title function_">inorder</span>(root);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一棵二叉树的根节点 root ，返回其节点值的后序遍历。<br>输入：root &#x3D; [1,null,2,3]<br>输出：[3,2,1]</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">const</span> res = [];<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">backorder</span> = (<span class="hljs-params">root</span>) =&gt; &#123;<br>        <span class="hljs-keyword">if</span>(!root)&#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-title function_">backorder</span>(root.<span class="hljs-property">left</span>);<br>        <span class="hljs-title function_">backorder</span>(root.<span class="hljs-property">right</span>);<br>        res.<span class="hljs-title function_">push</span>(root.<span class="hljs-property">val</span>);<br>    &#125;<br>    <span class="hljs-title function_">backorder</span>(root);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -283,18 +283,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/10/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">145.二叉树的后序遍历</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/10/889-%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">
-                        <span class="hidden-mobile">889.根据前序和后序遍历构造二叉树</span>
+                      <a href="/2022/06/10/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
+                        <span class="hidden-mobile">94.二叉树的中序遍历</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

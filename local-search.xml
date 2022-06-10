@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>145.二叉树的后序遍历</title>
+    <link href="/2022/06/10/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+    <url>/2022/06/10/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一棵二叉树的根节点 root ，返回其节点值的后序遍历。<br>输入：root &#x3D; [1,null,2,3]<br>输出：[3,2,1]</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> postorderTraversal = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">const</span> res = [];<br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">backorder</span> = (<span class="hljs-params">root</span>) =&gt; &#123;<br>        <span class="hljs-keyword">if</span>(!root)&#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-title function_">backorder</span>(root.<span class="hljs-property">left</span>);<br>        <span class="hljs-title function_">backorder</span>(root.<span class="hljs-property">right</span>);<br>        res.<span class="hljs-title function_">push</span>(root.<span class="hljs-property">val</span>);<br>    &#125;<br>    <span class="hljs-title function_">backorder</span>(root);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>94.二叉树的中序遍历</title>
     <link href="/2022/06/10/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
     <url>/2022/06/10/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
