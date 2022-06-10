@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>106.从中序与后序遍历序列构造二叉树</title>
+    <link href="/2022/06/10/106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <url>/2022/06/10/106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder 是同一棵树的后序遍历，请你构造并返回这颗二叉树。<br>输入：inorder &#x3D; [9,3,15,20,7], postorder &#x3D; [9,15,7,20,3]<br>输出：[3,9,20,null,null,15,7]<br>1 &lt;&#x3D; inorder.length &lt;&#x3D; 3000<br>postorder.length &#x3D;&#x3D; inorder.length<br>-3000 &lt;&#x3D; inorder[i], postorder[i] &lt;&#x3D; 3000<br>inorder 和 postorder 都由 不同 的值组成<br>postorder 中每一个值都在 inorder 中<br>inorder 保证是树的中序遍历<br>postorder 保证是树的后序遍历</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>后序遍历最后一个值为根节点，根据此值将中序遍历序列划分为左右两个子序列，对应左子树和右子树，然后根据这两个序列的长度将后序遍历序列也分为左子树和右子树，再根据这些序列构建根节点的左子树和右子树。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> buildTree = <span class="hljs-keyword">function</span>(<span class="hljs-params">inorder, postorder</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!inorder.<span class="hljs-property">length</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> root = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(postorder[postorder.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>]);<br>    <span class="hljs-keyword">let</span> mid = inorder.<span class="hljs-title function_">findIndex</span>(<span class="hljs-function"><span class="hljs-params">number</span>=&gt;</span>number===root.<span class="hljs-property">val</span>);<br>    root.<span class="hljs-property">left</span> = <span class="hljs-title function_">buildTree</span>(inorder.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,mid),postorder.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,mid));<br>    root.<span class="hljs-property">right</span> = <span class="hljs-title function_">buildTree</span>(inorder.<span class="hljs-title function_">slice</span>(mid+<span class="hljs-number">1</span>,inorder.<span class="hljs-property">length</span>),postorder.<span class="hljs-title function_">slice</span>(mid,postorder.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>));<br>    <span class="hljs-keyword">return</span> root;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>105.从前序遍历与中序遍历序列构造二叉树</title>
     <link href="/2022/06/10/105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <url>/2022/06/10/105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
