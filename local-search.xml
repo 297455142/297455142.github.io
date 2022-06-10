@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>105.从前序遍历与中序遍历序列构造二叉树</title>
+    <link href="/2022/06/10/105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <url>/2022/06/10/105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历， inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。</p><p>输入: preorder &#x3D; [3,9,20,15,7], inorder &#x3D; [9,3,15,20,7]<br>输出: [3,9,20,null,null,15,7]</p><p>1 &lt;&#x3D; preorder.length &lt;&#x3D; 3000<br>inorder.length &#x3D;&#x3D; preorder.length<br>-3000 &lt;&#x3D; preorder[i], inorder[i] &lt;&#x3D; 3000<br>preorder 和 inorder 均 无重复 元素<br>inorder 均出现在 preorder<br>preorder 保证 为二叉树的前序遍历序列<br>inorder 保证 为二叉树的中序遍历序列</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>前序遍历开头为根节点，以此将中序遍历分开，左边数组为左子树，右边数组为右子树。根据中序遍历划分知道左子树和右子树的序列长度，根据该长度将前序遍历序列划分。根据划分后的两个序列，再分别构建左子树和右子树。</p><img src="/2022/06/10/105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/%E5%BA%8F%E5%88%97.png" class=""> <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> buildTree = <span class="hljs-keyword">function</span>(<span class="hljs-params">preorder, inorder</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!preorder.<span class="hljs-property">length</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> root = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(preorder[<span class="hljs-number">0</span>]);<br>    <span class="hljs-keyword">let</span> mid = inorder.<span class="hljs-title function_">findIndex</span>(<span class="hljs-function"><span class="hljs-params">number</span>=&gt;</span>number===root.<span class="hljs-property">val</span>);<br>    root.<span class="hljs-property">left</span> = <span class="hljs-title function_">buildTree</span>(preorder.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>,mid+<span class="hljs-number">1</span>),inorder.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,mid));<br>    root.<span class="hljs-property">right</span> = <span class="hljs-title function_">buildTree</span>(preorder.<span class="hljs-title function_">slice</span>(mid+<span class="hljs-number">1</span>,preorder.<span class="hljs-property">length</span>),inorder.<span class="hljs-title function_">slice</span>(mid+<span class="hljs-number">1</span>,inorder.<span class="hljs-property">length</span>));<br>    <span class="hljs-keyword">return</span> root;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>654.最大二叉树</title>
     <link href="/2022/06/10/654-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <url>/2022/06/10/654-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
