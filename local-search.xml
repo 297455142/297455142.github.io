@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>889.根据前序和后序遍历构造二叉树</title>
+    <link href="/2022/06/10/889-%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <url>/2022/06/10/889-%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定两个整数数组，preorder 和 postorder ，其中 preorder 是一个具有 无重复 值的二叉树的前序遍历，postorder 是同一棵树的后序遍历，重构并返回二叉树。<br>如果存在多个答案，您可以返回其中 任何 一个。</p><p>输入：preorder &#x3D; [1,2,4,5,3,6,7], postorder &#x3D; [4,5,2,6,7,3,1]<br>输出：[1,2,3,4,5,6,7]</p><p>1 &lt;&#x3D; preorder.length &lt;&#x3D; 30<br>1 &lt;&#x3D; preorder[i] &lt;&#x3D; preorder.length<br>preorder 中所有值都 不同<br>postorder.length &#x3D;&#x3D; preorder.length<br>1 &lt;&#x3D; postorder[i] &lt;&#x3D; postorder.length<br>postorder 中所有值都 不同<br>保证 preorder 和 postorder 是同一棵二叉树的前序遍历和后序遍历</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>前序遍历序列开头是根节点，后序遍历序列结尾是根节点。前序遍历序列第二个值是左子树的根节点，在后序遍历序列中寻找到该值就能找到左子树的结尾位置。由此构建左右子树。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> constructFromPrePost = <span class="hljs-keyword">function</span>(<span class="hljs-params">preorder, postorder</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!preorder.<span class="hljs-property">length</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> tmp = preorder[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">let</span> root = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(tmp);<br>    <span class="hljs-keyword">let</span> index = postorder.<span class="hljs-title function_">indexOf</span>(preorder[<span class="hljs-number">1</span>]);<br>    root.<span class="hljs-property">left</span> = <span class="hljs-title function_">constructFromPrePost</span>(preorder.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>,index+<span class="hljs-number">2</span>),postorder.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,index+<span class="hljs-number">1</span>));<br>    root.<span class="hljs-property">right</span> = <span class="hljs-title function_">constructFromPrePost</span>(preorder.<span class="hljs-title function_">slice</span>(index+<span class="hljs-number">2</span>,preorder.<span class="hljs-property">length</span>),postorder.<span class="hljs-title function_">slice</span>(index+<span class="hljs-number">1</span>,postorder.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>));<br>    <span class="hljs-keyword">return</span> root;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>106.从中序与后序遍历序列构造二叉树</title>
     <link href="/2022/06/10/106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     <url>/2022/06/10/106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
