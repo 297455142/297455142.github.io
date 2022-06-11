@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/CRC.png">
 <meta property="article:published_time" content="2022-05-11T05:44:21.000Z">
-<meta property="article:modified_time" content="2022-06-11T06:44:58.575Z">
+<meta property="article:modified_time" content="2022-06-11T07:07:07.280Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.9k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12 分钟
+      16 分钟
     </span>
   
 
@@ -273,6 +273,18 @@
 <li>检测码：分组包含能够发现差错的冗余信息，接收端能够发现差错。<br>由于纠错码实现比较复杂，检测码虽不能纠错，但是足够简单，能够检测出差错，配合重传机制即可，所以广泛采用检测码。<br>四种基本方式：检错重发、前向纠错（接收端进行差错纠正）、反馈校验（接受端将收到的数据原封不动发回传送端）、检错丢弃。<br>检测码有循环冗余编码（CRC）等方式，见下图：</li>
 </ul>
 <img src="/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/CRC.png" srcset="/img/loading.gif" lazyload class=""> 
+
+<h4 id="九、滑动窗口协议"><a href="#九、滑动窗口协议" class="headerlink" title="九、滑动窗口协议"></a>九、滑动窗口协议</h4><p>帧传输过程中如果发生了错误，就需要滑动窗口协议来解决，滑动窗口协议分为以下两种类型：<br><strong>单帧停止等待协议</strong>：发送端发送1帧之后，需要等待接收端返回确认帧，如果收到ack，表示ok，发送下一帧；如果收到nak，表示传输错误，重新发送该帧。<br><strong>多帧发送协议</strong>：分为两种类型：</p>
+<ul>
+<li>回退N帧（GBN）：发送端窗口较大，可以在未得到确认前连续发送多个分组，但接收窗口大小仅为1，只能接收1个按序到达的分组，未按序到达的分组或者某个分组差错，就会引起发送方重发该分组及其之后的所有分组。</li>
+<li>选择重发（SR）：增加接收方的缓存能力，缓存正确到达但失序的分组，只要求发送方发送未被接收方确认的分组。<h4 id="十、滑动窗口机制"><a href="#十、滑动窗口机制" class="headerlink" title="十、滑动窗口机制"></a>十、滑动窗口机制</h4>在GBN和SR中，发送端可以连续发送多个数据帧，从流量控制的角度出发，发送端连续发送数据帧的数量必然会受到限制：</li>
+</ul>
+<ol>
+<li>接收端的缓冲区可以用于接收新的帧的容量。</li>
+<li>接收端处理数据帧的速度。</li>
+<li>接收端需要等待重传的帧数量。<br>引入滑动窗口的目的：对可以连续发出的最多帧数（已发出但未确认的帧）作限制。<br>发送窗口（ws）:表示在收到对方确认信息之前，以连续发出的最多数据帧数。<br>接收窗口（wr）：可以连续接收的最多数据帧数（只有序号在窗口内的帧才可以接收，否则丢弃）。</li>
+</ol>
+
             </div>
             <hr>
             <div>
