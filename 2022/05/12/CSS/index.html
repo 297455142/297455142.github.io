@@ -38,8 +38,11 @@
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E4%B8%8B%E8%A7%92%E6%89%87%E5%BD%A2.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E4%B8%89%E8%A7%92%E5%BD%A2.png">
 <meta property="og:image" content="http://example.com/2022/05/12/CSS/%E7%9B%B4%E8%A7%92%E4%B8%89%E8%A7%92%E5%BD%A2.png">
+<meta property="og:image" content="http://example.com/2022/05/12/CSS/%E5%9D%97%E7%BA%A7-%E5%AE%BD%E9%AB%98%E5%9B%BA%E5%AE%9A.png">
+<meta property="og:image" content="http://example.com/2022/05/12/CSS/%E5%9D%97%E7%BA%A7-%E5%AE%BD%E9%AB%98%E4%B8%8D%E5%AE%9A.png">
+<meta property="og:image" content="http://example.com/2022/05/12/CSS/%E5%9D%97%E7%BA%A7-%E5%AE%BD%E9%AB%98%E4%B8%8D%E5%AE%9A2.png">
 <meta property="article:published_time" content="2022-05-12T08:51:26.000Z">
-<meta property="article:modified_time" content="2022-06-11T02:40:17.720Z">
+<meta property="article:modified_time" content="2022-06-11T14:38:56.082Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -213,7 +216,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      24k 字
+      25k 字
     </span>
   
 
@@ -222,7 +225,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      197 分钟
+      211 分钟
     </span>
   
 
@@ -647,6 +650,37 @@
 <li>计算bfc的高度时，浮动元素也参与计算（bfc会清除浮动，bfc的高度也会参考内部浮动元素的高度）</li>
 <li>bfc是页面上一个独立容器，它内部元素产生的布局不会影响外部元素，外部元素的布局也不会影响到bfc中的内部元素。一个bfc就像是一个隔离区域，和其它区域互不影响。</li>
 </ol>
+<h3 id="二十七、实现水平-x2F-垂直居中"><a href="#二十七、实现水平-x2F-垂直居中" class="headerlink" title="二十七、实现水平&#x2F;垂直居中"></a>二十七、实现水平&#x2F;垂直居中</h3><h4 id="一、水平居中"><a href="#一、水平居中" class="headerlink" title="一、水平居中"></a>一、水平居中</h4><p><strong>行内元素</strong>：自身不具备宽度和高度，设置高度和宽度不起作用，由自身内容来撑大。比如a、b（加粗）、strong（强调）、i、span、img、input、select，给父级元素设置<strong>text-align:center</strong>。<br><strong>块级-宽高固定</strong>：块级元素（div、p、ul、li、ol、h1~h6、dl、dt、dd、address、article、figure、audio、video、section、table、canvas、header、footer）独自占据一行，支持高度和宽度。<br>当固定宽高时：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-class">.parent</span>&#123;</span><br><span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-class">.child</span>&#123;</span><br><span class="language-css">        <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>实现以下效果：</p>
+<img src="/2022/05/12/CSS/%E5%9D%97%E7%BA%A7-%E5%AE%BD%E9%AB%98%E5%9B%BA%E5%AE%9A.png" srcset="/img/loading.gif" lazyload class="">
+
+<ul>
+<li><p>方法一：margin: 0 auto</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>    <span class="hljs-selector-class">.child</span>&#123;<br>        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;<br>    &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>方法二：absolute + margin-left</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>    <span class="hljs-selector-class">.parent</span>&#123;<br>        <span class="hljs-attribute">position</span>: relative;<br>    &#125;<br>    <span class="hljs-selector-class">.child</span>&#123;<br>        <span class="hljs-attribute">position</span>: absolute;<br>        <span class="hljs-attribute">margin-left</span>:  -<span class="hljs-number">50px</span>;<br>        <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>    &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>方法三：absolute + calc</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>    <span class="hljs-selector-class">.parent</span>&#123;<br>        <span class="hljs-attribute">position</span>: relative;<br>    &#125;<br>    <span class="hljs-selector-class">.child</span>&#123;<br>        <span class="hljs-attribute">position</span>: absolute;<br>        <span class="hljs-attribute">left</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">50%</span> - <span class="hljs-number">50px</span>);<br>    &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>方法四：absolute + left + right + margin-left</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>    <span class="hljs-selector-class">.parent</span>&#123;<br>        <span class="hljs-attribute">position</span>: relative;<br>    &#125;<br>    <span class="hljs-selector-class">.child</span>&#123;<br>        <span class="hljs-attribute">position</span>: absolute;<br>        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>        <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;<br>    &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p><strong>块级-宽高不定</strong>：当宽高不定时，测试用例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;parent&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span>测试示例<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-class">.parent</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">  &#125;</span><br><span class="language-css">    <span class="hljs-selector-class">.child</span> &#123;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>显示效果为：</p>
+<img src="/2022/05/12/CSS/%E5%9D%97%E7%BA%A7-%E5%AE%BD%E9%AB%98%E4%B8%8D%E5%AE%9A.png" srcset="/img/loading.gif" lazyload class="">
+</li>
+<li><p>方法一：transform属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>    <span class="hljs-selector-class">.child</span>&#123;<br>        <span class="hljs-attribute">position</span>: aboslute;<br>        <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(-<span class="hljs-number">50%</span>);<br>    &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>方法二：flex布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>    <span class="hljs-selector-class">.parent</span>&#123;<br>        <span class="hljs-attribute">display</span>: flex;<br>        <span class="hljs-attribute">justify-content</span>: center;<br>    &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>显示效果为：</p>
+<img src="/2022/05/12/CSS/%E5%9D%97%E7%BA%A7-%E5%AE%BD%E9%AB%98%E4%B8%8D%E5%AE%9A2.png" srcset="/img/loading.gif" lazyload class="">
+</li>
+<li><p>方法一：width: fit-content</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style&gt;<br>  <span class="hljs-selector-class">.child</span> &#123;<br>    &lt;!--盒子正好等于内容宽度--&gt;<br>    <span class="hljs-attribute">width</span>: fit-content;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;<br>  &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>fit-content是css3中给width属性新增的一个属性值，它配合margin可以实现水平居中。</p>
+</li>
+</ul>
 
             </div>
             <hr>
