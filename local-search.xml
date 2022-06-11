@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>652.寻找重复的子树</title>
+    <link href="/2022/06/11/652-%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E6%A0%91/"/>
+    <url>/2022/06/11/652-%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一棵二叉树 root，返回所有重复的子树。<br>对于同一类的重复子树，你只需要返回其中任意一棵的根结点即可。<br>如果两棵树具有相同的结构和相同的结点值，则它们是重复的。</p><p>输入：root &#x3D; [1,2,3,4,null,2,4,null,null,4]<br>输出：[[2,4],[4]]</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>子树相同，则该子树的遍历序列也相同。找以每个节点为根节点的子树的遍历序列，存到一起，如果有相同的序列，则存下该结点。注意：相同子树可能出现多次，因此要记录每个序列出现的次数，只有在第一次重复时才进行保存。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> findDuplicateSubtrees = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">const</span> memory = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();<br>    <span class="hljs-keyword">const</span> res = [];<br>    <br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">traverse</span>(<span class="hljs-params">root</span>)&#123;<br>        <span class="hljs-keyword">if</span>(!root)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;#&#x27;</span>;<br>        &#125;<br>        <span class="hljs-keyword">const</span> key = root.<span class="hljs-property">val</span> + <span class="hljs-string">&#x27;#&#x27;</span> + <span class="hljs-title function_">traverse</span>(root.<span class="hljs-property">left</span>) + <span class="hljs-string">&#x27;#&#x27;</span> + <span class="hljs-title function_">traverse</span>(root.<span class="hljs-property">right</span>);<br>        <span class="hljs-keyword">let</span> freq = memory.<span class="hljs-title function_">get</span>(key) || <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(freq === <span class="hljs-number">1</span>)&#123;<br>            res.<span class="hljs-title function_">push</span>(root);<br>        &#125;<br>        memory.<span class="hljs-title function_">set</span>(key,freq+<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> key;<br>    &#125;<br>    <span class="hljs-title function_">traverse</span>(root);<br>    <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>297.二叉树的序列化与反序列化</title>
     <link href="/2022/06/11/297-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
     <url>/2022/06/11/297-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
