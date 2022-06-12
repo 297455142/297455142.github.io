@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>912.排序数组</title>
+    <link href="/2022/06/12/912-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/"/>
+    <url>/2022/06/12/912-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个整数数组 nums，请你将该数组升序排列。</p><p>输入：nums &#x3D; [5,2,3,1]<br>输出：[1,2,3,5]</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>归并排序：二分，各自排序，再合并排序。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> sortArray = <span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) &#123;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">binarySort</span>(<span class="hljs-params">left,right</span>)&#123;<br>        <span class="hljs-keyword">if</span>(left===right)&#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">const</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((left+right)/<span class="hljs-number">2</span>);<br>            <span class="hljs-title function_">binarySort</span>(left,mid);<br>            <span class="hljs-title function_">binarySort</span>(mid+<span class="hljs-number">1</span>,right);<br>            <span class="hljs-keyword">let</span> i = left;<br>            <span class="hljs-keyword">let</span> j = mid+<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">let</span> p = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">let</span> sorted = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(right-left+<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">while</span>(i&lt;=mid||j&lt;=right)&#123;<br>                <span class="hljs-keyword">if</span>(i&gt;mid)&#123;<br>                    sorted[p++] = nums[j++];<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j&gt;right)&#123;<br>                    sorted[p++] = nums[i++];<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[i]&lt;nums[j])<br>                &#123;<br>                    sorted[p++] = nums[i++];<br>                &#125;<br>                <span class="hljs-keyword">else</span>&#123;<br>                    sorted[p++] = nums[j++];<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;sorted.<span class="hljs-property">length</span>;i++)&#123;<br>                nums[left+i] = sorted[i];<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-title function_">binarySort</span>(<span class="hljs-number">0</span>,nums.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>327.【归并排序】区间和的个数</title>
     <link href="/2022/06/12/327-%E5%8C%BA%E9%97%B4%E5%92%8C%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
     <url>/2022/06/12/327-%E5%8C%BA%E9%97%B4%E5%92%8C%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
