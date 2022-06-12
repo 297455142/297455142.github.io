@@ -4,7 +4,34 @@
   
   
   <entry>
-    <title>315.计算右侧小于当前元素的个数</title>
+    <title>493.【归并排序】翻转对</title>
+    <link href="/2022/06/12/493-%E7%BF%BB%E8%BD%AC%E5%AF%B9/"/>
+    <url>/2022/06/12/493-%E7%BF%BB%E8%BD%AC%E5%AF%B9/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个数组 nums ，如果 i &lt; j 且 nums[i] &gt; 2*nums[j] 我们就将 (i, j) 称作一个重要翻转对。</p><p>输入: [1,3,2,3,1]<br>输出: 2</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>采用归并排序的算法，每次将数组二分，然后分别对左右两边进行排序。<br>当前翻转对数量&#x3D;左侧原数量+右侧原数量+合并时左边每个对应右边时新增的数量。<br><strong>左右两边排序</strong>后，左侧从第一个开始，对应右侧从第一个开始一一进行检测，因为右侧是递增的当出现不满足条件的时候，立刻就可以左侧从第二个开始，再右侧从第一个开始一一检测。<br>最后，将左右两侧合并，再进行排序，并返回到上一级。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> reversePairs = <span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) &#123;<br>    <span class="hljs-keyword">if</span>(nums.<span class="hljs-property">length</span>===<span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseRecursive</span>(<span class="hljs-params">nums,left,right</span>)&#123;<br>        <span class="hljs-keyword">if</span>(left===right)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">const</span> mid = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((left+right)/<span class="hljs-number">2</span>);<br>            <span class="hljs-keyword">const</span> n1 = <span class="hljs-title function_">reverseRecursive</span>(nums,left,mid);<br>            <span class="hljs-keyword">const</span> n2 = <span class="hljs-title function_">reverseRecursive</span>(nums,mid+<span class="hljs-number">1</span>,right);<br>            <span class="hljs-keyword">let</span> res = n1 + n2<br>            <span class="hljs-keyword">let</span> i=left;<br>            <span class="hljs-keyword">let</span> j=mid+<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(i&lt;=mid)&#123;<br>                <span class="hljs-keyword">while</span>(j&lt;=right&amp;&amp;nums[i]&gt;<span class="hljs-number">2</span>*nums[j])&#123;<br>                    j++;<br>                &#125;<br>                res += j-mid-<span class="hljs-number">1</span>;<br>                i++;<br>            &#125;<br>            <span class="hljs-keyword">const</span> sorted = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(right-left+<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">let</span> p1 = left, p2 = mid+<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">let</span> p=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">while</span>(p1&lt;=mid||p2&lt;=right)&#123;<br>                <span class="hljs-keyword">if</span>(p1&gt;mid)&#123;<br>                    sorted[p++]=nums[p2++];<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p2&gt;right)&#123;<br>                    sorted[p++]=nums[p1++];<br>                &#125;<br>                <span class="hljs-keyword">else</span>&#123;<br>                    <span class="hljs-keyword">if</span>(nums[p1]&lt;nums[p2])&#123;<br>                        sorted[p++] = nums[p1++];<br>                    &#125;<br>                    <span class="hljs-keyword">else</span>&#123;<br>                        sorted[p++] = nums[p2++];<br>                    &#125;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> k=<span class="hljs-number">0</span>;k&lt;sorted.<span class="hljs-property">length</span>;k++)&#123;<br>                nums[left+k] = sorted[k];<br>            &#125;<br>            <span class="hljs-keyword">return</span> res;<br>        &#125;;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">reverseRecursive</span>(nums,<span class="hljs-number">0</span>,nums.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>);<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>315.【归并排序】计算右侧小于当前元素的个数</title>
     <link href="/2022/06/11/315-%E8%AE%A1%E7%AE%97%E5%8F%B3%E4%BE%A7%E5%B0%8F%E4%BA%8E%E5%BD%93%E5%89%8D%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
     <url>/2022/06/11/315-%E8%AE%A1%E7%AE%97%E5%8F%B3%E4%BE%A7%E5%B0%8F%E4%BA%8E%E5%BD%93%E5%89%8D%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
     
@@ -15,7 +42,7 @@
       
       <category>数据结构</category>
       
-      <category>数组</category>
+      <category>排序算法</category>
       
     </categories>
     
