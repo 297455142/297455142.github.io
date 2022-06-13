@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>230.【二叉搜索树】二叉搜索树中第k小的元素</title>
+    <link href="/2022/06/13/230-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/"/>
+    <url>/2022/06/13/230-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 个最小元素（从 1 开始计数）</p><p>输入：root &#x3D; [3,1,4,null,2], k &#x3D; 1<br>输出：1</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>直接中序遍历，每访问一个节点k就减去1，直到k为0。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> kthSmallest = <span class="hljs-keyword">function</span>(<span class="hljs-params">root, k</span>) &#123; <br>    <span class="hljs-keyword">let</span> res = <span class="hljs-number">0</span>; <br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">visited</span>(<span class="hljs-params">root</span>)&#123; <br>        <span class="hljs-keyword">if</span>(!root)&#123; <br>            <span class="hljs-keyword">return</span>; <br>        &#125; <br>        <span class="hljs-keyword">else</span>&#123; <br>            <span class="hljs-title function_">visited</span>(root.<span class="hljs-property">left</span>); <br>            <span class="hljs-keyword">if</span>(k===<span class="hljs-number">0</span>)&#123; <br>                <span class="hljs-keyword">return</span>; <br>            &#125; <br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(k===<span class="hljs-number">1</span>)&#123; <br>                res=root.<span class="hljs-property">val</span>; k--; <br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123; <br>                k--; <br>                <span class="hljs-title function_">visited</span>(root.<span class="hljs-property">right</span>); <br>            &#125; <br>         &#125; <br>    &#125; <br>    <span class="hljs-title function_">visited</span>(root); <br>    <span class="hljs-keyword">return</span> res; <br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>912.排序数组</title>
     <link href="/2022/06/12/912-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/"/>
     <url>/2022/06/12/912-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/</url>
