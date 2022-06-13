@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>538.【二叉搜索树】把二叉搜索树转换为累加树</title>
+    <link href="/2022/06/13/538-%E3%80%90%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E3%80%91%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91/"/>
+    <url>/2022/06/13/538-%E3%80%90%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E3%80%91%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给出二叉 搜索 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和。<br>输入：[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]<br>输出：[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>直接从右、中、左进行遍历，累积求和。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> convertBST = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">let</span> sum=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">newval</span>(<span class="hljs-params">root</span>)&#123;<br>        <span class="hljs-keyword">if</span>(!root)&#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-title function_">newval</span>(root.<span class="hljs-property">right</span>);<br>        sum=sum+root.<span class="hljs-property">val</span>;<br>        root.<span class="hljs-property">val</span>=sum;<br>        <span class="hljs-title function_">newval</span>(root.<span class="hljs-property">left</span>);<br>    &#125;<br>    <span class="hljs-title function_">newval</span>(root);<br>    <span class="hljs-keyword">return</span> root;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>230.【二叉搜索树】二叉搜索树中第k小的元素</title>
     <link href="/2022/06/13/230-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/"/>
     <url>/2022/06/13/230-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0/</url>
