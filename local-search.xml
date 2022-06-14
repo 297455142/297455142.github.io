@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>450.【二叉搜索树】删除二叉搜索树中的节点</title>
+    <link href="/2022/06/14/450-%E3%80%90%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E3%80%91%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/"/>
+    <url>/2022/06/14/450-%E3%80%90%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E3%80%91%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的 key 对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用。</p><p>一般来说，删除节点可分为两个步骤：<br>首先找到需要删除的节点；<br>如果找到了，删除它。</p><p>输入：root &#x3D; [5,3,6,2,4,null,7], key &#x3D; 3<br>输出：[5,4,6,2,null,null,7]<br>解释：给定需要删除的节点值是 3，所以我们首先找到 3 这个节点，然后删除它。<br>一个正确的答案是 [5,4,6,2,null,null,7], 如下图所示。<br>另一个正确答案是 [5,2,6,null,4,null,7]。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>分情况进行判断：<br>1.若根节点为空，返回空指针。<br>2.若key小于根节点的值，则要删除的节点在左子树中，左子树等于删除后的左子树。<br>3.若key大于根节点的值，则要删除的节点在右子树中，右子树等于删除后的右子树。<br>4.若key等于根节点：<br>①若左子树为空，直接删除自己，返回右子树。<br>②若右子树为空，直接删除自己，返回左子树。<br>@左右子树都不为空，可以去找右子树的最小节点来与根节点交换，然后再将其删除。先在右子树上找到最小节点，然后使root的右子树等于删除最小节点后的状态，再将最小节点的左右子树指向root的左右子树，然后将root指向最小节点，并返回。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> deleteNode = <span class="hljs-keyword">function</span>(<span class="hljs-params">root, key</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!root)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(root.<span class="hljs-property">val</span> === key)&#123;<br>        <span class="hljs-keyword">if</span>(!root.<span class="hljs-property">left</span>)&#123;<br>            <span class="hljs-keyword">return</span> root.<span class="hljs-property">right</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!root.<span class="hljs-property">right</span>)&#123;<br>            <span class="hljs-keyword">return</span> root.<span class="hljs-property">left</span>;<br>        &#125;<br>        <span class="hljs-keyword">let</span> node = root.<span class="hljs-property">right</span>;        <br>        <span class="hljs-keyword">while</span>(node.<span class="hljs-property">left</span>)&#123;<br>            node = node.<span class="hljs-property">left</span>;<br>        &#125;<br>        root.<span class="hljs-property">right</span> = <span class="hljs-title function_">deleteNode</span>(root.<span class="hljs-property">right</span>, node.<span class="hljs-property">val</span>);<br>        node.<span class="hljs-property">left</span> = root.<span class="hljs-property">left</span>;<br>        node.<span class="hljs-property">right</span> = root.<span class="hljs-property">right</span>;<br>        root = node;<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(root.<span class="hljs-property">val</span>&gt;key)&#123;<br>        root.<span class="hljs-property">left</span> = <span class="hljs-title function_">deleteNode</span>(root.<span class="hljs-property">left</span>,key);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(root.<span class="hljs-property">val</span>&lt;key)&#123;<br>        root.<span class="hljs-property">right</span> = <span class="hljs-title function_">deleteNode</span>(root.<span class="hljs-property">right</span>,key);<br>    &#125;<br>    <span class="hljs-keyword">return</span> root;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>701.【二叉搜索树】二叉搜索树中的插入操作</title>
     <link href="/2022/06/14/701-%E3%80%90%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E3%80%91%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C/"/>
     <url>/2022/06/14/701-%E3%80%90%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E3%80%91%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C/</url>
