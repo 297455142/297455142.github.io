@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>86.分隔链表</title>
+    <link href="/2022/06/16/86-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/"/>
+    <url>/2022/06/16/86-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。<br>你应当保留两个分区中每个节点的初始相对位置。<br>输入：head &#x3D; [1,4,3,2,5,2], x &#x3D; 3<br>输出：[1,2,2,4,3,5]</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>分别构建两个链表，储存大于x和小于x的节点，然后将它们连在一起。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> partition = <span class="hljs-keyword">function</span>(<span class="hljs-params">head, x</span>) &#123;<br>    <span class="hljs-keyword">let</span> small=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">let</span> big=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">const</span> smallHead=small, bigHead=big;<br>    <span class="hljs-keyword">while</span>(head)&#123;<br>        <span class="hljs-keyword">if</span>(head.<span class="hljs-property">val</span>&lt;x)&#123;<br>            small.<span class="hljs-property">next</span>=head;<br>            small=small.<span class="hljs-property">next</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            big.<span class="hljs-property">next</span>=head;<br>            big=big.<span class="hljs-property">next</span>;<br>        &#125;<br>        head=head.<span class="hljs-property">next</span>;<br>    &#125;<br>    big.<span class="hljs-property">next</span>=<span class="hljs-literal">null</span>;<br>    small.<span class="hljs-property">next</span>=bigHead.<span class="hljs-property">next</span>;<br>    <span class="hljs-keyword">return</span> smallHead.<span class="hljs-property">next</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>链表</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>21.合并两个有序链表</title>
     <link href="/2022/06/16/21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/"/>
     <url>/2022/06/16/21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/</url>
