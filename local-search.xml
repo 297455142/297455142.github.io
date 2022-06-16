@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>222.完全二叉树的节点个数</title>
+    <link href="/2022/06/16/222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/"/>
+    <url>/2022/06/16/222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。<br>完全二叉树 的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2h 个节点<br>输入：root &#x3D; [1,2,3,4,5,6]<br>输出：6</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>将完全二叉树从中间分开，只有两种情况：<br>①左子树为满二叉树，右子树为完全二叉树。<br>②左右子树均为满二叉树。<br>直接求做子树最左边深度和右子树最右边深度即可判断是否为满二叉树。<br>①左深右浅，左满右不满。<br>②左等于右，全为满。<br>满二叉树直接用2^n-1求，n为高度。完全二叉树递归求数量。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> countNodes = <span class="hljs-keyword">function</span>(<span class="hljs-params">root</span>) &#123;<br>    <span class="hljs-keyword">let</span> left=root,right=root;<br>    <span class="hljs-keyword">let</span> h1=<span class="hljs-number">0</span>,h2=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(left)&#123;<br>        left = left.<span class="hljs-property">left</span>;<br>        h1++;<br>    &#125;<br>    <span class="hljs-keyword">while</span>(right)&#123;<br>        right = right.<span class="hljs-property">right</span>;<br>        h2++;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(h1==h2)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">2</span>,h1)-<span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + <span class="hljs-title function_">countNodes</span>(root.<span class="hljs-property">left</span>) + <span class="hljs-title function_">countNodes</span>(root.<span class="hljs-property">right</span>);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>236.【最近公共祖先】二叉树的最近公共祖先</title>
     <link href="/2022/06/16/236-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"/>
     <url>/2022/06/16/236-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</url>
