@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>236.【最近公共祖先】二叉树的最近公共祖先</title>
+    <link href="/2022/06/16/236-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"/>
+    <url>/2022/06/16/236-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p><p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”<br>输入：root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 1<br>输出：3<br>解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>直接进行递归，从根结点判断左右子树是否含有指定节点。有几种情况<br>①两个节点分别在根节点左右子树上，则根节点是最近公共祖先。<br>②若根节点为一个目标节点，另一个节点在左子树或右子树上。<br>只有满足这些条件的才是最近公共祖先，将其返回。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> lowestCommonAncestor = <span class="hljs-keyword">function</span>(<span class="hljs-params">root, p, q</span>) &#123;<br>    <span class="hljs-keyword">let</span> ans;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">dfs</span>(<span class="hljs-params">root,p,q</span>)&#123;<br>        <span class="hljs-keyword">if</span>(!root)<br>        &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">const</span> left = <span class="hljs-title function_">dfs</span>(root.<span class="hljs-property">left</span>, p, q);<br>            <span class="hljs-keyword">const</span> right = <span class="hljs-title function_">dfs</span>(root.<span class="hljs-property">right</span>, p ,q);<br>            <span class="hljs-keyword">if</span>((left&amp;&amp;right)||((root.<span class="hljs-property">val</span>===p.<span class="hljs-property">val</span> || root.<span class="hljs-property">val</span>===q.<span class="hljs-property">val</span>)&amp;&amp;(left||right)))&#123;<br>                ans = root;<br>            &#125;<br>            <span class="hljs-keyword">return</span> left || right || root.<span class="hljs-property">val</span>===p.<span class="hljs-property">val</span> || root.<span class="hljs-property">val</span>===q.<span class="hljs-property">val</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-title function_">dfs</span>(root,p,q);<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>二叉树</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>235.【最近公共祖先】二叉树的最近公共祖先</title>
     <link href="/2022/06/16/235-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/"/>
     <url>/2022/06/16/235-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</url>
