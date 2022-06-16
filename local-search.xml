@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>160.【双指针】相交链表</title>
+    <link href="/2022/06/16/160-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/"/>
+    <url>/2022/06/16/160-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。<br>输入：intersectVal &#x3D; 8, listA &#x3D; [4,1,8,4,5], listB &#x3D; [5,6,1,8,4,5], skipA &#x3D; 2, skipB &#x3D; 3<br>输出：Intersected at ‘8’<br>解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。<br>从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。<br>在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>如果两个链表都不为空，且相交，则有两个结点分别从两个链表上开始，当到达结尾时跳到另一个链表上，就能同时在交点相遇。<br> <img src="/2022/06/16/160-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/%E9%93%BE%E8%A1%A8.png" class=""></p><p>如果不相遇，在各自走完一圈后同时到达null，结束。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> getIntersectionNode = <span class="hljs-keyword">function</span>(<span class="hljs-params">headA, headB</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!headA || !headB)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> pA = headA, pB = headB;<br>    <span class="hljs-keyword">while</span>(pA!==pB)&#123;<br>        pA=pA===<span class="hljs-literal">null</span>?<span class="hljs-attr">headB</span>:pA.<span class="hljs-property">next</span>;<br>        pB=pB===<span class="hljs-literal">null</span>?<span class="hljs-attr">headA</span>:pB.<span class="hljs-property">next</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> pA;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>链表</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>142.【双指针】环形链表2</title>
     <link href="/2022/06/16/142-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/"/>
     <url>/2022/06/16/142-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A82/</url>
