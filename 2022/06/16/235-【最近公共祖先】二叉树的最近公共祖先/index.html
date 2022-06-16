@@ -16,21 +16,21 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给你一个嵌套的整数列表 nestedList 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。实现扁平迭代器类 NestedIterator ：NestedIterator(List nestedList) 用嵌套列表 nestedList 初始化迭代器。int next() 返回嵌套列表的下一个">
+    <meta name="description" content="题目给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。” 输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8输出:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="341.【DFS】扁平化嵌套列表迭代器">
-<meta property="og:url" content="http://example.com/2022/06/15/341-%E3%80%90DFS%E3%80%91%E6%89%81%E5%B9%B3%E5%8C%96%E5%B5%8C%E5%A5%97%E5%88%97%E8%A1%A8%E8%BF%AD%E4%BB%A3%E5%99%A8/index.html">
+<meta property="og:title" content="235.【最近公共祖先】二叉树的最近公共祖先">
+<meta property="og:url" content="http://example.com/2022/06/16/235-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="题目给你一个嵌套的整数列表 nestedList 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。实现扁平迭代器类 NestedIterator ：NestedIterator(List nestedList) 用嵌套列表 nestedList 初始化迭代器。int next() 返回嵌套列表的下一个">
+<meta property="og:description" content="题目给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。” 输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8输出:">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-15T06:48:04.000Z">
-<meta property="article:modified_time" content="2022-06-15T12:02:03.764Z">
+<meta property="article:published_time" content="2022-06-16T00:57:40.000Z">
+<meta property="article:modified_time" content="2022-06-16T00:59:38.466Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>341.【DFS】扁平化嵌套列表迭代器 - 前端面试总结</title>
+  <title>235.【最近公共祖先】二叉树的最近公共祖先 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="341.【DFS】扁平化嵌套列表迭代器">
+            <span class="h2" id="subtitle" title="235.【最近公共祖先】二叉树的最近公共祖先">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-15 14:48" pubdate>
-        2022年6月15日 下午
+      <time datetime="2022-06-16 08:57" pubdate>
+        2022年6月16日 早上
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      948 字
+      582 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      5 分钟
     </span>
   
 
@@ -243,12 +243,13 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">341.【DFS】扁平化嵌套列表迭代器</h1>
+            <h1 style="display: none">235.【最近公共祖先】二叉树的最近公共祖先</h1>
             
             <div class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你一个嵌套的整数列表 nestedList 。每个元素要么是一个整数，要么是一个列表；该列表的元素也可能是整数或者是其他列表。请你实现一个迭代器将其扁平化，使之能够遍历这个列表中的所有整数。<br>实现扁平迭代器类 NestedIterator ：<br>NestedIterator(List<NestedInteger> nestedList) 用嵌套列表 nestedList 初始化迭代器。<br>int next() 返回嵌套列表的下一个整数。<br>boolean hasNext() 如果仍然存在待迭代的整数，返回 true ；否则，返回 false 。<br>你的代码将会用下述伪代码检测：<br>initialize iterator with nestedList<br>res &#x3D; []<br>while iterator.hasNext()<br>    append iterator.next() to the end of res<br>return res<br>如果 res 与预期的扁平化列表匹配，那么你的代码将会被判为正确。<br>输入：nestedList &#x3D; [[1,1],2,[1,1]]<br>输出：[1,1,2,1,1]<br>解释：通过重复调用 next 直到 hasNext 返回 false，next 返回的元素的顺序应该是: [1,1,2,1,1]。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>深度遍历数组，若遇到整数，加入到队列。若遇到数组，以该数组为起点进行遍历。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-title class_">NestedIterator</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">nestedList</span>) &#123;<br>    res=[];<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">dfs</span>(<span class="hljs-params">nestedList</span>)&#123;<br>        <span class="hljs-keyword">for</span>(n <span class="hljs-keyword">of</span> nestedList)&#123;<br>            <span class="hljs-keyword">if</span>(n.<span class="hljs-title function_">isInteger</span>())&#123;<br>                res.<span class="hljs-title function_">push</span>(n.<span class="hljs-title function_">getInteger</span>());<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-title function_">dfs</span>(n.<span class="hljs-title function_">getList</span>());<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-title function_">dfs</span>(nestedList);<br>&#125;;<br><span class="hljs-title class_">NestedIterator</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">hasNext</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-title class_">NestedIterator</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">next</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">shift</span>();<br>&#125;;<br></code></pre></td></tr></table></figure>
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。<br>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<p>输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8<br>输出: 6<br>解释: 节点 2 和节点 8 的最近公共祖先是 6。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>对于二叉搜索树来说，直接比较两个节点的值和根节点的值的关系。如果一大一小，则根节点为最近公共祖先；如果都小，则都在左子树上；如果都大，则都在右子树上。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> lowestCommonAncestor = <span class="hljs-keyword">function</span>(<span class="hljs-params">root, p, q</span>) &#123;<br>    <span class="hljs-keyword">if</span>(p.<span class="hljs-property">val</span>&lt;root.<span class="hljs-property">val</span>&amp;&amp;q.<span class="hljs-property">val</span>&lt;root.<span class="hljs-property">val</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_">lowestCommonAncestor</span>(root.<span class="hljs-property">left</span>,p,q);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(p.<span class="hljs-property">val</span>&gt;root.<span class="hljs-property">val</span>&amp;&amp;q.<span class="hljs-property">val</span>&gt;root.<span class="hljs-property">val</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_">lowestCommonAncestor</span>(root.<span class="hljs-property">right</span>,p,q);<br>    &#125;<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -259,7 +260,7 @@
                     
                       <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E7%BB%84/">数组</a>
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
                     
                   </div>
                 
@@ -284,18 +285,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/16/235-%E3%80%90%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E3%80%91%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">235.【最近公共祖先】二叉树的最近公共祖先</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/14/215-%E3%80%90%E5%A0%86%E6%8E%92%E5%BA%8F%E3%80%91%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0/">
-                        <span class="hidden-mobile">215.【堆排序】数组中的第K个最大元素</span>
+                      <a href="/2022/06/15/341-%E3%80%90DFS%E3%80%91%E6%89%81%E5%B9%B3%E5%8C%96%E5%B5%8C%E5%A5%97%E5%88%97%E8%A1%A8%E8%BF%AD%E4%BB%A3%E5%99%A8/">
+                        <span class="hidden-mobile">341.【DFS】扁平化嵌套列表迭代器</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
