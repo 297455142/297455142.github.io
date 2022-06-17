@@ -16,23 +16,21 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。输入：head &#x3D; [1,2,3,4,5]输出：[5,4,3,2,1] 思路当head为空，直接返回。当head下一个节点没有时，为末尾节点，直接返回。last指的是翻转后的头结点（原尾结点）。head.next.next指的是已经翻转结点的末尾下一个指向自己。  代码123456789var reverseList">
+    <meta name="description" content="题目给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;&#x3D; right 。请你反转从位置 left 到位置 right 的链表节点，返回反转后的链表。 输入：head &#x3D; [1,2,3,4,5], left &#x3D; 2, right &#x3D; 4输出：[1,4,3,2,5] 思路在头结点前插入一个结点，可以省去好多情况的讨论。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="206.反转链表">
-<meta property="og:url" content="http://example.com/2022/06/17/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:title" content="92.反转链表2">
+<meta property="og:url" content="http://example.com/2022/06/17/92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A82/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="题目给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。输入：head &#x3D; [1,2,3,4,5]输出：[5,4,3,2,1] 思路当head为空，直接返回。当head下一个节点没有时，为末尾节点，直接返回。last指的是翻转后的头结点（原尾结点）。head.next.next指的是已经翻转结点的末尾下一个指向自己。  代码123456789var reverseList">
+<meta property="og:description" content="题目给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;&#x3D; right 。请你反转从位置 left 到位置 right 的链表节点，返回反转后的链表。 输入：head &#x3D; [1,2,3,4,5], left &#x3D; 2, right &#x3D; 4输出：[1,4,3,2,5] 思路在头结点前插入一个结点，可以省去好多情况的讨论。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/06/17/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.png">
-<meta property="article:published_time" content="2022-06-17T02:24:17.000Z">
-<meta property="article:modified_time" content="2022-06-17T02:28:28.021Z">
+<meta property="article:published_time" content="2022-06-17T02:57:44.000Z">
+<meta property="article:modified_time" content="2022-06-17T03:01:22.591Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/06/17/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.png">
   
   
-  <title>206.反转链表 - 前端面试总结</title>
+  <title>92.反转链表2 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -178,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="206.反转链表">
+            <span class="h2" id="subtitle" title="92.反转链表2">
               
             </span>
 
@@ -188,7 +186,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-17 10:24" pubdate>
+      <time datetime="2022-06-17 10:57" pubdate>
         2022年6月17日 上午
       </time>
     </span>
@@ -199,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      340 字
+      840 字
     </span>
   
 
@@ -208,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      8 分钟
     </span>
   
 
@@ -245,12 +243,13 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">206.反转链表</h1>
+            <h1 style="display: none">92.反转链表2</h1>
             
             <div class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。<br>输入：head &#x3D; [1,2,3,4,5]<br>输出：[5,4,3,2,1]</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>当head为空，直接返回。<br>当head下一个节点没有时，为末尾节点，直接返回。<br>last指的是翻转后的头结点（原尾结点）。<br>head.next.next指的是已经翻转结点的末尾下一个指向自己。<br> <img src="/2022/06/17/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.png" srcset="/img/loading.gif" lazyload class=""></p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> reverseList = <span class="hljs-keyword">function</span>(<span class="hljs-params">head</span>) &#123;<br>    <span class="hljs-keyword">if</span>(!head || !head.<span class="hljs-property">next</span>)&#123;<br>        <span class="hljs-keyword">return</span> head;<br>    &#125;<br>    <span class="hljs-keyword">let</span> last = <span class="hljs-title function_">reverseList</span>(head.<span class="hljs-property">next</span>);<br>    head.<span class="hljs-property">next</span>.<span class="hljs-property">next</span>=head;<br>    head.<span class="hljs-property">next</span>=<span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">return</span> last;<br>&#125;;<br></code></pre></td></tr></table></figure>
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你单链表的头指针 head 和两个整数 left 和 right ，其中 left &lt;&#x3D; right 。请你反转从位置 left 到位置 right 的链表节点，返回反转后的链表。</p>
+<p>输入：head &#x3D; [1,2,3,4,5], left &#x3D; 2, right &#x3D; 4<br>输出：[1,4,3,2,5]</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>在头结点前插入一个结点，可以省去好多情况的讨论。<br>找到反转部分的前一个节点、第一个节点、最后一个节点、最后节点再往后一个节点。<br>将反转区域截取出来，单独进行反转，再拼接回去。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> reverseBetween = <span class="hljs-keyword">function</span>(<span class="hljs-params">head, left, right</span>) &#123;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">head</span>)&#123;<br>        <span class="hljs-keyword">if</span>(!head || !head.<span class="hljs-property">next</span>)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        <span class="hljs-keyword">let</span> last = <span class="hljs-title function_">reverse</span>(head.<span class="hljs-property">next</span>);<br>        head.<span class="hljs-property">next</span>.<span class="hljs-property">next</span> = head;<br>        head.<span class="hljs-property">next</span> = <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">return</span> last;<br>    &#125;<br>    <span class="hljs-keyword">const</span> fistnode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(-<span class="hljs-number">1</span>);<br>    fistnode.<span class="hljs-property">next</span> = head;<br>    <span class="hljs-keyword">let</span> pre = fistnode;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;left-<span class="hljs-number">1</span>;i++)&#123;<br>        pre = pre.<span class="hljs-property">next</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> rightnode = pre;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;right-left+<span class="hljs-number">1</span>;i++)&#123;<br>        rightnode = rightnode.<span class="hljs-property">next</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> leftnode = pre.<span class="hljs-property">next</span>;<br>    <span class="hljs-keyword">let</span> curr=rightnode.<span class="hljs-property">next</span>;<br>    pre.<span class="hljs-property">next</span>=<span class="hljs-literal">null</span>;<br>    rightnode.<span class="hljs-property">next</span>=<span class="hljs-literal">null</span>;<br>    pre.<span class="hljs-property">next</span>=<span class="hljs-title function_">reverse</span>(leftnode);<br>    leftnode.<span class="hljs-property">next</span>=curr;<br>    <span class="hljs-keyword">return</span> fistnode.<span class="hljs-property">next</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -286,18 +285,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/17/92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A82/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">92.反转链表2</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/16/160-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/">
-                        <span class="hidden-mobile">160.【双指针】相交链表</span>
+                      <a href="/2022/06/17/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
+                        <span class="hidden-mobile">206.反转链表</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
