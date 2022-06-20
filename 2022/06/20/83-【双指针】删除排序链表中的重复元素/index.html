@@ -16,21 +16,21 @@
   <meta name="author" content="WBY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。输入：head &#x3D; [1,2,3,4,5], k &#x3D; 2输出：[2,1,4,3,5]输入：head &#x3D; [1,2">
+    <meta name="description" content="题目给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。返回 已排序的链表 。输入：head &#x3D; [1,1,2]输出：[1,2] 思路直接从起点出发设置两个节点slow和fast，当fast的值与slow不同时，将slow的下一个节点指向fast。最后链表尾部要指向null 代码12345678910111213141516var deleteDuplic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="25.K个一组翻转链表">
-<meta property="og:url" content="http://example.com/2022/06/17/25-K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:title" content="83.【双指针】删除排序链表中的重复元素">
+<meta property="og:url" content="http://example.com/2022/06/20/83-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="前端面试总结">
-<meta property="og:description" content="题目给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。输入：head &#x3D; [1,2,3,4,5], k &#x3D; 2输出：[2,1,4,3,5]输入：head &#x3D; [1,2">
+<meta property="og:description" content="题目给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。返回 已排序的链表 。输入：head &#x3D; [1,1,2]输出：[1,2] 思路直接从起点出发设置两个节点slow和fast，当fast的值与slow不同时，将slow的下一个节点指向fast。最后链表尾部要指向null 代码12345678910111213141516var deleteDuplic">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-17T14:33:45.000Z">
-<meta property="article:modified_time" content="2022-06-17T14:36:29.372Z">
+<meta property="article:published_time" content="2022-06-20T01:18:08.000Z">
+<meta property="article:modified_time" content="2022-06-20T01:19:01.979Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>25.K个一组翻转链表 - 前端面试总结</title>
+  <title>83.【双指针】删除排序链表中的重复元素 - 前端面试总结</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="25.K个一组翻转链表">
+            <span class="h2" id="subtitle" title="83.【双指针】删除排序链表中的重复元素">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-06-17 22:33" pubdate>
-        2022年6月17日 晚上
+      <time datetime="2022-06-20 09:18" pubdate>
+        2022年6月20日 上午
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      638 字
+      420 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      4 分钟
     </span>
   
 
@@ -243,12 +243,14 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">25.K个一组翻转链表</h1>
+            <h1 style="display: none">83.【双指针】删除排序链表中的重复元素</h1>
             
             <div class="markdown-body">
-              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。<br>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 2<br>输出：[2,1,4,3,5]<br>输入：head &#x3D; [1,2,3,4,5], k &#x3D; 3<br>输出：[3,2,1,4,5]</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>先设置一个函数，用于翻转a到b之内的链表。然后依次每k个结点进行翻转，再递归剩下的链表，最后连起来。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> reverseKGroup = <span class="hljs-keyword">function</span>(<span class="hljs-params">head, k</span>) &#123;<br>    <span class="hljs-keyword">let</span> a=head,b=head;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>        <span class="hljs-keyword">if</span>(!b)&#123;<br>            <span class="hljs-keyword">return</span> head;<br>        &#125;<br>        b = b.<span class="hljs-property">next</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> newhead = <span class="hljs-title function_">reverse</span>(a,b);<br>    a.<span class="hljs-property">next</span> = <span class="hljs-title function_">reverseKGroup</span>(b,k);<br>    <span class="hljs-keyword">return</span> newhead;<br>&#125;;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">a,b</span>)&#123;<br>    <span class="hljs-keyword">let</span> pre=<span class="hljs-literal">null</span>,cur=a,nxt=a;<br>    <span class="hljs-keyword">while</span>(cur!==b)&#123;<br>        nxt = cur.<span class="hljs-property">next</span>;<br>        cur.<span class="hljs-property">next</span> = pre;<br>        pre = cur;<br>        cur = nxt;<br>    &#125;<br>    <span class="hljs-keyword">return</span> pre;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。返回 已排序的链表 。<br>输入：head &#x3D; [1,1,2]<br>输出：[1,2]</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>直接从起点出发设置两个节点slow和fast，当fast的值与slow不同时，将slow的下一个节点指向fast。<strong>最后链表尾部要指向null</strong></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> deleteDuplicates = <span class="hljs-keyword">function</span>(<span class="hljs-params">head</span>) &#123;<br>    <span class="hljs-keyword">let</span> slow = head,fast = head;<br>    <span class="hljs-keyword">if</span>(!head)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>    fast = fast.<span class="hljs-property">next</span>;<br>    <span class="hljs-keyword">while</span>(fast)&#123;<br>        <span class="hljs-keyword">if</span>(fast.<span class="hljs-property">val</span>!==slow.<span class="hljs-property">val</span>)&#123;<br>            slow.<span class="hljs-property">next</span> = fast;<br>            slow = slow.<span class="hljs-property">next</span>;<br>        &#125;<br>        fast = fast.<span class="hljs-property">next</span>;<br>    &#125;<br>    slow.<span class="hljs-property">next</span> = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">return</span> head;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
             </div>
             <hr>
             <div>
@@ -284,18 +286,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/20/234-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">234.【双指针】回文链表</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/17/92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A82/">
-                        <span class="hidden-mobile">92.反转链表2</span>
+                      <a href="/2022/06/20/234-%E3%80%90%E5%8F%8C%E6%8C%87%E9%92%88%E3%80%91%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8/">
+                        <span class="hidden-mobile">234.【双指针】回文链表</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
