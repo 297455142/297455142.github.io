@@ -1,0 +1,574 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、数组去重 方法一：定义一个新数组(非递增！！！），存放原数组的第一个元素，然后将原数组一一和新数组的元素对比，若不同则存放在新数组中。  1234567891011121314151617function unique(arr)&amp;#123;    let newArr &#x3D; [arr[0]];    let a&#x3D;0;    for(let i&#x3D;1;i&lt;arr.length;i++)&amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组">
+<meta property="og:url" content="http://example.com/2022/06/25/%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、数组去重 方法一：定义一个新数组(非递增！！！），存放原数组的第一个元素，然后将原数组一一和新数组的元素对比，若不同则存放在新数组中。  1234567891011121314151617function unique(arr)&amp;#123;    let newArr &#x3D; [arr[0]];    let a&#x3D;0;    for(let i&#x3D;1;i&lt;arr.length;i++)&amp;#12">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-25T10:04:01.000Z">
+<meta property="article:modified_time" content="2022-06-25T10:05:35.343Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>数组 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数组">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-06-25 18:04" pubdate>
+        2022年6月25日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数组</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一、数组去重"><a href="#一、数组去重" class="headerlink" title="一、数组去重"></a>一、数组去重</h4><ul>
+<li><strong>方法一</strong>：定义一个新数组(非递增！！！），存放原数组的第一个元素，然后将原数组一一和新数组的元素对比，若不同则存放在新数组中。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">let</span> newArr = [arr[<span class="hljs-number">0</span>]];<br>    <span class="hljs-keyword">let</span> a=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">let</span> repeat=<span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=<span class="hljs-number">0</span>;j&lt;newArr.<span class="hljs-property">length</span>;j++)&#123;<br>            <span class="hljs-keyword">if</span>(arr[i]===newArr[j])&#123;<br>                repeat=<span class="hljs-literal">true</span>;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!repeat)&#123;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法二</strong>：先将原数组排序，再与新数组进行比较，若不同则存入新数组。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> formArr = arr.<span class="hljs-title function_">sort</span>();<br>    <span class="hljs-keyword">var</span> newArr = [formArr[<span class="hljs-number">0</span>]];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>;i&lt;formArr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(formArr[i]!==forArr[i-<span class="hljs-number">1</span>])&#123;<br>            newArr.<span class="hljs-title function_">push</span>(formArr[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法三</strong>：利用对象属性存在的特性，如果没有该属性则存入新数组。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> obj = &#123;&#125;;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(!obj[arr[i])&#123;<br>            obj[arr[i]]=<span class="hljs-number">1</span>;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法四</strong>：利用数组的indexOf下标属性来查询。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(newArr.<span class="hljs-title function_">indexOf</span>(<span class="hljs-params">arr[i]===-<span class="hljs-number">1</span></span>)&#123;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i])<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法五</strong>：利用数组原型对象上的includes方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(!newArr.<span class="hljs-title function_">includes</span>(<span class="hljs-params">arr[i]</span>)&#123;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法六</strong>：利用数组原型对象上的filter和includes方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    newArr= arr.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)&#123;<br>        <span class="hljs-keyword">return</span> newArr.<span class="hljs-title function_">includes</span>(item)?<span class="hljs-string">&#x27;&#x27;</span>:newArr.<span class="hljs-title function_">push</span>(item);<br>    &#125;)<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法七</strong>：利用数组原型对象上的forEach和includes方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">let</span> newArr = [];<br>    arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span>&#123;<br>        <span class="hljs-keyword">return</span> newArr.<span class="hljs-title function_">includes</span>(item)?<span class="hljs-string">&#x27;&#x27;</span>:newArr.<span class="hljs-title function_">push</span>(item);<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法八</strong>：利用数组原型对象上的splice方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> i,j,len=arr.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=i+<span class="hljs-number">1</span>;j&lt;len;j++)&#123;<br>            <span class="hljs-keyword">if</span>(arr[i]===arr[j])&#123;<br>                arr.<span class="hljs-title function_">splice</span>(j,<span class="hljs-number">1</span>);<br>                len--;<br>                j--;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法九</strong>：利用数组原型对象上的lastIndexOf方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        newArr.<span class="hljs-title function_">lastIndexOf</span>(arr[i])!==-<span class="hljs-number">1</span>? <span class="hljs-string">&#x27;&#x27;</span> : newArr.<span class="hljs-title function_">push</span>(arr[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法十</strong>：利用ES6的set方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法十一</strong>：时间复杂度为O(n)。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">item,index,array</span>)&#123;<br>        <span class="hljs-keyword">return</span> newArr.<span class="hljs-title function_">hasOwnProperty</span>(<span class="hljs-keyword">typeof</span> item+item)? <span class="hljs-literal">false</span> : (newArr[<span class="hljs-keyword">typeof</span> item+item]) = <span class="hljs-literal">true</span>);<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>优点：hasOwnProperty是对象的属性（名称）存在性检查方法，对象的属性可以基于hash表实现，因此对属性进行访问的时间复杂度可以达到O(1)。filter是数组迭代的方法，内部还是一个for循环，所以时间复杂度是O(n)。<br>缺点：不兼容IE9以下浏览器，解决办法是把filter方法用for循环代替或自己模拟一个filter方法。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/20/304-%E4%BA%8C%E7%BB%B4%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%8F%AF%E5%8F%98/">
+                        <span class="hidden-mobile">304.二维区域和检索-矩阵不可变</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
