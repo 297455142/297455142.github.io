@@ -23,11 +23,14 @@
 <meta property="og:site_name" content="前端面试总结">
 <meta property="og:description" content="一、为什么要使用Vue 体积小，轻量级框架，只关注视图层，是一个构建数据的视图集合。 双向数据绑定：让开发者不用再去操作DOM对象。 易用：容易上手，学习成本低。 可以直接直接将vue作为现成的服务端应用嵌入。实现组件化，将网页分割成可复用的组件，每个组件用来渲染网页中相应的地方。 高效：基于虚拟DOM，可以预先通过JavaScript进行各种计算，把最终的DMO操作计算出来并优化的技术。由于这种">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/05/12/Vue/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8.png">
+<meta property="og:image" content="http://example.com/2022/05/12/Vue/%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A.png">
 <meta property="article:published_time" content="2022-05-12T09:12:16.000Z">
-<meta property="article:modified_time" content="2022-05-13T13:04:52.967Z">
+<meta property="article:modified_time" content="2022-06-26T07:20:19.418Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/05/12/Vue/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8.png">
   
   
   <title>Vue - 前端面试总结</title>
@@ -197,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      534 字
+      1.7k 字
     </span>
   
 
@@ -206,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      15 分钟
     </span>
   
 
@@ -259,6 +262,21 @@
 <li><strong>虚拟DOM不会进行排版与重绘操作</strong>：虚拟DOM进行频繁修改，然后一次性比较并修改真实DOM中需要修改的部分，最后在真实DOM中进行排版与重绘，减少过多DOM节点排版与重绘的损耗。</li>
 <li><strong>真实DOM频繁排版重绘的效率相当低</strong>：虚拟DOM有效降低大面积真实dom节点的重绘与排版，因为最终与真实DOM比较差异，可以只渲染局部。</li>
 <li>虚拟DOM减少了一些情况下对真实DOM的操作，它对比后再选择更新哪些DOM，而不是全部删除再重建。虚拟DOM是内存中维护的DOM树，是在实体DOM上的一层抽象，查询修改操作都是先操作内存中的虚拟DOM。</li>
+</ul>
+<h4 id="三、VUE特性"><a href="#三、VUE特性" class="headerlink" title="三、VUE特性"></a>三、VUE特性</h4><ul>
+<li><strong>数据驱动视图</strong>：在使用了vue的界面中，vue会监听数据的变化，从而自动重新渲染页面的结构，当页面数据发生变化时，页面会自动渲染，数据驱动视图是单向的数据绑定，程序员只用维护数据。</li>
+</ul>
+<img src="/2022/05/12/Vue/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8.png" srcset="/img/loading.gif" lazyload class="">
+
+<ul>
+<li><strong>双向数据绑定</strong>：在网页中，form表单用来采集数据，ajax用来提交数据。在填写表单时，双向数据绑定可以辅助开发者在不操作DOM的前提下，自动把用户填写的内容同步到数据源中。开发者不需要再手动操作DOM元素，来获取表单元素的最新值。js数据的变化会自动渲染到页面上，页面上采集的表单数据发生变化时，会被vue自动获取填充到js中。</li>
+</ul>
+ <img src="/2022/05/12/Vue/%E5%8F%8C%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A.png" srcset="/img/loading.gif" lazyload class="">
+
+<h4 id="四、MVC和MVVM模式"><a href="#四、MVC和MVVM模式" class="headerlink" title="四、MVC和MVVM模式"></a>四、MVC和MVVM模式</h4><ul>
+<li><strong>MVC</strong>：MVC允许在不改变视图的情况下改变视图对用户输入的响应模式，用户对View的操作交给了Controller处理，在Controller中响应View的事件调用Model的接口对数据进行操作，一旦Model发生变化便通知相关视图进行更新。</li>
+<li><strong>MVVM</strong>：指的是Model（当前页面渲染所需要的数据源）、View（当前页面所渲染的DOM结构）、ViewModel（VUE的实例，MVVM的核心，把当前页面的数据源和页面结构连接在一起）。
+当数据源发生变化时，会被ViewModel监听到，VM会根据最新的数据源自动更新页面的结构。<br>当表单元素的值发生变化时，也会被VM监听到，VM会把变化过后最新的值自动同步到Model数据源中。<br>MVVM与MVC最大的区别就是：它实现了View和Model的自动同步，也就是当Model的属性改变时，我们不用再自己手动操作DOM元素来改变View的显示，而是改变属性后该属性对应View层显示会自动改变。<br>VUE实例中的data相当于Model层，而ViewModel层的核心是VUE中的双向数据绑定，即Model变化时View可以实时更新，View变化也能让Model发生变化。<br>在MVVM架构中，引入了ViewModel的概念，ViewModel只关心数据和业务的处理，不关系View如何处理数据。在这种情况下，View和Model都可以独立出来，任何一方改变了也不一定需要改变另一方，并且可以把一些可复用的逻辑放在一个ViewModel中，让多个View复用这个ViewModel。<br>以VUE框架来举例，ViewModel就是组件的实例，View就是模板，Model的话在引入Vuex的情况下是完全可以和组件分离的。<br>MVVM还引入了一个隐式的Binder层，实现了View和ViewModel的绑定。这个隐式的Binder层就是VUE通过解析模板中的插值和指令从而实现View与ViewModel的绑定。<br>对于MVVM来说，最重要的并不是通过双向绑定或其他的方式将View与ViewModel绑定起来，而是通过ViewModel将视图中的状态和用户的行为分离出一个抽象。</li>
 </ul>
 
             </div>
