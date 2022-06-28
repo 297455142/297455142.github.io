@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
 <meta property="article:published_time" content="2022-05-12T09:12:16.000Z">
-<meta property="article:modified_time" content="2022-06-28T01:54:54.135Z">
+<meta property="article:modified_time" content="2022-06-28T02:04:51.018Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      172 分钟
+      175 分钟
     </span>
   
 
@@ -393,7 +393,11 @@
 如果要侦听的是对象的子属性的变化，则必须包裹一层单引号，如’watch: {‘info.username’(newVal, oldVal){}}<h4 id="8-3-计算属性"><a href="#8-3-计算属性" class="headerlink" title="8.3 计算属性"></a>8.3 计算属性</h4>指的是通过一系列运算之后，最后得到一个属性值，这个动态计算出来的属性值可以被模板结构或methods方法使用。所有计算属性都定义到computed之下，定义时要定义成方法格式，使用时当成属性来用。实现了代码的复用，只要计算属性中依赖的任何一个属性变化了都会重新求值。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;&#123; background-color: rgb &#125;&quot;</span>&gt;</span><br>    &#123;&#123; rgb &#125;&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>var vm = new Vue(&#123;<br>    el: &#x27;#app&#x27;,<br>    data: &#123;<br>        r:0,<br>        g:0,<br>        b:0<br>    &#125;,<br>    computed: &#123;<br>        rgb() &#123; <br>            return &#x27;rgb($&#123;this.r&#125;, $&#123;this.g&#125;, $&#123;this.b&#125;)&#x27; &#125;<br>        &#125;<br>    &#125;,<br>    methods: &#123;<br>        show() &#123; console.log(this.rgb) &#125;<br>    &#125;,<br>&#125;)<br></code></pre></td></tr></table></figure></li>
 </ul>
 <h4 id="8-4-computed和watch区别"><a href="#8-4-computed和watch区别" class="headerlink" title="8.4 computed和watch区别"></a>8.4 computed和watch区别</h4><p>computed是计算属性，依赖其它属性值计算，且computed的值有缓存，只有当计算值变化时才会返回内容。<br>watch监听到值的变化就会执行回调，在回调中可以进行一些逻辑操作。<br>所以一般来说需要依赖别的属性来动态获得值的时候可以用computed，对于监听到的变化需要做一些复杂的业务逻辑的情况可以使用watch。<br>computed是多对一或一对一时使用，watch是一对多时使用。</p>
-
+<h3 id="九、私有子组件和全局组件"><a href="#九、私有子组件和全局组件" class="headerlink" title="九、私有子组件和全局组件"></a>九、私有子组件和全局组件</h3><h4 id="9-1-私有子组件"><a href="#9-1-私有子组件" class="headerlink" title="9.1 私有子组件"></a>9.1 私有子组件</h4><p>父组件使用子组件：<br>①在根组件的<script>中导入需要的组件import Left from '@/components/Left.vue'<br>②在export default中的components节点注册组件，可选的给组件命名：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-attr">components</span>: &#123;  <span class="hljs-comment">//这样注册的都是私有子组件</span><br>        <span class="hljs-title class_">Left</span>: <span class="hljs-string">&#x27;Left&#x27;</span>   <span class="hljs-comment">// 可以不用重命名，直接写Left</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>③以标签的形式使用刚才注册的组件：<Left></Left></p>
+<h4 id="9-2-全局组件"><a href="#9-2-全局组件" class="headerlink" title="9.2 全局组件"></a>9.2 全局组件</h4><p>在vue项目的main.js入口文件中，通过Vue.component()方法注册全局组件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Count</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/components/Count.vue&#x27;</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;MyCount&#x27;</span>, <span class="hljs-title class_">Count</span>)<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
