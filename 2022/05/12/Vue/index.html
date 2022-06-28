@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
 <meta property="article:published_time" content="2022-05-12T09:12:16.000Z">
-<meta property="article:modified_time" content="2022-06-28T08:55:43.464Z">
+<meta property="article:modified_time" content="2022-06-28T09:37:10.886Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      234 分钟
+      235 分钟
     </span>
   
 
@@ -402,6 +402,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Count</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/components/Count.vue&#x27;</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;MyCount&#x27;</span>, <span class="hljs-title class_">Count</span>)<br></code></pre></td></tr></table></figure>
 
 <h3 id="十、组件通信"><a href="#十、组件通信" class="headerlink" title="十、组件通信"></a>十、组件通信</h3><p>组件通信一般分为以下四种情况：<br>①父子组件通信<br>②兄弟组件通信<br>③跨多层级组件通信<br>④任意组件</p>
+<p>通信的六种方式：<br>①props&#x2F; $emit<br>②ref &#x2F; $refs<br>③$emit &#x2F; $on<br>④provide &#x2F; inject<br>⑤$parent &#x2F; $children<br>⑥$attrs &#x2F; $listeners</p>
 <h4 id="10-1-父子通信"><a href="#10-1-父子通信" class="headerlink" title="10.1 父子通信"></a>10.1 父子通信</h4><ul>
 <li><strong>父组件向子组件共享数据用自定义属性props</strong>。<br>在子组件中定义props，父组件把数据定义在data中，使用子组件时直接传给子组件。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span>&#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>        <span class="hljs-attr">init</span>: &#123;<br>            <span class="hljs-attr">default</span>: <span class="hljs-number">0</span>, <span class="hljs-comment">//如果外界使用的时候，没有传递init属性，默认值生效</span><br>            <span class="hljs-attr">type</span>: <span class="hljs-title class_">Number</span>,   <span class="hljs-comment">//定义init数据类型</span><br>            <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">//必填项校验，规定这个属性使用时是否要传值</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 父组件data中定义数据user。</li>
