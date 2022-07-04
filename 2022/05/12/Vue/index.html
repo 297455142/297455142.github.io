@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
 <meta property="article:published_time" content="2022-05-12T09:12:16.000Z">
-<meta property="article:modified_time" content="2022-07-04T10:03:02.962Z">
+<meta property="article:modified_time" content="2022-07-04T12:15:22.205Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      30k 字
+      31k 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      254 分钟
+      255 分钟
     </span>
   
 
@@ -451,7 +451,8 @@
 <p>或者要修改子组件中元素的样式，前面加&#x2F;deep&#x2F;。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    /deep/ <span class="hljs-selector-tag">h5</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">color</span>: pink;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>上述代码会编译成：.外层[data-v-7668812d] .第三方组件 {  &#x2F;* … * &#x2F;  }<br>通过’&gt;&gt;&gt;’ 可以使得在使用scoped属性的情况下，穿透scoped，修改其他组件的值。<br>实现原理其实就是加权重。<br>‘&gt;&gt;&gt;’ 功能由 vue-loader 提供。 vue-loader 专门用于解析 vue 文件，提取每个语言块（html、script、style），如有必要会通过其它 loader 处理，最后将他们组装成一个 CommonJS 模块，module.exports 出一个 Vue.js 组件对象。<br><strong>scoped实质</strong>就是添加了属性选择器增加了10的权重。</p>
-<h3 id="十二、生命周期函数"><a href="#十二、生命周期函数" class="headerlink" title="十二、生命周期函数"></a>十二、生命周期函数</h3><p><strong>生命周期</strong>：指一个组件从创建-&gt;运行-&gt;销毁的整个阶段，强调的是一个时间段。<br><strong>生命周期函数</strong>：是由vue框架提供的内置函数，会伴随着组件的生命周期，自动按次序执行，强调的是时间点。这些函数直接写在export default里面，与methods平级。<br><strong>组件生命周期四个阶段</strong>：组件创建阶段、组件载入阶段、组件运行阶段、组件销毁阶段。</p>
+<h3 id="十二、生命周期钩子函数"><a href="#十二、生命周期钩子函数" class="headerlink" title="十二、生命周期钩子函数"></a>十二、生命周期钩子函数</h3><p><strong>生命周期</strong>：指一个组件从创建-&gt;运行-&gt;销毁的整个阶段，强调的是一个时间段。<br><strong>生命周期函数</strong>：是由vue框架提供的内置函数，会伴随着组件的生命周期，自动按次序执行，强调的是时间点。这些函数直接写在export default里面，与methods平级。<br><strong>组件生命周期四个阶段</strong>：组件创建阶段、组件载入阶段、组件运行阶段、组件销毁阶段。</p>
+<p><strong>钩子</strong>：hook，一种事件劫持机制，可以比事件更早进行执行处理。钩子可以理解为vue的内置事件，但是这个内置事件需要主动去配置，可以用来处理被拦截的函数调用、事件和消息。</p>
 <h4 id="12-1-组件创建阶段："><a href="#12-1-组件创建阶段：" class="headerlink" title="12.1 组件创建阶段："></a>12.1 组件创建阶段：</h4><p>此时的函数都只会运行一次。<br>①new Vue()创建组件的实例对象<br>②初始化时间和生命周期函数，此时组件的props、data、methods都尚未被创建，都处于不可用状态。<br>③<strong>beforeCreate()</strong> ，此时vue实例挂载元素$el和数据对象data都为undefined，还未初始化。<br>④初始化props、data、methods。<br>⑤<strong>created</strong> ，组件的props、data、methods已经创建好，都处于可用的状态，但是$el还没有，组件的模板结构尚未生成，此时通常用来借助ajax拿数据，并将拿来的数据放到data中使用。</p>
 <h4 id="12-2-组件载入阶段"><a href="#12-2-组件载入阶段" class="headerlink" title="12.2 组件载入阶段"></a>12.2 组件载入阶段</h4><p>此时的函数都只会运行一次。<br>①判断是否有el选项，没有看是否有vm.#mount(el)。<br>②基于数据和模板，在内存中编译生成HTML结构。<br>③<strong>beforeMount()</strong> ，此时vue实例的$el和data都初始化了，但还是挂载之前为虚拟的DOM节点，data.message还未替换。将要把内存中编译好的HTML结构渲染到浏览器中，此时浏览器中还没有当前组件的DOM结构。<br>④用内存中编译生成的HTML结构替换到el属性指定的DOM元素。<br>⑤<strong>mounted()</strong> ，此时vue实例挂载完成，data.message成功渲染，已经把内存中的HTML结构，成功的渲染到了浏览器之中，此时浏览器中已经包含了当前组件的DOM结构。</p>
 <h4 id="12-3-组件运行阶段（更新）"><a href="#12-3-组件运行阶段（更新）" class="headerlink" title="12.3 组件运行阶段（更新）"></a>12.3 组件运行阶段（更新）</h4><p>函数会运行多次。<br>①数据发生变化<br>②<strong>beforeUpdate()</strong> ：数据更新时调用，将要根据变化过后、最新的数据，重新渲染组件的模板结构。<br>③根据最新的数据，重新渲染组建的DOM结构。<br>④<strong>update()</strong> ：已经根据最新的数据，完成了组件DOM结构的重新渲染。</p>
@@ -460,7 +461,7 @@
 <p>此时，点击button按钮会发现，obj.b已经成功添加，但视图未刷新。<br>在Vue实例创建时，obj.b并未声明，因此就没有被Vue转换为响应式的属性，自然不会触发视图的更新，此时需要使用Vue的全局api：$set()</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">addObjB () &#123;    <br><span class="hljs-comment">// this.obj.b = &#x27;obj.b&#x27;      </span><br><span class="hljs-variable language_">this</span>.$set(<span class="hljs-variable language_">this</span>.<span class="hljs-property">obj</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;obj.b&#x27;</span>)<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">obj</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>$set() 方法相当于手动的去把 obj.b 处理成一个响应式的属性，此时视图也会跟着改变了。<br><strong>只要请求回来的数据，在页面渲染期间要用到，则必须要转存到data中</strong>。</p>
-<h3 id="十四、动态组件"><a href="#十四、动态组件" class="headerlink" title="十四、动态组件"></a>十四、动态组件</h3><p>动态切换组件的显示与隐藏，例如设置多个按钮，控制在同一个区域内要显示哪个组件。<br>VUE提供了内置的<component>组件，专门用来实现动态组件的切换。</p>
+<h3 id="十四、动态组件与keep-alive"><a href="#十四、动态组件与keep-alive" class="headerlink" title="十四、动态组件与keep-alive"></a>十四、动态组件与keep-alive</h3><p>动态切换组件的显示与隐藏，例如设置多个按钮，控制在同一个区域内要显示哪个组件。<br>VUE提供了内置的<component>组件，专门用来实现动态组件的切换。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">data() &#123;<br>    return &#123; comName: &#x27;Left&#x27; &#125;<br>&#125;<br>// 通过is属性，动态指定要渲染的组件<br>&lt;component :is=&quot;comName&quot;&gt;&lt;/component&gt;<br>// 点击按钮，动态切换组件的名称<br>&lt;button @click=&quot;comName=&#x27;Left&#x27; &quot;&gt;展示Left组件&lt;/button&gt;<br>&lt;button @click=&quot;comName=&#x27;Right&#x27; &quot;&gt;展示Right组件&lt;/button&gt;<br></code></pre></td></tr></table></figure>
 <p><strong>动态组件切换的时候原来的组件会被销毁，创建新的组件。</strong><br><strong>使用keep-alive使得组件被切换时不会被销毁，仍然保持</strong>。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">// include指定哪些组件会被缓存，可选<br>&lt;keep-alive include=&quot;Left,Right&quot;&gt;<br>    &lt;component :is=&quot;comName&quot;&gt;&lt;/component&gt;<br>&lt;/keep-alive&gt;<br></code></pre></td></tr></table></figure>
