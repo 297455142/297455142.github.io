@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E4%BF%AE%E9%A5%B0%E7%AC%A6.png">
 <meta property="og:image" content="http://example.com/2022/05/12/Vue/keep-alive%E9%A6%96%E6%AC%A1%E6%B8%B2%E6%9F%93.png">
 <meta property="article:published_time" content="2022-05-12T09:12:16.000Z">
-<meta property="article:modified_time" content="2022-07-05T10:40:38.640Z">
+<meta property="article:modified_time" content="2022-07-05T12:43:04.352Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -206,7 +206,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      35k 字
+      37k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      295 分钟
+      307 分钟
     </span>
   
 
@@ -480,7 +480,16 @@
 <h4 id="14-3-为什么切换组件后组件内数据仍保留"><a href="#14-3-为什么切换组件后组件内数据仍保留" class="headerlink" title="14.3 为什么切换组件后组件内数据仍保留"></a>14.3 为什么切换组件后组件内数据仍保留</h4><p>在首次渲染时，更改组件coma中input的值，查看当visible的值再次变为true时input是否会记住前面的值，因为更改visible的值后会执行updateComponent，即重新执行keep-alive的render函数。因为首次渲染时已经把数据存入到cache中，所以这次数据直接从cache中获取执行。<br>vnode.componentInstance &#x3D; cache[key].componentInstance<br>在首次渲染的时候，当key值不存在的时候会首先将子组件的vnode缓存起来，首次渲染时componentInstance是undefined，它在patch过程中调用组件的init钩子才生成的。当发生组件切换时，先前的状态信息重新赋值给了组件coma，vnode.componentInstance在keep-alive时已经进行重新赋值，且keepAlive为true，所以只会执行prepatch，不会执行created和mounted钩子。</p>
 <h4 id="14-4-keep-alive在首次渲染和patch过程中的差异"><a href="#14-4-keep-alive在首次渲染和patch过程中的差异" class="headerlink" title="14.4 keep-alive在首次渲染和patch过程中的差异"></a>14.4 keep-alive在首次渲染和patch过程中的差异</h4><p><strong>首次渲染</strong>：keep-alive终究是一个组件，会执行组件相应的逻辑，在首次渲染的时候执行patch操作，执行到core&#x2F;vdom&#x2F;patch中。首次渲染时componentInstance并不存在，只执行init钩子，init具体作用就是创建子组件实例。<br><strong>更改数据后patch过程</strong>：当data中的值发生改变时，会触发updateComponent，此时会重新执行keep-alive的render函数，重新执行根组件的patch过程。</p>
 <h4 id="14-5-keep-alive是否必须"><a href="#14-5-keep-alive是否必须" class="headerlink" title="14.5 keep-alive是否必须"></a>14.5 keep-alive是否必须</h4><p>keep-alive对于缓存数据有巨大帮助，可以防止组件反复创建。<br><strong>使用场景</strong>：页面中，如果返回上一个页面会刷新数据，需要保留离开页面时的状态，此时需要keep-alive。<br><strong>不使用场景</strong>：如果组件切换不需要保存状态，此时使用keep-alive需要在activated重置这些属性。如果所有变量都进行重置，风险是否可控。所有缓存都放在了cache中，当组件过多的时候内容过多，导致这个对象巨大，不一定能提高性能要求。</p>
-
+<h3 id="十五、slot插槽"><a href="#十五、slot插槽" class="headerlink" title="十五、slot插槽"></a>十五、slot插槽</h3><p>插槽，是<strong>组件的一块HTML模板</strong>，允许开发者在封装组件时把不确定、希望用户指定的部分定义为插槽。核心问题是是否显示和怎样显示。每个插槽都要指定一个name名称，如果省略了则有一个默认的名称叫做default。<br>在组件中放置<slot></slot>，当用户调用组件，并在组件的标签中输入内容时，这些内容会被放到组件的slot标签位置显示，默认在使用组件时提供的内容被填充到名字为default的插槽中。<br>任何一个组件都可以分为非插槽模板和插槽模板两类。非插槽模板指的是html模板，比如div、span，它们的显示与隐藏、怎样显示由组件自身控制。插槽模板是slot，它是一个空壳，显示与隐藏、最后长什么样由父组件控制，但是插槽显示的位置由子组件自身决定，slot写在组件template的什么位置，父组件传过来的模板将来就显示在什么位置。<br><strong>父组件指定内容放到子组件某个插槽</strong>：用v-slot，不能直接使用在元素上，需要套一个盒子，可以简写为#，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;child&gt;<br>    &lt;template v-slot:title&gt;<br>        &lt;p&gt;123&lt;/p&gt;<br>    &lt;/template&gt;<br>&lt;/child&gt;<br></code></pre></td></tr></table></figure>
+<p>此处v-slot:子组件插槽名name&#x3D;”给插槽起的新名字”，旧版本中组件名用slot&#x3D;’插槽名’，slot-scope&#x3D;’插槽新名字’<br><strong>指定默认内容（后备内容）</strong>：直接在子组件里放置的slot标签内部放置内容，这些内容就是默认的内容，当用户没有指定的时候就显示默认的内容，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;slot name=&quot;title&quot;&gt;<br>    &lt;p&gt;123&lt;/p&gt;<br>&lt;/slot&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="15-1-单个插槽-默认插槽-匿名插槽"><a href="#15-1-单个插槽-默认插槽-匿名插槽" class="headerlink" title="15.1 单个插槽 | 默认插槽 | 匿名插槽"></a>15.1 单个插槽 | 默认插槽 | 匿名插槽</h4><p>不用设置name属性，可以放在组件的任意位置，一个组件中只能有一个该类插槽。具名插槽可以放多个，只要它们的名字不同就可以。</p>
+<h4 id="15-2-具名插槽"><a href="#15-2-具名插槽" class="headerlink" title="15.2 具名插槽"></a>15.2 具名插槽</h4><p>给插槽设置name属性，可以在一个组件中出现多次，但每次name值不同。</p>
+<h4 id="15-3-作用域插槽"><a href="#15-3-作用域插槽" class="headerlink" title="15.3 作用域插槽"></a>15.3 作用域插槽</h4><p>在封装组件时，为预留的slot提供属性对应的值，在调用组件时，可以使用组件插槽预留的值，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vue">// 子组件里<br>&lt;slot name=&quot;content&quot; msg=&quot;hello vue.js&quot;&gt;&lt;/slot&gt;<br><br>// 父组件<br>&lt;template #content=&quot;obj&quot;&gt;    <br>    &lt;div&gt;<br>        &lt;p&gt;&#123;&#123; obj.msg &#125;&#125;&lt;/p&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+<p>也可以不给插槽命名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;slot name=&quot;content&quot; msg=&quot;hello vue.js&quot; :user=&quot;userinfo&quot;&gt;&lt;/slot&gt;<br><br>&lt;template #content=&quot;&#123;msg,user&#125;&quot;&gt;<br>    &lt;div&gt;<br>        &lt;p&gt;&#123;&#123; msg &#125;&#125;&lt;/p&gt;<br>        &lt;p&gt;&#123;&#123; user.username &#125;&#125;&lt;/p&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
