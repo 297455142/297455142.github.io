@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/07/06/%E5%BA%94%E7%94%A8%E5%B1%82-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png">
 <meta property="article:published_time" content="2022-07-06T06:57:24.000Z">
-<meta property="article:modified_time" content="2022-07-06T10:43:55.404Z">
+<meta property="article:modified_time" content="2022-07-06T11:16:18.676Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.9k 字
+      5.3k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      41 分钟
+      45 分钟
     </span>
   
 
@@ -358,6 +358,17 @@
 <li><strong>二进制协议</strong>：在HTTP 1.1中报文的头信息必须是ASCII码，数据体可以是文本，也可以是二进制。HTTP 2.0中头信息和数据体都是二进制，提升了解析效率。</li>
 <li><strong>数据流</strong>：HTTP 2.0使用了数据流，因为HTTP 2.0的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的请求。HTTP2.0将每个请求或回应的所有数据包称为一个数据流，每个数据流都有唯一的编号，数据包发送时必须标记数据流ID来区分数据哪个数据流。</li>
 <li><strong>服务器推送</strong>：HTTP2.0允许服务器未经请求，主动向客户端发送资源。使用服务器推送提前给客户端推送必要的资源，减少延迟时间。这里推送的是静态资源。</li>
+</ul>
+<h2 id="九、HTTP-3-0"><a href="#九、HTTP-3-0" class="headerlink" title="九、HTTP 3.0"></a>九、HTTP 3.0</h2><p>HTTP3.0基于UDP协议实现了类似于TCP的多路复用数据流、传输可靠性等功能，使用了QUIC协议。</p>
+<ul>
+<li><strong>多路复用</strong>：TCP协议没有多路复用功能，QUIC实现了这个功能，并且传输单个数据流可以保证有序交付且不会影响其它的数据流，解决了TCP存在的问题。</li>
+<li><strong>0~1RTT</strong>：使用类似TCP快速打开的技术，缓存当前会话的上下文，下次恢复会话时只需将之前缓存传递给服务器端验证通过就可以进行传输了。使用TLS1.3减少握手花费的RTT数。</li>
+<li><strong>流量控制、传输可靠性功能</strong>：QUIC在UDP的基础上增加了一层来保证数据传输的可靠性，它提供了数据包重传、拥塞控制等TCP中的特性。</li>
+</ul>
+<h2 id="十、SSL"><a href="#十、SSL" class="headerlink" title="十、SSL"></a>十、SSL</h2><ul>
+<li>SSL协议位于TCP&#x2F;IP协议与各种应用层协议之间，为数据通讯提供安全支持，包括两层。</li>
+<li>SSL记录协议：建立在可靠的传输协议（如TCP）上，为高层协议提供数据封装、压缩、加密等基本功能的支持。</li>
+<li>SSL握手协议：建立在SSL记录协议上，用于在实际的数据传输开始前，通讯双方进行身份认证、协商加密算法、交换加密密钥等。</li>
 </ul>
 
             </div>
