@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>应用层(HTTP)</title>
+    <link href="/2022/07/06/%E5%BA%94%E7%94%A8%E5%B1%82-HTTP/"/>
+    <url>/2022/07/06/%E5%BA%94%E7%94%A8%E5%B1%82-HTTP/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>计算机网络</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>webpack</title>
     <link href="/2022/06/26/webpack/"/>
     <url>/2022/06/26/webpack/</url>
@@ -1642,7 +1667,7 @@
   
   
   <entry>
-    <title>应用层(HTTP)</title>
+    <title>应用层</title>
     <link href="/2022/05/11/%E5%BA%94%E7%94%A8%E5%B1%82/"/>
     <url>/2022/05/11/%E5%BA%94%E7%94%A8%E5%B1%82/</url>
     
