@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/07/06/%E5%BA%94%E7%94%A8%E5%B1%82-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png">
 <meta property="article:published_time" content="2022-07-06T06:57:24.000Z">
-<meta property="article:modified_time" content="2022-07-07T02:49:29.023Z">
+<meta property="article:modified_time" content="2022-07-07T07:53:32.809Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.9k 字
+      13k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      75 分钟
+      108 分钟
     </span>
   
 
@@ -491,6 +491,61 @@
 <li><strong>是否缓存：</strong> 因为两者应用场景不同，浏览器一般会对 Get 请求缓存，但很少对 Post 请求缓存。</li>
 </ul>
 <h2 id="十四、无状态协议HTTP"><a href="#十四、无状态协议HTTP" class="headerlink" title="十四、无状态协议HTTP"></a>十四、无状态协议HTTP</h2><p>无状态协议就是指浏览器对于事务的处理没有记忆能力。比如客户请求获得网页之后关闭浏览器，然后再次启动浏览器，登录该网站，但是服务器并不知道客户关闭了一次浏览器。<br><strong>HTTP 就是一种无状态的协议</strong>，他对用户的操作没有记忆能力。每次输入用户名和密码登陆一个网站后，下次登陆就不再重新输入用户名和密码了。这其实是一个叫做 小甜饼(Cookie) 的机制。它能够让浏览器具有记忆能力。<br>当向服务端发送请求时，服务端会给你发送一个认证信息，服务器第一次接收到请求时，开辟了一块 Session 空间（创建了Session对象），同时生成一个 sessionId ，并通过响应头的 <strong>Set-Cookie：JSESSIONID&#x3D;XXXXXXX</strong>命令，向客户端发送要求设置 Cookie 的响应； 客户端收到响应后，在本机客户端设置了一个 <strong>JSESSIONID&#x3D;XXXXXXX</strong>的 Cookie 信息，该 Cookie 的过期时间为浏览器会话结束；接下来客户端每次向同一个网站发送请求时，请求头都会带上该 Cookie信息（包含 sessionId ）， 然后，服务器通过读取请求头中的 Cookie 信息，获取名称为 JSESSIONID 的值，得到此次请求的 sessionId。这样，你的浏览器才具有了记忆能力。<br>还有一种方式是使用 JWT 机制，它也是能够让你的浏览器具有记忆能力的一种机制。与 Cookie 不同，JWT 是保存在客户端的信息，它广泛的应用于单点登录的情况。JWT 具有两个特点：<br>JWT 的 Cookie 信息存储在客户端，而不是服务端内存中。也就是说，JWT 直接本地进行验证就可以，验证完毕后，这个 Token 就会在 Session 中随请求一起发送到服务器，通过这种方式，可以节省服务器资源，并且 token 可以进行多次验证。<br>JWT 支持跨域认证，Cookies 只能用在单个节点的域或者它的子域中有效。如果它们尝试通过第三个节点访问，就会被禁止。使用 JWT 可以解决这个问题，使用 JWT 能够通过多个节点进行用户认证，也就是我们常说的跨域认证。</p>
+<h2 id="十五、URL组成部分"><a href="#十五、URL组成部分" class="headerlink" title="十五、URL组成部分"></a>十五、URL组成部分</h2><p>如：<a target="_blank" rel="noopener" href="http://www.aspxfans.com:8080/news/index.asp?boardID=5">http://www.aspxfans.com:8080/news/index.asp?boardID=5</a></p>
+<ul>
+<li><strong>协议部分</strong>：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“&#x2F;&#x2F;”为分隔符；</li>
+<li><strong>域名部分</strong>：该URL的域名部分为“<a target="_blank" rel="noopener" href="http://www.aspxfans.com”.一个url中,也可以使用ip地址作为域名使用./">www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用。</a></li>
+<li><strong>端口部分</strong>：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口（HTTP协议默认端口是80，HTTPS协议默认端口是443）；</li>
+<li><strong>虚拟目录部分</strong>：从域名后的第一个“&#x2F;”开始到最后一个“&#x2F;”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“&#x2F;news&#x2F;”；</li>
+<li><strong>文件名部分</strong>：从域名后的最后一个“&#x2F;”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“&#x2F;”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“&#x2F;”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名；</li>
+<li><strong>锚部分</strong>：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分；</li>
+<li><strong>参数部分</strong>：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID&#x3D;5&amp;ID&#x3D;24618&amp;page&#x3D;1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。</li>
+</ul>
+<h2 id="十六、URL组成部分"><a href="#十六、URL组成部分" class="headerlink" title="十六、URL组成部分"></a>十六、URL组成部分</h2><p>如：<a target="_blank" rel="noopener" href="http://www.aspxfans.com:8080/news/index.asp?boardID=5">http://www.aspxfans.com:8080/news/index.asp?boardID=5</a></p>
+<ul>
+<li><strong>协议部分</strong>：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在”HTTP”后面的“&#x2F;&#x2F;”为分隔符；</li>
+<li><strong>域名部分</strong>：该URL的域名部分为“<a target="_blank" rel="noopener" href="http://www.aspxfans.com”.一个url中,也可以使用ip地址作为域名使用./">www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用。</a></li>
+<li><strong>端口部分</strong>：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口（HTTP协议默认端口是80，HTTPS协议默认端口是443）；</li>
+<li><strong>虚拟目录部分</strong>：从域名后的第一个“&#x2F;”开始到最后一个“&#x2F;”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“&#x2F;news&#x2F;”；</li>
+<li><strong>文件名部分</strong>：从域名后的最后一个“&#x2F;”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“&#x2F;”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“&#x2F;”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名；</li>
+<li><strong>锚部分</strong>：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分；</li>
+<li><strong>参数部分</strong>：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID&#x3D;5&amp;ID&#x3D;24618&amp;page&#x3D;1”。参数可以允许有多个参数，参数与参数之间用“&amp;”作为分隔符。<h2 id="十七、输入URL发生什么"><a href="#十七、输入URL发生什么" class="headerlink" title="十七、输入URL发生什么"></a>十七、输入URL发生什么</h2></li>
+</ul>
+<ol>
+<li><strong>解析URL</strong>：首先对URL进行解析，分析所需要使用的传输协议和请求资源的路径。如果输入的URL协议或主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查URL中是否出现非法字符，若存在则对非法字符进行转义。</li>
+<li><strong>缓存判断</strong>：浏览器判断所请求的资源是否在缓存里，如果在缓存里且没有失效就会直接使用，否则向服务器发起新的请求。</li>
+<li><strong>DNS解析</strong>：首先判断本地是否有该域名的IP地址的缓存，如果有则使用，没有就向本地DNS服务器发起请求。本地DNS服务器先检查是否存在缓存，如果没有先向根域名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责权威域名服务器的地址后，再向权威域名服务器发起请求，最终获得域名的IP地址后，本地DNS服务器再将这个IP地址返回给请求的用户。用户向本地 DNS 服务器发起请求属于递归请求，本地 DNS 服务器向各级域名服务器发起请求属于迭代请求。</li>
+<li><strong>获取MAC地址</strong>：当浏览器得到 IP 地址后，数据传输还需要知道目的主机 MAC 地址，因为应用层下发数据给传输层，TCP 协议会指定源端口号和目的端口号，然后下发给网络层。网络层会将本机地址作为源地址，获取的 IP 地址作为目的地址。然后将下发给数据链路层，数据链路层的发送需要加入通信双方的 MAC 地址，本机的 MAC 地址作为源 MAC 地址，目的 MAC 地址需要分情况处理。</li>
+<li><strong>TCP三次握手</strong>：客户端发送SYN包（SYN &#x3D; 1, seq &#x3D; x）至服务端，并处于SYN_SENT状态，等待服务器确认。服务端解析SYN，并发送SYN + ACK（SYN &#x3D; 1, ACK &#x3D; x + 1, seq &#x3D; y） 包至客户端，并处于SYN_RECV状态，允许建立链接）。客户端获取SYN + ACK 并发送ACK（ACK &#x3D; y + 1， seq &#x3D; z）包至服务端，链接建立成功。</li>
+<li><strong>HTTPS握手</strong>：如果使用的是 HTTPS 协议，在通信前还存在 TLS 的一个四次握手的过程。首先由客户端向服务器端发送使用的协议的版本号、一个随机数和可以使用的加密方法。服务器端收到后，确认加密的方法，也向客户端发送一个随机数和自己的数字证书。客户端收到后，首先检查数字证书是否有效，如果有效，则再生成一个随机数，并使用证书中的公钥对随机数加密，然后发送给服务器端，并且还会提供一个前面所有内容的 hash 值供服务器端检验。服务器端接收后，使用自己的私钥对数据解密，同时向客户端发送一个前面所有内容的 hash 值供客户端检验。这个时候双方都有了三个随机数，按照之前所约定的加密方法，使用这三个随机数生成一把秘钥，以后双方通信前，就使用这个秘钥对数据进行加密后再传输。</li>
+<li><strong>返回数据</strong>：页面请求发送到服务器端后，服务器端会返回一个html文件作为响应，浏览器接收到响应后，开始对html文件进行解析，开始页面的渲染过程。</li>
+<li><strong>页面渲染</strong>：浏览器首先解析HTML，构建DOM树（深度优先），根据解析的CSS文件生成CSS规则树，如果遇到script标签，判断是否有defer或async属性，否则暂停执行。合并DOM树和CSS规则，生成render渲染树。渲染树构建好后，会根据渲染树进行布局，包括回流、重排，负责各元素尺寸、位置计算。布局完成后，绘制渲染树，绘制页面像素信息，最后显示到屏幕上。</li>
+<li><strong>TCP四次挥手</strong>：若客户端认为数据发送完成，则需要向服务端发送连接释放请求。经过四次挥手过程，连接断开。</li>
+</ol>
+<h2 id="十八、页面有多张图片，HTTP怎样加载"><a href="#十八、页面有多张图片，HTTP怎样加载" class="headerlink" title="十八、页面有多张图片，HTTP怎样加载"></a>十八、页面有多张图片，HTTP怎样加载</h2><ul>
+<li>在HTTP 1中，浏览器对一个域名下最大TCP连接数为6，会请求多次，可以用多域名部署解决，这样可以提高同时请求的数目，加快页面的获取速度。</li>
+<li>在HTTP 2中，可以一瞬间加载很多资源，因为HTTP 2支持多路复用，可以在一个TCP连接中发送多个HTTP请求。<h2 id="十九、keep-alive"><a href="#十九、keep-alive" class="headerlink" title="十九、keep-alive"></a>十九、keep-alive</h2>短连接：每次请求&#x2F;应答时客户端和服务端都要新建一个连接，完成后立即断开。<br>长连接：客户端与服务端的连接持久有效，当出现对服务器的后继请求时，keep-alive功能避免了建立或重新建立连接。</li>
+<li>HTTP1.0版本是默认没有Keep-alive的（也就是默认会发送keep-alive），所以要想连接得到保持，必须手动配置发送<code>Connection: keep-alive</code>字段。若想断开keep-alive连接，需发送<code>Connection:close</code>字段；</li>
+<li>HTTP1.1规定了默认保持长连接，数据传输完成了保持TCP连接不断开，等待在同域名下继续用这个通道传输数据。如果需要关闭，需要客户端发送<code>Connection：close</code>首部字段。<br><strong>keep-alive的建立过程</strong>：</li>
+<li>客户端向服务器在发送请求报文同时在首部添加发送Connection字段</li>
+<li>服务器收到请求并处理 Connection字段</li>
+<li>服务器回送Connection:Keep-Alive字段给客户端</li>
+<li>客户端接收到Connection字段</li>
+<li>Keep-Alive连接建立成功<br><strong>服务器自动断开过程（没有keep-alive）</strong>：</li>
+<li>客户端向服务器只是发送内容报文（不包含Connection字段）</li>
+<li>服务器收到请求并处理</li>
+<li>服务器返回客户端请求的资源并关闭连接</li>
+<li>客户端接收资源，发现没有Connection字段，断开连接<br><strong>客户端请求断开连接过程</strong>：</li>
+<li>客户端向服务器发送Connection:close字段</li>
+<li>服务器收到请求并处理connection字段</li>
+<li>服务器回送响应资源并断开连接</li>
+<li>客户端接收资源并断开连接<br><strong>优点</strong>：</li>
+<li>较少的CPU和内存的使⽤（由于同时打开的连接的减少了）；</li>
+<li>允许请求和应答的HTTP管线化；</li>
+<li>降低拥塞控制 （TCP连接减少了）；</li>
+<li>减少了后续请求的延迟（⽆需再进⾏握⼿）；</li>
+<li>报告错误⽆需关闭TCP连；<br><strong>缺点</strong>：长时间的TCP连接容易导致系统资源无效占用，浪费系统资源。</li>
+</ul>
 
             </div>
             <hr>
