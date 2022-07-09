@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://example.com/2022/07/06/%E5%BA%94%E7%94%A8%E5%B1%82-HTTP/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png">
 <meta property="og:image" content="http://example.com/2022/07/06/%E5%BA%94%E7%94%A8%E5%B1%82-HTTP/DHCP.png">
 <meta property="article:published_time" content="2022-07-06T06:57:24.000Z">
-<meta property="article:modified_time" content="2022-07-09T06:15:04.524Z">
+<meta property="article:modified_time" content="2022-07-09T16:14:21.389Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -209,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      157 分钟
+      161 分钟
     </span>
   
 
@@ -632,6 +632,19 @@
 <li>如果 Type &#x3D; NS，则 Name 是个域名，Value 是负责该域名的 DNS 服务器的主机名。这个记录主要用于 DNS 链式 查询时，返回下一级需要查询的 DNS 服务器的信息。</li>
 <li>如果 Type &#x3D; CNAME，则 Name 为别名，Value 为该主机的规范主机名。该条记录用于向查询的主机返回一个主机名 对应的规范主机名，从而告诉查询主机去查询这个主机名的 IP 地址。主机别名主要是为了通过给一些复杂的主机名提供 一个便于记忆的简单的别名。</li>
 <li>如果 Type &#x3D; MX，则 Name 为一个邮件服务器的别名，Value 为邮件服务器的规范主机名。它的作用和 CNAME 是一 样的，都是为了解决规范主机名不利于记忆的缺点。</li>
+</ul>
+<h2 id="三十二、Websocket"><a href="#三十二、Websocket" class="headerlink" title="三十二、Websocket"></a>三十二、Websocket</h2><h3 id="32-1-什么是websocket"><a href="#32-1-什么是websocket" class="headerlink" title="32.1 什么是websocket"></a>32.1 什么是websocket</h3><p>是HTML5提供的一种浏览器与服务器进行全双工通讯的协议。它基于TCP协议，并复用HTTP的握手通道。浏览器和服务器只需要进行一次握手就可以创建持久性的链接，并进行双向数据传输。<br><strong>特点</strong>：</p>
+<ul>
+<li>支持双向通信，实时性更强</li>
+<li>可以发送文本，也可以发送二进制数据</li>
+<li>建立在TCP协议之上，服务端的实现比较容易</li>
+<li>数据格式比较轻量，性能开销小，通信高效</li>
+<li>没有同源限制，客户端可以与任意服务器通信</li>
+<li>协议标识符是ws（如果加密，则为wss），服务器网址就是 URL</li>
+<li>与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。<h3 id="32-2-websocket优点"><a href="#32-2-websocket优点" class="headerlink" title="32.2 websocket优点"></a>32.2 websocket优点</h3></li>
+<li>通过第一次HTTP Request建立了连接之后，后续的数据交换都不用再重新发送HTTP Request，节省了带宽资源；</li>
+<li>WebSocket的连接是双向通信的连接，在同一个TCP连接上，既可以发送，也可以接收;</li>
+<li>具有多路复用的功能，几个不同的URI可以复用同一个WebSocket连接。</li>
 </ul>
 
             </div>
