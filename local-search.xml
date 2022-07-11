@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>567.字符串的排列</title>
+    <link href="/2022/07/11/567-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/"/>
+    <url>/2022/07/11/567-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/</url>
+    
+    <content type="html"><![CDATA[<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的排列。如果是，返回 true ；否则，返回 false 。<br>换句话说，s1 的排列之一是 s2 的 子串 。</p><p>输入：s1 &#x3D; “ab” s2 &#x3D; “eidbaooo”<br>输出：true<br>解释：s2 包含 s1 的排列之一 (“ba”).</p><p>1 &lt;&#x3D; s1.length, s2.length &lt;&#x3D; 10000<br>s1 和 s2 仅包含小写字母</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>首先建立一个数组，统计s1中每个字符出现的次数，均设置为负值，表示要用来填补的次数。<br>设置左右指针，开始右指针右移，每个字符都要在统计数组对应处加一，若加一后该处值为正值，则要进行左指针右移，同时每个字符都要在统计数组中对应处减一（满足时数组所有值为0，不应有大于0的值），直到该处值为0。<br>若该次循环后窗口大小等于s1长度，则匹配成功，否则继续进行循环。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> checkInclusion = <span class="hljs-keyword">function</span>(<span class="hljs-params">s1, s2</span>) &#123;<br>    <span class="hljs-keyword">const</span> n = s1.<span class="hljs-property">length</span>, m = s2.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">if</span>(n&gt;m)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">const</span> count = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">26</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>        count[s1[i].<span class="hljs-title function_">charCodeAt</span>()-<span class="hljs-string">&#x27;a&#x27;</span>.<span class="hljs-title function_">charCodeAt</span>()]--;<br>    &#125;<br>    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> right=<span class="hljs-number">0</span>;right&lt;m;right++)&#123;<br>        <span class="hljs-keyword">const</span> x = s2[right].<span class="hljs-title function_">charCodeAt</span>() - <span class="hljs-string">&#x27;a&#x27;</span>.<span class="hljs-title function_">charCodeAt</span>();<br>        count[x]++;<br>        <span class="hljs-keyword">while</span>(count[x]&gt;<span class="hljs-number">0</span>)&#123;<br>            count[s2[left].<span class="hljs-title function_">charCodeAt</span>()-<span class="hljs-string">&#x27;a&#x27;</span>.<span class="hljs-title function_">charCodeAt</span>()]--;<br>            left++;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(right-left+<span class="hljs-number">1</span>===n)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+      <category>数组</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>76.最小覆盖子串</title>
     <link href="/2022/07/11/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/"/>
     <url>/2022/07/11/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</url>
