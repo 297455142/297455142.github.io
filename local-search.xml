@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>JavaScript上</title>
+    <link href="/2022/07/13/JavaScript%E4%B8%8A/"/>
+    <url>/2022/07/13/JavaScript%E4%B8%8A/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、数据类型"><a href="#一、数据类型" class="headerlink" title="一、数据类型"></a>一、数据类型</h1><h2 id="一、数据类型和区别"><a href="#一、数据类型和区别" class="headerlink" title="一、数据类型和区别"></a>一、数据类型和区别</h2><p>JS的八大数据类型：Number、String、Boolean、Undefined、Null、Object、Symbol（ES6新增）、Bigint（ES6新增）<br>基本数据类型：Number、String、Boolean、Undefined、Null、Symbol(ES6)<br>引用数据类型：Object、Array、Function<br>集合：set。映射：Map。</p><ul><li>Symbol代表创建后独一无二的数据类型，主要是为了解决可能出现的全局变量冲突的问题。</li><li>BigInt 是一种数字类型的数据，它可以表示任意精度格式的整数，可以安全地存储和操作大整数，即使这个数已经超出了 Number 能够表示的安全整数范围。<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3>1、 <strong>位置</strong>：基本数据类型值（原始值）是存储在栈中的数据段，直接存储在变量访问的位置，存放js基本数据类型的变量存放的是基本类型数据的实际值。<br>引用数据类型值是存储在堆中的对象，存储在变量处的值是一个指针，指向存储对象的内存地址。存放引用数据类型的变量是保存对它的引用，即指针。<br>2、复制变量时：对于存放基本数据类型的变量的交换，等于在一个新的作用域创建一个新的空间，新的空间与原空间不会互相影响。<br>对于存放引用数据类型的变量交换，并不会创建一个新的空间，而是让对象或方法和之前对象或方法同时指向一个原有空间（地址）。<br>3、参数传递不同：函数传参时，变量存储的基本类型的值只是把值传递给参数之后，参数和这个变量互不影响。<br>变量存储的引用数据类型值存储的是该引用值在堆内存中的内存地址，传递的值就是这个内存地址。<br>4、在操作系统中，内存被分为栈区和堆区。栈区内存由编译器自动分配释放，存放函数的参数值、局部变量的值等，操作方式类似数据结构中的栈。堆区内存一般由开发者分配释放，若开发者不释放，程序结束时可能由垃圾回收机制回收。</li></ul><p>确定一个值是哪种基本类型可以使用typeof操作符，确定一个值是哪种引用类型使用instanceof操作符。<br>typeof null输出object</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>原创</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>3.无重复字符的最长子串</title>
     <link href="/2022/07/11/3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/"/>
     <url>/2022/07/11/3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/</url>
