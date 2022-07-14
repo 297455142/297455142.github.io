@@ -24,9 +24,9 @@
 <meta property="og:description" content="一、数据类型一、数据类型和区别JS的八大数据类型：Number、String、Boolean、Undefined、Null、Object、Symbol（ES6新增）、Bigint（ES6新增）基本数据类型：Number、String、Boolean、Undefined、Null、Symbol(ES6)引用数据类型：Object、Array、Function集合：set。映射：Map。  Symbo">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/07/13/JavaScript%E4%B8%8A/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.png">
-<meta property="og:image" content="en-resource://database/2517:2">
+<meta property="og:image" content="http://example.com/2022/07/13/JavaScript%E4%B8%8A/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png">
 <meta property="article:published_time" content="2022-07-13T01:37:56.000Z">
-<meta property="article:modified_time" content="2022-07-14T01:47:40.163Z">
+<meta property="article:modified_time" content="2022-07-14T03:38:49.261Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -200,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.6k 字
+      4.3k 字
     </span>
   
 
@@ -209,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30 分钟
+      36 分钟
     </span>
   
 
@@ -286,10 +286,26 @@
 <ul>
 <li>1 符号位，0表示正数，1表示负数</li>
 <li>11 指数位（e），决定数值大小</li>
-<li>52 尾数（f），小数部分（即有效数字），决定数值精度。<br>计算方式：尾数为1.xxx…，这些x指的就是52位尾数。指数位二进制-1023。指数位最大为11111111110。<br><img src="en-resource://database/2517:2" srcset="/img/loading.gif" lazyload alt="34ebb1ad23ba50aba4b27854a78cfa46.png"><br>最大安全数字：Number.MAX_SAFE_INTEGER &#x3D; Math.pow(2,53)-1，为一个16位整数。<br>最大数字：Number.MAX_VALUE &#x3D; 2^Math.pow(2,2046-1023)*（1.11111….（52个1））<br>两数相加，0.1和0.2均先转换为二进制数，尾数会发生无限循环，进行截断时会发生精度丢失。<br><strong>精度丢失可能会出现在进制换和对阶运算中</strong><br>解决办法：设置一个误差范围，如<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">（<span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span>）.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>) <span class="hljs-comment">//利用toFixed进行四舍五入，保留小数后面两位</span><br></code></pre></td></tr></table></figure>
+<li>52 尾数（f），小数部分（即有效数字），决定数值精度。<br>计算方式：尾数为1.xxx…，这些x指的就是52位尾数。指数位二进制-1023。指数位最大为11111111110。  
+最大安全数字：Number.MAX_SAFE_INTEGER &#x3D; Math.pow(2,53)-1，为一个16位整数。<br>最大数字：Number.MAX_VALUE &#x3D; 2^Math.pow(2,2046-1023)*（1.11111….（52个1））<br>两数相加，0.1和0.2均先转换为二进制数，尾数会发生无限循环，进行截断时会发生精度丢失。<br><strong>精度丢失可能会出现在进制换和对阶运算中</strong><br>解决办法：设置一个误差范围，如<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">（<span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span>）.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>) <span class="hljs-comment">//利用toFixed进行四舍五入，保留小数后面两位</span><br></code></pre></td></tr></table></figure>
 在ES6中，提供Number.EPSILON属性，只要判断0.1+0.2-0.3是否小于Number.EPSILON，小于就视为正常。</li>
 </ul>
-
+<h2 id="七、typeof-NaN的结果是什么"><a href="#七、typeof-NaN的结果是什么" class="headerlink" title="七、typeof NaN的结果是什么"></a>七、typeof NaN的结果是什么</h2><p>NaN是指结果不是一个数字，用于指出数字类型中的错误情况，即执行数学运算没有成功，这是失败后返回的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">NaN</span>; <span class="hljs-comment">// &quot;number&quot;</span><br></code></pre></td></tr></table></figure>
+<p>NaN是一个特殊值，和自身不相等，是唯一一个非自反的值，NaN!&#x3D;&#x3D;NaN为true。</p>
+<h2 id="八、isNaN和Number-isNaN区别"><a href="#八、isNaN和Number-isNaN区别" class="headerlink" title="八、isNaN和Number.isNaN区别"></a>八、isNaN和Number.isNaN区别</h2><ul>
+<li>isNaN接收参数后，会尝试将这个参数转换为数值，任何不能转换为数值的值都会返回true，非数字值传入也会返回true，会影响NaN的判断。</li>
+<li>Number.isNaN会首先判断传入的参数是否为数字，如果是数字再继续判断是否为NaN，不会进行数据类型的转换，对NaN的判断更加准确。<h2 id="九、-x3D-x3D-强制类型转换"><a href="#九、-x3D-x3D-强制类型转换" class="headerlink" title="九、&#x3D;&#x3D;强制类型转换"></a>九、&#x3D;&#x3D;强制类型转换</h2>对于&#x3D;&#x3D;，如果对比双方类型不一样，会进行类型转换。如果比较x和y是否相同，进行如下流程：</li>
+</ul>
+<ol>
+<li>首先会判断两者类型是否<strong>相同</strong>，相同的话就比较两者的大小；</li>
+<li>类型不相同的话，就会进行类型转换；</li>
+<li>会先判断是否在对比 null和undefined，是的话就会返回 true</li>
+<li>判断两者类型是否为string和number，是的话就会将字符串转换为number</li>
+<li>判断其中一方是否为boolean，是的话就把boolean转换为number（0或1）再进行判断。</li>
+<li>判断其中一方是否为object且另一方为string、number或symbol，是就会把object转换为原始类型再进行判断。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&#x27;1&#x27;</span> == &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;js&#x27;</span> &#125;    <span class="hljs-comment">//    &#x27;1&#x27; == &#x27;[object Object]&#x27;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+ <img src="/2022/07/13/JavaScript%E4%B8%8A/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png" srcset="/img/loading.gif" lazyload class=""> 
             </div>
             <hr>
             <div>
