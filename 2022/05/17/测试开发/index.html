@@ -1,0 +1,658 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、测试用例是根据什么编写的测试用例指的是对一项特定产品进行测试任务的描述， 包括测试目标、测试环境、输入数据、测试步骤、预期结果、测试脚本等，最终形成文档。测试用例主要包括四个内容：用例标题、前置条件、测试步骤和预期结果。  用例标题：主要描述测试某项功能。 前置条件：用例标题需要满足该条件。 测试步骤：描述用例的操作步骤。 预期结果：符合预期需求（开发规格书、需求文档、用户需求等）二、怎么判断">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试开发">
+<meta property="og:url" content="http://example.com/2022/05/17/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、测试用例是根据什么编写的测试用例指的是对一项特定产品进行测试任务的描述， 包括测试目标、测试环境、输入数据、测试步骤、预期结果、测试脚本等，最终形成文档。测试用例主要包括四个内容：用例标题、前置条件、测试步骤和预期结果。  用例标题：主要描述测试某项功能。 前置条件：用例标题需要满足该条件。 测试步骤：描述用例的操作步骤。 预期结果：符合预期需求（开发规格书、需求文档、用户需求等）二、怎么判断">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-17T07:04:05.000Z">
+<meta property="article:modified_time" content="2022-05-17T13:45:33.278Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>测试开发 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="测试开发">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-17 15:04" pubdate>
+        2022年5月17日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      54 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">测试开发</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一、测试用例是根据什么编写的"><a href="#一、测试用例是根据什么编写的" class="headerlink" title="一、测试用例是根据什么编写的"></a>一、测试用例是根据什么编写的</h4><p>测试用例指的是对一项特定产品进行测试任务的描述， 包括测试目标、测试环境、输入数据、测试步骤、预期结果、测试脚本等，最终形成文档。<br>测试用例主要包括四个内容：用例标题、前置条件、测试步骤和预期结果。</p>
+<ul>
+<li>用例标题：主要描述测试某项功能。</li>
+<li>前置条件：用例标题需要满足该条件。</li>
+<li>测试步骤：描述用例的操作步骤。</li>
+<li>预期结果：符合预期需求（开发规格书、需求文档、用户需求等）<h4 id="二、怎么判断测试结束（十个原则）"><a href="#二、怎么判断测试结束（十个原则）" class="headerlink" title="二、怎么判断测试结束（十个原则）"></a>二、怎么判断测试结束（十个原则）</h4></li>
+<li>基于“测试阶段”的原则：每个软件的测试一般都要经过单元测试、集成测试、系统测试这几个阶段，我们可以分别对单元测试、集成测试和系统测试制定详细的测试结束点。每个测试阶段符合结束标准后，再进行后面一个阶段的测试。</li>
+<li>基于“测试用例”的原则：测试设计人员设计测试用例，并请项目组成员参与评审，测试用例一旦评审通过，后面测试时，就可以作为测试结束的一个参考标准。</li>
+<li>基于“缺陷收敛趋势”的原则：软件测试的生命周期中随着测试时间的推移，测试发现的缺陷图线，在测试到一定阶段后，呈现下降趋势，直到发现的缺陷几乎为0或者很难发现缺陷为止。</li>
+<li>基于“缺陷修复率”的原则：软件缺陷在测试生命周期中我们分成几个严重等级，它们分别是：严重错误、主要错误、次要错误、一般错误、较小错误和测试建议6种。那我们在确定测试结束点时，严重错误和主要错误的缺陷修复率必须达到100%，不允许存在功能性的错误；次要错误和一般错误的缺陷修复率必须达到85%以上，允许存在少量功能缺陷，后面版本解决；对于较小错误的缺陷修复率最好达到60%~70%以上。对于测试建议的问题，可以暂时不用修改。</li>
+<li>基于“验收测试”的原则：在测试到一定阶段，达到或接近测试部门指定的标准后，就递交用户做验收测试。如果通过用户的测试验收，就可以立即终止测试部门的测试；如果客户验收测试时，发现了部分缺陷，就可以针对性的修改缺陷后，验证通过后递交用户，相应测试也可以结束。</li>
+<li>基于“覆盖率”的原则：个人觉得只要测试用例的“覆盖率”覆盖了客户提出的全部软件需求，包括行业隐性需求、功能需求和性能需求等，只要测试用例执行的覆盖率达到100%，基本上测试就可以结束。</li>
+<li>基于“项目计划”的原则：在项目开始时制定结点，对测试进度和测试结束点作出限制。</li>
+<li>基于“缺陷度量”的原则：对已经发现的缺陷，运用常用的缺陷分析技术和缺陷分析工具，用图表统计出来，分时间段对缺陷进行度量，让缺陷数控制在一个可以接受的范围内。</li>
+<li>基于“质量成本”的原则：从“质量&#x2F;成本&#x2F;进度”三方面取得平衡。</li>
+<li>基于“测试行业经验”的原则：根据测试行业的一些经验，为测试提供借鉴。比如说测试人员对行业业务的熟悉程度，测试人员的工作能力，测试的工作效率等等都会影响到整个测试计划的执行。</li>
+</ul>
+<h4 id="三、-如何为登陆页面设计测试用例"><a href="#三、-如何为登陆页面设计测试用例" class="headerlink" title="三、 如何为登陆页面设计测试用例"></a>三、 如何为登陆页面设计测试用例</h4><h5 id="一、功能测试-Function-test"><a href="#一、功能测试-Function-test" class="headerlink" title="一、功能测试 (Function test)"></a>一、功能测试 (Function test)</h5><ol>
+<li><p>输入为空时，点击提交按钮，看提示信息。　　</p>
+</li>
+<li><p>输入正确的用户名和密码，点击提交按钮，验证是否能正确登录。　　</p>
+</li>
+<li><p>输入错误的用户名或者密码, 验证登录会失败，并且提示相应的错误信息。</p>
+</li>
+<li><p>登录成功后能否跳转到正确的页面。　　</p>
+</li>
+<li><p>用户名和密码，长度的验证，应该怎么处理。　　</p>
+</li>
+<li><p>用户名和密码中有特殊字符（比如空格），和其它非英文的情况。　　</p>
+</li>
+<li><p>记住用户名的功能。　　</p>
+</li>
+<li><p>登录失败后，不能记录密码的功能。　　</p>
+</li>
+<li><p>用户名和密码前后有空格的处理。　　</p>
+</li>
+<li><p>密码是否加密显示（星号圆点等）。　</p>
+</li>
+<li><p>有验证码的，要考虑文字是否扭曲过度导致辨认难度大，考虑颜色（色盲使用者），刷新或换一个按钮是否好用。</p>
+</li>
+<li><p>登录页面中的注册、忘记密码、 退出登录后用另一帐号登录等情况下的链接是否正确。</p>
+</li>
+<li><p>输入密码的时候，大写键盘开启的时候要有提示信息。</p>
+</li>
+<li><p>重置功能是否实现。</p>
+</li>
+<li><p>是否对敏感字符屏蔽。　　</p>
+<h5 id="二、界面测试-UI-Test"><a href="#二、界面测试-UI-Test" class="headerlink" title="二、界面测试 (UI Test)"></a>二、界面测试 (UI Test)</h5></li>
+<li><p>布局是否合理，按钮是否对齐。　　</p>
+</li>
+<li><p>testbox和按钮的长度，高度是否符合要求。　　</p>
+</li>
+<li><p>界面的设计风格是否与UI的设计风格统一。　　</p>
+</li>
+<li><p>界面中的文字简洁易懂，没有错别字。　　</p>
+<h5 id="三、性能测试-performance-test"><a href="#三、性能测试-performance-test" class="headerlink" title="三、性能测试 (performance test)"></a>三、性能测试 (performance test)</h5></li>
+<li><p>打开登录页面，需要几秒。</p>
+</li>
+<li><p>输入正确的用户名和密码后，登录成功跳转到新页面，需要几秒，最好不超过5秒。</p>
+</li>
+<li><p>批量用户（用户的多少、持续时间等根据实际需求而定）并发登录情况验证。　　</p>
+<h5 id="四、安全性测试-Security-test"><a href="#四、安全性测试-Security-test" class="headerlink" title="四、安全性测试 (Security test)"></a>四、安全性测试 (Security test)</h5></li>
+<li><p>登录成功后生成的Cookie，是否是httponly (否则容易被脚本盗取)。　　</p>
+</li>
+<li><p>用户名和密码是否通过加密的方式，发送给Web服务器。　　</p>
+</li>
+<li><p>用户名和密码的验证，应该是用服务器端验证， 而不能单单是在客户端用javascript验证。　　</p>
+</li>
+<li><p>用户名和密码的输入框，应该屏蔽SQL 注入攻击。　　</p>
+</li>
+<li><p>用户名和密码的输入框，应该禁止输入脚本 （防止XSS攻击）。　　</p>
+</li>
+<li><p>错误登录的次数限制（防止暴力破解）。　　</p>
+</li>
+<li><p>考虑是否支持多用户在同一机器上登录。</p>
+</li>
+<li><p>考虑一用户在多台机器上登录。</p>
+</li>
+<li><p>验证密码是否可以粘贴复制。　　</p>
+<h5 id="五、可用性测试-Usability-Test"><a href="#五、可用性测试-Usability-Test" class="headerlink" title="五、可用性测试 (Usability Test)"></a>五、可用性测试 (Usability Test)</h5></li>
+<li><p>是否可以全用键盘操作，是否有快捷键。　　</p>
+</li>
+<li><p>输入用户名，密码后按回车，是否可以登录。　　</p>
+</li>
+<li><p>输入框能否可以以Tab键切换。　　</p>
+<h5 id="六、兼容性测试（Compatibility-Test）"><a href="#六、兼容性测试（Compatibility-Test）" class="headerlink" title="六、兼容性测试（Compatibility Test）"></a>六、兼容性测试（Compatibility Test）</h5></li>
+<li><p>主流的浏览器下能否显示正常功能（比如IE,6,7,8,9, Firefox, Chrome等）。　　</p>
+</li>
+<li><p>不同的平台是否能正常工作，比如Windows, LINUX。　　</p>
+</li>
+<li><p>移动设备上是否正常工作，比如手机客户端、ipad （Iphone, Andriod）。　　</p>
+</li>
+<li><p>不同的分辨率，页面显示是否正常。　　</p>
+<h5 id="七、本地化测试-（Localization-test）"><a href="#七、本地化测试-（Localization-test）" class="headerlink" title="七、本地化测试 （Localization test）"></a>七、本地化测试 （Localization test）</h5></li>
+<li><p>不同语言环境下，页面的显示是否正确。　　</p>
+<h5 id="八、软件辅助性测试-（Accessibility-test）"><a href="#八、软件辅助性测试-（Accessibility-test）" class="headerlink" title="八、软件辅助性测试 （Accessibility test）"></a>八、软件辅助性测试 （Accessibility test）</h5><p>软件辅助功能测试是指测试软件是否向残疾用户提供足够的辅助功能。　　</p>
+</li>
+<li><p>高对比度下能否显示正常 （比如视力不好的人是否可以正常使用）</p>
+</li>
+</ol>
+<h4 id="四、测试发现bug如何与开发人员沟通"><a href="#四、测试发现bug如何与开发人员沟通" class="headerlink" title="四、测试发现bug如何与开发人员沟通"></a>四、测试发现bug如何与开发人员沟通</h4><ol>
+<li>测试人员登记一个缺陷：包括摘要（描述什么地方出现问题）、描述（发生了什么问题、如何发生的，包括前置条件、测试数据和操作步骤）</li>
+<li>开发人员处理缺陷</li>
+<li>测试人员进行验证</li>
+</ol>
+<h4 id="五、规格说明书"><a href="#五、规格说明书" class="headerlink" title="五、规格说明书"></a>五、规格说明书</h4><p>包括编写目的、团队职责与角色划分、工作流程（计划与设计阶段、实施测试阶段、总结阶段）、产品功能性和非功能性需求分析、产品介绍、产品面向用户群体、产品的标准或规范。</p>
+<h4 id="六、常用的自动化测试工具"><a href="#六、常用的自动化测试工具" class="headerlink" title="六、常用的自动化测试工具"></a>六、常用的自动化测试工具</h4><h5 id="1、Selenium"><a href="#1、Selenium" class="headerlink" title="1、Selenium"></a>1、Selenium</h5><p>WEB自动化测试　　Selenium是网页应用中最流行的开源自动化测试框架。起源于2000年，10多年来不断地完善，Selenium成为许多Web自动化测试人员的选择，尤其是那些有高级编程和脚本技能的人。Selenium也成为了其他开源自动化测试工具比如Katalon Studio，Watir，Protractor和Robot Framework的核心框架。　　Selenium 支持多系统环境(Windows，Mac，Linux)以及多种浏览器(Chrome，FireFox，IE以及无头浏览器(没有界面))。它的脚本可以由各种各样的编程语言编写，比如 Java，Groovy，Python，C#，PHP，Ruby 以及 Perl。　　因为Selenium的灵活性，测试人员可以写各种复杂的、高级的测试脚本来应对各种复杂的问题，它需要高级的编程技能和付出来构建满足自己需求的自动化测试框架和库。　　</p>
+<h5 id="2、Appium"><a href="#2、Appium" class="headerlink" title="2、Appium"></a>2、Appium</h5><p>App自动化测试　　Appium是一个移动端自动化测试开源工具，支持iOS和Android平台，支持Python、Java等语言，即同一套Java或Python脚本可以同时运行在iOS和Android平台，Appium 是一个C&#x2F;S架构，核心是一个Web服务器，它提供了一套REST的接口。当收到客户端的连接后，就会监听到命令，然后在移动设备上执行这些命令，最后将执行结果放在HTTP响应中返还给客户端。　　</p>
+<h5 id="3、Jmeter"><a href="#3、Jmeter" class="headerlink" title="3、Jmeter"></a>3、Jmeter</h5><p>接口测试，性能测试　　Apache JMeter是一个开源的Java桌面应用程序，主要用于web应用程序的负载测试。它还支持单元测试和有限的功能测试。　　它有很多好的特性，比如动态报告、可移植性、强大的测试IDE等，并且支持不同类型的应用程序、协议、shell脚本、Java对象和数据库。　　</p>
+<h5 id="4、Postman"><a href="#4、Postman" class="headerlink" title="4、Postman"></a>4、Postman</h5><p>接口测试　　Postman 提供功能强大的Web API和HTTP请求的调试，它能够发送任何类型的HTTP请求 (GET, POST, PUT, DELETE…)，并且能附带任何数量的参数和Headers。不仅如此，它还提供测试数据和环境配置数据的导入导出，付费的Post Cloud用户还能够创建自己的 Team Library用来团队协作式的测试，并能够将自己的测试收藏夹和用例数据分享给团队。　　</p>
+<h5 id="5、SoapUI"><a href="#5、SoapUI" class="headerlink" title="5、SoapUI"></a>5、SoapUI</h5><p>接口测试　　SoapUI是一个非常流行的用于SOAP和REST的开源API测试自动化框架。它还支持功能测试、性能测试、数据驱动测试和测试报告。　　</p>
+<h5 id="6、Monkey"><a href="#6、Monkey" class="headerlink" title="6、Monkey"></a>6、Monkey</h5><p>稳定性测试　　软件附带在sdk中，适用于android和ios，通过adb shell，生成用户或系统的伪随机事件。　　压力测试结果：崩溃crash，无响应anr，　　基本命令：adb shell monkey 1000。　　</p>
+<h5 id="7、Robot-Framework"><a href="#7、Robot-Framework" class="headerlink" title="7、Robot Framework"></a>7、Robot Framework</h5><p>WebUI自动化测试，接口测试　　Robot Framework是一个开源自动化框架，它实现了用于验收测试和验收测试驱动开发(ATDD)的关键字驱动方法。Robot Framework为不同的测试自动化需求提供框架。但是，通过使用Python和Java实现其他测试库，可以进一步扩展其测试功能。Selenium WebDriver是Robot Framework中常用的外部库。　　测试工程师可以利用Robot Framework作为自动化框架，不仅可以进行Web测试，还可以用于Android和iOS测试自动化。对于熟悉关键字驱动测试的测试人员，可以轻松学习Robot Framework。　　</p>
+<h5 id="8、QTP"><a href="#8、QTP" class="headerlink" title="8、QTP"></a>8、QTP</h5><p>Web自动化测试　　QTP是一种自动测试工具。使用 QTP 的目的是想用它来执行重复的手动测试，主要是用于回归测试和测试同一软件的新版本。因此你在测试前要考虑好如何对应用程序进行测试，例如要测试那些功能、操作步骤、输入数据和期望的输出数据等。　　QTP针对的是GUI应用程序，包括传统的Windows应用程序，以及现在越来越流行的Web应用。它可以覆盖绝大多数的软件开发技术，简单高效，并具备测试用例可重用的特点。其中包括：创建测试、插入检查点、检验数据、增强测试、运行测试、分析结果和维护测试等方面。　　</p>
+<h5 id="9、LoadRunner"><a href="#9、LoadRunner" class="headerlink" title="9、LoadRunner"></a>9、LoadRunner</h5><p>性能测试　　LoadRunner，是一种预测系统行为和性能的负载测试工具。通过以模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner能够对整个企业架构进行测试。　　企业使用LoadRunner能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。LoadRunner可适用于各种体系架构的自动负载测试，能预测系统行为并评估系统性能。　　</p>
+<h5 id="10、Jenkins"><a href="#10、Jenkins" class="headerlink" title="10、Jenkins"></a>10、Jenkins</h5><p>持续集成　　自动化构建编译，部署，任务执行，测试报告，邮件通知等。</p>
+<h4 id="七、常用的自动化测试框架"><a href="#七、常用的自动化测试框架" class="headerlink" title="七、常用的自动化测试框架"></a>七、常用的自动化测试框架</h4><h5 id="一、线性框架"><a href="#一、线性框架" class="headerlink" title="一、线性框架"></a>一、线性框架</h5><p>最基本的框架。<br>测试代码的创建和执行是按线性或顺序编写的，测试人员手动记录每一个步骤，并自动回放记录的脚本。这些步骤包括导航、用户输入和检查点，最适合小型应用程序或团队。<br><strong>优点</strong>：生成测试用例的速度快，直接录制，无需代码基础，无需手动编写测试代码，门槛较低、易于上手。<br><strong>缺点</strong>：录制的脚本是固定的，不可重用。当应用发生微小变化时，上一次录制的脚本可能就无法使用，需要重新录制，产生大量的后期维护成本。</p>
+<h5 id="二、基于模块化的框架"><a href="#二、基于模块化的框架" class="headerlink" title="二、基于模块化的框架"></a>二、基于模块化的框架</h5><p>允许将被测应用程序划分为单独的模块、单元或部分。每个模块都会为他们创建独立的测试脚本。每个模块及其测试脚本的组合可以构建代表各种测试案例的更大的测试。<br><strong>优点</strong>：该框架在创建模块时使用抽象，应用程序更改只影响与它们相关联的测试脚本所涉及的模块，而不影响其它部分。高度的模块化，使得维护更加容易且具有成本效益。创建测试用例所需的精力最少，因为可以重复使用不同模块的测试脚本。<br><strong>缺点</strong>：如果没有语言开发基础，建立框架会很困难。由于将数据硬编码到测试脚本中，因此无法重复使用数据集，因为测试是单独执行的。</p>
+<h5 id="三、库结构框架"><a href="#三、库结构框架" class="headerlink" title="三、库结构框架"></a>三、库结构框架</h5><p>建立在模块化的基础上，不仅可以将被测应用程序划分为测试脚本，还可以将测试脚本中的相似任务划分为通用功能。创建一个库，该库构成了AUT的常用功能，可以在需要时由测试脚本调用。<br><strong>优点</strong>：高度的模块化，使得测试维护简单且预算友好。具有高度的可重用性，因为它的公共库函数可以被几个测试脚本使用。<br><strong>缺点</strong>：框架中引入的库使其更加复杂。测试数据也被硬编码到测试脚本中，因此数据中的更改必须适用于测试脚本。测试脚本的开发需要更多的时间和技术。</p>
+<h5 id="四、数据驱动框架"><a href="#四、数据驱动框架" class="headerlink" title="四、数据驱动框架"></a>四、数据驱动框架</h5><p>测试数据和测试脚本是分离的。在测试场景中，需要使用不同的测试数据多次测试同一功能或者特性，有时每更换一次测试数据都需要修改测试脚本。如果测试脚本是固定的，而测试数据可以从外部的数据文件获取，那么只用维护一份脚本和一份数据文件即可。<br><strong>优点</strong>：易于维护。测试脚本中的任何更改都不会影响测试数据，可以避免对数据进行硬编码。可以使用多组数据进行测试。可以通过更改外部数据库中的测试数据来测试各种测试方案，从而减少所需的测试脚本数量。<br><strong>缺点</strong>：准备和计划框架的通用测试脚本，识别与格式化测试数据需要花费时间。框架设计的使用需要经验丰富的测试人员，因为它的丰富性，需要具备多种编程语言知识。</p>
+<h5 id="五、关键字驱动框架"><a href="#五、关键字驱动框架" class="headerlink" title="五、关键字驱动框架"></a>五、关键字驱动框架</h5><p>是数据驱动框架的扩展。测试数据和测试脚本分离，进一步将测试脚本中的通用功能剥离出来，形成关键词。测试脚本本质上就是对一系列通用的或者自定义的关键词的调用。这样的好处是关键词可以在多个测试中复用，并且测试脚本更加易于维护。<br><strong>优点</strong>：运行此框架不需要脚本知识。可以独立于被测应用程序构建测试脚本。一个关键字可以在多个测试脚本中使用，代码是可重用的。<br><strong>缺点</strong>：设计框架和维护关键字对自动化的专业知识要求比较高。实现该框架的成本相对较高，而且设置起来比较耗时和复杂。</p>
+<h4 id="八、软件测试的基本方法"><a href="#八、软件测试的基本方法" class="headerlink" title="八、软件测试的基本方法"></a>八、软件测试的基本方法</h4><h5 id="一、按是否查看程序内部结构"><a href="#一、按是否查看程序内部结构" class="headerlink" title="一、按是否查看程序内部结构"></a>一、按是否查看程序内部结构</h5><ul>
+<li>黑盒测试：根据软件的规格对软件进行的测试。不考虑软件内部的运作原理，只关心输入和输出的结果。包括功能测试（检查软件的功能是否符合用户的需求，包括逻辑功能测试、界面测试、易用性测试和兼容性测试）和性能测试（时间性能主要是指软件的一个具体事务的响应时间，空间性能主要指是指软件运行时所消耗的系统资源）。</li>
+<li>白盒测试：测试软件产品的内部结构和处理过程，不需测试软件产品的功能。要研究程序里面的源代码和程序结构。<h5 id="二、按是否运行程序"><a href="#二、按是否运行程序" class="headerlink" title="二、按是否运行程序"></a>二、按是否运行程序</h5></li>
+<li>静态测试：测试不运行的部分，只是静态地检查程序代码、界面或文档可能存在的错误的过程，例如测试产品说明书，对此进行检查和审阅。</li>
+<li>动态测试：指通过运行软件来检验软件的动态行为和运行结果的正确性。输入相应的测试数据，检查输出结果和预期结果是否相符。<h5 id="三、按阶段"><a href="#三、按阶段" class="headerlink" title="三、按阶段"></a>三、按阶段</h5></li>
+<li>单元测试：最小规模的测试，测试某个功能或者代码块，由程序员来完成。</li>
+<li>集成测试：指一个应用系统的各个部件的联合测试，以决定他们能否一起工作并没有冲突。部件可能是代码块、独立的应用、网络上的客户端或服务器端程序。尤其与客户服务器和分布式系统有关，一般集成测试以前，单元测试需要完成。</li>
+<li>系统测试：将整个软件系统看做一个整体进行测试，包括对功能、性能以及软件所运行的软硬件环境进行测试。</li>
+<li>验收测试：基于客户或最终用户的规格书的最终测试，基于用户一段时间的使用后，看软件是否满足客户要求。一般从功能、用户界面、性能、业务关联性进行测试，</li>
+<li>回归测试：指在发生修改之后重新测试先前的测试以保证修改的正确性。理论上，软件产生新版本，都需要进行回归测试，验证以前发现和修复的错误是否在新软件版本上再次出现。<h5 id="四、其它类型测试"><a href="#四、其它类型测试" class="headerlink" title="四、其它类型测试"></a>四、其它类型测试</h5></li>
+<li>冒烟测试：对新编译的每一个需要正式测试的软件版本进行测试。确认软件基本功能正常，可以进行后续的正式测试工作。执行人员是版本编译人员。</li>
+<li>随机测试：指测试中的所有输入数据都是随机生成的，目的是模拟用户的真实操作，并发现一些边缘性的错误。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/17/Python/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/12/JavaScript/">
+                        <span class="hidden-mobile">JavaScript</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

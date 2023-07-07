@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、前端和后端之间如何交互1、前端通过ajax发起请求给后端2、后端接收到请求之后，通过node里面的mysql模块连接数据库3、数据库检测到请求，通过node的mysql模块给后端服务器返回数据4、后端服务器接收到数据之后，将数据响应到前台页面 二、前端向后端传输数据的手段三、浏览器缓存机制浏览器缓存是浏览器将用户请求过的静态资源（html、css、js）存储到电脑本地磁盘中，当浏览器再次访问时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端杂项">
+<meta property="og:url" content="http://example.com/2022/05/12/%E5%89%8D%E7%AB%AF%E6%9D%82%E9%A1%B9/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、前端和后端之间如何交互1、前端通过ajax发起请求给后端2、后端接收到请求之后，通过node里面的mysql模块连接数据库3、数据库检测到请求，通过node的mysql模块给后端服务器返回数据4、后端服务器接收到数据之后，将数据响应到前台页面 二、前端向后端传输数据的手段三、浏览器缓存机制浏览器缓存是浏览器将用户请求过的静态资源（html、css、js）存储到电脑本地磁盘中，当浏览器再次访问时">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-12T09:04:39.000Z">
+<meta property="article:modified_time" content="2022-08-11T04:29:44.315Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>前端杂项 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端杂项">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-12 17:04" pubdate>
+        2022年5月12日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端杂项</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一、前端和后端之间如何交互"><a href="#一、前端和后端之间如何交互" class="headerlink" title="一、前端和后端之间如何交互"></a>一、前端和后端之间如何交互</h4><p>1、前端通过ajax发起请求给后端<br>2、后端接收到请求之后，通过node里面的mysql模块连接数据库<br>3、数据库检测到请求，通过node的mysql模块给后端服务器返回数据<br>4、后端服务器接收到数据之后，将数据响应到前台页面</p>
+<h4 id="二、前端向后端传输数据的手段"><a href="#二、前端向后端传输数据的手段" class="headerlink" title="二、前端向后端传输数据的手段"></a>二、前端向后端传输数据的手段</h4><h4 id="三、浏览器缓存机制"><a href="#三、浏览器缓存机制" class="headerlink" title="三、浏览器缓存机制"></a>三、浏览器缓存机制</h4><p>浏览器缓存是浏览器将用户请求过的静态资源（html、css、js）存储到电脑本地磁盘中，当浏览器再次访问时，可以知己从本地加载，不需要再去服务端请求。若处理不当，会导致服务端代码更新，但用户还是老页面。</p>
+<h5 id="一、浏览器缓存的优点"><a href="#一、浏览器缓存的优点" class="headerlink" title="一、浏览器缓存的优点"></a>一、浏览器缓存的优点</h5><ul>
+<li>减少了冗余的数据传输，节省网费。</li>
+<li>减少了服务器的负担，提升网站性能。</li>
+<li>加快了客户端加载网页的速度。<h5 id="二、缓存位置"><a href="#二、缓存位置" class="headerlink" title="二、缓存位置"></a>二、缓存位置</h5>四种，存在优先级，当依次查找缓存且都没有命中的时候才去请求网络。<br><strong>Service Worker</strong>：可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。<br><strong>Memory Cache</strong>：内存缓存虽然读取高效，但缓存持续性很短，会随着进程的释放而释放。一旦关闭了Tab页面，内存中的缓存也就被释放了。<br><strong>Disk Cache</strong>：读取速度慢，但是什么都能存储到磁盘中，比内存缓存胜在容量和存储时效性上。<br><strong>Push Cache</strong>：当以上三种缓存都没有命中时，才会被使用。且缓存时间很短暂，只会在会话（session）中存在，一旦会话救赎就被释放。<br><strong>网络请求</strong>：以上缓存都没有命中，发送请求获取资源。<h5 id="三、缓存策略：强缓存和协商缓存"><a href="#三、缓存策略：强缓存和协商缓存" class="headerlink" title="三、缓存策略：强缓存和协商缓存"></a>三、缓存策略：强缓存和协商缓存</h5>1、<strong>强缓存</strong>：可以通过设置两种HTTP Header来实现，Expires和Cache-Control。<br>强缓存如果命中，返回state code为200，客户端不会给服务器发送请求，直接从本地获取资源。<br>Expries是一个时间戳，本地时间小于expires设置的过期时间，就说明命中强缓存，但本地时间改了会出错。<br>Cache-Control优先级更高，max-age是一个时间长度，例如3153600秒代表在3153600秒内有效。<br>S-maxage主要用于代理服务器生效。<br>public：浏览器和CDN都可以被缓存。<br>private：默认值，仅被览器缓存。</li>
+</ul>
+<p>强缓存也称为本地缓存，发送请求时向浏览器缓存查找请求结果，并根据该结果的缓存规则来决定是否使用该缓存结果的过程。<br>强缓存的情况主要分三种：<br>①浏览器缓存中不存在缓存请求结果和缓存标识，则浏览器直接向服务器发送请求。<br>②浏览器缓存中存在请求结果和缓存标识，但根据缓存规则结果已经失效，则使用协商缓存。<br>③浏览器缓存中存在请求结果和缓存标识，且根据缓存规则结果尚在有效时间内，则直接返回请求结果。<br>2、<strong>协商缓存（弱缓存）</strong>：如果缓存过期了，需要发起请求验证资源是否有更新。可以通过谁知两种HTTP Header来实现：Last-Modified和Tag。当两者同时存在，服务器会先检查Etag，再检查Last-Modified，最终决定返回200还是304.<br><strong>Last-Modified</strong>：服务器对比时间戳和资源在服务器上最后修改的时间是否一致，无法感知文件本身变化。<br>在浏览器第一次请求某个URL时，服务器端返回状态是200，内容是请求的资源，同时会有一个Last-Modified的属性标记此文件在服务器端最后被修改的时间。<br>客户端第二次请求此URL时，根据HTTP协议的规定，浏览器会向服务器传送If-Modified-Since报头，询问该时间之后文件是否有被修改过。<br>若服务器端的资源没有发生变化，则自动返回304状态码，内容为空，节省了传输数据量。<br><strong>Etag</strong>：是资源的唯一表示字符串。</p>
+<p>浏览器缓存中存在请求结果和缓存标识，但根据缓存规则结果已经失效，只返回缓存标识。<br>①浏览器携带该资源的缓存标识发起HTTP请求，服务器验证缓存标识发现资源无更新，返回304，不更新资源。<br>②浏览器携带该资源的缓存标识发起HTTP请求，服务器验证缓存标识发现资源更新了，则返回200，重新返回请求结果和缓存标识。</p>
+<h4 id="四、常用Git指令"><a href="#四、常用Git指令" class="headerlink" title="四、常用Git指令"></a>四、常用Git指令</h4><p><strong>git add</strong> 将工作区文件加入暂存区；<br><strong>git commit</strong> 将暂存区文件加入本地仓库；<br><strong>git push</strong> 将本地仓库推送到远程仓库。<br><strong>git fetch</strong> 将远程仓库的更新下拉到<strong>本地仓库中远程副本</strong>，但不合并到本地分支当中，并更新FETCH_HEAD<br>本地搭建：<br>初始化一个Git仓库，使用<strong>git init</strong>命令。在一个文件夹内。使用UTF-8编码编辑文本，避免冲突（不用记事本）<br>添加文件到Git仓库，分两步<br>git add <file>添加多个文件时使用空格分开，也可以输入文件夹名称；<br>使用命令git commit -m <message>，上传本地仓库。<br><strong>git status</strong> 可以查看本地仓库的状态，而如果有改动发生，则使用<strong>git diff</strong>这个命令<br><strong>克隆远程仓库</strong><br>在一个文件夹中打开git Bash并运行<strong>git clone [url]<strong>将克隆远程仓库并相关联<br>关联远程库<br>git remote add origin git@……<code>可以关联到远程仓库， 与origin远程库关联之后，需要pull </code>git pull origin <branch><code> 一下建立链接消除冲突， 然后将自己的代码push上去。</code>git push –set-upstream origin <branch><br><strong>取消关联</strong><br><code>git remote rm origin</code> 即可取消与远程仓库的关联。<br><strong>历史记录 git log</strong><br><code>git log</code> 查看历史记录<br><code>git log --pretty=oneline</code>  参数得到一行信息 <code>--graph</code>获得拓扑图<br><code>--oneline</code> 选项来查看历史记录的简洁的版本<br><code>git reflog</code>  用来记录版本操作命令<br><code>git blame &lt;file&gt;</code> 显示文件修改记录<br><strong>工作区和暂存区</strong><br>在电脑内部的文件目录就是</strong>工作</strong>，其中有一个版本库（本地仓库）存放了很多东西，其中最重要的就是称为stage（或index）的<strong>暂存区</strong>，还有Git为我们自动创建的第一个分支<code>master</code>，以及指向<code>master</code>的一个指针叫<code>HEAD</code><br>我们使用 <code>git add</code> 就是将文件添加到暂存区，然后用 <code>git commit</code> 将暂存区的文件提交到分支上 （本地仓库）</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/12/Vue/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue上</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/12/CSS/">
+                        <span class="hidden-mobile">CSS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

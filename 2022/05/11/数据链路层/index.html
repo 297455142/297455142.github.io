@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、回退N帧发送方已经发送了编号为0~10的帧，当计时器超时时，若发送方只收到0、2、4号帧的确认，则发送方需要重发的帧数为6。  在后退N帧协议中，发送方可以连续发送若干个数据帧，如果收到接收方的确认帧，则可以继续发送。 若某个帧出错，接收方只是简单丢弃该帧及其后所有的后续帧，发送方超时后需重传该数据帧及其后续的所有数据帧。 连续ARQ协议中，接收方一般采用积累确认的方式，即接收方按序到达的最后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据链路层">
+<meta property="og:url" content="http://example.com/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、回退N帧发送方已经发送了编号为0~10的帧，当计时器超时时，若发送方只收到0、2、4号帧的确认，则发送方需要重发的帧数为6。  在后退N帧协议中，发送方可以连续发送若干个数据帧，如果收到接收方的确认帧，则可以继续发送。 若某个帧出错，接收方只是简单丢弃该帧及其后所有的后续帧，发送方超时后需重传该数据帧及其后续的所有数据帧。 连续ARQ协议中，接收方一般采用积累确认的方式，即接收方按序到达的最后">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/CRC.png">
+<meta property="article:published_time" content="2022-05-11T05:44:21.000Z">
+<meta property="article:modified_time" content="2022-07-06T03:17:25.123Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/CRC.png">
+  
+  
+  <title>数据链路层 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据链路层">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 13:44" pubdate>
+        2022年5月11日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据链路层</h1>
+            
+            <div class="markdown-body">
+              <h2 id="一、回退N帧"><a href="#一、回退N帧" class="headerlink" title="一、回退N帧"></a>一、回退N帧</h2><p>发送方已经发送了编号为0~10的帧，当计时器超时时，若发送方只收到0、2、4号帧的确认，则发送方需要重发的帧数为6。</p>
+<ul>
+<li>在后退N帧协议中，发送方可以连续发送若干个数据帧，如果收到接收方的确认帧，则可以继续发送。</li>
+<li>若某个帧出错，接收方只是简单丢弃该帧及其后所有的后续帧，发送方超时后需重传该数据帧及其后续的所有数据帧。</li>
+<li>连续ARQ协议中，接收方一般采用积累确认的方式，即接收方按序到达的最后一个分组发送确认。题目中收到4的确认帧就代表编号0、1、2、3、4的帧已接收，发送方未收到1、3的帧只能代表确认帧在返回到 过程中丢失了，而不代表1号帧未到达接收方。因此要重传5、6、7、8、9、10</li>
+</ul>
+<h2 id="二、数据链路层使用的信道"><a href="#二、数据链路层使用的信道" class="headerlink" title="二、数据链路层使用的信道"></a>二、数据链路层使用的信道</h2><ul>
+<li>点对点信道：点对点的通信方式。</li>
+<li>广播信道：一对多的方式，整个过程比较复杂，必须使用一些信道协议来协调网络中的主机数据发送。<h2 id="三、链路层的意义和工作过程"><a href="#三、链路层的意义和工作过程" class="headerlink" title="三、链路层的意义和工作过程"></a>三、链路层的意义和工作过程</h2>物理层的线路由传输介质与通信设备组成，比特流在传输介质上传输时肯定会产生误差。引入数据链路层在物理层之上，采用差错检测、差错控制和流量控制等方法，向网络层提供高质量的数据传输服务。对于网络层，由于链路层的存在，不需要关心物理层具体采用了哪种传输介质和通信设备。<br>工作过程：建立数据链路、帧传输、释放数据链路。<h2 id="四、链路层的功能有哪些？需要完成哪些事情？"><a href="#四、链路层的功能有哪些？需要完成哪些事情？" class="headerlink" title="四、链路层的功能有哪些？需要完成哪些事情？"></a>四、链路层的功能有哪些？需要完成哪些事情？</h2></li>
+</ul>
+<ol>
+<li>链路管理，帧同步，组帧。</li>
+<li>流量控制，差错控制，可靠交付。</li>
+<li>数据和控制信息分开</li>
+<li>透明传输和寻址，链路接入：点对点链路、广播链路<h2 id="五、链路层怎么进行组帧？怎么进行帧的界定？"><a href="#五、链路层怎么进行组帧？怎么进行帧的界定？" class="headerlink" title="五、链路层怎么进行组帧？怎么进行帧的界定？"></a>五、链路层怎么进行组帧？怎么进行帧的界定？</h2></li>
+</ol>
+<ul>
+<li>组帧就是在帧的前后添加首部和尾部，这样就能界定帧的边界了。MTU（Maximum Transmission Unit，网络上传送的最大数据包）就是帧的数据部分的最大长度，也就是IP数据报的最大长度。</li>
+<li>帧的界定是在帧的开始和结束的地方加上特定的字符（帧的定界符），一般是0X7E。<h2 id="六、链路层怎么进行透明传输"><a href="#六、链路层怎么进行透明传输" class="headerlink" title="六、链路层怎么进行透明传输"></a>六、链路层怎么进行透明传输</h2>如果帧内部的数据出现了0x7e，则需要进行转义，转义的方法有下面两种：</li>
+<li>字符填充：因为0x7e&#x3D;0111 1110，字符填充是在这两个字节中填充进0xd5，变为（0x7d，0x5e），即0111 1101 1001 1110.</li>
+<li>零比特填充：因为0x7e&#x3D;0111 1110，带有连续的6个1，因此发送端发送帧数据时，每当发现有5个连续的1，立即填充一个0发送。接收端对帧中的比特流扫码，每当发现5个连续的1，就把后面的一个0删除。即0111 1110变成0111 1101 0进行传输。<h2 id="七、差错产生的原因"><a href="#七、差错产生的原因" class="headerlink" title="七、差错产生的原因"></a>七、差错产生的原因</h2>差错是不可避免的，而且不同的传输介质的差错程度也是不同的。链路层的任务就是分析差错产生的原因，检查差错，然后纠正差错。当数据信号从发送端发送到物理线路时，由于物理线路存在噪声，因此数据信号经过物理线路的噪声，到达接收端时，已经是数据+噪声的叠加，这就是差错的来源。<h2 id="八、怎么进行差错控制"><a href="#八、怎么进行差错控制" class="headerlink" title="八、怎么进行差错控制"></a>八、怎么进行差错控制</h2>差错控制分为两种不同的策略：</li>
+<li>纠错码：每个传输的分组带上足够的冗余信息，接收端能发现并自动纠正差错。</li>
+<li>检测码：分组包含能够发现差错的冗余信息，接收端能够发现差错。<br>由于纠错码实现比较复杂，检测码虽不能纠错，但是足够简单，能够检测出差错，配合重传机制即可，所以广泛采用检测码。<br>四种基本方式：检错重发、前向纠错（接收端进行差错纠正）、反馈校验（接受端将收到的数据原封不动发回传送端）、检错丢弃。<br>检测码有循环冗余编码（CRC）等方式，见下图：</li>
+</ul>
+<img src="/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/CRC.png" srcset="/img/loading.gif" lazyload class=""> 
+
+<h2 id="九、滑动窗口协议"><a href="#九、滑动窗口协议" class="headerlink" title="九、滑动窗口协议"></a>九、滑动窗口协议</h2><p>帧传输过程中如果发生了错误，就需要滑动窗口协议来解决，滑动窗口协议分为以下两种类型：<br><strong>单帧停止等待协议</strong>：发送端发送1帧之后，需要等待接收端返回确认帧，如果收到ack，表示ok，发送下一帧；如果收到nak，表示传输错误，重新发送该帧。<br><strong>多帧发送协议</strong>：分为两种类型：</p>
+<ul>
+<li>回退N帧（GBN）：发送端窗口较大，可以在未得到确认前连续发送多个分组，但接收窗口大小仅为1，只能接收1个按序到达的分组，未按序到达的分组或者某个分组差错，就会引起发送方重发该分组及其之后的所有分组。</li>
+<li>选择重发（SR）：增加接收方的缓存能力，缓存正确到达但失序的分组，只要求发送方发送未被接收方确认的分组。<h2 id="十、滑动窗口机制"><a href="#十、滑动窗口机制" class="headerlink" title="十、滑动窗口机制"></a>十、滑动窗口机制</h2>在GBN和SR中，发送端可以连续发送多个数据帧，从流量控制的角度出发，发送端连续发送数据帧的数量必然会受到限制：</li>
+</ul>
+<ol>
+<li>接收端的缓冲区可以用于接收新的帧的容量。</li>
+<li>接收端处理数据帧的速度。</li>
+<li>接收端需要等待重传的帧数量。<br>引入滑动窗口的目的：对可以连续发出的最多帧数（已发出但未确认的帧）作限制。<br>发送窗口（ws）:表示在收到对方确认信息之前，以连续发出的最多数据帧数。<br>接收窗口（wr）：可以连续接收的最多数据帧数（只有序号在窗口内的帧才可以接收，否则丢弃）。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%82%E9%A1%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
+                        <span class="hidden-mobile">进程与线程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

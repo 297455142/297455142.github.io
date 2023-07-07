@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、Vuex一、Vuex原理Vuex是一个专门为Vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态。状态state集中放在仓库store中，改变状态的方式是提交mutations，它是同步的，异步逻辑封装在action中。 状态管理模式包括状态（驱动应用的数据源）、视图（以声明方式将状态映射到视图）、操作（响应在视图上的用户输入导致的状态变化）。Vuex解决了两个问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue下">
+<meta property="og:url" content="http://example.com/2022/08/10/Vue%E4%B8%8B/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、Vuex一、Vuex原理Vuex是一个专门为Vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态。状态state集中放在仓库store中，改变状态的方式是提交mutations，它是同步的，异步逻辑封装在action中。 状态管理模式包括状态（驱动应用的数据源）、视图（以声明方式将状态映射到视图）、操作（响应在视图上的用户输入导致的状态变化）。Vuex解决了两个问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/08/10/Vue%E4%B8%8B/Vuex.png">
+<meta property="og:image" content="http://example.com/2022/08/10/Vue%E4%B8%8B/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
+<meta property="article:published_time" content="2022-08-10T10:06:10.000Z">
+<meta property="article:modified_time" content="2022-09-22T08:01:19.101Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/08/10/Vue%E4%B8%8B/Vuex.png">
+  
+  
+  <title>Vue下 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vue下">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-08-10 18:06" pubdate>
+        2022年8月10日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      108 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue下</h1>
+            
+            <div class="markdown-body">
+              <h1 id="一、Vuex"><a href="#一、Vuex" class="headerlink" title="一、Vuex"></a>一、Vuex</h1><h2 id="一、Vuex原理"><a href="#一、Vuex原理" class="headerlink" title="一、Vuex原理"></a>一、Vuex原理</h2><p>Vuex是一个专门为Vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态。状态state集中放在仓库store中，改变状态的方式是提交mutations，它是同步的，异步逻辑封装在action中。</p>
+<h3 id="状态管理模式"><a href="#状态管理模式" class="headerlink" title="状态管理模式"></a>状态管理模式</h3><p>包括状态（驱动应用的数据源）、视图（以声明方式将状态映射到视图）、操作（响应在视图上的用户输入导致的状态变化）。<br><strong>Vuex解决了两个问题及使用场景</strong>：</p>
+<ol>
+<li>多个组件共享状态时，单向数据流的简洁性很容易被破坏。来自不同组件的行为需要变更为同一状态，如果采用父子组件传值或通过事件来变更和同步状态的多份拷贝，这样很难维护。</li>
+<li>多个视图依赖于同一状态，来自不同视图的行为需要变更同一状态，对于多层嵌套的组件的传参非常繁琐，兄弟组件之间的状态传递困难。<br>解决办法是把组建的共享状态分离出来，以一个全局单例模式管理，通过定义和隔离状态管理中的各种概念并通过强制规则维持视图和状态间的独立性。<br><strong>Vuex原理</strong>：Vuex的状态存储是响应式的，当Vue组件从store中读取状态的时候，若store中的状态发生变化，那么相应的组件也会高效更新。改变store中状态的唯一途径是显示提交commit mutation，方便跟踪每一个状态的变化。<img src="/2022/08/10/Vue%E4%B8%8B/Vuex.png" srcset="/img/loading.gif" lazyload class=""></li>
+</ol>
+<ul>
+<li>Vue Components是vue组件，组件会触发（dispatch）一些事件或动作（Actions）;</li>
+<li>在组件中发出的动作，肯定是想获取或者改变数据的，但是在 vuex 中，数据是集中管理的，不能直接去更改数据，所以会把这个动作提交（Commit）到 Mutations 中;</li>
+<li>然后 Mutations 就去改变（Mutate）State 中的数据;</li>
+<li>当 State 中的数据被改变之后，就会重新渲染（Render）到 Vue Components 中去，组件展示更新后的数据，完成一个流程。</li>
+</ul>
+<hr>
+<p><strong>各个模块在核心流程中的主要功能</strong></p>
+<ul>
+<li>Vue Components∶ Vue组件。HTML页面上，负责接收用户操作等交互行为，执行dispatch方法触发对应action进行回应。</li>
+<li>dispatch∶操作行为触发方法，是唯一能执行action的方法。</li>
+<li>actions∶ 操作行为处理模块。负责处理Vue Components接收到的所有交互行为。包含同步&#x2F;异步操作，支持多个同名方法，按照注册的顺序依次触发。向后台API请求的操作就在这个模块中进行，包括触发其他action以及提交mutation的操作。该模块提供了Promise的封装，以支持action的链式触发。</li>
+<li>commit∶状态改变提交操作方法。对mutation进行提交，是唯一能执行mutation的方法。</li>
+<li>mutations∶状态改变操作方法。是Vuex修改state的唯一推荐方法，其他修改方式在严格模式下将会报错。该方法只能进行同步操作，且方法名只能全局唯一。操作之中会有一些hook暴露出来，以进行state的监控等。</li>
+<li>state∶ 页面状态管理容器对象。集中存储Vuecomponents中data对象的零散数据，全局唯一，以进行统一的状态管理。页面显示所需的数据从该对象中进行读取，利用Vue的细粒度数据响应机制来进行高效的状态更新。</li>
+<li>getters∶ state对象读取方法。图中没有单独列出该模块，应该被包含在了render中，Vue Components通过该方法读取全局state对象。</li>
+</ul>
+<h2 id="二、Vuex的属性"><a href="#二、Vuex的属性" class="headerlink" title="二、Vuex的属性"></a>二、Vuex的属性</h2><ul>
+<li><strong>state</strong>：基本数据（数据源存放地）。Vuex中状态存储在state中，改变Vuex中的状态的唯一途径就是显式地提交 (commit) mutation。Vuex中状态是对象时,因为对象是引用类型，复制后改变属性还是会影响原始数据，这样会改变state里面的状态，是不允许，所以先用深度克隆复制对象，再修改。</li>
+<li><strong>getters</strong>：从基本数据派生出来的数据。使用getter属性，相当Vue中的计算属性computed，只有原状态改变派生状态才会改变。 getter接收两个参数，第一个是state，第二个是getters(可以用来访问其他getter)。然后在组件中可以用计算属性computed通过this.$store.getters.total这样来访问这些派生状态，获得想要的数据。</li>
+<li><strong>mutation</strong>：提交更改数据的方法，每个mutation都有一个字符串的事件类型和一个回调函数，这个回调函数就是实际进行状态更改的地方。</li>
+<li><strong>actions</strong>：像一个装饰器，包裹mutations，提交mutation，让它可以异步。</li>
+<li><strong>modules</strong>：将Vuex模块化。</li>
+</ul>
+<h1 id="二、VUE-3-0的更新"><a href="#二、VUE-3-0的更新" class="headerlink" title="二、VUE 3.0的更新"></a>二、VUE 3.0的更新</h1><ul>
+<li><strong>监测机制改变</strong>：3.0 将带来基于代理 Proxy的 observer 实现，提供全语言覆盖的反应性跟踪。消除了 Vue 2 当中基于 Object.defineProperty 的实现所存在的很多限制。</li>
+<li><strong>只能监测属性，不能监测对象</strong>：检测属性的添加和删除；检测数组索引和长度的变更；支持 Map、Set、WeakMap 和 WeakSet。</li>
+<li><strong>模板</strong>：作用域插槽，2.x 的机制导致作用域插槽变了，父组件会重新渲染，而 3.0 把作用域插槽改成了函数的方式，这样只会影响子组件的重新渲染，提升了渲染的性能。同时，对于 render 函数的方面，vue3.0 也会进行一系列更改来方便习惯直接使用 api 来生成 vdom。</li>
+<li><strong>对象式的组件声明方式</strong>：vue2.x 中的组件是通过声明的方式传入一系列 option，和 TypeScript 的结合需要通过一些装饰器的方式来做，虽然能实现功能，但是比较麻烦。3.0修改了组件的声明方式，改成了类式的写法，这样使得和 TypeScript 的结合变得很容易。</li>
+<li><strong>其它方面的更改</strong>：支持自定义渲染器，从而使得 weex 可以通过自定义渲染器的方式来扩展，而不是直接 fork 源码来改的方式；支持 Fragment（多个根节点）和 Protal（在 dom 其他部分渲染组建内容）组件，针对一些特殊的场景做了处理；基于 tree shaking 优化，提供了更多的内置功能。</li>
+</ul>
+<h1 id="三、defineProperty和proxy区别"><a href="#三、defineProperty和proxy区别" class="headerlink" title="三、defineProperty和proxy区别"></a>三、defineProperty和proxy区别</h1><p><strong>defineProperty</strong>：是Vue2的，Vue在实例初始化时遍历data中所有的属性，并使用Object.defineProperty把这些属性全部转为getter&#x2F;setter，当追踪数据发生变化时，setter被自动调用。Object.defineProperty 是 ES5 中一个无法 shim 的特性，这也就是 Vue 不支持 IE8 以及更低版本浏览器的原因。<br>存在问题：</p>
+<ol>
+<li>添加或删除对象的属性时，Vue 检测不到。因为添加或删除的对象没有在初始化进行响应式处理，只能通过<code>$set</code> 来调用<code>Object.defineProperty()</code>处理。</li>
+<li>无法监控到数组下标和长度的变化。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>不能监听到数组length属性的变化；</li>
+<li>不能监听对象的添加；</li>
+<li>只能劫持对象的属性,因此我们需要对每个对象的每个属性进行遍历。</li>
+</ol>
+<p><strong>Proxy</strong>：VUE3使用Proxy来监控数据的变化，它是ES6提供的功能，用于定于基本操作的自定义行为，如属性查找、赋值、枚举、函数调用等。</p>
+<ol>
+<li>Proxy 直接代理整个对象而非对象属性，这样只需做一层代理就可以监听同级结构下的所有属性变化，包括新增属性和删除属性。</li>
+<li>Proxy 可以监听数组的变化。</li>
+<li>可以代理整个对象，不需要对对象进行遍历，极大提高了性能。</li>
+<li>拦截方式13种，Object.defineProperty只有get和set两种。<br> <strong>defineProperty监听的是对象的属性，而Proxy监听的是对象</strong>。</li>
+</ol>
+<h1 id="四、Proxy"><a href="#四、Proxy" class="headerlink" title="四、Proxy"></a>四、Proxy</h1><p>Proxy实际上重载了点运算符，用自己的定义覆盖了语言的原生定义。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(target, handler);<br></code></pre></td></tr></table></figure>
+<p>new Proxy表示生成一个Proxy实例，target参数表示所要拦截的目标对象，handler参数也是一个对象，用来定制拦截行为，该对象里面可以定义各种函数。Proxy的第一个参数是所要代理的目标对象，如果没有Proxy的介入操作原来访问的就是这个对象，第二个参数是一个配置对象，对于每一个被代理的操作，需要提供一个对应的处理函数，该函数将拦截对应的操作。</p>
+<h2 id="4-1-VUE3-里为什么要用Proxy-API替代defineProperty-API"><a href="#4-1-VUE3-里为什么要用Proxy-API替代defineProperty-API" class="headerlink" title="4.1 VUE3 里为什么要用Proxy API替代defineProperty API"></a>4.1 VUE3 里为什么要用Proxy API替代defineProperty API</h2><p>相应式优化。</p>
+<ol>
+<li><strong>defineProperty的局限性最大原因是只能针对单例属性做监听</strong>：VUE2中的响应式实现是基于defineProperty，对data中的属性做个遍历+递归，为每个属性设置了getter和setter。在VUE中使用下标的方式直接修改属性的值或添加一个预先不存在的对象属性无法做到setter监听，是defineProperty的局限性。</li>
+<li><strong>Proxy API的监听是针对一个对象的，对这个对象的所有操作会进入监听操作，这就可以完全代理所有属性</strong>：Proxy可以理解成在目标对象之前设置一层拦截，外界对该对象的访问必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。</li>
+<li><strong>响应式是惰性的</strong>：在VUE2中对于一个深层属性嵌套的对象，要劫持它内部深层次的变化，就需要遍历这个对象，执行Object.defineProperty把每一层对象数据都变成响应式的，这会有很大的性能消耗。在VUE3中，使用Proxy并不能监听到对象内部深层次的属性变化，因此它的处理方式是在getter中去递归响应式，这样的好处是真正访问到的内部属性才会变成响应式。</li>
+<li>defineProperty会改变原始数据，而Proxy是创建对象的虚拟表示，返回一个新对象，并提供set、get、deleteproperty等处理器，这些处理器可以在访问或修改原始对象上的属性时进行拦截。不需要使用Vue.$set或Vue.$delete触发响应式，它全方位进行数组变化检测，消除了VUE2无效的边界情况，支持Map、Set、WeakMap和WeakSet。Proxy通过get收集依赖，set和delete触发依赖，对于集合类型，对集合对象的方法做一层包装，原方法执行后执行依赖相关的收集或触发逻辑。</li>
+</ol>
+<h2 id="4-2-特点"><a href="#4-2-特点" class="headerlink" title="4.2 特点"></a>4.2 特点</h2><ul>
+<li><strong>Proxy可以直接监听对象而非属性</strong>：它直接劫持整个对象，并返回一个新对象。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;input&#x27;</span>);<br><span class="hljs-keyword">const</span> p = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;p&#x27;</span>);<br><span class="hljs-keyword">const</span> obj = &#123;&#125;;<br> <br><span class="hljs-keyword">const</span> newObj = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(obj, &#123;<br> <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">target, key, receiver</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`getting <span class="hljs-subst">$&#123;key&#125;</span>!`</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Reflect</span>.<span class="hljs-title function_">get</span>(target, key, receiver);<br> &#125;,<br> <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">target, key, value, receiver</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(target, key, value, receiver);<br>  <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;text&#x27;</span>) &#123;<br>   input.<span class="hljs-property">value</span> = value;<br>   p.<span class="hljs-property">innerHTML</span> = value;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Reflect</span>.<span class="hljs-title function_">set</span>(target, key, value, receiver);<br> &#125;,<br>&#125;);<br> <br>input.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;keyup&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) &#123;<br> newObj.<span class="hljs-property">text</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>;<br>&#125;);<br></code></pre></td></tr></table></figure></li>
+<li><strong>Proxy可以直接监听数组的变化</strong>：当我们对数组进行操作时，会触发对应的方法名称和length的变化，可以借此进行操作。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> list = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;list&#x27;</span>);<br><span class="hljs-keyword">const</span> btn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;btn&#x27;</span>);<br> <br><span class="hljs-comment">// 渲染列表</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Render</span> = &#123;<br> <span class="hljs-comment">// 初始化</span><br> <span class="hljs-attr">init</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">arr</span>) &#123;<br>  <span class="hljs-keyword">const</span> fragment = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createDocumentFragment</span>();<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-property">length</span>; i++) &#123;<br>   <span class="hljs-keyword">const</span> li = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>);<br>   li.<span class="hljs-property">textContent</span> = arr[i];<br>   fragment.<span class="hljs-title function_">appendChild</span>(li);<br>  &#125;<br>  list.<span class="hljs-title function_">appendChild</span>(fragment);<br> &#125;,<br> <span class="hljs-comment">// 我们只考虑了增加的情况,仅作为示例</span><br> <span class="hljs-attr">change</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>) &#123;<br>  <span class="hljs-keyword">const</span> li = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>);<br>  li.<span class="hljs-property">textContent</span> = val;<br>  list.<span class="hljs-title function_">appendChild</span>(li);<br> &#125;,<br>&#125;;<br> <br><span class="hljs-comment">// 初始数组</span><br><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];<br> <br><span class="hljs-comment">// 监听数组</span><br><span class="hljs-keyword">const</span> newArr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(arr, &#123;<br> <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">target, key, receiver</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key);<br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Reflect</span>.<span class="hljs-title function_">get</span>(target, key, receiver);<br> &#125;,<br> <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">target, key, value, receiver</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(target, key, value, receiver);<br>  <span class="hljs-keyword">if</span> (key !== <span class="hljs-string">&#x27;length&#x27;</span>) &#123;<br>   <span class="hljs-title class_">Render</span>.<span class="hljs-title function_">change</span>(value);<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Reflect</span>.<span class="hljs-title function_">set</span>(target, key, value, receiver);<br> &#125;,<br>&#125;);<br> <br><span class="hljs-comment">// 初始化</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title class_">Render</span>.<span class="hljs-title function_">init</span>(arr);<br>&#125;<br> <br><span class="hljs-comment">// push数字</span><br>btn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br> newArr.<span class="hljs-title function_">push</span>(<span class="hljs-number">6</span>);<br>&#125;);<br></code></pre></td></tr></table></figure></li>
+<li><strong>Proxy有多种拦截方法</strong>：返回的是一个新对象，可以只操作新对象达到目的，而Object.defineProperty只能遍历对象属性直接修改。</li>
+</ul>
+<h1 id="★五、VUE范例"><a href="#★五、VUE范例" class="headerlink" title="★五、VUE范例"></a>★五、VUE范例</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">import</span> ... <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;&quot;</span>;</span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span>&#123;</span><br><span class="language-javascript">    <span class="hljs-comment">// 组件名</span></span><br><span class="language-javascript">    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;a&quot;</span>,</span><br><span class="language-javascript">    <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">        <span class="hljs-keyword">return</span>&#123;</span><br><span class="language-javascript">            <span class="hljs-attr">one</span>:<span class="hljs-number">1</span>,</span><br><span class="language-javascript">            <span class="hljs-attr">two</span>: tree,</span><br><span class="language-javascript">        &#125;;</span><br><span class="language-javascript">    &#125;,</span><br><span class="language-javascript">    <span class="hljs-title function_">created</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">        ...</span><br><span class="language-javascript">    &#125;,</span><br><span class="language-javascript">    <span class="hljs-attr">methods</span>:&#123;</span><br><span class="language-javascript">        <span class="hljs-title function_">funcone</span>(<span class="hljs-params">a,b</span>)&#123;</span><br><span class="language-javascript">        &#125;,</span><br><span class="language-javascript">    &#125;,</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="六、webpack"><a href="#六、webpack" class="headerlink" title="六、webpack"></a>六、webpack</h1><h2 id="6-1-什么是webpack"><a href="#6-1-什么是webpack" class="headerlink" title="6.1 什么是webpack"></a>6.1 什么是webpack</h2><p> webpack是一款模块加载器兼打包工具，它能把各种资源，例如JS（含JSX）、coffee、样式（含less&#x2F;sass）、图片等都作为模块来使用和处理,它能有Grunt或Gulp所有基本功能。<br> <strong>是一个现代的JS应用的静态模块化打包工具</strong>：<br> <strong>模块化</strong>：webpack其中一个核心就是让我们可能进行模块化开发，并且会帮助我们处理模块间的依赖关系，而且不仅仅是JavaScript文件，CSS、图片、json文件等等在webpack中都可以被当做模块来使用。<br> <strong>打包</strong>：合并成一个或多个包(Bundle),并且在打包的过程中，还可以对资源进行处理，比如压缩图片，将scss转成css，将ES6语法转成ES5语法，将TypeScript转成JavaScript等等操作。<br> <strong>静态</strong>：最终可以将代码打包成最终的静态资源（部署到静态服务器）<br><strong>优势</strong>：<br>webpack 是以 commonJS 的形式来书写脚本，但对 AMD&#x2F;CMD 的支持也很全面，方便旧项目进行代码迁移。<br>支持很多模块加载器的调用，可以使模块加载器灵活定制，比如<strong>babel-loader</strong>加载器，该加载器能使我们使用ES6的语法来编写代码;<strong>less-loader</strong>加载器，可以将less编译成css文件；<br>开发便捷，能替代部分 grunt&#x2F;gulp 的工作，比如打包、压缩混淆、图片转base64等。<br>可以通过配置打包成多个文件，有效的利用浏览器的缓存功能提升性能。<br><strong>目标</strong>：<br>webpack它能将依赖的模块转化成可以代表这些包的静态文件<br>将依赖的模块分片化，并且按需加载<br>解决大型项目初始化加载慢的问题<br>每一个静态文件都可以看成一个模块<br>可以整合第三方库<br>能够在大型项目中运用<br>可以自定义切割模块的方式</p>
+<h2 id="6-2-webpack类似工具"><a href="#6-2-webpack类似工具" class="headerlink" title="6.2 webpack类似工具"></a>6.2 webpack类似工具</h2><p>同样是基于入口的打包工具还有以下几个主流的：</p>
+<ul>
+<li>webpack</li>
+<li>rollup</li>
+<li>parcel<br>从应用场景上来看：</li>
+<li>webpack适用于大型复杂的前端站点构建</li>
+<li>rollup适用于基础库的打包，如vue、react</li>
+<li>parcel适用于简单的实验性项目，他可以满足低门槛的快速看到效果<br>由于parcel在打包过程中给出的调试信息十分有限，所以一旦打包出错难以调试，所以不建议复杂的项目使用parcel。<h2 id="6-3-webpack比其他类似工具区别"><a href="#6-3-webpack比其他类似工具区别" class="headerlink" title="6.3 webpack比其他类似工具区别"></a>6.3 webpack比其他类似工具区别</h2>有同步和异步两种不同的加载方式<br>Loader,加载器可以将其他资源整合到JS文件中，通过这种方式，可以讲所有的源文件形成一个模块<br>优秀的语法分析能力，支持 CommonJs AMD 规范<br>有丰富的开源插件库，可以根据自己的需求自定义webpack的配置<br><strong>与grunt、gulp区别</strong>：<br>三者都是前端构建工具，grunt和gulp在早期比较流行，现在webpack相对来说比较主流，不过一些轻量化的任务还是会用gulp来处理，比如单独打包CSS文件等。<br>grunt和gulp是基于任务和流（Task、Stream）的。类似jQuery，找到一个（或一类）文件，对其做一系列链式操作，更新流上的数据， 整条链式操作构成了一个任务，多个任务就构成了整个web的构建流程。<br>webpack是基于入口的。webpack会自动地递归解析入口所需要加载的所有资源文件，然后用不同的Loader来处理不同的文件，用Plugin来扩展webpack功能。<br>所以总结一下：</li>
+<li>从构建思路来说<br>gulp和grunt需要开发者将整个前端构建过程拆分成多个<code>Task</code>，并合理控制所有<code>Task</code>的调用关系<br>webpack需要开发者找到入口，并需要清楚对于不同的资源应该使用什么Loader做何种解析和加工复制代码</li>
+<li>对于知识背景来说<br>gulp更像后端开发者的思路，需要对于整个流程了如指掌 webpack更倾向于前端开发者的思路<h2 id="6-4-webpack为什么要将所有资源放在一个文件里"><a href="#6-4-webpack为什么要将所有资源放在一个文件里" class="headerlink" title="6.4 webpack为什么要将所有资源放在一个文件里"></a>6.4 webpack为什么要将所有资源放在一个文件里</h2>我们知道，对于浏览器来说，加载的资源越少，响应的速度也就越快，所以有时候我们为了优化浏览器的性能，会尽可能的将资源合并到一个主文件app.js里面。但是这导致的很大的缺点：<br>当你的项目十分庞大的时候，不同的页面不能做到按需加载，而是将所有的资源一并加载，耗费时间长，性能降低。<br>会导致依赖库之间关系的混乱，特别是大型项目时，会变得难以维护和跟踪。比如:哪些文件是需要A模块加载完后才能执行的？哪些页面会受到多个样式表同时影响的？ 等许多问题。<br>而webpack可以很好的解决以上缺点,因为它是一个十分聪明的模块打包系统，当你正确配置后，它会比你想象中的更强大，更优秀。<h2 id="6-5-webpack怎么打包"><a href="#6-5-webpack怎么打包" class="headerlink" title="6.5 webpack怎么打包"></a>6.5 webpack怎么打包</h2>①在webpack开始打包时，会根据命令或者配置文件找到入口文件从入口开始。<br>②根据文件中之间的依赖关系生成依赖关系图，这个依赖关系图会包括项目中所需要的所有模块，包括 js文件，css文件,图片，字体等<br>③依次遍历图结构，根据文件类型使用对应的loader进行解析，依次进行打包。<br><strong>构建流程</strong>：串行的过程<br>1.初始化参数：从配置文件和 Shell 语句中读取与合并参数，得出最终的参数；<br>2.开始编译：用上一步得到的参数初始化 Compiler 对象，加载所有配置的插件，执行对象的 run 方法开始执行编译；<br>3.确定入口：根据配置中的 entry 找出所有的入口文件；<br>4.编译模块：从入口文件出发，调用所有配置的 Loader 对模块进行翻译，再找出该模块依赖的模块，再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理；<br>5.完成模块编译：在经过第4步使用 Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系；<br>6.输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；<br>7.输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。<br>在以上过程中，Webpack 会在特定的时间点广播出特定的事件，插件在监听到感兴趣的事件后会执行特定的逻辑，并且插件可以调用 Webpack 提供的 API 改变 Webpack 的运行结果。<h2 id="6-6-webpack的使用过程"><a href="#6-6-webpack的使用过程" class="headerlink" title="6.6 webpack的使用过程"></a>6.6 webpack的使用过程</h2>①准备工作：<br>dist文件夹存放打包后的文件，src文件夹存放写的源文件<br>src中main.js项目的入口文件，index.html浏览器打开展示的首页html。</li>
+</ul>
+<p>②js文件的打包：js文件不可以直接使用，浏览器无法识别其中模块化代码。<br>webpack支持代码中写模块化，对模块化的代码进行处理，在处理完所有模块之间的关系后，将多个js打包到一个js文件中，引入就非常方便了。</p>
+<p><strong>打包过程</strong><br>1.webpack<br>直接执行webpack默认会将当前目录下的 src&#x2F;index.js 作为入口文件，所以，如果当前项目中没有存在src&#x2F;index.js文件，那么会报错,打包后的文件会保存在dist&#x2F;main.js中<br>2.webpack –entry .&#x2F;src&#x2F;main.js –output-path .&#x2F;dist指定入口文件和出口文件<br>将src&#x2F;main.js文件打包，并把打包好的文件保存到dist&#x2F;main.js中 </p>
+<p>③使用打包后的文件<br>打包后会在dist文件下生成一个main.js文件，只要在index.html中引入这个文件即可。</p>
+<h2 id="6-7-配置entry和output"><a href="#6-7-配置entry和output" class="headerlink" title="6.7 配置entry和output"></a>6.7 配置entry和output</h2><p>在webpack.config.js中配置入口文件和出口文件。<br><strong>entry</strong>：用来写入口文件，它将是整个依赖关系的根<br><strong>output</strong>：用来定义出口文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>    <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>, <span class="hljs-comment">// 若有多个入口文件，把entry写成对象，index.js的键为main</span><br>   <span class="hljs-attr">output</span>: &#123;<br>        <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;main.js&#x27;</span>,<br>        <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">resolve</span>(__dirname,<span class="hljs-string">&#x27;dist&#x27;</span>)<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果定义的入口文件有多个，那我们需要使用占位符来确保输出文件的唯一性，即[main].js。</p>
+<h2 id="6-8-loader插件"><a href="#6-8-loader插件" class="headerlink" title="6.8 loader插件"></a>6.8 loader插件</h2><p>loader 用于对模块的源代码进行<strong>转换</strong>。loader 可以使你在 import 或”加载”模块时预处理文件。因此，loader 类似于其他构建工具中“任务(task)”，并提供了处理前端构建步骤的强大方法。loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript，或将内联图像转换为 data URL。loader 甚至允许你直接在 JavaScript 模块中 import CSS文件！loader 本质是一个函数。<br><strong>常见loader</strong>：<br>file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件<br>url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去<br>source-map-loader：加载额外的 Source Map 文件，以方便断点调试<br>image-loader：加载并且压缩图片文件<br>babel-loader：把 ES6 转换成 ES5<br>css-loader：加载 CSS文件，对CSS文件进行解析，支持模块化、压缩、文件导入等特性<br>style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。<br>eslint-loader：通过 ESLint 检查 JavaScript 代码<br>less-loader：把less文件转化为css文件。<br><strong>特性</strong>：<br>loader 支持链式传递。能够对资源使用流水线(pipeline)。一组链式的 loader 将按照相反的顺序执行。loader 链中的第一个 loader 返回值给下一个 loader。在最后一个 loader，返回 webpack 所预期的 JavaScript。<br>1.loader 可以是同步的，也可以是异步的。<br>2.loader 运行在 Node.js 中，并且能够执行任何可能的操作。<br>3.loader 接收查询参数。用于对 loader 传递配置。<br>4.loader 也能够使用 options 对象进行配置。<br>5.除了使用 package.json 常见的 main 属性，还可以将普通的 npm 模块导出为 loader，做法是<br>6.在 package.json 里定义一个 loader 字段。<br>7.插件(plugin)可以为 loader 带来更多特性。<br>8.loader 能够产生额外的任意文件。<br>loader 通过（loader）预处理函数，为 JavaScript 生态系统提供了更多能力。 用户现在可以更加灵活地引入细粒度逻辑，例如压缩、打包、语言翻译和其他更多。<br><strong>使用方式</strong><br>1.配置（推荐）：在 webpack.config.js 文件中指定 loader。<br>2.内联：在每个 import 语句中显式指定 loader。<br>3.CLI：在 shell 命令中指定它们。</p>
+<h2 id="6-9-plugin插件"><a href="#6-9-plugin插件" class="headerlink" title="6.9 plugin插件"></a>6.9 plugin插件</h2><p>用于执行更加广泛的任务，比如打包优化、资源管理、环境变量注入等等，是对webpack现有功能的各种扩展。<br><strong>常见</strong>：<br>CleanWebpackPlugin：每次打包时，自动删除上一次打包的dist文件夹。<br>HTMLWebpackPlugin：对index.html文件进行打包，并且在打包的index.html中引用main.js</p>
+<h2 id="6-10-loader与plugin区别"><a href="#6-10-loader与plugin区别" class="headerlink" title="6.10 loader与plugin区别"></a>6.10 loader与plugin区别</h2><p>Loader像一个”翻译官”<strong>把读到的源文件内容转义成新的文件内容</strong>，并且每个Loader通过<strong>链式操作</strong>，将源文件一步步翻译成想要的样子。<br>编写Loader时要遵循单一原则，每个Loader只做一种”转义”工作。 每个Loader的拿到的是源文件内容（source），可以通过返回值的方式将处理后的内容输出，也可以调用this.callback()方法，将内容返回给webpack。 还可以通过 this.async()生成一个callback函数，再用这个callback将处理后的内容输出出去。 此外webpack还为开发者准备了开发loader的工具函数集——loader-utils。<br>相对于Loader而言，Plugin的编写就灵活了许多。 webpack在运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。<br><strong>loader 本质是一个函数，plugin 本质是一个类</strong><br>不同的作用</p>
+<ul>
+<li>Loader直译为”加载器”。主要是做<strong>转换功能</strong>。Webpack将一切文件视为模块，但是webpack原生是只能解析js文件，如果想将其他文件也打包的话，就会用到loader。 所以Loader的作用是让webpack拥有了加载和解析<em>非<strong>JavaScript</strong>文件</em>的能力。</li>
+<li>Plugin直译为”插件”。原理是<strong>监听 webpack 构建过程中的一些钩子</strong>，然后做一些自己的操作，更多的是丰富 webpack 的功能。Plugin可以扩展webpack的功能，让webpack具有更多的灵活性。 在 Webpack 运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。<br>不同的用法</li>
+<li>Loader在module.rules中配置，也就是说他作为模块的解析规则而存在。 类型为数组，每一项都是一个Object，里面描述了对于什么类型的文件（test），使用什么加载(loader)和使用的参数（options）</li>
+<li>Plugin在plugins中单独配置。 类型为数组，每一项是一个plugin的实例，参数都通过构造函数传入。</li>
+</ul>
+<h1 id="七、plugin原理"><a href="#七、plugin原理" class="headerlink" title="七、plugin原理"></a>七、plugin原理</h1><p>webpack 在编译代码过程中，会触发一系列 Tapable 钩子事件，插件所做的，就是找到相应的钩子，往上面挂上自己的任务，也就是注册事件，这样当 webpack 构建的时候，插件注册的事件就会随着钩子的触发而执行。<br><strong>Webpack钩子</strong>：钩子的本质是事件，webpack把编译过程中触发的各类关键事件封装成事件接口暴露出来。<br><strong>Tapable</strong>：为webpack提供了统一的插件接口（事件），提供tap（可以注册同步钩子和异步钩子）、tapAsync（回调方式注册异步钩子）、tapPromise（Promise方式注册异步钩子）</p>
+<h2 id="Compiler"><a href="#Compiler" class="headerlink" title="Compiler"></a>Compiler</h2><p>compiler 对象中<strong>保存着完整的 Webpack 环境配置</strong>，每次启动 webpack 构建时它都是一个独一无二，仅仅会创建一次的对象。<br>这个对象会在首次启动 Webpack 时创建，可以通过 compiler 对象上访问到 Webapck 的主环境配置，如 loader 、 plugin等配置信息。<br>它有以下主要属性：<br>compiler.options 可以访问本次启动 webpack 时候所有的配置文件，包括但不限于 loaders 、entry 、output 、plugin 等等完整配置信息<br>compiler.inputFileSystem 和 compiler.outputFileSystem 可以进行文件操作，相当于 Nodejs 中 fs<br>compiler.hooks 可以注册 tapable 的不同种类 Hook，从而可以在 compiler 生命周期中植入不同的逻辑</p>
+<h2 id="Compilation"><a href="#Compilation" class="headerlink" title="Compilation"></a>Compilation</h2><p>compilation 对象<strong>代表一次资源的构建，compilation 实例能够访问所有的模块和它们的依赖</strong><br>一个 compilation 对象会对构建依赖图中所有模块，进行编译。 在编译阶段，模块会被加载(load)、封存(seal)、优化(optimize)、 分块(chunk)、哈希(hash)和重新创建(restore)<br>它有以下主要属性：<br>compilation.modules ：可以访问所有模块，打包的每一个文件都是一个模块。<br>compilation.chunks：chunk 即是多个 modules 组成而来的一个代码块。入口文件引入的资源组成一个 chunk，通过代码分割的模块又是另外的 chunk<br>compilation.assets：可以访问本次打包生成所有文件的结果。<br>compilation.hooks：可以注册 tapable 的不同种类 Hook，用于在 compilation 编译模块阶段进行逻辑添加以及修改</p>
+<img src="/2022/08/10/Vue%E4%B8%8B/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/img/loading.gif" lazyload class=""> 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/11/html%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9F%A5%E8%AF%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">html浏览器知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/28/JavaScript%E4%B8%8B/">
+                        <span class="hidden-mobile">JavaScript下</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

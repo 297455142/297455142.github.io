@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、数据类型一、数据类型和区别JS的八大数据类型：Number、String、Boolean、Undefined、Null、Object、Symbol（ES6新增）、Bigint（ES6新增）基本数据类型：Number、String、Boolean、Undefined、Null、Symbol(ES6)引用数据类型：Object、Array、Function集合：set。映射：Map。  Symbo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript上">
+<meta property="og:url" content="http://example.com/2022/07/13/JavaScript%E4%B8%8A/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、数据类型一、数据类型和区别JS的八大数据类型：Number、String、Boolean、Undefined、Null、Object、Symbol（ES6新增）、Bigint（ES6新增）基本数据类型：Number、String、Boolean、Undefined、Null、Symbol(ES6)引用数据类型：Object、Array、Function集合：set。映射：Map。  Symbo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/07/13/JavaScript%E4%B8%8A/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.png">
+<meta property="og:image" content="http://example.com/2022/07/13/JavaScript%E4%B8%8A/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png">
+<meta property="article:published_time" content="2022-07-13T01:37:56.000Z">
+<meta property="article:modified_time" content="2022-09-23T17:37:52.700Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/07/13/JavaScript%E4%B8%8A/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.png">
+  
+  
+  <title>JavaScript上 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JavaScript上">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-07-13 09:37" pubdate>
+        2022年7月13日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      24k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      198 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaScript上</h1>
+            
+            <div class="markdown-body">
+              <h1 id="一、数据类型"><a href="#一、数据类型" class="headerlink" title="一、数据类型"></a>一、数据类型</h1><h2 id="一、数据类型和区别"><a href="#一、数据类型和区别" class="headerlink" title="一、数据类型和区别"></a>一、数据类型和区别</h2><p>JS的八大数据类型：Number、String、Boolean、Undefined、Null、Object、Symbol（ES6新增）、Bigint（ES6新增）<br>基本数据类型：Number、String、Boolean、Undefined、Null、Symbol(ES6)<br>引用数据类型：Object、Array、Function<br>集合：set。映射：Map。</p>
+<ul>
+<li>Symbol代表创建后独一无二的数据类型，主要是为了解决可能出现的全局变量冲突的问题。</li>
+<li>BigInt 是一种数字类型的数据，它可以表示任意精度格式的整数，可以安全地存储和操作大整数，即使这个数已经超出了 Number 能够表示的安全整数范围。<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3>1、 <strong>位置</strong>：基本数据类型值（原始值）是存储在栈中的数据段，直接存储在变量访问的位置，存放js基本数据类型的变量存放的是基本类型数据的实际值。<br>引用数据类型值是存储在堆中的对象，存储在变量处的值是一个指针，指向存储对象的内存地址。存放引用数据类型的变量是保存对它的引用，即指针。<br>2、复制变量时：对于存放基本数据类型的变量的交换，等于在一个新的作用域创建一个新的空间，新的空间与原空间不会互相影响。<br>对于存放引用数据类型的变量交换，并不会创建一个新的空间，而是让对象或方法和之前对象或方法同时指向一个原有空间（地址）。<br>3、参数传递不同：函数传参时，变量存储的基本类型的值只是把值传递给参数之后，参数和这个变量互不影响。<br>变量存储的引用数据类型值存储的是该引用值在堆内存中的内存地址，传递的值就是这个内存地址。<br>4、在操作系统中，内存被分为栈区和堆区。栈区内存由编译器自动分配释放，存放函数的参数值、局部变量的值等，操作方式类似数据结构中的栈。堆区内存一般由开发者分配释放，若开发者不释放，程序结束时可能由垃圾回收机制回收。</li>
+</ul>
+<p>确定一个值是哪种基本类型可以使用typeof操作符，确定一个值是哪种引用类型使用instanceof操作符。<br>typeof null输出object</p>
+<h2 id="二、判断数据类型"><a href="#二、判断数据类型" class="headerlink" title="二、判断数据类型"></a>二、判断数据类型</h2><ul>
+<li>最好的方法：Object.prototype.toString.call(a)，返回值为[object 类型]<img src="/2022/07/13/JavaScript%E4%B8%8A/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.png" srcset="/img/loading.gif" lazyload class="" title="数据类型判断"> </li>
+<li><strong>typeof</strong>：对于原始类型来说，除了null都可以显示正确的类型。null和对象（函数除外返回function）都显示object。返回一个字符串，表示未经求值的操作数的类型。不能判断出Array、null和object之间区别。</li>
+<li><strong>instanceof</strong>：判断某个构造函数的prototype属性所指向的对象是否存在于另一个要检测的对象的原型链上。a instanceof b就是检测a是不是b的一个实例对象或者是b子类的一个实例对象。例如：console.log([] instanceof Array)为true。<strong>只能判断引用数据类型，不能判断基本数据类型</strong>。</li>
+<li>valueOf：</li>
+</ul>
+<ol>
+<li>booleanObject.valueOf()返回布尔对象的原始值。</li>
+<li>stringObject.valueOf()返回String对象的原始值，原始值是由从String对象下来的所有对象继承的。</li>
+<li>arrayObject.valueOf()返回Array对象的原始值，该值是由Array对象派生的所有对象继承。</li>
+<li>NumberObject.valueOf()可以字符串返回数字，字符串的输出通常等于该数字。</li>
+<li>DateObject.valueOf()方法返回Date对象的原始值。返回值和方法Date.getTime返回的值相等。</li>
+</ol>
+<ul>
+<li><strong>constructor</strong>：有两个作用，一是判断数据的类型，二是对象实例通过constructor对象访问它的构造函数。如果创建一个对象来改变它的原型，constructor就不能判断它的数据类型了。使用方法：(2).constructor&#x3D;&#x3D;&#x3D;Number<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Fn</span>(<span class="hljs-params"></span>)&#123;&#125;;<br><span class="hljs-title class_">Fn</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>();<br><span class="hljs-keyword">var</span> f = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Fn</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(f.<span class="hljs-property">constructor</span>===<span class="hljs-title class_">Fn</span>);    <span class="hljs-comment">// false</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(f.<span class="hljs-property">constructor</span>===<span class="hljs-title class_">Array</span>); <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+<h3 id="检测对象obj时obj-toString-的结果和Object-prototype-toString-call-obj-结果为何不同"><a href="#检测对象obj时obj-toString-的结果和Object-prototype-toString-call-obj-结果为何不同" class="headerlink" title="检测对象obj时obj.toString()的结果和Object.prototype.toString.call(obj)结果为何不同"></a>检测对象obj时obj.toString()的结果和Object.prototype.toString.call(obj)结果为何不同</h3>因为toString是Object的原型方法，而Array、function等<strong>类型作为Object的实例，都重写了toString方法</strong>。不同的对象类型调用toString方法时，根据原型链调用的是对应的重写之后的toString方法，而不会去调用Object上原型toString方法（返回对象的具体类型），所以采用obj.toString()不能得到其对象类型，只能将obj转换为字符串类型[object Object]；因此，在想要得到对象的具体类型时，应该调用Object原型上的toString方法。</li>
+</ul>
+<h2 id="三、判断数组的方式"><a href="#三、判断数组的方式" class="headerlink" title="三、判断数组的方式"></a>三、判断数组的方式</h2><ul>
+<li>Object.prototype.toString.call()<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(obj).<span class="hljs-title function_">slice</span>(<span class="hljs-number">8</span>,-<span class="hljs-number">1</span>) === <span class="hljs-string">&#x27;Array&#x27;</span>;<br></code></pre></td></tr></table></figure></li>
+<li>通过ES6的Array.isArray()做判断<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArrray</span>(obj);<br></code></pre></td></tr></table></figure></li>
+<li>通过instanceof判断<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Array</span><br></code></pre></td></tr></table></figure></li>
+<li>通过原型链做判断<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">obj.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span><br></code></pre></td></tr></table></figure></li>
+<li>通过Array.prototype.isPrototypeOf<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title function_">isPrototypeOf</span>(obj)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>将非数组队列转为数组</strong>：Array.from(obj)</p>
+<h2 id="四、null和undefined区别"><a href="#四、null和undefined区别" class="headerlink" title="四、null和undefined区别"></a>四、null和undefined区别</h2><p>二者都是剧本数据类型。<br><strong>undefined</strong>代表未定义，<strong>null</strong>代表空对象。一般变量声明了但还没有定义时返回undefined，null主要用于赋值给一些可能会返回对象的变量，作为初始化。<br>undefined在JavaScript中不是一个保留字，意味着它可以作为一个变量名，可以使用一些方法获得安全的undefined值，如<strong>void 0</strong>。<br>对这两种类型使用typeof时，null会返回object（第一个版本的JavaScript中null的类型标签和object类型标签一样是000）。使用双等号对两种类型的值进行比较的时候会返回true，用三等号比较返回false。</p>
+<h2 id="五、instanceof实现原理"><a href="#五、instanceof实现原理" class="headerlink" title="五、instanceof实现原理"></a>五、instanceof实现原理</h2><p>instanceof运算符用于判断构造函数的prototye属性是否出现在对象的原型链中的任何位置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myInstanceof</span>(<span class="hljs-params">left, right</span>) &#123;<br>  <span class="hljs-comment">// 获取对象的原型</span><br>  <span class="hljs-keyword">let</span> proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(left)<br>  <span class="hljs-comment">// 获取构造函数的 prototype 对象</span><br>  <span class="hljs-keyword">let</span> prototype = right.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>;<br> <br>  <span class="hljs-comment">// 判断构造函数的 prototype 对象是否在对象的原型链上</span><br>  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!proto) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">if</span> (proto === prototype) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-comment">// 如果没有找到，就继续从其原型上找，Object.getPrototypeOf方法用来获取指定对象的原型</span><br>    proto = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(proto);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="六、小数求和（0-1-0-2-x3D-x3D-x3D-0-3）"><a href="#六、小数求和（0-1-0-2-x3D-x3D-x3D-0-3）" class="headerlink" title="六、小数求和（0.1+0.2&#x3D;&#x3D;&#x3D;0.3）"></a>六、小数求和（0.1+0.2&#x3D;&#x3D;&#x3D;0.3）</h2><p>JS用Number类型来表示数字（整数或浮点数），通过64位来表示一个数字（1位符号位+11位指数位e+52位小数位f）</p>
+<ul>
+<li>1 符号位，0表示正数，1表示负数</li>
+<li>11 指数位（e），决定数值大小</li>
+<li>52 尾数（f），小数部分（即有效数字），决定数值精度。<br>计算方式：尾数为1.xxx…，这些x指的就是52位尾数。指数位二进制-1023。指数位最大为11111111110。  
+最大安全数字：Number.MAX_SAFE_INTEGER &#x3D; Math.pow(2,53)-1，为一个16位整数。<br>最大数字：Number.MAX_VALUE &#x3D; 2^Math.pow(2,2046-1023)*（1.11111….（52个1））<br>两数相加，0.1和0.2均先转换为二进制数，尾数会发生无限循环，进行截断时会发生精度丢失。<br><strong>精度丢失可能会出现在进制换和对阶运算中</strong><br>解决办法：设置一个误差范围，如<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">（<span class="hljs-number">0.1</span>+<span class="hljs-number">0.2</span>）.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>) <span class="hljs-comment">//利用toFixed进行四舍五入，保留小数后面两位</span><br></code></pre></td></tr></table></figure>
+在ES6中，提供Number.EPSILON属性，只要判断0.1+0.2-0.3是否小于Number.EPSILON，小于就视为正常。</li>
+</ul>
+<h2 id="七、typeof-NaN的结果是什么"><a href="#七、typeof-NaN的结果是什么" class="headerlink" title="七、typeof NaN的结果是什么"></a>七、typeof NaN的结果是什么</h2><p>NaN是指结果不是一个数字，用于指出数字类型中的错误情况，即执行数学运算没有成功，这是失败后返回的结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">typeof</span> <span class="hljs-title class_">NaN</span>; <span class="hljs-comment">// &quot;number&quot;</span><br></code></pre></td></tr></table></figure>
+<p>NaN是一个特殊值，和自身不相等，是唯一一个非自反的值，NaN!&#x3D;&#x3D;NaN为true。</p>
+<h2 id="八、isNaN和Number-isNaN区别"><a href="#八、isNaN和Number-isNaN区别" class="headerlink" title="八、isNaN和Number.isNaN区别"></a>八、isNaN和Number.isNaN区别</h2><ul>
+<li>isNaN接收参数后，会尝试将这个参数转换为数值，任何不能转换为数值的值都会返回true，非数字值传入也会返回true，会影响NaN的判断。</li>
+<li>Number.isNaN会首先判断传入的参数是否为数字，如果是数字再继续判断是否为NaN，不会进行数据类型的转换，对NaN的判断更加准确。<h2 id="九、-x3D-x3D-强制类型转换"><a href="#九、-x3D-x3D-强制类型转换" class="headerlink" title="九、&#x3D;&#x3D;强制类型转换"></a>九、&#x3D;&#x3D;强制类型转换</h2>对于&#x3D;&#x3D;，如果对比双方类型不一样，会进行类型转换。如果比较x和y是否相同，进行如下流程：</li>
+</ul>
+<ol>
+<li>首先会判断两者类型是否<strong>相同</strong>，相同的话就比较两者的大小；</li>
+<li>类型不相同的话，就会进行类型转换；</li>
+<li>会先判断是否在对比 null和undefined，是的话就会返回 true</li>
+<li>判断两者类型是否为string和number，是的话就会将字符串转换为number</li>
+<li>判断其中一方是否为boolean，是的话就把boolean转换为number（0或1）再进行判断。</li>
+<li>判断其中一方是否为object且另一方为string、number或symbol，是就会把object转换为原始类型再进行判断。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&#x27;1&#x27;</span> == &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;js&#x27;</span> &#125;    <span class="hljs-comment">//    &#x27;1&#x27; == &#x27;[object Object]&#x27;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+ <img src="/2022/07/13/JavaScript%E4%B8%8A/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.png" srcset="/img/loading.gif" lazyload class=""> 
+
+<h2 id="十、类型转换"><a href="#十、类型转换" class="headerlink" title="十、类型转换"></a>十、类型转换</h2><ul>
+<li>显示转化：</li>
+</ul>
+<ol>
+<li>转化为字符串类型（String）：String(a)除了极大极小的数字会转换为指数形式，symbol类型显示强制类型转换。</li>
+<li>转换为数值类型：Number(a)。空字符串、空格字符串和null会转换为0，undefined转换为NaN，当其他类型无法转换为具体数值时，打印成NaN。Symbol报错，对象回先转换为对应基本类型值，若返回非数字的基本类型值，则再根据规则强制转换为数字。<br>为了将值转换为相应的基本类型值，抽象操作 ToPrimitive 会首先（通过内部操作 DefaultValue）检查该值是否有valueOf()方法。如果有并且返回基本类型值，就使用该值进行强制类型转换。如果没有就使用 toString() 的返回值（如果存在）来进行强制类型转换。如果 valueOf() 和 toString() 均不返回基本类型值，会产生 TypeError 错误。</li>
+<li>转化为布尔类型：Boolean(a)。数值类型中的0和NaN转化为false，其余转化为true。字符串类型中除了空字符串其它都是true。undefined和null转换为false。</li>
+<li>parseInt和parseFloat将字符串类型转换为数值类型，取字符串以整数开头的字符串中的数值。parseInt取整，parseFloat取小数。如果第一个非空格字符不是有效的数值字面量，则返回NaN。</li>
+</ol>
+<ul>
+<li>隐式转换：除Date对象用toString转换为字符串，其余都如下<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-title function_">objToNumber</span> = value =&gt; <span class="hljs-title class_">Number</span>(value.<span class="hljs-title function_">valueOf</span>().<span class="hljs-title function_">toString</span>())<br><span class="hljs-title function_">objToNumber</span>([]) === <span class="hljs-number">0</span><br><span class="hljs-title function_">objToNumber</span>(&#123;&#125;) === <span class="hljs-title class_">NaN</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li>二元+：如果一个操作数是对象，把该操作数转换为原始值（toString和valueOf）。如果有操作数是字符串，另一个操作数也会转换为字符串并进行拼接。否则，两个操作数都转换为数值。</li>
+<li>一元+、-、++：将操作数转转换为数值。</li>
+<li>！：将操作数转换为布尔值再取反。</li>
+<li>通常会按照需要转换操作数的类型进行转换。如”3”*”5”结果为15。</li>
+<li>对于&lt;和&gt;，如果两边都是字符串，则比较字母表顺序，否则转换为数字再比较。<h2 id="十一、-和-amp-amp-操作符的返回值"><a href="#十一、-和-amp-amp-操作符的返回值" class="headerlink" title="十一、||和&amp;&amp;操作符的返回值"></a>十一、||和&amp;&amp;操作符的返回值</h2>||和&amp;&amp;首先会对第一个操作数执行条件进行判断，若其不是布尔值就先强制转换为布尔类型，再进行条件判断。<br>对于||，若第一个值判断结果为true就返回第一个操作数的值，不处理第二个值；如果第一个值为false才返回第二个操作数的值。<br>&amp;&amp;相反，如果第一个操作数的值为true返回第二个操作数的值，否则只返回第一个操作数的值不看第二个操作数。<h2 id="十二、-x3D-x3D-、-x3D-x3D-x3D-和Object-is"><a href="#十二、-x3D-x3D-、-x3D-x3D-x3D-和Object-is" class="headerlink" title="十二、&#x3D;&#x3D;、&#x3D;&#x3D;&#x3D;和Object.is()"></a>十二、&#x3D;&#x3D;、&#x3D;&#x3D;&#x3D;和Object.is()</h2></li>
+</ol>
+<ul>
+<li>&#x3D;&#x3D;&#x3D;：判断两者类型和值是否完全相等，不进行类型转换。如果一个值是NaN，则不相等。</li>
+<li>&#x3D;&#x3D;：如果两个操作数的值类型不同，会先进行类型转换，再进行比较。</li>
+</ul>
+<ol>
+<li>如果两个值类型相同，比较大小。</li>
+<li>如果类型不同，会进行类型转换。</li>
+<li>如果一个值是null，另一个值是undefined，则相等。</li>
+<li>如果一个值是数值，另一个是字符串，就会将字符串转换为数值，再进行比较。</li>
+<li>如果有一个值为布尔值，true转1false转0，再进行比较。</li>
+<li>如果一个值为对象object，另一个值是数值或者字符串，就把对象转换为原始类型再比较。</li>
+</ol>
+<ul>
+<li>Object.is()一般情况下判断和&#x3D;&#x3D;&#x3D;相同，+0和-0不相等，两个NaN相等。<h2 id="十三、包装类型"><a href="#十三、包装类型" class="headerlink" title="十三、包装类型"></a>十三、包装类型</h2>在 JavaScript 中，基本类型是没有属性和方法的，但是为了便于操作基本类型的值，在调用基本类型的属性或方法时JavaScript会在后台隐式地将基本类型的值转换为对象，如：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> a = <span class="hljs-string">&quot;abc&quot;</span>;<br>a.<span class="hljs-property">length</span>; <span class="hljs-comment">// 3</span><br>a.<span class="hljs-title function_">toUpperCase</span>(); <span class="hljs-comment">// &quot;ABC&quot;</span><br></code></pre></td></tr></table></figure>
+在访问’abc’.length时，JavaScript 将’abc’在后台转换成String(‘abc’)，然后再访问其length属性。<br>JavaScript也可以使用Object函数显式地将基本类型转换为包装类型：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-string">&#x27;abc&#x27;</span><br><span class="hljs-title class_">Object</span>(a) <span class="hljs-comment">// String &#123;&quot;abc&quot;&#125;</span><br>复制代码<br></code></pre></td></tr></table></figure>
+<p>也可以使用valueOf方法将包装类型倒转成基本类型：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-string">&#x27;abc&#x27;</span><br><span class="hljs-keyword">var</span> b = <span class="hljs-title class_">Object</span>(a)<br><span class="hljs-keyword">var</span> c = b.<span class="hljs-title function_">valueOf</span>() <span class="hljs-comment">// &#x27;abc&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>看看如下代码会打印出什么：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Boolean</span>(<span class="hljs-literal">false</span>);<br><span class="hljs-keyword">if</span> (!a) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>( <span class="hljs-string">&quot;Oops&quot;</span> ); <span class="hljs-comment">// never runs</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>答案是什么都不会打印，因为虽然包裹的基本类型是false，但是false被包裹成包装类型后就成了对象，所以其非值为false，所以循环体中的内容不会运行。</p>
+<h1 id="二、ES6"><a href="#二、ES6" class="headerlink" title="二、ES6"></a>二、ES6</h1><h2 id="★一、let、const、var"><a href="#★一、let、const、var" class="headerlink" title="★一、let、const、var"></a>★一、let、const、var</h2><p><strong>（1）块级作用域：</strong> 块作用域由{}包括，let和const具有块级作用域，var不存在块级作用域，仅限于包含函数的函数体，若在函数体外会声明全局变量。块级作用域解决了ES5中的两个问题：</p>
+<ul>
+<li>内层变量可能覆盖外层变量</li>
+<li>用来计数的循环变量泄露为全局变量</li>
+</ul>
+<p><strong>（2）变量提升：</strong> var存在变量提升，可以使用window.name调用该变量，let和const不存在变量提升，即变量只能在声明之后使用，否在会报错。<br><strong>（3）给全局添加属性：</strong> 浏览器的全局对象是window，Node的全局对象是global。var声明的变量为全局变量，并且会将该变量添加为全局对象的属性，但是let和const不会。<br><strong>（4）重复声明：</strong> var声明变量时，可以重复声明变量，后声明的同名变量会覆盖之前声明的遍历。const和let不允许重复声明变量。let在不同作用域或不同块级作用域可以重复声明赋值。<br><strong>（5）暂时性死区：</strong> 在使用let、const命令声明变量之前，该变量都是不可用的。这在语法上，称为<strong>暂时性死区</strong>。使用var声明的变量不存在暂时性死区。<br><strong>（6）初始值设置：</strong> 在变量声明时，var 和 let 可以不用设置初始值，为undefined。而const声明变量必须设置初始值。<br><strong>（7）指针指向：</strong> let和const都是ES6新增的用于创建变量的语法。 let创建的变量是可以更改指针指向（可以重新赋值）。但const声明的变量是不允许改变指针的指向。</p>
+<table>
+<thead>
+<tr>
+<th><strong>区别</strong></th>
+<th><strong>var</strong></th>
+<th><strong>let</strong></th>
+<th><strong>const</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否有块级作用域</td>
+<td>×</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>是否存在变量提升</td>
+<td>✔️</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>是否添加全局属性</td>
+<td>✔️</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>能否重复声明变量</td>
+<td>✔️</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>是否存在暂时性死区</td>
+<td>×</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>是否必须设置初始值</td>
+<td>×</td>
+<td>×</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>能否改变指针指向</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> x=<span class="hljs-number">10</span>;<br>&#123;<br>    <span class="hljs-keyword">var</span> x=<span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-comment">// x=2(为x重新赋值）</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> x=<span class="hljs-number">10</span>;<br>&#123;<br>    <span class="hljs-keyword">let</span> x=<span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-comment">// x=10,let只在&#123;&#125;内有效。&#125;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> x=<span class="hljs-number">2</span>; <span class="hljs-comment">//合法</span><br><span class="hljs-keyword">let</span> x=<span class="hljs-number">3</span>; <span class="hljs-comment">//不合法</span><br>&#123;<br>    <span class="hljs-keyword">var</span> x=<span class="hljs-number">4</span>; <span class="hljs-comment">//合法</span><br>    <span class="hljs-keyword">let</span> x=<span class="hljs-number">3</span>; <span class="hljs-comment">//不合法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>未声明的变量会被添加一个全局作用域，声明变量作用域是当前上下文。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">x</span>(<span class="hljs-params"></span>) &#123;<br>  y = <span class="hljs-number">1</span>;   <span class="hljs-comment">// 在严格模式下会抛出ReferenceError</span><br>  <span class="hljs-keyword">var</span> z = <span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-title function_">x</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(y); <span class="hljs-comment">// &#x27;1&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(z); <span class="hljs-comment">// ReferenceError: z is not defined</span><br></code></pre></td></tr></table></figure></li>
+<li>声明变量在任何代码执行前创建，未声明的变量只有在执行赋值操作的时候才会被创建。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);  <span class="hljs-comment">// 抛出ReferenceError。</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;still going...&#x27;</span>); <span class="hljs-comment">// 不会执行</span><br><span class="hljs-keyword">var</span> a;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);  <span class="hljs-comment">// &quot;undefined&quot;或&quot;&quot;（不同执行引擎的实现不同）</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;still going...&#x27;</span>); <span class="hljs-comment">// &#x27;still going...&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li>声明变量是不可配置属性，而未声明变量是可配置的。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;<br>b = <span class="hljs-number">2</span>;<br><span class="hljs-keyword">delete</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">a</span>; <span class="hljs-comment">// 在严格模式下抛出TypeError，非严格模式下执行失败且无任何提示</span><br><span class="hljs-keyword">delete</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">b</span>;<br></code></pre></td></tr></table></figure></li>
+<li>函数内部声明的变量只能在函数内部使用，函数外部声明的变量可以全局使用。变量在函数内重新声明后在外部依旧保持原状态。<h2 id="二、const对象的属性可以修改吗"><a href="#二、const对象的属性可以修改吗" class="headerlink" title="二、const对象的属性可以修改吗"></a>二、const对象的属性可以修改吗</h2>const保证的并不是变量的值不能改动，而是变量指向的那个内存地址不能改动。对于基本类型的数据（数值、字符串、布尔值），其值就保存在变量指向的那个内存地址，因此等同于常量。<br>但对于引用类型的数据（主要是对象和数组）来说，变量指向数据的内存地址，保存的只是一个指针，const只能保证这个指针是固定不变的，至于它指向的数据结构是不是可变的，就完全不能控制了。<h2 id="三、…扩展运算符的作用及使用场景"><a href="#三、…扩展运算符的作用及使用场景" class="headerlink" title="三、…扩展运算符的作用及使用场景"></a>三、…扩展运算符的作用及使用场景</h2><h3 id="3-1-对象扩展运算符"><a href="#3-1-对象扩展运算符" class="headerlink" title="3.1 对象扩展运算符"></a>3.1 对象扩展运算符</h3>对象的扩展运算符(…)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> bar = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;;<br><span class="hljs-keyword">let</span> baz = &#123; ...bar &#125;; <span class="hljs-comment">// &#123; a: 1, b: 2 &#125;</span><br></code></pre></td></tr></table></figure>
+上述方法实际上等价于:<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> bar = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;;<br><span class="hljs-keyword">let</span> baz = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(&#123;&#125;, bar); <span class="hljs-comment">// &#123; a: 1, b: 2 &#125;</span><br></code></pre></td></tr></table></figure>
+Object.assign方法用于对象的合并，将源对象source的所有可枚举属性，复制到目标对象target。Object.assign方法的第一个参数是目标对象，后面的参数都是源对象。(<strong>如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性</strong>)。<br>同样，如果用户自定义的属性，放在扩展运算符后面，则扩展运算符内部的同名属性会被覆盖掉。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> bar = &#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;;<br><span class="hljs-keyword">let</span> baz = &#123;...bar, ...&#123;<span class="hljs-attr">a</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">4</span>&#125;&#125;;  <span class="hljs-comment">// &#123;a: 2, b: 4&#125;</span><br></code></pre></td></tr></table></figure>
+利用上述特性就可以很方便的修改对象的部分属性。在redux中的reducer函数规定必须是<strong>一个纯函数</strong>，reducer中的state对象要求不能直接修改，可以通过扩展运算符把修改路径的对象都复制一遍，然后产生一个新的对象返回。<br>需要注意：<strong>扩展运算符对对象实例的拷贝属于浅拷贝</strong>。<h3 id="3-2-数组扩展运算符"><a href="#3-2-数组扩展运算符" class="headerlink" title="3.2 数组扩展运算符"></a>3.2 数组扩展运算符</h3>数组的扩展运算符可以将一个数组转为用逗号分隔的参数序列，且每次只能展开一层数组。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(...[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br><span class="hljs-comment">// 1 2 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(...[<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>], <span class="hljs-number">5</span>])<br><span class="hljs-comment">// 1 [2, 3, 4] 5</span><br></code></pre></td></tr></table></figure>
+下面是数组的扩展运算符的应用：</li>
+<li><strong>将数组转换为参数序列</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">x, y</span>) &#123;<br>  <span class="hljs-keyword">return</span> x + y;<br>&#125;<br><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-title function_">add</span>(...numbers) <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>复制数组</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-keyword">const</span> arr2 = [...arr1];<br></code></pre></td></tr></table></figure>
+要记住：<strong>扩展运算符(…)用于取出参数对象中的所有可遍历属性，拷贝到当前对象之中</strong>，这里参数对象是个数组，数组里面的所有对象都是基础数据类型，将所有基础数据类型重新拷贝到新的数组中。</li>
+<li><strong>合并数组</strong><br>如果想在数组内合并数组，可以这样：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;two&#x27;</span>, <span class="hljs-string">&#x27;three&#x27;</span>];<br><span class="hljs-keyword">const</span> arr2 = [<span class="hljs-string">&#x27;one&#x27;</span>, ...arr1, <span class="hljs-string">&#x27;four&#x27;</span>, <span class="hljs-string">&#x27;five&#x27;</span>];<br><span class="hljs-comment">// [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>扩展运算符与解构赋值结合起来，用于生成数组</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [first, ...rest] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br>first <span class="hljs-comment">// 1</span><br>rest  <span class="hljs-comment">// [2, 3, 4, 5]</span><br></code></pre></td></tr></table></figure>
+需要注意：<strong>如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [...rest, last] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];         <span class="hljs-comment">// 报错</span><br><span class="hljs-keyword">const</span> [first, ...rest, last] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];  <span class="hljs-comment">// 报错</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>将字符串转为真正的数组</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">[...<span class="hljs-string">&#x27;hello&#x27;</span>]    <span class="hljs-comment">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]</span><br></code></pre></td></tr></table></figure></li>
+<li><strong>任何 Iterator 接口的对象，都可以用扩展运算符转为真正的数组</strong><br>比较常见的应用是可以将某些数据结构转为数组：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// arguments对象</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> args = [...<span class="hljs-variable language_">arguments</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+用于替换es5中的Array.prototype.slice.call(arguments)写法。</li>
+<li><strong>使用</strong>Math<strong>函数获取数组中特定的值</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>, <span class="hljs-number">1</span>];<br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(...numbers); <span class="hljs-comment">// 1</span><br><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...numbers); <span class="hljs-comment">// 9</span><br></code></pre></td></tr></table></figure>
+<h2 id="四、对象与数组的解构"><a href="#四、对象与数组的解构" class="headerlink" title="四、对象与数组的解构"></a>四、对象与数组的解构</h2>解构是ES6提供的一种新的提取数据的模式，能够从对象或数组中有针对性地拿到想要的数值。<h3 id="4-1-数组的解构"><a href="#4-1-数组的解构" class="headerlink" title="4.1 数组的解构"></a>4.1 数组的解构</h3>在解构数组时，以元素的位置为匹配条件来提取想要的数据。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [a, b, c] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><span class="hljs-comment">// a=1, b=2, c=3</span><br></code></pre></td></tr></table></figure>
+数组里的0、1、2索引位的元素值，精准地被映射到了左侧的第0、1、2个变量里去，这就是数组解构的工作模式。还可以通过给左侧变量数组设置空占位的方式，实现对数组中某几个元素的精准提取：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [a,,c] = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br><span class="hljs-comment">// a=1 c=3</span><br></code></pre></td></tr></table></figure>
+通过把中间位留空，可以顺利地把数组第一位和最后一位的值赋给 a、c 两个变量。<h3 id="4-2-对象的解构"><a href="#4-2-对象的解构" class="headerlink" title="4.2 对象的解构"></a>4.2 对象的解构</h3>对象结构是以属性的名称为匹配条件，来提取想要的数据。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> stu = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Bob&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">24</span><br>&#125;<br><span class="hljs-keyword">const</span> &#123; name, age &#125; = stu<br><span class="hljs-comment">// name=&#x27;Bob&#x27;, age=24</span><br></code></pre></td></tr></table></figure>
+这样就得到了name和age两个和stu平级的变量。<br>注意，对象解构严格以属性名作为定位依据，所以就算调换了 name 和 age 的位置，结果也是一样的：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; age, name &#125; = stu<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="★五、为什么let和const不能重复声明"><a href="#★五、为什么let和const不能重复声明" class="headerlink" title="★五、为什么let和const不能重复声明"></a>★五、为什么let和const不能重复声明</h2><p>这是一个比较底层的问题，在ES6中有一个<strong>全局环境变量记录</strong>，它包括<strong>对象式</strong>环境记录和<strong>声明式</strong>环境记录。对象式环境记录主要是包括函数声明和var变量的声明，声明式环境记录包括let和const声明的变量。<br>在使用var声明的时候，v8引擎会检查声明式环境记录中是否有该变量，如果有就报错，否则将其加入到对象式环境记录。<br>使用let和const声明时，引擎会检查对象式环境记录和声明式环境记录，如果有就会报错，否则会加入到声明式环境记录。</p>
+<h1 id="三、JavaScript基础"><a href="#三、JavaScript基础" class="headerlink" title="三、JavaScript基础"></a>三、JavaScript基础</h1><h2 id="一、for…in和for…of"><a href="#一、for…in和for…of" class="headerlink" title="一、for…in和for…of"></a>一、for…in和for…of</h2><h3 id="1-1-for…in"><a href="#1-1-for…in" class="headerlink" title="1.1 for…in"></a>1.1 for…in</h3><p>for&#x2F;in循环in后面可以是任意对象，循环获取的是对象的键名，会遍历对象的整个原型链，性能非常差不建议使用。遍历数组时会返回数组中所有可枚举的属性，包括原型链上可枚举的属性。主要是为了遍历对象而生，不适用于遍历数组。</p>
+<h3 id="1-2-for…of"><a href="#1-2-for…of" class="headerlink" title="1.2 for…of"></a>1.2 for…of</h3><p>for…of是ES6新增的循环语句，专门用于可迭代对象，如数组、字符串、集合和映射。<br>遍历获取的是对象的键值，只遍历当前对象不会遍历原型链。for&#x2F;of只返回数组的下标对应的属性值，可以用来遍历数组、类数组对象、字符串、set、map和Generator对象。<br><strong>对象默认是不可迭代的</strong>，直接使用for&#x2F;of会报错TypeError。</p>
+<ul>
+<li>如果需要遍历的对象是类数组对象，用Array.from转成数组。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;<br>    <span class="hljs-number">0</span>:<span class="hljs-string">&#x27;one&#x27;</span>,<br>    <span class="hljs-number">1</span>:<span class="hljs-string">&#x27;two&#x27;</span>,<br>    <span class="hljs-attr">length</span>: <span class="hljs-number">2</span><br>&#125;;<br>obj = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(obj);<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> k <span class="hljs-keyword">of</span> obj)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(k)<br>&#125;<br><span class="hljs-comment">// &quot;one&quot; &quot;two&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li>如果不是类数组对象，就给对象添加一个Symbol.iterator属性，并指向一个迭代器。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;<br>    <span class="hljs-attr">a</span>:<span class="hljs-number">1</span>,<br>    <span class="hljs-attr">b</span>:<span class="hljs-number">2</span>,<br>    <span class="hljs-attr">c</span>:<span class="hljs-number">3</span><br>&#125;;<br>obj[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>] = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-keyword">var</span> keys = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(<span class="hljs-variable language_">this</span>);<br>  <span class="hljs-keyword">var</span> count = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-keyword">if</span>(count&lt;keys.<span class="hljs-property">length</span>)&#123;<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>: obj[keys[count++]],<span class="hljs-attr">done</span>:<span class="hljs-literal">false</span>&#125;;<br>      &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">value</span>:<span class="hljs-literal">undefined</span>,<span class="hljs-attr">done</span>:<span class="hljs-literal">true</span>&#125;;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> k <span class="hljs-keyword">of</span> obj)&#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(k);<br>&#125;<br><span class="hljs-comment">// 或</span><br><span class="hljs-keyword">var</span> obj = &#123;<br>    <span class="hljs-attr">a</span>:<span class="hljs-number">1</span>,<br>    <span class="hljs-attr">b</span>:<span class="hljs-number">2</span>,<br>    <span class="hljs-attr">c</span>:<span class="hljs-number">3</span><br>&#125;;<br>obj[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>] = <span class="hljs-keyword">function</span>*()&#123;<br>    <span class="hljs-keyword">var</span> keys = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(obj);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> k <span class="hljs-keyword">of</span> keys)&#123;<br>        <span class="hljs-keyword">yield</span> [k,obj[k]]<br>    &#125;<br>&#125;;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> [k,v] <span class="hljs-keyword">of</span> obj)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(k,v);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>想要迭代对象的属性&#x2F;值&#x2F;键值对<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> o = &#123; <span class="hljs-attr">x</span>:<span class="hljs-number">1</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">z</span>:<span class="hljs-number">3</span> &#125;<br><span class="hljs-comment">// 属性</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> k <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(o))<br><span class="hljs-comment">// 值</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> v <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(o))<br><span class="hljs-comment">// 键值对</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> [k,v] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(o))<br></code></pre></td></tr></table></figure></li>
+<li>Symbol.iterator在es6中有三类结构本来具有iterator接口：数组、类数组对象、Map和Set结构。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];<br><span class="hljs-keyword">let</span> iterator = arr[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]();<br> <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>());  <span class="hljs-comment">//&#123; value: 1, done: false &#125;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>());  <span class="hljs-comment">//&#123; value: 2, done: false &#125;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>());  <span class="hljs-comment">//&#123; value: 3, done: false &#125;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>());  <span class="hljs-comment">//&#123; value: 4, done: false &#125;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>());  <span class="hljs-comment">//&#123; value: undefined, done: true &#125;</span><br></code></pre></td></tr></table></figure></li>
+<li>迭代几何Set和映射Map<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> wordSet = &#123;<span class="hljs-string">&quot;na&quot;</span>, <span class="hljs-string">&quot;Na&quot;</span>, <span class="hljs-string">&quot;Bat&quot;</span>&#125;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> word <span class="hljs-keyword">of</span> wordSet)<br><span class="hljs-keyword">let</span> m = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([[<span class="hljs-number">1</span>,<span class="hljs-string">&quot;one&quot;</span>]])<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> [key, value] <span class="hljs-keyword">of</span> m)<br></code></pre></td></tr></table></figure>
+<h2 id="二、数组原生方法-是否改变原数组"><a href="#二、数组原生方法-是否改变原数组" class="headerlink" title="二、数组原生方法+是否改变原数组"></a>二、数组原生方法+是否改变原数组</h2></li>
+<li>数组和字符串的转换方法：toString()、toLocalString()、join()，其中 join() 方法可以指定转换为字符串时的分隔符。</li>
+<li>数组尾部操作的方法 pop() 和 push()，push 方法可以传入多个参数。</li>
+<li>数组首部操作的方法 shift() 和 unshift() 重排序的方法 reverse() 和 sort()，sort() 方法可以传入一个函数来进行比较，传入前后两个值，如果返回值为正数，则交换两个参数的位置。</li>
+<li>数组连接的方法concat() ，返回的是拼接好的数组，不影响原数组。</li>
+<li>数组截取办法slice()，用于截取数组中的一部分返回，不影响原数组。</li>
+<li>数组插入方 splice()，影响原数组。</li>
+<li>查找特定项的索引的方法，indexOf() 和 lastIndexOf() </li>
+<li>迭代方法 every()、some()、filter()、map() 和 forEach() 方法</li>
+<li>数组归并方法 reduce() 和 reduceRight() 方法，使用指定的函数归并数组元素，最终产生一个值。<br><strong>会改变原始数组的方法</strong>：push、pop、shift、unshift、splice、sort、reverse、forEach。<br><strong>不会改变原始数组的方法</strong>：filter、concat、slice、map。</li>
+</ul>
+<h2 id="三、类数组对象"><a href="#三、类数组对象" class="headerlink" title="三、类数组对象"></a>三、类数组对象</h2><p>一个拥有 length 属性和若干索引属性的对象就可以被称为类数组对象，类数组对象和数组类似，但是不能调用数组的方法。常见的类数组对象有arguments和DOM方法的返回结果，函数也可以被看作是类数组对象，因为它含有 length 属性值，代表可接收的参数个数。<br>常见的类数组转换为数组的方法有这样几种：</p>
+<ul>
+<li>通过 call 调用数组的 slice 方法来实现转换<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">slice</span>.<span class="hljs-title function_">call</span>(arrayLike);<br></code></pre></td></tr></table></figure></li>
+<li>通过 call 调用数组的 splice 方法来实现转换<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">splice</span>.<span class="hljs-title function_">call</span>(arrayLike, <span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure></li>
+<li>通过 apply 调用数组的 concat 方法来实现转换<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">concat</span>.<span class="hljs-title function_">apply</span>([], arrayLike);<br></code></pre></td></tr></table></figure></li>
+<li>通过 Array.from 方法来实现转换<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(arrayLike);<br></code></pre></td></tr></table></figure>
+<h2 id="四、map和Object区别"><a href="#四、map和Object区别" class="headerlink" title="四、map和Object区别"></a>四、map和Object区别</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>Map</th>
+<th>Object</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>意外的键</td>
+<td>Map默认情况不包含任何键，只包含显式插入的键。</td>
+<td>Object 有一个原型, 原型链上的键名有可能和自己在对象上的设置的键名产生冲突。</td>
+</tr>
+<tr>
+<td>键的类型</td>
+<td>Map的键可以是任意值，包括函数、对象或任意基本类型。</td>
+<td>Object 的键必须是 String 或是Symbol。</td>
+</tr>
+<tr>
+<td>键的顺序</td>
+<td>Map 中的 key 是有序的。因此，当迭代的时候， Map 对象以插入的顺序返回键值。</td>
+<td>Object 的键是无序的</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>Map 的键值对个数可以轻易地通过size 属性获取</td>
+<td>Object 的键值对个数只能手动计算</td>
+</tr>
+<tr>
+<td>迭代</td>
+<td>Map 是 iterable 的，所以可以直接被迭代。</td>
+<td>迭代Object需要以某种方式获取它的键然后才能迭代。</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>在频繁增删键值对的场景下表现更好。</td>
+<td>在频繁添加和删除键值对的场景下未作出优化。</td>
+</tr>
+</tbody></table>
+<h2 id="★五、数组遍历的方法"><a href="#★五、数组遍历的方法" class="headerlink" title="★五、数组遍历的方法"></a>★五、数组遍历的方法</h2><table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>是否改变原数组</strong></th>
+<th><strong>特点</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>forEach()</td>
+<td>是</td>
+<td>数组方法，对数据操作会改变原数组，没有返回值，可以用try-catch跳出循环</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>否</td>
+<td>数组方法，不改变原数组，返回一个新数组，为原数组调用函数处理后的值，可链式调用</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>否</td>
+<td>数组方法，过滤数组，返回包含符合条件的元素的数组，可链式调用</td>
+</tr>
+<tr>
+<td>for…of</td>
+<td>否</td>
+<td>for…of遍历具有Iterator迭代器的对象的属性，返回的是数组的元素、对象的属性值，不能遍历普通的obj对象，将异步循环变成同步循环</td>
+</tr>
+<tr>
+<td>every() 和 some()</td>
+<td>否</td>
+<td>数组方法，some()只要有一个是true，便返回true；而every()只要有一个是false，便返回false.</td>
+</tr>
+<tr>
+<td>find() 和 findIndex()</td>
+<td>否</td>
+<td>数组方法，find()返回的是第一个符合条件的值；findIndex()返回的是第一个返回条件的值的索引值</td>
+</tr>
+<tr>
+<td>reduce() 和 reduceRight()</td>
+<td>否</td>
+<td>数组方法，reduce()对数组正序操作；reduceRight()对数组逆序操作</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="★六、JS的垃圾回收"><a href="#★六、JS的垃圾回收" class="headerlink" title="★六、JS的垃圾回收"></a>★六、JS的垃圾回收</h2><h3 id="6-1-概念"><a href="#6-1-概念" class="headerlink" title="6.1 概念"></a>6.1 概念</h3><p><strong>垃圾回收</strong>：JavaScript代码运行时，需要分配内存空间来储存变量和值。当变量不在参与运行时，就需要系统收回被占用的内存空间，这就是垃圾回收。<strong>目的是为了防止内存泄露</strong>。<br><strong>回收机制</strong>：</p>
+<ul>
+<li>Javascript 具有自动垃圾回收机制，会定期对那些不再使用的变量、对象所占用的内存进行释放，原理就是找到不再使用的变量，然后释放掉其占用的内存。</li>
+<li>JavaScript中存在两种变量：局部变量和全局变量。全局变量的生命周期会持续要页面卸载；而局部变量声明在函数中，它的生命周期从函数执行开始，直到函数执行结束，在这个过程中，局部变量会在堆或栈中存储它们的值，当函数执行结束后，这些局部变量不再被使用，它们所占有的空间就会被释放。</li>
+<li>不过，当局部变量被外部函数使用时，其中一种情况就是闭包，在函数执行结束后，函数外部的变量依然指向函数内部的局部变量，此时局部变量依然在被使用，所以不会回收。</li>
+</ul>
+<h3 id="★6-2-垃圾回收方式"><a href="#★6-2-垃圾回收方式" class="headerlink" title="★6.2 垃圾回收方式"></a>★6.2 垃圾回收方式</h3><p><strong>标记清除</strong>：标记清除是浏览器常见的垃圾回收方式。</p>
+<ol>
+<li>当变量进入执行环境时，就标记这个变量“进入环境”，被标记为“进入环境”的变量是不能被回收的，因为他们正在被使用。当变量离开环境时，就会被标记为“离开环境”，被标记为“离开环境”的变量会被内存释放。</li>
+<li>垃圾收集器在运行的时候会给存储在内存中的所有变量都加上标记。</li>
+<li>它会去掉环境中的变量以及被环境中的变量引用的标记。</li>
+<li>在此之后再被加上标记的变量将被视为准备删除的变量，原因是环境中的变量已经无法访问到这些变量了。</li>
+<li>垃圾收集器完成内存清除工作，销毁那些带标记的值，并回收他们所占用的内存空间。</li>
+</ol>
+<p><strong>引用计数</strong>：使用较少，常常会引起内存泄露。<br>引用计数就是跟踪记录每个值被引用的次数。当声明了一个变量并将一个引用类型赋值给该变量时，则这个值的引用次数就是1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数就减1。当这个引用次数变为0时，说明这个变量已经没有价值，因此，在在机回收期下次再运行时，这个变量所占有的内存空间就会被释放出来。<br><strong>循环引用问题</strong>：例如：obj1和obj2通过属性进行相互引用，两个对象的引用次数都是2。当使用循环计数时，由于函数执行完后，两个对象都离开作用域，函数执行结束，obj1和obj2还将会继续存在，因此它们的引用次数永远不会是0，就会引起循环引用。</p>
+<h2 id="★七、哪些情况会导致内存泄露"><a href="#★七、哪些情况会导致内存泄露" class="headerlink" title="★七、哪些情况会导致内存泄露"></a>★七、哪些情况会导致内存泄露</h2><ul>
+<li><strong>意外的全局变量：</strong> 由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。</li>
+<li><strong>被遗忘的计时器或回调函数：</strong> 设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留在内存中，而无法被回收。</li>
+<li><strong>脱离 DOM 的引用：</strong> 获取一个 DOM 元素的引用，而后面这个元素被删除，由于一直保留了对这个元素的引用，所以它也无法被回收。</li>
+<li><strong>闭包：</strong> 不合理的使用闭包，从而导致某些变量一直被留在内存当中。</li>
+</ul>
+<h2 id="八、前端模块化"><a href="#八、前端模块化" class="headerlink" title="八、前端模块化"></a>八、前端模块化</h2><p>好处：解决命名冲突、提供复用性、提高代码可维护性。<br>方式：<strong>AMD</strong>、<strong>CMD</strong>、<strong>CommonJs</strong>、<strong>ES6</strong>。<br>好处：解决命名冲突，提供复用性，提高代码可维护性、性能优化、模块化的版本管理、跨环境共享模块。<br>AMD、CMD、CommonJs是ES5中提供的模块化编程的方案，import&#x2F;export是ES6中定义新增的</p>
+<h3 id="8-1-AMD异步模块定义"><a href="#8-1-AMD异步模块定义" class="headerlink" title="8.1 AMD异步模块定义"></a>8.1 AMD异步模块定义</h3><p>AMD是RequireJS在推广过程中对模块定义的规范化产出，它是一个概念，RequireJS是对这个概念的实现，就好比JavaScript语言是对ECMAScript规范的实现。AMD是一个组织，RequireJS是在这个组织下自定义的一套脚本语言<br>RequireJS：是一个AMD框架，可以异步加载JS文件，按照模块加载方法，通过define()函数定义，第一个参数是一个数组，里面定义一些需要依赖的包，第二个参数是一个回调函数，通过变量来引用模块里面的方法，最后通过return来输出。<br>是一个依赖前置、异步定义的AMD框架（在参数里面引入js文件），在定义的同时如果需要用到别的模块，在最前面定义好即在参数数组里面进行引入，在回调里面加载。</p>
+<h3 id="8-2-CMD"><a href="#8-2-CMD" class="headerlink" title="8.2 CMD"></a>8.2 CMD</h3><p>CMD是SeaJS在推广过程中对模块定义的规范化产出，是一个同步模块定义，是SeaJS的一个标准，SeaJS是CMD概念的一个实现，SeaJS是淘宝团队提供的一个模块开发的js框架.<br>通过define()定义，没有依赖前置，通过require加载jQuery插件，CMD是依赖就近，在什么地方使用到插件就在什么地方require该插件，即用即返，这是一个同步的概念。</p>
+<h3 id="8-3-CommonJS"><a href="#8-3-CommonJS" class="headerlink" title="8.3 CommonJS"></a>8.3 CommonJS</h3><p>CommonJS规范—是通过module.exports定义的，在前端浏览器里面并不支持module.exports,通过node.js后端使用的。Nodejs端是使用CommonJS规范的，前端浏览器一般使用AMD、CMD、ES6等定义模块化开发的。<br>输出方式有2种：默认输出—module export 和带有名字的输出—exports.area</p>
+<h3 id="8-4-ES6"><a href="#8-4-ES6" class="headerlink" title="8.4 ES6"></a>8.4 ES6</h3><p>特性：模块化，export&#x2F;import对模块进行导出导入。<br>在早期，使用立即执行函数实现模块化是常见的手段，通过函数作用域解决了命名冲突、污染全局作用域的问题</p>
+<h3 id="8-5-ES6和CommonJS模块的异同"><a href="#8-5-ES6和CommonJS模块的异同" class="headerlink" title="8.5 ES6和CommonJS模块的异同"></a>8.5 ES6和CommonJS模块的异同</h3><p><strong>区别</strong>：</p>
+<ul>
+<li><strong>CommonJS是对模块的拷贝</strong>：对于基本数据类型，属于复制。即会被模块缓存，一旦输出一个值，模块内部的变化不影响该值。可以进行重新赋值，改变指针指向。在另一个模块可以对该模块输出的变量重新赋值。对于复杂数据类型，属于浅拷贝。由于两个模块引用的对象指向同一个内存空间，因此对该模块的值做修改时会影响另一个模块。</li>
+<li><strong>ES6模块输出的是值的引用</strong>：ES6模块中的值属于动态只读引用，不能改变其值，也就是指针指向不能变，对它重新赋值会报错。<br>对于<strong>只读</strong>来说，即不允许修改引入变量的值，import的变量是只读的，不论是基本数据类型还是复杂数据类型。JS引擎对脚本静态分析时，模块遇到import命令时，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。<br>对于<strong>动态</strong>来说，原始值发生变化，import加载的值也会发生变化。不论是基本数据类型还是复杂数据类型</li>
+<li><strong>CommonJS是同步加载模块</strong>：当使用require命令加载某个模块时，就会运行整个模块的代码。主要用于服务器编程，模块文件一般在本地硬盘，在运行时加载，只有加载完成才能执行后面的操作。<br>当使用require命令加载同一个模块时，不会再执行该模块，而是取到缓存之中的值。也就是说，CommonJS模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。</li>
+<li><strong>ES6是异步加载模块</strong>：如果是在浏览器环境中从服务端加载模块，浏览器加载模块不会堵塞浏览器，在整个页面渲染完再执行模块脚本。</li>
+<li><strong>CommonJS模块是运行时加载</strong>：它加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。</li>
+<li><strong>ES6模块是编译时输出接口</strong>：ES6模块不是对象，它的对外接口在代码静态解析阶段就会生成。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// lib.js</span><br><span class="hljs-keyword">var</span> counter = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++;<br>&#125;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">counter</span>: counter,<br>  <span class="hljs-attr">incCounter</span>: incCounter,<br>&#125;;<br><span class="hljs-comment">// main.js</span><br><span class="hljs-keyword">var</span> mod = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./lib&#x27;</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(mod.<span class="hljs-property">counter</span>);  <span class="hljs-comment">// 3</span><br>mod.<span class="hljs-title function_">incCounter</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(mod.<span class="hljs-property">counter</span>); <span class="hljs-comment">// 3</span><br><span class="hljs-comment">// lib.js</span><br><span class="hljs-keyword">var</span> counter = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">incCounter</span>(<span class="hljs-params"></span>) &#123;<br>  counter++;<br>&#125;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-keyword">get</span> <span class="hljs-title function_">counter</span>() &#123;<br>    <span class="hljs-keyword">return</span> counter<br>  &#125;,<br>  <span class="hljs-attr">incCounter</span>: incCounter,<br>&#125;;<br>$ node main.<span class="hljs-property">js</span><br><span class="hljs-number">3</span><br><span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+<p><strong>共同点</strong>：<br>CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内部属性的值进⾏改变。</p>
+<h3 id="8-6-require和import区别"><a href="#8-6-require和import区别" class="headerlink" title="8.6 require和import区别"></a>8.6 require和import区别</h3><p><strong>遵循规范不同</strong>：require&#x2F;exports是CommonJS的一部分，import&#x2F;export是ES6新规范。<br><strong>出现时间不同</strong>：CommonJS 作为 Node.js 的规范，一直沿用至今。由于 npm 上 CommonJS 的类库众多，以及 CommonJS 和 ES6 之间的差异，Node.js 无法直接兼容 ES6。所以现阶段 require&#x2F;exports 仍然是必要且是必须的。<br><strong>形式不同</strong>：<br>require&#x2F;exports用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><span class="hljs-built_in">exports</span>.<span class="hljs-property">fs</span> = fs;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = fs;<br></code></pre></td></tr></table></figure>
+<p>import&#x2F;export用法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;fs&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123;<span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> fs&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;fs&#x27;</span>;<br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;fs&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> fs;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fs;<br><span class="hljs-keyword">export</span> * <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;fs&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p><strong>本质不同</strong>：CommonJS还是ES6 Module 输出都可以看成是一个具备多个属性或者方法的对象;default 是ES6 Module所独有的关键字，export default 输出默认的接口对象，import from ‘fs’可直接导入这个对象;<br>其它见上面。</p>
+<h2 id="九、箭头函数"><a href="#九、箭头函数" class="headerlink" title="九、箭头函数"></a>九、箭头函数</h2><p>箭头函数相当于匿名函数，并且简化了函数定义。箭头函数有两种格式，一种只包含一个表达式，连{ … }和return都省略掉了。还有一种可以包含多条语句，这时候就不能省略{ … }和return。</p>
+<h3 id="9-1-箭头函数和普通函数区别"><a href="#9-1-箭头函数和普通函数区别" class="headerlink" title="9.1 箭头函数和普通函数区别"></a>9.1 箭头函数和普通函数区别</h3><p><strong>①箭头函数比普通批就那个函数更加简洁</strong>：</p>
+<ul>
+<li>如果没有参数，就直接写一个空括号即可</li>
+<li>如果只有一个参数，可以省去参数的括号</li>
+<li>如果有多个参数，用逗号分割</li>
+<li>如果函数体的返回值只有一句，可以省略大括号</li>
+<li>如果函数体不需要返回值，且只有一句话，可以给这个语句前面加一个void关键字。最常见的就是调用一个函数：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> <span class="hljs-title function_">fn</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-keyword">void</span> <span class="hljs-title function_">doesNotReturn</span>();<br></code></pre></td></tr></table></figure>
+<p><strong>②箭头函数没有自己的this</strong>：箭头函数不会创建自己的this，它只会在自己的作用域上一层继承this，会捕获其上下文的this值作为自己的this，所以箭头函数中this的指向在它在定义时已经确定了，之后不会改变。<br><strong>③箭头函数继承来的this指向永远不会改变</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> id = <span class="hljs-string">&#x27;GLOBAL&#x27;</span>;<br><span class="hljs-keyword">var</span> obj = &#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;OBJ&#x27;</span>,<br>  <span class="hljs-attr">a</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span>);<br>  &#125;,<br>  <span class="hljs-attr">b</span>: <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span>);<br>  &#125;<br>&#125;;<br>obj.<span class="hljs-title function_">a</span>();    <span class="hljs-comment">// &#x27;OBJ&#x27;</span><br>obj.<span class="hljs-title function_">b</span>();    <span class="hljs-comment">// &#x27;GLOBAL&#x27;</span><br><span class="hljs-keyword">new</span> obj.<span class="hljs-title function_">a</span>()  <span class="hljs-comment">// undefined</span><br><span class="hljs-keyword">new</span> obj.<span class="hljs-title function_">b</span>()  <span class="hljs-comment">// Uncaught TypeError: obj.b is not a constructor</span><br></code></pre></td></tr></table></figure>
+<p>对象obj的方法b是使用箭头函数定义的，这个函数中的this就永远指向它定义时所处的全局执行环境中的this，即便这个函数是作为对象obj的方法调用，this依旧指向Window对象。需要注意，定义对象的大括号{}是无法形成一个单独的执行环境的，它依旧是处于全局执行环境中。<br><strong>④call、apply、bind等方法不能改变箭头函数中this的指向</strong><br>只传入了参数，对this没有影响。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> id = <span class="hljs-string">&#x27;Global&#x27;</span>;<br><span class="hljs-keyword">let</span> <span class="hljs-title function_">fun1</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span>)<br>&#125;;<br><span class="hljs-title function_">fun1</span>();                     <span class="hljs-comment">// &#x27;Global&#x27;</span><br>fun1.<span class="hljs-title function_">call</span>(&#123;<span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;Obj&#x27;</span>&#125;);     <span class="hljs-comment">// &#x27;Global&#x27;</span><br>fun1.<span class="hljs-title function_">apply</span>(&#123;<span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;Obj&#x27;</span>&#125;);    <span class="hljs-comment">// &#x27;Global&#x27;</span><br>fun1.<span class="hljs-title function_">bind</span>(&#123;<span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;Obj&#x27;</span>&#125;)();   <span class="hljs-comment">// &#x27;Global&#x27;</span><br></code></pre></td></tr></table></figure>
+<p><strong>⑤箭头函数不能作为构造函数使用</strong>：<br>构造函数在new的步骤在上面已经说过了，实际上第二步就是将函数中的this指向该对象。 但是由于箭头函数时没有自己的this的，且this指向外层的执行环境，且不能改变指向，所以不能当做构造函数使用，不能使用new。<br><strong>⑥箭头函数没有自己的arguments</strong>：<br>箭头函数没有自己的arguments对象。在箭头函数中访问arguments实际上获得的是它外层函数的arguments值。用rest参数解决。<br><strong>⑦箭头函数没有prototype</strong>：<br>没有原型属性，不能简单的返回对象的字面量。<br><strong>⑧箭头函数不能用作Genterator函数，不能使用yeild关键字</strong></p>
+<h3 id="9-2-箭头函数特点"><a href="#9-2-箭头函数特点" class="headerlink" title="9.2 箭头函数特点"></a>9.2 箭头函数特点</h3><p>一、箭头函数只能用赋值式写法，不能用声明式写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">test</span> = (<span class="hljs-params">name</span>) =&gt; &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name)<br>&#125;<br><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;Jerry&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>二、如果参数只有一个，可以不加括号，如果没有参数或者参数多于一个就需要加括号。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">test</span> = name =&gt; &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name)<br>&#125;<br><span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;Jerry&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">test2</span> = (<span class="hljs-params">name1, name2</span>) =&gt; &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name1 + <span class="hljs-string">&#x27; and &#x27;</span> + name2)<br>&#125;<br><span class="hljs-title function_">test2</span>(<span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-string">&#x27;Jerry&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>三、人函数体只有一句话，可以不加花括号。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">test</span> = name =&gt; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name)<br></code></pre></td></tr></table></figure>
+<p>四、如果函数体没有括号，可以不写return，箭头函数会帮你return</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">add</span> = (<span class="hljs-params">p1, p2</span>) =&gt; p1 + p2<br><span class="hljs-title function_">add</span>(<span class="hljs-number">10</span>, <span class="hljs-number">25</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="9-3-箭头函数中的this"><a href="#9-3-箭头函数中的this" class="headerlink" title="9.3 箭头函数中的this"></a>9.3 箭头函数中的this</h3><h2 id="十、DOM和BOM"><a href="#十、DOM和BOM" class="headerlink" title="十、DOM和BOM"></a>十、DOM和BOM</h2><h3 id="10-1-BOM"><a href="#10-1-BOM" class="headerlink" title="10.1 BOM"></a>10.1 BOM</h3><p>BOM 指的是<strong>浏览器对象模型</strong>，它指的是把浏览器当做一个对象来对待，这个对象主要定义了与浏览器进行交互的法和接口。BOM的核心是 window，而 window 对象具有双重角色，它既是通过 js 访问浏览器窗口的一个接口，又是一个 Global（全局）对象。这意味着在网页中定义的任何对象，变量和函数，都作为全局对象的一个属性或者方法存在。window 对象含有 location 对象、navigator 对象、screen 对象等子对象，并且 DOM 的最根本的对象 document 对象也是 BOM 的 window 对象的子对象。<br><strong>常见操作</strong>：<br>把窗口移动到指定坐标位置（左上角0,0）：window.moveTo(x,y)<br>把窗口移动指定像素：window.moveBy(x,y)<br>窗口大小：window.innerWidth,window.innerHeight<br>视口滚动指定像素：window.scrollBy(x,y)<br>视口滚动到指定坐标：window.scrollTo(x,y)<br>打开指定窗口：window.open(url,”wroxWindow”,style)</p>
+<h3 id="10-2-DOM"><a href="#10-2-DOM" class="headerlink" title="10.2 DOM"></a>10.2 DOM</h3><p>DOM 指的是文档对象模型，它指的是把文档当做一个对象，这个对象主要定义了处理网页内容的方法和接口。<br><strong>常见操作</strong>：<br>根据ID获取元素：document.getElementById(name)<br>创建元素：document.createElement(“div”)</p>
+<h1 id="三-五-性能优化"><a href="#三-五-性能优化" class="headerlink" title="三.五 性能优化"></a>三.五 性能优化</h1><h2 id="一、节流与防抖"><a href="#一、节流与防抖" class="headerlink" title="一、节流与防抖"></a>一、节流与防抖</h2><h3 id="1-对节流与防抖的理解"><a href="#1-对节流与防抖的理解" class="headerlink" title="1. 对节流与防抖的理解"></a>1. 对节流与防抖的理解</h3><ul>
+<li><p>函数防抖是指在事件被触发 n 秒后再执行回调，如果在这 n 秒内事件又被触发，则重新计时。这可以使用在一些点击请求的事件上，避免因为用户的多次点击向后端发送多次请求。</p>
+</li>
+<li><p>函数节流是指规定一个单位时间，在这个单位时间内，只能有一次触发事件的回调函数执行，如果在同一个单位时间内某事件被触发多次，只有一次能生效。节流可以使用在 scroll 函数的事件监听上，通过事件节流来降低事件调用的频率。</p>
+<p><strong>防抖函数的应用场景：</strong></p>
+</li>
+<li><p>按钮提交场景：防⽌多次提交按钮，只执⾏最后提交的⼀次</p>
+</li>
+<li><p>服务端验证场景：表单验证需要服务端配合，只执⾏⼀段连续的输⼊事件的最后⼀次，还有搜索联想词功能类似⽣存环境请⽤lodash.debounce</p>
+<p><strong>节流函数的适⽤场景：</strong></p>
+</li>
+<li><p>拖拽场景：固定时间内只执⾏⼀次，防⽌超⾼频次触发位置变动</p>
+</li>
+<li><p>缩放场景：监控浏览器resize</p>
+</li>
+<li><p>动画场景：避免短时间内多次触发动画引起性能问题</p>
+</li>
+</ul>
+<h3 id="2-实现节流函数和防抖函数"><a href="#2-实现节流函数和防抖函数" class="headerlink" title="2. 实现节流函数和防抖函数"></a>2. 实现节流函数和防抖函数</h3><p><strong>函数防抖的实现：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">debounce</span>(<span class="hljs-params">fn, wait</span>) &#123;<br>  <span class="hljs-keyword">var</span> timer = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> context = <span class="hljs-variable language_">this</span>,<br>      args = [...<span class="hljs-variable language_">arguments</span>];<br>    <span class="hljs-comment">// 如果此时存在定时器的话，则取消之前的定时器重新记时</span><br>    <span class="hljs-keyword">if</span> (timer) &#123;<br>      <span class="hljs-built_in">clearTimeout</span>(timer);<br>      timer = <span class="hljs-literal">null</span>;<br>    &#125;<br>    <span class="hljs-comment">// 设置定时器，使事件间隔指定事件后执行</span><br>    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      fn.<span class="hljs-title function_">apply</span>(context, args);<br>    &#125;, wait);<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>函数节流的实现：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 时间戳版</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">throttle</span>(<span class="hljs-params">fn, delay</span>) &#123;<br>  <span class="hljs-keyword">var</span> preTime = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> context = <span class="hljs-variable language_">this</span>,<br>      args = [...<span class="hljs-variable language_">arguments</span>],<br>      nowTime = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();<br>    <span class="hljs-comment">// 如果两次时间间隔超过了指定时间，则执行函数。</span><br>    <span class="hljs-keyword">if</span> (nowTime - preTime &gt;= delay) &#123;<br>      preTime = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();<br>      <span class="hljs-keyword">return</span> fn.<span class="hljs-title function_">apply</span>(context, args);<br>    &#125;<br>  &#125;;<br>&#125;<br><span class="hljs-comment">// 定时器版</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">throttle</span> (fun, wait)&#123;<br>  <span class="hljs-keyword">let</span> timeout = <span class="hljs-literal">null</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">let</span> context = <span class="hljs-variable language_">this</span><br>    <span class="hljs-keyword">let</span> args = [...<span class="hljs-variable language_">arguments</span>]<br>    <span class="hljs-keyword">if</span>(!timeout)&#123;<br>      timeout = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        fun.<span class="hljs-title function_">apply</span>(context, args)<br>        timeout = <span class="hljs-literal">null</span><br>      &#125;, wait)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="二、图片优化"><a href="#二、图片优化" class="headerlink" title="二、图片优化"></a>二、图片优化</h2><h3 id="2-1-如何对项目中的图片进行优化"><a href="#2-1-如何对项目中的图片进行优化" class="headerlink" title="2.1 如何对项目中的图片进行优化"></a>2.1 如何对项目中的图片进行优化</h3><ol>
+<li>不用图片。很多时候会使用到很多修饰类图片，其实这类修饰图片完全可以用 CSS 去代替。</li>
+<li>对于移动端来说，屏幕宽度就那么点，完全没有必要去加载原图浪费带宽。一般图片都用 CDN 加载，可以计算出适配屏幕的宽度，然后去请求相应裁剪好的图片。</li>
+<li>小图使用 base64 格式</li>
+<li>将多个图标文件整合到一张图片中（雪碧图）</li>
+<li>选择正确的图片格式：<ul>
+<li>对于能够显示 WebP 格式的浏览器尽量使用 WebP 格式。因为 WebP 格式具有更好的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量，缺点就是兼容性并不好</li>
+<li>小图使用 PNG，其实对于大部分图标这类图片，完全可以使用 SVG 代替</li>
+<li>照片使用 JPEG</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-2-常见图片格式"><a href="#2-2-常见图片格式" class="headerlink" title="2.2 常见图片格式"></a>2.2 常见图片格式</h3><p>（1）<strong>BMP</strong>，是无损的、既支持索引色也支持直接色的点阵图。这种图片格式几乎没有对数据进行压缩，所以BMP格式的图片通常是较大的文件。<br>（2）<strong>GIF</strong>是无损的、采用索引色的点阵图。采用LZW压缩算法进行编码。文件小，是GIF格式的优点，同时，GIF格式还具有支持动画以及透明的优点。但是GIF格式仅支持8bit的索引色，所以GIF格式适用于对色彩要求不高同时需要文件体积较小的场景。<br>（3）<strong>JPEG</strong>是有损的、采用直接色的点阵图。JPEG的图片的优点是采用了直接色，得益于更丰富的色彩，JPEG非常适合用来存储照片，与GIF相比，JPEG不适合用来存储企业Logo、线框类的图。因为有损压缩会导致图片模糊，而直接色的选用，又会导致图片文件较GIF更大。<br>（4）<strong>PNG-8</strong>是无损的、使用索引色的点阵图。PNG是一种比较新的图片格式，PNG-8是非常好的GIF格式替代者，在可能的情况下，应该尽可能的使用PNG-8而不是GIF，因为在相同的图片效果下，PNG-8具有更小的文件体积。除此之外，PNG-8还支持透明度的调节，而GIF并不支持。除非需要动画的支持，否则没有理由使用GIF而不是PNG-8。<br>（5）<strong>PNG-24</strong>是无损的、使用直接色的点阵图。PNG-24的优点在于它压缩了图片的数据，使得同样效果的图片，PNG-24格式的文件大小要比BMP小得多。当然，PNG24的图片还是要比JPEG、GIF、PNG-8大得多。<br>（6）<strong>SVG</strong>是无损的矢量图。SVG是矢量图意味着SVG图片由直线和曲线以及绘制它们的方法组成。当放大SVG图片时，看到的还是线和曲线，而不会出现像素点。这意味着SVG图片在放大时，不会失真，所以它非常适合用来绘制Logo、Icon等。<br>（7）<strong>WebP</strong>是谷歌开发的一种新图片格式，WebP是同时支持有损和无损压缩的、使用直接色的点阵图。从名字就可以看出来它是为Web而生的，什么叫为Web而生呢？就是说相同质量的图片，WebP具有更小的文件体积。现在网站上充满了大量的图片，如果能够降低每一个图片的文件大小，那么将大大减少浏览器和服务器之间的数据传输量，进而降低访问延迟，提升访问体验。目前只有Chrome浏览器和Opera浏览器支持WebP格式，兼容性不太好。</p>
+<ul>
+<li>在无损压缩的情况下，相同质量的WebP图片，文件大小要比PNG小26%；</li>
+<li>在有损压缩的情况下，具有相同图片精度的WebP图片，文件大小要比JPEG小25%~34%；</li>
+<li>WebP图片格式支持图片透明度，一个无损压缩的WebP图片，如果要支持透明度只需要22%的格外文件大小。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/28/JavaScript%E4%B8%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaScript下</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/11/3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">
+                        <span class="hidden-mobile">3.无重复字符的最长子串</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

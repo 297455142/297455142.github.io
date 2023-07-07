@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、单级索引文件结构使用单级文件结构时，索引表表项占用a，物理块大小为b，该系统可以管理的磁盘大小为：（b&#x2F;a）*b 二、高响应比优先调度算法和先来先服务调度算法 高响应比优先调度算法：根据响应比优先选择响应比高的作业执行。响应比 &#x3D; （等待时间+要求服务时间）&#x2F;要求服务时间 先来先服务调度算法：优先选择先到达的作业执行。  三、页面置换算法一、概念 当出现缺页异常，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统">
+<meta property="og:url" content="http://example.com/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%82%E9%A1%B9/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、单级索引文件结构使用单级文件结构时，索引表表项占用a，物理块大小为b，该系统可以管理的磁盘大小为：（b&#x2F;a）*b 二、高响应比优先调度算法和先来先服务调度算法 高响应比优先调度算法：根据响应比优先选择响应比高的作业执行。响应比 &#x3D; （等待时间+要求服务时间）&#x2F;要求服务时间 先来先服务调度算法：优先选择先到达的作业执行。  三、页面置换算法一、概念 当出现缺页异常，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-11T07:26:50.000Z">
+<meta property="article:modified_time" content="2022-08-24T07:13:42.322Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>操作系统 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-11 15:26" pubdate>
+        2022年5月11日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      41 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统</h1>
+            
+            <div class="markdown-body">
+              <h1 id="一、单级索引文件结构"><a href="#一、单级索引文件结构" class="headerlink" title="一、单级索引文件结构"></a>一、单级索引文件结构</h1><p>使用单级文件结构时，索引表表项占用a，物理块大小为b，该系统可以管理的磁盘大小为：（b&#x2F;a）*b</p>
+<h1 id="二、高响应比优先调度算法和先来先服务调度算法"><a href="#二、高响应比优先调度算法和先来先服务调度算法" class="headerlink" title="二、高响应比优先调度算法和先来先服务调度算法"></a>二、高响应比优先调度算法和先来先服务调度算法</h1><ul>
+<li>高响应比优先调度算法：根据响应比优先选择响应比高的作业执行。<br>响应比 &#x3D; （等待时间+要求服务时间）&#x2F;要求服务时间</li>
+<li>先来先服务调度算法：优先选择先到达的作业执行。</li>
+</ul>
+<h1 id="三、页面置换算法"><a href="#三、页面置换算法" class="headerlink" title="三、页面置换算法"></a>三、页面置换算法</h1><h2 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h2><ul>
+<li>当出现缺页异常，需调入新页面而内存已满时，置换算法选择被置换的物理页面。尽可能减少页面的调入调出次数。</li>
+<li>局部置换算法：在内存中，给每个进程分配的页面总数不会变化。</li>
+<li>全局置换算法：置换页面的选择范围是所有可换出的物理页面。<h2 id="二、局部置换算法"><a href="#二、局部置换算法" class="headerlink" title="二、局部置换算法"></a>二、局部置换算法</h2></li>
+<li><strong>最优置换算法</strong>：置换未来最长时间不访问的页面。缺页最少，难以实现。</li>
+<li><strong>先进先出算法</strong>：选择在内存驻留时间最长的页面进行置换。最简单。</li>
+<li><strong>最近最久未使用算法</strong>：选择最长时间没有被引用的页面进行置换。开销大。</li>
+<li><strong>最不常用算法</strong>：置换访问次数最少页面。</li>
+<li><strong>时钟重置算法</strong>：页面装入内存时，访问位初始化为0，访问页面时，访问位置1.缺页时，从指针当前位置顺序检查环形链表：访问位为0，置换该页；访问位为1，则访问位置0，并指针移动到下一个页面，直到找到可以置换的页面。<br>（空的放入时不算进行置换操作，直接放入）</li>
+<li><strong>堆栈型算法</strong>：随着分配给程序的主存页面数增加，主存的命中率会提高。<strong>只有先进先出算法不是堆栈型算法</strong><h2 id="三、全局置换算法"><a href="#三、全局置换算法" class="headerlink" title="三、全局置换算法"></a>三、全局置换算法</h2></li>
+<li>工作集置换算法</li>
+<li>缺页率置换算法</li>
+<li><strong>抖动</strong>：进程物理页面太少，不能包含工作集，造成大量缺页，频繁置换，进程运行速度变慢。<strong>产生原因</strong>是随着驻留内存的进程数目增加，分配给每个进程的物理页数不断减少，缺页率不断上升。操作系统需在并发水平和缺页率之间达到一个平衡。</li>
+<li><strong>负载控制</strong>：当缺页间隔时间大于缺页异常处理时间时，处理器就来得及处理缺页；如果是小于的话，就满负荷运行了，处理不过来了。所以需要找到一个负载均衡点，使得两者恰好相等。通过调节并发进程数来进行系统负载控制。</li>
+</ul>
+<h1 id="★四、进程和线程"><a href="#★四、进程和线程" class="headerlink" title="★四、进程和线程"></a>★四、进程和线程</h1><ul>
+<li><strong>进程是系统进行资源分配和调度的一个独立单位</strong>，代表CPU所能处理的单个任务。任一时刻CPU总是运行一个进程。（系统调度）</li>
+<li>一个进程包括多个线程，每个线程共享进程的所有内存空间。互斥锁可以防止其他线程使用。一个进程内部可能包含了很多顺序执行流，每个顺序执行流就是一个线程。线程是进程的一个实体，<strong>是CPU调度和分派的基本单位</strong>，是比进程更小的能独立运行的基本单位。（CPU调度）</li>
+<li>一个进程内部可能包含了很多顺序执行流，每个顺序执行流就是一个线程。单线程就是只有一个顺序执行流，多线程是多条顺序执行流“同时”执行。</li>
+<li>并发：同一时刻只能有一条指令（或一个进程、一个线程）运行，但是宏观上看有多条指令同时执行。</li>
+<li>并行：同一时刻多条指令在多个处理机上同时执行。</li>
+<li>进程和线程主要区别在于它们是不同操作系统资源管理方式。进程有独立的地址空间，进程崩溃后在保护模式下不会对其他进程产生影响。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉等于整个进程死掉。<strong>所以多进程比多线程健壮。</strong>进程切换时耗费资源大、效率差，但对于一些要求同时进行并且又要共享某些变量的并发操作只能使用线程，不能用进程。</li>
+<li>一个程序至少有一个进程，一个进程至少有一个线程。多线程程序的并发性高。进程在执行过程中有独立的内存单元，而多个线程共享内存，极大提高了程序的运行效率。</li>
+<li>每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。</li>
+<li>从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。</li>
+</ul>
+<h1 id="五、什么时候会引发进程切换"><a href="#五、什么时候会引发进程切换" class="headerlink" title="五、什么时候会引发进程切换"></a>五、什么时候会引发进程切换</h1><p>进程切换一定发生在中断&#x2F;异常&#x2F;系统调用处理过程中，常见有以下情况：<br>①时间片中断、IO中断后更改优先级进程（导致被中断进程进入就绪状态）<br>②阻塞式系统调用、虚拟地址异常（导致被中断进程进入等待态）<br>③终止用系统调用、不能继续执行的异常（导致被中断进程进行终止态）<br>例如：</p>
+<ul>
+<li>时钟中断：操作系统确定当前正在运行的进程的执行时间是否已经超过了最大允许时间段，如果超过了，进程必须切换到就绪态，调度另一个进程。</li>
+<li>I&#x2F;O中断：操作系统确定是否发生了I&#x2F;O活动。如果I&#x2F;O活动是一个或多个进程正在等待的时事件，操作系统就把所有相应的阻塞态转换到就绪态，操作系统必须决定继续执行当前处于运行态的进程，还是让具有更高优先级的就绪态抢占这个进程。</li>
+<li>虚拟地址异常（内存失效）：处理器访问一个虚拟内存地址，且此地址单元不在内存中，操作系统必须从外存把包含这个引用的内存块（页或者段）调入到内存中，在发出调入内存块的I&#x2F;O请求之后，操作系统可以执行一个进程切换，以回复另一个进程的执行。发生内存失效的进程被设置为阻塞态，当想要的块调入内存中时，该进程被置位就绪态。</li>
+<li>对于陷阱：操作系统确定错误或异常条件是否是致命的。如果是，当前正在运行的进程被转换到退出态，并发生进程切换；如果不是，操作系统的动作取决于错误的种类和操作系统的设计，其行为可以是试图恢复或通知用户，操作系统可能会进行一次进程切换或者继续执行当前正在运行的进程。</li>
+<li>操作系统可能被来自正在执行的程序的系统调用激活。例如：一个用户进程正在进行，并且正在执行一条请求I&#x2F;O操作的指令，如打开文件，这个调用导致转移到作为操作系统代码的一部分的一个例程上进行。通常，使用系统调用会导致把用户线程设置为阻塞态。</li>
+</ul>
+<h1 id="六、进程、线程、协程概念"><a href="#六、进程、线程、协程概念" class="headerlink" title="六、进程、线程、协程概念"></a>六、进程、线程、协程概念</h1><p><strong>协程</strong>：一种用户态的轻量级线程，拥有自己的寄存器上下文和栈，无需线程上下文切换的开销，协程的本质是单个线程，它不能同时在单个CPU的多个核上使用。<br>从本质上说，进程和线程都是CPU工作时间片的一个描述：进程描述了 CPU 在运行指令及加载和保存上下文所需的时间，放在应用上来说就代表了一个程序。线程是进程中的更小单位，描述了执行一段指令所需的时间。<br><strong>协程优势</strong>：<br>节省 CPU：避免系统内核级的线程频繁切换，造成的 CPU 资源浪费。而协程是用户态的线程，用户可以自行控制协程的创建于销毁，极大程度避免了系统级线程上下文切换造成的资源浪费。<br>节约内存：在 64 位的Linux中，一个线程需要分配 8MB 栈内存和 64MB 堆内存，系统内存的制约导致我们无法开启更多线程实现高并发。而在协程编程模式下，可以轻松有十几万协程，这是线程无法比拟的。<br>稳定性：前面提到线程之间通过内存来共享数据，这也导致了一个问题，任何一个线程出错时，进程中的所有线程都会跟着一起崩溃。<br>开发效率：使用协程在开发程序之中，可以很方便的将一些耗时的IO操作异步化，例如写文件、耗时IO请求等。<br><strong>进程是系统进行资源分配的最小单位，线程是CPU调度的最小单位</strong>。<br>一个进程就是一个程序的运行实例。详细解释就是，启动一个程序的时候，操作系统会为该程序创建一块内存，用来存放代码、运行中的数据和一个执行任务的主线程，我们把这样的一个运行环境叫<strong>进程</strong>。<strong>进程是运行在虚拟内存上的，虚拟内存是用来解决用户对硬件资源的无限需求和有限的硬件资源之间的矛盾的。从操作系统角度来看，虚拟内存即交换文件；从处理器角度看，虚拟内存即虚拟地址空间。</strong><br>如果程序很多时，内存可能会不够，操作系统为每个进程提供一套独立的虚拟地址空间，从而使得同一块物理内存在不同的进程中可以对应到不同或相同的虚拟地址，变相的增加了程序可以使用的内存。</p>
+<hr>
+<p>进程和线程之间的关系有以下四个特点：<br>（1）<strong>进程中的任意一线程执行出错，都会导致整个进程的崩溃。</strong>因此多进程程序更健壮，进程有自己独立的地址空间。<br>（2）<strong>线程之间共享进程中的全局变量、静态变量等数据。</strong>因此线程之间通信更方便，CPU切换一个线程的花费比进程小很多，同时创建一个线程的开销也比进程小很多。<br>（3）<strong>当一个进程关闭之后，操作系统会回收进程所占用的内存，</strong> 当一个进程退出时，操作系统会回收该进程所申请的所有资源；即使其中任意线程因为操作不当导致内存泄漏，当进程退出时，这些内存也会被正确回收。<br>（4）<strong>进程之间的内容相互隔离。</strong> 进程隔离就是为了使操作系统中的进程互不干扰，每一个进程只能访问自己占有的数据，也就避免出现进程 A 写入数据到进程 B 的情况。正是因为进程之间的数据是严格隔离的，所以一个进程如果崩溃了，或者挂起了，是不会影响到其他进程的。如果进程之间需要进行数据的通信，这时候，就需要使用用于进程间通信的机制了。</p>
+<h1 id="七、进程和线程区别"><a href="#七、进程和线程区别" class="headerlink" title="七、进程和线程区别"></a>七、进程和线程区别</h1><ul>
+<li>进程可以看做独立应用，线程不能。</li>
+<li>资源：进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）；线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）。</li>
+<li>通信方面：线程间可以通过直接共享同一进程中的资源，而进程通信需要借助 进程间通信。</li>
+<li>调度：进程切换比线程切换的开销要大。线程是CPU调度的基本单位，线程的切换不会引起进程切换，但某个进程中的线程切换到另一个进程中的线程时，会引起进程切换。</li>
+<li>系统开销：由于创建或撤销进程时，系统都要为之分配或回收资源，如内存、I&#x2F;O 等，其开销远大于创建或撤销线程时的开销。同理，在进行进程切换时，涉及当前执行进程 CPU 环境还有各种各样状态的保存及新调度进程状态的设置，而线程切换时只需保存和设置少量寄存器内容，开销较小。</li>
+</ul>
+<h1 id="八、死锁"><a href="#八、死锁" class="headerlink" title="八、死锁"></a>八、死锁</h1><p><strong>死锁</strong>：多个线程&#x2F;进程在运行过程中因为争夺资源导致的，它们中的一个或全部都在等待某个资源被释放。<br>系统中的资源可分为：<br><strong>可剥夺资源</strong>，是指某进程在获得这类资源后，该资源可以再被其他进程或系统剥夺，CPU和主存均属于可剥夺性资源；<br><strong>不可剥夺资源</strong>，当系统把这类资源分配给某进程后，再不能强行收回，只能在进程用完后自行释放，如磁带机、打印机等。<br><strong>产生死锁的必要条件</strong>：</p>
+<ol>
+<li><strong>互斥条件</strong>：该资源任意⼀个时刻只由⼀个线程占⽤。</li>
+<li><strong>请求与保持条件</strong>：⼀个进程因请求资源⽽阻塞时，对已获得的资源保持不放。</li>
+<li><strong>不剥夺条件</strong>:线程已获得的资源在末使⽤完之前不能被其他线程强⾏剥夺，只有⾃⼰使⽤完毕 后才释放资源。</li>
+<li><strong>循环等待条件</strong>:若⼲进程之间形成⼀种头尾相接的循环等待资源关系。</li>
+</ol>
+<p><strong>产生死锁的原因</strong>：</p>
+<ol>
+<li><strong>竞争资源</strong>：产生死锁中的竞争资源之一指的是<strong>竞争不可剥夺资源</strong>（例如：系统中只有一台打印机，可供进程P1使用，假定P1已占用了打印机，若P2继续要求打印机打印将阻塞）；产生死锁中的竞争资源另外一种资源指的是<strong>竞争临时资源</strong>（临时资源包括硬件中断、信号、消息、缓冲区内的消息等），通常消息通信顺序进行不当，则会产生死锁。</li>
+<li><strong>进程间推进顺序非法</strong>：若P1保持了资源R1，P2保持了资源R2，系统处于不安全状态，因为这两个进程再向前推进，便可能发生死锁。例如，当P1运行到P1：Request（R2）时，将因R2已被P2占用而阻塞；当P2运行到P2：Request（R1）时，也将因R1已被P1占用而阻塞，于是发生进程死锁。</li>
+</ol>
+<p><strong>死锁的预防</strong>：</p>
+<ul>
+<li>资源一次性分配：一次性分配所有资源，这样就不会再有请求了（破坏请求条件）</li>
+<li>只要有一个资源得不到分配，也不给这个进程分配其他的资源（破坏请保持条件）</li>
+<li>可剥夺资源：即当某进程获得了部分资源，但得不到其它资源，则释放已占有的资源（破坏不可剥夺条件）</li>
+<li>资源有序分配法：系统给每类资源赋予一个编号，每一个进程按编号递增的顺序请求资源，释放则相反（破坏环路等待条件）</li>
+</ul>
+<p><strong>死锁消除</strong>：</p>
+<ol>
+<li><strong>进程回退</strong>策略：即让参与死锁的进程回退到没有发生死锁前某一点处，并由此点处继续执行，以求再次执行时不再发生死锁。虽然这是个较理想的办法，但是操作起来系统开销极大，要有堆栈这样的机构记录进程的每一步变化</li>
+<li>撤消进程，<strong>剥夺资源</strong>。终止参与死锁的进程，收回它们占有的资源，从而解除死锁。一次性撤消参与死锁的全部进程，剥夺全部资源；或者逐步撤消参与死锁的进程，逐步收回死锁进程占有的资源。</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E7%BD%91%E7%BB%9C%E5%B1%82/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网络层</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/11/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">
+                        <span class="hidden-mobile">数据链路层</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,601 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="WBY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、数组去重 方法一：定义一个新数组(非递增！！！），存放原数组的第一个元素，然后将原数组一一和新数组的元素对比，若不同则存放在新数组中。  1234567891011121314151617function unique(arr)&amp;#123;    let newArr &#x3D; [arr[0]];    let a&#x3D;0;    for(let i&#x3D;1;i&lt;arr.length;i++)&amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组">
+<meta property="og:url" content="http://example.com/2022/06/25/%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="前端面试总结">
+<meta property="og:description" content="一、数组去重 方法一：定义一个新数组(非递增！！！），存放原数组的第一个元素，然后将原数组一一和新数组的元素对比，若不同则存放在新数组中。  1234567891011121314151617function unique(arr)&amp;#123;    let newArr &#x3D; [arr[0]];    let a&#x3D;0;    for(let i&#x3D;1;i&lt;arr.length;i++)&amp;#12">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-25T10:04:01.000Z">
+<meta property="article:modified_time" content="2022-09-22T18:04:32.039Z">
+<meta property="article:author" content="WBY">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>数组 - 前端面试总结</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","app_key":"JlU9ppAdc6X2IEPeXLgdlFGc","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>前端面试总结</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数组">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-06-25 18:04" pubdate>
+        2022年6月25日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      64 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数组</h1>
+            
+            <div class="markdown-body">
+              <h4 id="一、数组去重"><a href="#一、数组去重" class="headerlink" title="一、数组去重"></a>一、数组去重</h4><ul>
+<li><strong>方法一</strong>：定义一个新数组(非递增！！！），存放原数组的第一个元素，然后将原数组一一和新数组的元素对比，若不同则存放在新数组中。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">let</span> newArr = [arr[<span class="hljs-number">0</span>]];<br>    <span class="hljs-keyword">let</span> a=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">let</span> repeat=<span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=<span class="hljs-number">0</span>;j&lt;newArr.<span class="hljs-property">length</span>;j++)&#123;<br>            <span class="hljs-keyword">if</span>(arr[i]===newArr[j])&#123;<br>                repeat=<span class="hljs-literal">true</span>;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!repeat)&#123;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法二</strong>：先将原数组排序，再与新数组进行比较，若不同则存入新数组。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> formArr = arr.<span class="hljs-title function_">sort</span>();<br>    <span class="hljs-keyword">var</span> newArr = [formArr[<span class="hljs-number">0</span>]];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>;i&lt;formArr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(formArr[i]!==forArr[i-<span class="hljs-number">1</span>])&#123;<br>            newArr.<span class="hljs-title function_">push</span>(formArr[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法三</strong>：利用对象属性存在的特性，如果没有该属性则存入新数组。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> obj = &#123;&#125;;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(!obj[arr[i])&#123;<br>            obj[arr[i]]=<span class="hljs-number">1</span>;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法四</strong>：利用数组的indexOf下标属性来查询。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(newArr.<span class="hljs-title function_">indexOf</span>(<span class="hljs-params">arr[i]===-<span class="hljs-number">1</span></span>)&#123;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i])<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法五</strong>：利用数组原型对象上的includes方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(!newArr.<span class="hljs-title function_">includes</span>(<span class="hljs-params">arr[i]</span>)&#123;<br>            newArr.<span class="hljs-title function_">push</span>(arr[i];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法六</strong>：利用数组原型对象上的filter和includes方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    newArr= arr.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)&#123;<br>        <span class="hljs-keyword">return</span> newArr.<span class="hljs-title function_">includes</span>(item)?<span class="hljs-string">&#x27;&#x27;</span>:newArr.<span class="hljs-title function_">push</span>(item);<br>    &#125;)<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法七</strong>：利用数组原型对象上的forEach和includes方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">let</span> newArr = [];<br>    arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span>&#123;<br>        <span class="hljs-keyword">return</span> newArr.<span class="hljs-title function_">includes</span>(item)?<span class="hljs-string">&#x27;&#x27;</span>:newArr.<span class="hljs-title function_">push</span>(item);<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法八</strong>：利用数组原型对象上的splice方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> i,j,len=arr.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=i+<span class="hljs-number">1</span>;j&lt;len;j++)&#123;<br>            <span class="hljs-keyword">if</span>(arr[i]===arr[j])&#123;<br>                arr.<span class="hljs-title function_">splice</span>(j,<span class="hljs-number">1</span>);<br>                len--;<br>                j--;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法九</strong>：利用数组原型对象上的lastIndexOf方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>        newArr.<span class="hljs-title function_">lastIndexOf</span>(arr[i])!==-<span class="hljs-number">1</span>? <span class="hljs-string">&#x27;&#x27;</span> : newArr.<span class="hljs-title function_">push</span>(arr[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> newArr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法十</strong>：利用ES6的set方法。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(arr));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>方法十一</strong>：时间复杂度为O(n)。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">unique</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">var</span> newArr = [];<br>    <span class="hljs-keyword">return</span> arr.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">item,index,array</span>)&#123;<br>        <span class="hljs-keyword">return</span> newArr.<span class="hljs-title function_">hasOwnProperty</span>(<span class="hljs-keyword">typeof</span> item+item)? <span class="hljs-literal">false</span> : (newArr[<span class="hljs-keyword">typeof</span> item+item]) = <span class="hljs-literal">true</span>);<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>优点：hasOwnProperty是对象的属性（名称）存在性检查方法，对象的属性可以基于hash表实现，因此对属性进行访问的时间复杂度可以达到O(1)。filter是数组迭代的方法，内部还是一个for循环，所以时间复杂度是O(n)。<br>缺点：不兼容IE9以下浏览器，解决办法是把filter方法用for循环代替或自己模拟一个filter方法。</p>
+<h4 id="二、实现数组的全排列"><a href="#二、实现数组的全排列" class="headerlink" title="二、实现数组的全排列"></a>二、实现数组的全排列</h4><p>每次从数组中取出一个，然后将剩余的再进行排列。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">perm</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">let</span> res = [];<br>    <span class="hljs-keyword">if</span>(arr.<span class="hljs-property">length</span>&lt;=<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> [arr];<br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++)&#123;<br>            <span class="hljs-keyword">let</span> first = arr[i], sec=arr.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>,i).<span class="hljs-title function_">concat</span>(arr.<span class="hljs-title function_">slice</span>(i+<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">let</span> re = <span class="hljs-title function_">perm</span>(sec);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=<span class="hljs-number">0</span>;j&lt;re.<span class="hljs-property">length</span>;j++)&#123;<br>                res.<span class="hljs-title function_">push</span>(re[j].<span class="hljs-title function_">unshift</span>(first));<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> [...<span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(res)];<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="三、合并两个有序数组"><a href="#三、合并两个有序数组" class="headerlink" title="三、合并两个有序数组"></a>三、合并两个有序数组</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mergeArray</span>(<span class="hljs-params">arr1,arr2</span>)&#123;<br>    <span class="hljs-keyword">var</span> arr = [];<br>    <span class="hljs-keyword">while</span>(arr1.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>&amp;&amp;arr2.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">if</span>(arr1[<span class="hljs-number">0</span>]&lt;arr2[<span class="hljs-number">0</span>])&#123;<br>            arr.<span class="hljs-title function_">push</span>(arr1[<span class="hljs-number">0</span>]);<br>            arr1.<span class="hljs-title function_">shift</span>();<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            arr.<span class="hljs-title function_">push</span>(arr2[<span class="hljs-number">0</span>]);<br>            arr2.<span class="hljs-title function_">shift</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(arr1.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)&#123;<br>        arr.<span class="hljs-title function_">concat</span>(arr1);<br>    &#125;<br>    <span class="hljs-keyword">if</span>(arr2.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)&#123;<br>        arr.<span class="hljs-title function_">concat</span>(arr2);<br>    &#125;<br>    <span class="hljs-keyword">return</span> arr;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="四、将数组中所有的数连接成一个最大的数"><a href="#四、将数组中所有的数连接成一个最大的数" class="headerlink" title="四、将数组中所有的数连接成一个最大的数"></a>四、将数组中所有的数连接成一个最大的数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">largestNumber</span>(<span class="hljs-params">nums</span>)&#123;<br>    nums.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>&#123;<br>        <span class="hljs-keyword">let</span> t1 = a + <span class="hljs-string">&#x27;&#x27;</span> + b;<br>        <span class="hljs-keyword">let</span> t2 = b + <span class="hljs-string">&#x27;&#x27;</span> + a;<br>        <span class="hljs-keyword">if</span>(t1&lt;t2)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(t1&gt;t2)&#123;<br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">let</span> ans = nums.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>    <span class="hljs-keyword">return</span> ans[<span class="hljs-number">0</span>]===<span class="hljs-string">&#x27;0&#x27;</span> ? <span class="hljs-string">&#x27;0&#x27;</span> : ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="五、将数组中所有的数连接成一个最小的数"><a href="#五、将数组中所有的数连接成一个最小的数" class="headerlink" title="五、将数组中所有的数连接成一个最小的数"></a>五、将数组中所有的数连接成一个最小的数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">largestNumber</span>(<span class="hljs-params">nums</span>)&#123;<br>    nums.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>&#123;<br>        <span class="hljs-keyword">let</span> t1 = a + <span class="hljs-string">&#x27;&#x27;</span> + b;<br>        <span class="hljs-keyword">let</span> t2 = b + <span class="hljs-string">&#x27;&#x27;</span> + a;<br>        <span class="hljs-keyword">if</span>(t1&lt;t2)&#123;<br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(t1&gt;t2)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">let</span> ans = nums.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>    <span class="hljs-keyword">return</span> ans[<span class="hljs-number">0</span>]===<span class="hljs-string">&#x27;0&#x27;</span> ? <span class="hljs-string">&#x27;0&#x27;</span> : ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="六、最长连续递增子数组"><a href="#六、最长连续递增子数组" class="headerlink" title="六、最长连续递增子数组"></a>六、最长连续递增子数组</h4><p>每当后面的数小于前面的数时，直接count++，否则重置为1，最终保存的最大count就是结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">findLength</span>(<span class="hljs-params">nums</span>)&#123;<br>    <span class="hljs-keyword">if</span>(nums.<span class="hljs-property">length</span>===<span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> res=<span class="hljs-number">1</span>,count=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(nums[i]&lt;nums[i+<span class="hljs-number">1</span>])&#123;<br>            count++;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            count = <span class="hljs-number">1</span>;<br>        &#125;<br>        res = res &gt;count ? res : count;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="七、数组中找三个数和为指定值"><a href="#七、数组中找三个数和为指定值" class="headerlink" title="七、数组中找三个数和为指定值"></a>七、数组中找三个数和为指定值</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">threeSum</span>(<span class="hljs-params">nums,key</span>)&#123;<br>    <span class="hljs-keyword">let</span> res = [];<br>    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>    nums = nums.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>&#123;<br>        <span class="hljs-keyword">return</span> a-b;<br>    &#125;<br>    <span class="hljs-keyword">const</span> len = nums.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;len-<span class="hljs-number">2</span>;i++)&#123;<br>        <span class="hljs-keyword">let</span> j=i+<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">let</span> k=len-<span class="hljs-number">1</span>;<br>        <span class="hljs-comment">//如果遇到重复的数字，则跳过。</span><br>        <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span>&amp;&amp;nums[i]===nums[i-<span class="hljs-number">1</span>])&#123;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(j&lt;k)&#123;<br>            <span class="hljs-keyword">if</span>(nums[i]+nums[j]+nums[k]&lt;key)&#123;<br>                j++;<br>                <span class="hljs-keyword">while</span>(j&lt;k&amp;&amp;nums[j]===nums[j-<span class="hljs-number">1</span>])&#123;<br>                    j++;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[i]+nums[j]+nums[k]&gt;key)&#123;<br>                k--;<br>                <span class="hljs-keyword">while</span>(j&lt;k&amp;&amp;nums[k]===nums<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="八、寻找数组中三个数的最大乘积"><a href="#八、寻找数组中三个数的最大乘积" class="headerlink" title="八、寻找数组中三个数的最大乘积"></a>八、寻找数组中三个数的最大乘积</h4><p>先对数组进行排序，若全是正数或全是负数，则最后三个数的乘积最大。若存在负数和正数，则前两个数必然是最小的负数，将前两个数与最后一个数相乘，再与最后三个数的乘积比较大小。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxProduct</span>(<span class="hljs-params">nums</span>)&#123;<br>    nums.<span class="hljs-title function_">sort</span>();<br>    <span class="hljs-keyword">let</span> num1 = nums[<span class="hljs-number">0</span>]*nums[<span class="hljs-number">1</span>]*nums[nums.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">let</span> num2 = nums[nums.<span class="hljs-property">length</span>-<span class="hljs-number">3</span>]*nums[nums.<span class="hljs-property">length</span>-<span class="hljs-number">2</span>]*nums[nums.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(num1,num2)<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="九、连续子数组的最大和"><a href="#九、连续子数组的最大和" class="headerlink" title="九、连续子数组的最大和"></a>九、连续子数组的最大和</h4><p> 遍历数组，若数组累加和为负，则放弃之前的累加，重新开始累加，并记录该过程的最大值。<br> 用sum记录最终返回的最大和，用temp记录当前累加值。<br>对于数组中的一个数array[i]，若其前面的累加和为非负，则加上array[i]，<br>判断此时temp的值是否大于sum，若大于则替换。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">findMax</span>(<span class="hljs-params">array</span>)&#123;<br>    <span class="hljs-keyword">if</span>(array.<span class="hljs-property">length</span>&lt;=<span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">let</span> sum=array[<span class="hljs-number">0</span>],temp=array[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;array.<span class="hljs-property">length</span>;i++)&#123;<br>        <span class="hljs-keyword">if</span>(temp&lt;<span class="hljs-number">0</span>)&#123;<br>            temp = array[i];<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            temp = temp + array[i];<br>        &#125;<br>        <span class="hljs-keyword">if</span>(temp&gt;sum)&#123;<br>            sum = temp;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="★十、打平数组"><a href="#★十、打平数组" class="headerlink" title="★十、打平数组"></a>★十、打平数组</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> res = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">flat</span>(<span class="hljs-params">arr</span>)&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> arr)&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(item))&#123;<br>            <span class="hljs-title function_">flat</span>(item);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            res.<span class="hljs-title function_">add</span>(item);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">let</span> data = [...res];<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data);<br></code></pre></td></tr></table></figure>
+
+<h4 id="十一、最大连续递增子序列"><a href="#十一、最大连续递增子序列" class="headerlink" title="十一、最大连续递增子序列"></a>十一、最大连续递增子序列</h4><p>遍历数组，当遇到某个位置不满足递增时，以该点为开头重新计算最长递增序列。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> findLengthOfLCIS = <span class="hljs-keyword">function</span>(<span class="hljs-params">nums</span>) &#123;<br>    <span class="hljs-keyword">let</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">const</span> n = nums.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">let</span> start = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] &lt;= nums[i - <span class="hljs-number">1</span>]) &#123;<br>            start = i;<br>        &#125;<br>        ans = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(ans, i - start + <span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h4 id="十二、滑动窗口的最大值"><a href="#十二、滑动窗口的最大值" class="headerlink" title="十二、滑动窗口的最大值"></a>十二、滑动窗口的最大值</h4><p>给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。<br><strong>思路</strong>：<br>首先将数组每k个一组进行分组，并求nums[i]到nums[i+k-1]的最大值。<br>若i是k的倍数，那么nums[i]到nums[i+k-1]恰好是一个分组，只要预处理每个分组中最大值。<br>若不是k的倍数，那么从前一个分组后缀最大值和后一个分组前缀最大值中获取。<br>设prefixMax[i]是以i结尾前缀最大值，suffixMax[i]是以i开始的后缀最大值。<br>prefixMax[i] &#x3D; max{prefixMax[i-1],nums[i]}(i不是k的倍数，否则为nums[i]）<br>suffixMax[i] &#x3D; max{suffixMax[i+1],nums[i]}(i不是k的倍数，否则为nums[i])<br>i不是k的倍数时，窗口最大值为max{suffixMax[i],prefixMax{i+k-1]}</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> maxSlidingWindow = <span class="hljs-keyword">function</span>(<span class="hljs-params">nums, k</span>) &#123;<br>    <span class="hljs-keyword">const</span> n = nums.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">const</span> prefixMax = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(n).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">const</span> suffixMax = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(n).<span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">if</span> (i % k === <span class="hljs-number">0</span>) &#123;<br>            prefixMax[i] = nums[i];<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            prefixMax[i] = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(prefixMax[i - <span class="hljs-number">1</span>], nums[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>        <span class="hljs-keyword">if</span> (i === n || (i + <span class="hljs-number">1</span>) % k === <span class="hljs-number">0</span>) &#123;<br>            suffixMax[i] = nums[i];<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            suffixMax[i] = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(suffixMax[i + <span class="hljs-number">1</span>], nums[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">const</span> ans = [];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n - k + <span class="hljs-number">1</span>; i++) &#123;<br>        ans.<span class="hljs-title function_">push</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(suffixMax[i], prefixMax[i + k - <span class="hljs-number">1</span>]));<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h4 id="十三、最多包含两个不同字符的最长子串"><a href="#十三、最多包含两个不同字符的最长子串" class="headerlink" title="十三、最多包含两个不同字符的最长子串"></a>十三、最多包含两个不同字符的最长子串</h4><p>返回该子串长度，如ece<br><strong>思路</strong>：双指针，先一个向右走，直到超过，再左指针也向右，直到不超过，重复。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maxLength</span>(<span class="hljs-params">s</span>)&#123;<br>    <span class="hljs-keyword">let</span> strlen = s.<span class="hljs-property">length</span>;<br>    <span class="hljs-keyword">if</span>(strlen&lt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">return</span> strlen;<br>    &#125;<br>    <span class="hljs-keyword">let</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();<br>    <span class="hljs-keyword">let</span> maxlen = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(right&lt;strlen)&#123;<br>        <span class="hljs-keyword">if</span>(map.<span class="hljs-title function_">has</span>(<span class="hljs-params">s[right]</span>)&#123;<br>            map.<span class="hljs-title function_">set</span>(s[right],map.<span class="hljs-title function_">get</span>(s[right])+<span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            map.<span class="hljs-title function_">set</span>(s[right],<span class="hljs-number">1</span>);<br>        &#125;<br>        right++;<br>        <span class="hljs-keyword">while</span>(map.<span class="hljs-property">size</span>===<span class="hljs-number">3</span>)&#123;<br>            <span class="hljs-keyword">if</span>(map.<span class="hljs-title function_">get</span>(<span class="hljs-params">s[left]&gt;<span class="hljs-number">1</span></span>)&#123;<br>                map.<span class="hljs-title function_">set</span>(s[left],map.<span class="hljs-title function_">get</span>(s[left])-<span class="hljs-number">1</span>);<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(map.<span class="hljs-title function_">get</span>(s[left])===<span class="hljs-number">1</span>)&#123;<br>                map.<span class="hljs-title function_">delete</span>(s[left]);<br>            &#125;<br>            left++;<br>        &#125;<br>        maxlen = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(maxlen,right-left);<br>    &#125; <br>    <span class="hljs-keyword">return</span> maxlen;<br>&#125;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/26/webpack/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">webpack</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/20/304-%E4%BA%8C%E7%BB%B4%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%8F%AF%E5%8F%98/">
+                        <span class="hidden-mobile">304.二维区域和检索-矩阵不可变</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sOHs1UX9yhu45mOPqVuIjOkh-gzGzoHsz","appKey":"JlU9ppAdc6X2IEPeXLgdlFGc","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
