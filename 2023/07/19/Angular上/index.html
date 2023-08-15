@@ -24,7 +24,7 @@
 <meta property="og:description" content="设计原则：可维护性、可修改性、可扩展性 ①YAGNI：不写不需要的代码。 ②DRY：不要重复写自己的代码。 ③OCP：开闭原则。对扩展开放，对修改封闭。 ④Low Coupling，High Cohesion：高聚合、低耦合原则 ⑤Dimeter Law：迪米特法则，也叫最少知识法则，一个对象&#x2F;组建只负责必须的少量功能。 Angular框架是MVVM框架，该框架组成包括：数据绑定、组件式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-19T15:35:58.000Z">
-<meta property="article:modified_time" content="2023-08-15T15:52:50.007Z">
+<meta property="article:modified_time" content="2023-08-15T15:56:14.310Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -333,7 +333,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户名长度：&#123;&#123;name.length&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户名大写：&#123;&#123;name.toUpperCase()&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>用户名下标为2的字符：&#123;&#123;name[2]&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>创建对象和JSON序列化不可以</strong>：NG表达式中禁止出现new关键字，JSON是undefined。</p>
-<h3 id="二、属性绑定"><a href="#二、属性绑定" class="headerlink" title="二、属性绑定"></a>二、属性绑定</h3><p>1、直接在属性上用&lt;!–swig￼24–&gt;</p>
+<h3 id="二、属性绑定"><a href="#二、属性绑定" class="headerlink" title="二、属性绑定"></a>二、属性绑定</h3><p>1、直接在属性上用双花括号</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;&#123;&#123;name&#125;&#125;&quot;</span>&gt;</span>标题<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>2、 使用[]做属性绑定 <strong>属性绑定时，通常赋值的是变量，若赋值为常量，字符串要放在’’里</strong></p>
