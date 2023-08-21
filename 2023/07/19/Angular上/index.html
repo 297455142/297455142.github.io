@@ -24,7 +24,7 @@
 <meta property="og:description" content="设计原则：可维护性、可修改性、可扩展性 ①YAGNI：不写不需要的代码。 ②DRY：不要重复写自己的代码。 ③OCP：开闭原则。对扩展开放，对修改封闭。 ④Low Coupling，High Cohesion：高聚合、低耦合原则 ⑤Dimeter Law：迪米特法则，也叫最少知识法则，一个对象&#x2F;组建只负责必须的少量功能。 Angular框架是MVVM框架，该框架组成包括：数据绑定、组件式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-19T15:35:58.000Z">
-<meta property="article:modified_time" content="2023-08-21T15:40:20.293Z">
+<meta property="article:modified_time" content="2023-08-21T15:45:10.095Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -370,8 +370,7 @@
 <li><strong>结构型指令</strong>：会影响DOM树结构，必须使用<em>开头，如</em>ngFor、*ngIf</li>
 <li><strong>属性型指令</strong>：不会影响DOM树结构，只是影响元素外观或行为，必须用[]。</li>
 </ul>
-<p>### 六、双向数据绑定</p>
-<p>M&#x3D;&gt;V模型变则视图变。</p>
+<h3 id="六、双向数据绑定"><a href="#六、双向数据绑定" class="headerlink" title="六、双向数据绑定"></a>六、双向数据绑定</h3><p>M&#x3D;&gt;V模型变则视图变。</p>
 <p>V&#x3D;&gt;M视图变则模型变。</p>
 <p>用[(ngModel)]，<strong>使用前需要先导入模块</strong>。</p>
 <p>监听数据变化事件用ngModelChange</p>
