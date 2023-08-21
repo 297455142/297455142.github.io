@@ -24,7 +24,7 @@
 <meta property="og:description" content="设计原则：可维护性、可修改性、可扩展性 ①YAGNI：不写不需要的代码。 ②DRY：不要重复写自己的代码。 ③OCP：开闭原则。对扩展开放，对修改封闭。 ④Low Coupling，High Cohesion：高聚合、低耦合原则 ⑤Dimeter Law：迪米特法则，也叫最少知识法则，一个对象&#x2F;组建只负责必须的少量功能。 Angular框架是MVVM框架，该框架组成包括：数据绑定、组件式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-19T15:35:58.000Z">
-<meta property="article:modified_time" content="2023-08-21T15:19:06.973Z">
+<meta property="article:modified_time" content="2023-08-21T15:30:57.370Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -350,7 +350,7 @@
 <p>对于多种选择：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html">&lt;ANY*ngIf=&quot;布尔表达式; else ELSE块的编号&quot;&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">ANY</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> #<span class="hljs-attr">ELSE</span>块的编号&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">ANY</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ANY</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">&quot;age&gt;=18; else forChildren&quot;</span>&gt;</span>成年人<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ng-template</span> #<span class="hljs-attr">forChildren</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>儿童<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ng-template</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>3、样式绑定：**[ngStyle]**</p>
+<p>3、样式绑定：<strong>[ngStyle]</strong></p>
 <p>ngStyle绑定的值必须是一个对象，对象属性就是CSS样式名。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ANY</span> [<span class="hljs-attr">ngStyle</span>]=<span class="hljs-string">&quot;obj&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ANY</span>&gt;</span><br><br>export class MyComponent&#123;<br>	myStyle = &#123;<br>		backgroundColor: &#x27;green&#x27;,<br>		color: &#x27;blue&#x27;,<br>		&#x27;border-color&#x27;: &#x27;#252&#x27;<br>	&#125;<br>&#125;<br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> [<span class="hljs-attr">ngStyle</span>]=<span class="hljs-string">&quot;myStyle&quot;</span>&gt;</span>提示<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
