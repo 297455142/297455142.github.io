@@ -24,7 +24,7 @@
 <meta property="og:description" content="设计原则：可维护性、可修改性、可扩展性 ①YAGNI：不写不需要的代码。 ②DRY：不要重复写自己的代码。 ③OCP：开闭原则。对扩展开放，对修改封闭。 ④Low Coupling，High Cohesion：高聚合、低耦合原则 ⑤Dimeter Law：迪米特法则，也叫最少知识法则，一个对象&#x2F;组建只负责必须的少量功能。 Angular框架是MVVM框架，该框架组成包括：数据绑定、组件式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-19T15:35:58.000Z">
-<meta property="article:modified_time" content="2023-08-21T14:58:13.614Z">
+<meta property="article:modified_time" content="2023-08-21T15:19:06.973Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -317,7 +317,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">component01</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">component01</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>创建组件</strong>：ng g component 组件名</p>
-<h1 id="二、数据绑定"><a href="#二、数据绑定" class="headerlink" title="二、数据绑定"></a>二、数据绑定</h1><h3 id="一、HTML绑定"><a href="#一、HTML绑定" class="headerlink" title="一、HTML绑定"></a>一、HTML绑定</h3><p>****：先在组件的导出类中声明变量，然后在html中使用。</p>
+<h1 id="二、数据绑定"><a href="#二、数据绑定" class="headerlink" title="二、数据绑定"></a>二、数据绑定</h1><h3 id="一、HTML绑定"><a href="#一、HTML绑定" class="headerlink" title="一、HTML绑定"></a>一、HTML绑定</h3><p><strong>将变量名放在双花括号里</strong>：先在组件的导出类中声明变量，然后在html中使用。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html">export class MyComponent &#123;<br>    name = &quot;dingding&quot;;<br>&#125;<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>&#123;&#123; name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p><strong>ng表达式中可以</strong>：</p>
