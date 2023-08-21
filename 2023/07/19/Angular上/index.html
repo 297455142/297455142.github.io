@@ -24,7 +24,7 @@
 <meta property="og:description" content="设计原则：可维护性、可修改性、可扩展性 ①YAGNI：不写不需要的代码。 ②DRY：不要重复写自己的代码。 ③OCP：开闭原则。对扩展开放，对修改封闭。 ④Low Coupling，High Cohesion：高聚合、低耦合原则 ⑤Dimeter Law：迪米特法则，也叫最少知识法则，一个对象&#x2F;组建只负责必须的少量功能。 Angular框架是MVVM框架，该框架组成包括：数据绑定、组件式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-19T15:35:58.000Z">
-<meta property="article:modified_time" content="2023-08-21T15:45:10.095Z">
+<meta property="article:modified_time" content="2023-08-21T16:16:14.095Z">
 <meta property="article:author" content="WBY">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.1k 字
+      6.5k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      43 分钟
+      55 分钟
     </span>
   
 
@@ -380,6 +380,25 @@
 <p><strong>ng g directive 指令名</strong></p>
 <p>此时在app.module.ts中的declarations中会出现定义的指令，并且出现：指令名.directive.ts文件</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html">//指令文件内<br>@Directive(&#123;<br>	selector:&#x27;[Tranm]&#x27;<br>&#125;)<br>export class TranmDirective &#123;<br>	constructor( el: ElementRef ) &#123;<br>		el.nativeElement.style.background = &#x27;#fcc&#x27;<br>		el.nativeElement.style.padding = &#x27;10px&#x27;<br>	&#125;<br>&#125;<br>//模板中<br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">tranm</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="三、-过滤器-管道"><a href="#三、-过滤器-管道" class="headerlink" title="三、 过滤器\管道"></a>三、 过滤器\管道</h1><p><strong>Filter</strong>：过滤器\管道，用于在View中呈现数据时显示为另一种格式；过滤器的本质是一个函数，接收原始数据转换为新的格式进行输出。</p>
+<p>使用过滤器：（双花括号）原始数据变量名 | 管道名 （双花括号）</p>
+<hr>
+<p><strong>自定义管道的步骤</strong>：</p>
+<p>①创建管道class，实现转换功能</p>
+<p>②在模块中注册管道</p>
+<p>③在模板视图中使用管道</p>
+<p><strong>管道创建</strong>：ng g pipe 管道名</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 在xxx.pipe.ts中</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Pipe</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;<br><br><span class="hljs-meta">@Pipe</span>(&#123;<br>	<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;sex&#x27;</span> <span class="hljs-comment">//管道名</span><br>&#125;)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SexPipe</span> &#123;<br>	<span class="hljs-comment">//管道到执行过滤任务的是一个固定的函数</span><br>	<span class="hljs-title function_">transform</span>(<span class="hljs-params">val,lang=<span class="hljs-string">&#x27;zh&#x27;</span></span>)&#123;<br>		<span class="hljs-keyword">if</span>(val==<span class="hljs-number">1</span>)&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;男&#x27;</span><br>		&#125;<br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(val==<span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;女&#x27;</span><br>		&#125;<br>		<span class="hljs-keyword">else</span>&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;未知&#x27;</span><br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 在app.module.ts中</span><br><span class="hljs-attr">declarations</span>: [<br>	<span class="hljs-title class_">SexPipe</span><br>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>管道的transform方法除了val还可以接收其它参数，调用管道时用冒号为这些参数赋值</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>&#123;&#123;e.sex | sex:&#x27;en&#x27;&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>可以用于属性绑定</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> [<span class="hljs-attr">title</span>]=<span class="hljs-string">&quot;empSex | sex&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>Angular有部分管道已经预定义，可以直接使用</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">//lowercase转换为小写</span><br>&#123;&#123;ename | lowercase&#125;&#125;<br><br><span class="hljs-comment">//uppercase转换为大写</span><br>&#123;&#123;ename | uppercase&#125;&#125;<br><br><span class="hljs-comment">//titlecase转换为首字母大写</span><br>&#123;&#123;ename | titlecase&#125;&#125;<br><br><span class="hljs-comment">//slice只显示字符串的一部分</span><br>&#123;&#123;ename | slice : <span class="hljs-number">0</span> : <span class="hljs-number">3</span>&#125;&#125;<br><br><span class="hljs-comment">//json把JS对象序列化为JSON字符串</span><br>&#123;&#123;obj | json&#125;&#125;<br><br><span class="hljs-comment">//number把数字转换为具有指定整数位和小数位的字符串</span><br>&#123;&#123;num | <span class="hljs-built_in">number</span>&#125;&#125;<br>&#123;&#123;num | <span class="hljs-built_in">number</span> : <span class="hljs-string">&#x27;4.1-4&#x27;</span>&#125;&#125;<br><br><span class="hljs-comment">//currency把数字转换为货币格式字符串：货币符号+三位一逗号+二位小数位</span><br>&#123;&#123;num | currency&#125;&#125;<br>&#123;&#123;num | <span class="hljs-attr">currency</span>:<span class="hljs-string">&#x27;$&#x27;</span>&#125;&#125;<br><br><span class="hljs-comment">//date把数字转换为日期字符串</span><br>&#123;&#123;num | <span class="hljs-attr">date</span>:<span class="hljs-string">&#x27;yyyy-MM-dd HH:mm:ss&#x27;</span>&#125;&#125;<br></code></pre></td></tr></table></figure>
 
 
             </div>
